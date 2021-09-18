@@ -1,77 +1,94 @@
+/* _BREAKPOINTS */
+
+/* Large Devices, Wide Screens */
+$xl: 1200px;
+
+/* Medium Devices, Desktops */
+$lg: 991px;
+
+/* Small Devices, Tablets */
+$mb: 767px;
+
+/* Extra Small Devices, Phones */
+$sm: 355px;
+
+/* Custom, iPhone Retina */
+$xs: 0;
+
 @mixin xl { /* свыше xl*/
-    @media (min-width: xl) {
+    @media (min-width: $xl) {
         @content;
     }
 }
 
 @mixin lg { /* свыше lg*/
-    @media (min-width: lg) {
+    @media (min-width: $lg) {
         @content;
     }
 }
 
-@mixin mb { /* свыше md*/
-    @media (min-width: md) {
+@mixin mb { /* свыше mb*/
+    @media (min-width: $mb) {
         @content;
     }
 }
 
 @mixin sm { /* свыше sm */
-    @media (min-width: sm) {
+    @media (min-width: $sm) {
         @content;
     }
 }
 
 @mixin xs { /* свыше xs; */
-    @media (min-width: xs) {
+    @media (min-width: $xs) {
         @content;
     }
 }
 
 @mixin lg-xl { /* от lg до xl */
-    @media (min-width: lg) and (max-width: xl) {
+    @media (min-width: $lg) and (max-width: $xl) {
         @content;
     }
 }
 
-@mixin md-xl { /* от  md-xl */
-    @media (min-width: md) and (max-width: xl) {
+@mixin mb-xl { /* от  mb-xl */
+    @media (min-width: $mb) and (max-width: $xl) {
         @content;
     }
 }
 
 @mixin sm-lg { /* от  sm до  lg */
-    @media (min-width: sm) and (max-width: lg) {
+    @media (min-width: $sm) and (max-width: $lg) {
         @content;
     }
 }
 
-@mixin md-lg { /* от  md-lg */
-    @media (min-width: md) and (max-width: lg) {
+@mixin mb-lg { /* от  mb-lg */
+    @media (min-width: $mb) and (max-width: $lg) {
         @content;
     }
 }
 
 @mixin xs-lg { /* от xs-lg */
-    @media (min-width: xs) and (max-width: lg) {
+    @media (min-width: $xs) and (max-width: $lg) {
         @content;
     }
 }
 
-@mixin sm-md { /* от  sm-md */
-    @media (min-width: sm) and (max-width: md) {
+@mixin sm-mb { /* от  sm-mb */
+    @media (min-width: $sm) and (max-width: $mb) {
         @content;
     }
 }
 
-@mixin xs-md { /* от xs-md */
-    @media (min-width: xs) and (max-width: md) {
+@mixin xs-mb { /* от xs-mb */
+    @media (min-width: $xs) and (max-width: $mb) {
         @content;
     }
 }
 
 @mixin xs-sm { /* от xs до sm*/
-    @media (min-width: xs) and (max-width: sm) {
+    @media (min-width: $xs) and (max-width: $sm) {
         @content;
     }
 }

@@ -10,12 +10,12 @@ import s from "./Intro.module.scss";
 const Intro = (props) => {
   return (
     <section className={s.intro} id="hello">
-      <div className={s.container}>
-        <div className={s.intro__inner}>
-          <div className={s.intro__content}>
-            <h2 className={s.intro__subtitle}>Hello i'm</h2>
-            <h1 className={s.intro__title}>Poskannui Maksym</h1>
-            <div className={s.intro__text}>Frontend Developer</div>
+      <div className={s.inner}>
+        <div className="container">
+          <div className={s.content}>
+            <h2 className={s.subtitle}>Hello i'm</h2>
+            <h1 className={s.title}>Poskannui Maksym</h1>
+            <div className={s.text}>Frontend Developer</div>
 
             <div className={s.social}>
               <a
@@ -59,9 +59,9 @@ const Intro = (props) => {
                 <img src={socialLink5} alt="link telegram" />
               </a>
             </div>
-            <div className={s.intro__link}>
-              <button>Hire Me</button>
-              <button>See My Resume</button>
+            <div className={s.link}>
+              <button className={s.btn}>Hire Me</button>
+              <button className={s.btn}>See My Resume</button>
             </div>
           </div>
         </div>
