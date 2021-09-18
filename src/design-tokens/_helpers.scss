@@ -1,0 +1,54 @@
+.text-center {
+    text-align: center;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+.mb-0 {
+    margin-bottom: 0;
+}
+
+.hide {
+    display: none;
+}
+
+.light {
+    color: #000;
+    box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+    transform: translateY(-7px);
+    transition: all 0.7s ease-in-out;
+    opacity: 1;
+    visibility: visible;
+}
+
+/* .valid {
+    // background: url(../../images/form/check.svg) right no-repeat, rgb(12, 174, 189);
+} */
+
+.error {
+    color: #ff2dff;
+}
+
+#input-email-error,
+#input-name-error {
+    position: absolute;
+    top: 5px;
+    padding: 5px;
+    text-align: center;
+    top: 100%;
+}
+
+.in::after {
+    top: 12px;
+    transform: translateY(-50%) rotate(-45deg);
+    border-top: 2px solid var(--color-blue);
+    border-right: 2px solid var(--color-blue);
+}

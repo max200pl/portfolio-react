@@ -1,0 +1,101 @@
+@use "../../breakpoints";
+
+/* .intro {} */
+
+@import "../../design-tokens/breakpoints";
+
+.inner {
+    display: flex;
+    position: relative;
+    padding-top: 8rem;
+    padding-bottom: 8rem;
+    border-bottom: 1px solid fade(var(color-white), 30%);
+
+    @include lg {
+        padding-top: 3rem;
+        padding-bottom: 3rem;
+        background-size: 400px auto;
+    }
+
+
+    @include mb {
+        background-size: 300px auto;
+    }
+}
+
+/* .link {
+    .btn {
+        @include mb {
+            width: 100%;
+            margin-top: 20px;
+
+            & + .btn {
+                margin-left: 0;
+            }
+        } 
+    }
+}
+ */
+.content {
+    width: 50%;
+
+   /*  @media @mobile {
+        width: 60%;
+    }
+
+    @media @mobile-sm {
+        width: 90%;
+    } */
+}
+
+.subtitle {
+    font-size: 2.13rem;
+    font-weight: 200;
+
+    /* color: @white; */
+    /* 
+        @media @tablet {
+            font-size: 1.5rem;
+    
+        } */
+}
+
+.title {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 5px;
+
+    /* color: @white; */
+
+    /* 
+        @media @tablet {
+            font-size: 2rem;
+    
+        } */
+}
+
+.text {
+    font-size: 1.2rem;
+    margin-bottom: 25px;
+
+    /*  color: fade(@white, 70%); */
+}
+
+.photo {
+    position: absolute;
+    bottom: -1px;
+    right: 0;
+    z-index: 1;
+
+   /*  @media @tablet {
+        width: 350px;
+    }
+
+    @media @mobile {
+        width: 300px;
+    }
+
+    @media @mobile-sm {
+        display: none;
+    } */
+}

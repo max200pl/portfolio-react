@@ -1,0 +1,77 @@
+@mixin xl { /* свыше xl*/
+    @media (min-width: xl) {
+        @content;
+    }
+}
+
+@mixin lg { /* свыше lg*/
+    @media (min-width: lg) {
+        @content;
+    }
+}
+
+@mixin mb { /* свыше md*/
+    @media (min-width: md) {
+        @content;
+    }
+}
+
+@mixin sm { /* свыше sm */
+    @media (min-width: sm) {
+        @content;
+    }
+}
+
+@mixin xs { /* свыше xs; */
+    @media (min-width: xs) {
+        @content;
+    }
+}
+
+@mixin lg-xl { /* от lg до xl */
+    @media (min-width: lg) and (max-width: xl) {
+        @content;
+    }
+}
+
+@mixin md-xl { /* от  md-xl */
+    @media (min-width: md) and (max-width: xl) {
+        @content;
+    }
+}
+
+@mixin sm-lg { /* от  sm до  lg */
+    @media (min-width: sm) and (max-width: lg) {
+        @content;
+    }
+}
+
+@mixin md-lg { /* от  md-lg */
+    @media (min-width: md) and (max-width: lg) {
+        @content;
+    }
+}
+
+@mixin xs-lg { /* от xs-lg */
+    @media (min-width: xs) and (max-width: lg) {
+        @content;
+    }
+}
+
+@mixin sm-md { /* от  sm-md */
+    @media (min-width: sm) and (max-width: md) {
+        @content;
+    }
+}
+
+@mixin xs-md { /* от xs-md */
+    @media (min-width: xs) and (max-width: md) {
+        @content;
+    }
+}
+
+@mixin xs-sm { /* от xs до sm*/
+    @media (min-width: xs) and (max-width: sm) {
+        @content;
+    }
+}

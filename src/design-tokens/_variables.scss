@@ -1,0 +1,27 @@
+:root {
+    $color-white: #fff;
+    $color-sky: #74D7FF;
+    $color-blue: #10AEDF;
+    $color-black: #000;
+    $color-blue-border: #001aff9d;
+    $color-gray: #6a696b;
+    $color-gray-light: #8d8d8e;
+    $color-red: #D0021B;
+
+    /* _BREAKPOINTS */
+
+    /* Large Devices, Wide Screens */
+    $xl: 1200px;
+
+    /* Medium Devices, Desktops */
+    $lg: 991px;
+
+    /* Small Devices, Tablets */
+    $mb: 767px;
+
+    /* Extra Small Devices, Phones */
+    $sm: 355px;
+
+    /* Custom, iPhone Retina */
+    $xs: 0;
+}
