@@ -60,8 +60,8 @@ const Intro = (props) => {
               </a>
             </div>
             <div className={s.link}>
-              <button className={s.btn}>Hire Me</button>
-              <button className={s.btn}>See My Resume</button>
+              <button className={"btn"}>Hire Me</button>
+              <button className={"btn"}>See My Resume</button>
             </div>
           </div>
         </div>
