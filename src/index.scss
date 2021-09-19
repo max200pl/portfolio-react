@@ -3,22 +3,55 @@
 
 body {
     font-size: 1rem;
-    margin: 0;
     color: #fff;
-    border: 1px solid #fff;
     background: linear-gradient(to right top, #051937, #000, #008793, #bf0000, #f00);
     background-size: cover;
     background-repeat: no-repeat;
-    height: 100vh;
-    overflow-x: hidden;
+
+    //overflow-x: hidden;
+    box-sizing: border-box;
 }
 
 .container {
-    width: 100%;
-    max-width: 1200px;
+    position: relative;
+    max-width: 1220px;
     margin: 0 auto;
-    padding-right: 15px;
-    padding-left: 15px; // 15px
+
+    @include xl {
+        max-width: 1260px;
+        padding: 0 20px;
+    }
+
+
+    @include lg {
+        max-width: 1100px;
+        padding: 0 20px;
+    }
+
+
+    @include mb {
+        max-width: 990px;
+        padding: 0 15px;
+    }
+
+
+    @include sm-mb {
+        &_non-p-m {
+            padding: 0;
+        }
+
+        padding: 0 15px;
+    }
+
+
+    @include xs-sm {
+        &_non-p-m {
+            padding: 0;
+        }
+
+        max-width: 320px;
+        padding: 0 15px;
+    }
 }
 
 code {
@@ -50,7 +83,7 @@ button {
     text-transform: uppercase;
     cursor: pointer;
     color: #fff;
-    border: 1px solid #fff;
+    border: 1.5px solid #fff;
     border-radius: 1.8em;
     transition: background-color 0.2s linear, color 0.2s linear, box-shadow 0.2s linear, border-color 0.2s linear;
     background: none;
