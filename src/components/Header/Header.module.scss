@@ -145,6 +145,7 @@
         }
 
         &_btn:hover {
+            max-width: 100%;
             color: $color-white;
             background-color: #27618c;
             box-shadow: 4px 3px 4px $color-black;

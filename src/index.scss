@@ -1,5 +1,3 @@
-@import-normalize;
-
 @import "./design-tokens/breakpoints";
 @import "./design-tokens/variables";
 
@@ -89,7 +87,7 @@ button {
         font-size: .8rem;
     }
 
-    @include lg {
+    @include xs-lg {
         font-size: 1rem;
         padding: 1.0em 1.5em;
         min-width: 140px;
