@@ -4,9 +4,8 @@
 body {
     font-size: 1rem;
     color: #fff;
-    background: linear-gradient(to right top, #051937, #000, #008793, #bf0000, #f00);
-    background-size: cover;
-    background-repeat: no-repeat;
+    background: linear-gradient(to right top, #051937, #000, #008793, #bf0000, #f00) no-repeat center center fixed;
+    background-size: 100% 100%;
 
     //overflow-x: hidden;
     box-sizing: border-box;
@@ -24,7 +23,7 @@ body {
 
 
     @include lg {
-        max-width: 1100px;
+        max-width: 1260px;
         padding: 0 20px;
     }
 
