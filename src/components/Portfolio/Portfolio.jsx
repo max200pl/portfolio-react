@@ -1,4 +1,5 @@
 import React from "react";
+import Work from "./Work/Work";
 
 import photoPortfolio from "../../img/modal/modal-works-slider/photo-Portfolio/intro.png";
 import photoMoGo from "../../img/modal/modal-works-slider/photo-MoGo/intro.png";
@@ -8,8 +9,52 @@ import photoPantoflex from "../../img/modal/modal-works-slider/photo-pantoflex/t
 import photoEngPlatform from "../../img/modal/modal-works-slider/photo-engPlatform/title.png";
 
 import s from "./Portfolio.module.scss";
+let works = [
+  {
+    id: 1,
+    categoryWork: "website",
+    workName: "Portfolio",
+    endWorkTime: "2020",
+    img: photoPortfolio,
+  },
+  {
+    id: 2,
+    categoryWork: "landing",
+    workName: "MoGo",
+    endWorkTime: "2019",
+    img: photoMoGo,
+  },
+  {
+    id: 3,
+    categoryWork: "landing",
+    workName: "Power",
+    endWorkTime: "2019",
+    img: photoPower,
+  },
+  {
+    id: 4,
+    categoryWork: "landing",
+    workName: "Anveshan",
+    endWorkTime: "2019",
+    img: photoAnveshan,
+  },
+  {
+    id: 5,
+    categoryWork: "landing",
+    workName: "Pantoflex",
+    endWorkTime: "2019",
+    img: photoPantoflex,
+  },
+  {
+    id: 6,
+    categoryWork: "website",
+    workName: "engPlatform",
+    endWorkTime: "2019",
+    img: photoEngPlatform,
+  },
+];
 
-const Portfolio = () => {
+const Portfolio = (props) => {
   return (
     <div className={s.works} id="portfolio">
       <div className="container">
@@ -26,102 +71,19 @@ const Portfolio = () => {
         </div>
 
         <div className={s.portfolio}>
-          <div className={s.portfolio__col}>
-            <div className={s.work}>
-              <img
-                className={s.work__img}
-                src={photoPortfolio}
-                alt="Portfolio"
+          {works.map((workItem) => (
+            <div className={s.portfolio__col}>
+              <Work
+                id={workItem.id}
+                categoryWork={workItem.categoryWork}
+                workName={workItem.workName}
+                endWorkTime={workItem.endWorkTime}
+                imgWork={workItem.img}
               />
-              <div className={s.work__content}>
-                <div className={s.work__cat}>category: website</div>
-                <div className={s.work__title}>
-                  Portfolio
-                  <time className={s.work__date}>2020</time>
-                </div>
-              </div>
             </div>
-          </div>
-
-          <div className={s.portfolio__col}>
-            <div className={s.work}>
-              <img className={s.work__img} src={photoMoGo} alt="MoGo" />
-              <div className={s.work__content}>
-                <div className={s.work__cat}>category: landing</div>
-                <div className={s.work__title}>
-                  MoGo
-                  <time className={s.work__date}>2019</time>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className={s.portfolio__col}>
-            <div className={s.work}>
-              <img className={s.work__img} src={photoPower} alt="Power" />
-              <div className={s.work__content}>
-                <div className={s.work__cat}>category: landing</div>
-                <div className={s.work__title}>
-                  Power
-                  <time className={s.work__date}>2019</time>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className={s.portfolio__col}>
-            <div className={s.work}>
-              <img
-                className={s.work__img}
-                src={photoAnveshan}
-                alt="anveshan title"
-              />
-              <div className={s.work__content}>
-                <div className={s.work__cat}>category: landing</div>
-                <div className={s.work__title}>
-                  Anveshan
-                  <time className={s.work__date}>2019</time>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className={s.portfolio__col}>
-            <div className={s.work}>
-              <img
-                className={s.work__img}
-                src={photoPantoflex}
-                alt="pantoflex"
-              />
-
-              <div className={s.work__content}>
-                <div className={s.work__cat}>category: landing</div>
-                <div className={s.work__title}>
-                  Pantoflex
-                  <time className={s.work__date}>2020</time>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className={s.portfolio__col}>
-            <div className={s.work}>
-              <img
-                className={s.work__img}
-                src={photoEngPlatform}
-                alt="engPlatform"
-              />
-
-              <div className={s.work__content}>
-                <div className={s.work__cat}>category: website</div>
-                <div className={s.work__title}>
-                  English_Platform
-                  <time className={s.work__date}>2020</time>
-                </div>
-              </div>
-            </div>
-          </div>
+          ))}
         </div>
+
         <div className="text-center">
           <button className="btn btn_sm">Load More Work</button>
         </div>
