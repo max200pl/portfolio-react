@@ -1,28 +1,138 @@
-@import-normalize;
-
 @import "./design-tokens/breakpoints";
 @import "./design-tokens/variables";
 
 body {
     font-size: 1rem;
-    margin: 0;
     color: #fff;
-    border: 1px solid #fff;
-    background: linear-gradient(to right top, #051937, #000, #008793, #bf0000, #f00);
-    background-size: cover;
-    background-repeat: no-repeat;
-    height: 100vh;
-    overflow-x: hidden;
+    background: linear-gradient(to right top, #051937, #000, #008793, #bf0000, #f00) no-repeat center center fixed;
+    background-size: 100% 100%;
+
+    //overflow-x: hidden;
+    box-sizing: border-box;
 }
 
 .container {
-    width: 100%;
-    max-width: 1200px;
+    position: relative;
+    max-width: 1220px;
     margin: 0 auto;
-    padding-right: 15px;
-    padding-left: 15px; // 15px
+
+    @include xl {
+        max-width: 1260px;
+        padding: 0 20px;
+    }
+
+
+    @include lg {
+        max-width: 1200px;
+        padding: 0 20px;
+    }
+
+
+    @include mb {
+        max-width: 990px;
+        padding: 0 15px;
+    }
+
+
+    @include sm-mb {
+        &_non-p-m {
+            padding: 0;
+        }
+
+        padding: 0 15px;
+    }
+
+
+    @include xs-sm {
+        &_non-p-m {
+            padding: 0;
+        }
+
+        max-width: 320px;
+        padding: 0 15px;
+    }
 }
 
 code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+button {
+    padding: 0;
+    border: none;
+    font: inherit;
+    color: inherit;
+    background-color: transparent;
+
+    /* отображаем курсор в виде руки при наведении; некоторые
+    считают, что необходимо оставлять стрелочный вид для кнопок */
+    cursor: pointer;
+}
+
+.btn {
+    font-family: inherit;
+    font-size: 1.1rem;
+    line-height: 1.1;
+    display: inline-block;
+    min-width: 170px;
+    padding: 1.05em 1.8em;
+    text-align: center;
+    vertical-align: top;
+    text-decoration: none;
+    text-transform: uppercase;
+    cursor: pointer;
+    color: #fff;
+    border: 1.5px solid #fff;
+    border-radius: 1.8em;
+    transition: background-color 0.2s linear, color 0.2s linear, box-shadow 0.2s linear, border-color 0.2s linear;
+    background: none;
+
+    &:hover {
+        color: #000;
+        background-color: $color-white;
+        box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+        transform: translateY(-7px);
+        transition: all 0.7s ease-in-out;
+        border: 1px solid $color-white;
+    }
+
+    &_hide {
+        visibility: hidden;
+        opacity: 0;
+    }
+
+    + .btn {
+        margin-left: 15px;
+    }
+
+    &_sm {
+        min-width: 0;
+        padding: 0.6em 1.1em;
+        font-size: 0.94rem;
+        font-weight: bold;
+        border-width: 2px;
+        border-color: $color-white;
+    }
+
+    &_thin {
+        min-width: 145px;
+        font-size: .8rem;
+    }
+
+    @include xs-lg {
+        font-size: 1rem;
+        padding: 1.0em 1.5em;
+        min-width: 140px;
+    }
+
+
+    @include xs-mb {
+        display: block;
+        width: 100%;
+
+        + .btn {
+            margin-left: 0;
+            margin-top: 1rem;
+        }
+    }
 }
