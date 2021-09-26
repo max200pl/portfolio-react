@@ -9,57 +9,22 @@ import photoPantoflex from "../../img/modal/modal-works-slider/photo-pantoflex/t
 import photoEngPlatform from "../../img/modal/modal-works-slider/photo-engPlatform/title.png";
 
 import s from "./Portfolio.module.scss";
-let works = [
-  {
-    id: 1,
-    categoryWork: "website",
-    workName: "Portfolio",
-    endWorkTime: "2020",
-    img: photoPortfolio,
-  },
-  {
-    id: 2,
-    categoryWork: "landing",
-    workName: "MoGo",
-    endWorkTime: "2019",
-    img: photoMoGo,
-  },
-  {
-    id: 3,
-    categoryWork: "landing",
-    workName: "Power",
-    endWorkTime: "2019",
-    img: photoPower,
-  },
-  {
-    id: 4,
-    categoryWork: "landing",
-    workName: "Anveshan",
-    endWorkTime: "2019",
-    img: photoAnveshan,
-  },
-  {
-    id: 5,
-    categoryWork: "landing",
-    workName: "Pantoflex",
-    endWorkTime: "2019",
-    img: photoPantoflex,
-  },
-  {
-    id: 6,
-    categoryWork: "website",
-    workName: "engPlatform",
-    endWorkTime: "2019",
-    img: photoEngPlatform,
-  },
-];
+
+// При нажатии на кнопку отобразить только нужные список карточек
+// 1) Перерисовать только те карточки которые имеют свойство определенное объекта
 
 const Portfolio = (props) => {
   return (
     <div className={s.works} id="portfolio">
       <div className="container">
         <div className={s.works__nav}>
-          <button className={s.works__nav_link} data-filter="all">
+          <button
+            className={s.works__nav_link}
+            onClick={() => {
+              console.log("ok");
+            }}
+            data-filter="all"
+          >
             All
           </button>
           <button className={s.works__nav_link} data-filter="landing">

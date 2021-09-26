@@ -1,0 +1,46 @@
+{
+  "works": [
+    {
+      "id": 1,
+      "categoryWork": "website",
+      "workName": "Portfolio",
+      "endWorkTime": "2020",
+      "img": "./images/photoPortfolio"
+    },
+    {
+      "id": 2,
+      "categoryWork": "landing",
+      "workName": "MoGo",
+      "endWorkTime": "2019",
+      "img": "./images/photoMoGo"
+    },
+    {
+      "id": 3,
+      "categoryWork": "landing",
+      "workName": "Power",
+      "endWorkTime": "2019",
+      "img": "./images/photoPower"
+    },
+    {
+      "id": 4,
+      "categoryWork": "landing",
+      "workName": "Anveshan",
+      "endWorkTime": "2019",
+      "img": "./images/photoAnveshan"
+    },
+    {
+      "id": 5,
+      "categoryWork": "landing",
+      "workName": "Pantoflex",
+      "endWorkTime": "2019",
+      "img": "./images/photoPantoflex"
+    },
+    {
+      "id": 6,
+      "categoryWork": "website",
+      "workName": "engPlatform",
+      "endWorkTime": "2019",
+      "img": "./images/photoEngPlatform"
+    }
+  ]
+}
