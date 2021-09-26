@@ -1,52 +1,59 @@
 import React from "react";
 import Work from "./Work/Work";
+import data from "../../data.json";
+
 import s from "./Portfolio.module.scss";
+import FilterWorks from "./FilterWorks/FilterWorks";
+class Portfolio extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      works: data.works,
+    };
+  }
 
-// При нажатии на кнопку отобразить только нужные список карточек
-// 1) Перерисовать только те карточки которые имеют свойство определенное объекта
+  filterWork = (event) => {
+    if (event.target.dataset.filter === "all") {
+      this.setState({ works: data.works });
+    } else {
+      this.setState({
+        works: data.works.filter(
+          (work) => work.categoryWork.indexOf(event.target.dataset.filter) >= 0
+        ),
+      });
+    }
+  };
 
-const Portfolio = (props) => {
-  return (
-    <div className={s.works} id="portfolio">
-      <div className="container">
-        <div className={s.works__nav}>
-          <button
-            className={s.works__nav_link}
-            onClick={() => {
-              console.log("ok");
-            }}
-            data-filter="all"
-          >
-            All
-          </button>
-          <button className={s.works__nav_link} data-filter="landing">
-            Landing
-          </button>
-          <button className={s.works__nav_link} data-filter="website">
-            Websites
-          </button>
-        </div>
+  render() {
+    return (
+      <div className={s.portfolio} id="portfolio">
+        <div className="container">
+          <FilterWorks filterWork={this.filterWork} />
+          <div className={s.portfolio__workCount}>
+            <span>Count works:</span> {this.state.works.length}
+          </div>
+          <div className={s.portfolio__works}>
+            {this.state.works.map((workItem) => (
+              <div key={workItem.id} className={s.portfolio__col}>
+                <Work
+                  countWork={this.state.works.length}
+                  id={workItem.id}
+                  categoryWork={workItem.categoryWork}
+                  workName={workItem.workName}
+                  endWorkTime={workItem.endWorkTime}
+                  imgWork={workItem.img}
+                />
+              </div>
+            ))}
+          </div>
 
-        <div className={s.portfolio}>
-          {props.works.map((workItem) => (
-            <div key={workItem.id} className={s.portfolio__col}>
-              <Work
-                id={workItem.id}
-                categoryWork={workItem.categoryWork}
-                workName={workItem.workName}
-                endWorkTime={workItem.endWorkTime}
-                imgWork={workItem.img}
-              />
-            </div>
-          ))}
-        </div>
-
-        <div className="text-center">
-          <button className="btn btn_sm">Load More Work</button>
+          <div className="text-center">
+            <button className="btn btn_sm">Load More Work</button>
+          </div>
         </div>
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
 
 export default Portfolio;

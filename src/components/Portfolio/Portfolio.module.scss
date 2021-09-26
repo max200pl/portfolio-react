@@ -2,10 +2,23 @@
 @import "../../design-tokens/variables";
 
 .portfolio {
+    margin: 3.8rem 0;
+
+    @include xs-mb {
+        margin: 1.8rem 0;
+    }
+}
+
+.portfolio__works {
     display: flex;
     flex-wrap: wrap;
     margin: -15px;
     margin-bottom: 25px;
+}
+
+.portfolio__workCount {
+    margin: 10px 0 10px 10px;
+    padding-bottom: 10px;
 }
 
 .portfolio__col {
@@ -26,36 +39,5 @@
 
     @include xs-mb {
         flex-basis: 100%;
-    }
-}
-
-.works {
-    margin: 3.8rem 0;
-
-    @include xs-mb {
-        margin: 1.8rem 0;
-    }
-}
-
-.works__nav {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 1.4rem;
-    flex-wrap: wrap;
-}
-
-.works__nav_link {
-    font-size: 1.3rem;
-    margin: 0 1.2rem;
-    text-decoration: none;
-    color: $color-white;
-    opacity: 70%;
-
-    &:hover {
-        text-decoration: underline;
-    }
-
-    @include xs-mb {
-        font-size: 1.2rem;
     }
 }
