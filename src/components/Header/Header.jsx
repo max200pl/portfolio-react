@@ -2,11 +2,11 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 
 import s from "./Header.module.scss";
-import HelloImg from "../../img/header/hello.svg";
-import PortfolioImg from "../../img/header/portfolio.svg";
-import AboutImg from "../../img/header/about.svg";
-import GithubImg from "../../img/header/github.svg";
-import ContactImg from "../../img/header/contact.svg";
+import HelloImg from "../../images/header/hello.svg";
+import PortfolioImg from "../../images/header/portfolio.svg";
+import AboutImg from "../../images/header/about.svg";
+import GithubImg from "../../images/header/github.svg";
+import ContactImg from "../../images/header/contact.svg";
 
 const Header = (props) => {
   return (
