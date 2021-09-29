@@ -1,14 +1,16 @@
 import React from "react";
 import Work from "./Work/Work";
 import data from "../../data.json";
-
+import Fade from "react-reveal/Fade";
 import s from "./Portfolio.module.scss";
 import FilterWorks from "./FilterWorks/FilterWorks";
+import ModalWork from "./ModalWork/ModalWork";
 class Portfolio extends React.Component {
   constructor() {
     super();
     this.state = {
       works: data.works,
+      workItem: null,
     };
   }
 
@@ -24,7 +26,16 @@ class Portfolio extends React.Component {
     }
   };
 
+  openModal = (workItem) => {
+    this.setState({ workItem });
+  };
+
+  closeModal = () => {
+    this.setState({ workItem: null });
+  };
+
   render() {
+    const { workItem } = this.state;
     return (
       <div className={s.portfolio} id="portfolio">
         <div className="container">
@@ -32,24 +43,29 @@ class Portfolio extends React.Component {
           <div className={s.portfolio__workCount}>
             <span>Count works:</span> {this.state.works.length}
           </div>
-          <div className={s.portfolio__works}>
-            {this.state.works.map((workItem) => (
-              <div key={workItem.id} className={s.portfolio__col}>
-                <Work
-                  countWork={this.state.works.length}
-                  id={workItem.id}
-                  categoryWork={workItem.categoryWork}
-                  workName={workItem.workName}
-                  endWorkTime={workItem.endWorkTime}
-                  imgWork={workItem.img}
-                />
-              </div>
-            ))}
-          </div>
+          <Fade bottom cascade={true}>
+            <div className={s.portfolio__works}>
+              {this.state.works.map((workItem) => (
+                <div key={workItem.id} className={s.portfolio__col}>
+                  <Work
+                    workItem={workItem}
+                    countWork={this.state.works.length}
+                    id={workItem.id}
+                    categoryWork={workItem.categoryWork}
+                    workName={workItem.workName}
+                    endWorkTime={workItem.endWorkTime}
+                    imgWork={workItem.img}
+                    openModal={this.openModal}
+                  />
+                </div>
+              ))}
+            </div>
+          </Fade>
 
           <div className="text-center">
             <button className="btn btn_sm">Load More Work</button>
           </div>
+          {workItem && <ModalWork closeModal={this.closeModal} />}
         </div>
       </div>
     );
