@@ -1,5 +1,6 @@
 import React from "react";
 import Modal from "react-modal";
+import Fade from "react-reveal/Fade";
 import s from "./ModalWork.module.scss";
 
 export default function ModalWork(props) {
@@ -10,125 +11,115 @@ export default function ModalWork(props) {
         onRequestClose={props.closeModal}
         ariaHideApp={false}
         className={s.modal}
+        overlayClassName={s.modal__overlay}
+        shouldCloseOnOverlayClick={true}
       >
-        <div className={s.modal} id="modal_project">
+        <Fade left cascade={true}>
           <div className={s.modal__dialog}>
             <div className={s.modalWork}>
               <div className={s.modalWork__preview}>
-                {/* <!-- Подключение слайдера -->
-  <div data-slider="slick">
-    <div>
-      <img className="modal-work__photo" src="images/modal/modal-works-slider/photo-Portfolio/intro.png"
-        alt="photo Portfolio" />
-    </div>
-    <div>
-      <img className="modal-work__photo modal-work__photo--tab"
-        src="images/modal/modal-works-slider/photo-Portfolio/resume.png" alt="photo Portfolio" />
-    </div>
-    <div>
-      <img className="modal-work__photo" src="images/modal/modal-works-slider/photo-Portfolio/form.png"
-        alt="photo Portfolio" />
-    </div>
-  </div>
-*/}
+                {/* <!-- Подключение слайдера -->*/}
               </div>
 
               <div className={s.modalWork__content}>
                 <button onClick={props.closeModal} className={s.modal__close}>
                   <img src="images/modal/exit.svg" alt="Close" />
                 </button>
-                <div className="modal-work__header">
-                  <h3 className="modal-work__title">Portfolio</h3>
-                  <div className="modal-work__info">
-                    website<span className="modal-work__info-divider">|</span>
-                    2020
+                <div className={s.modalWork__header}>
+                  <span className={s.modalWork__title}>
+                    {props.workItem.workName}
+                  </span>
+                  <div className={s.modalWork__info}>
+                    {props.workItem.categoryWork}
+                    <span className={s.modalWork__infoDivider}>|</span>
+                    {props.workItem.endWorkTime}
                   </div>
                 </div>
 
-                <div className="modal-work__client">
-                  <div className="modal-work__client-title">Client:</div>
-                  <div className="modal-work__client-company">
-                    Creative Agency
+                <div className={s.modalWork__client}>
+                  <div className={s.modalWork__clientTitle}>Client:</div>
+                  <div className={s.modalWork__clientCompany}>
+                    {props.workItem.clientName}
                   </div>
                 </div>
-                <button className="modal-work__btn-link" type="button">
+                <button className={s.modalWork__btnLink} type="button">
                   <a href="https://devmax.info/">Link to work</a>
                   {/* <img src="images/modal/referral.svg" height="40" alt=""> */}
                 </button>
 
-                <div className="skills">
-                  <h1>Технологии</h1>
+                <div className={s.skills}>
+                  <div className={s.skills__header}>Technologies used:</div>
 
-                  <div className="skills-item">
-                    <h3 className="skills__title">HTML 5</h3>
+                  <div className={s.skillsItem}>
+                    <span className={s.skills__title}>HTML 5</span>
                     <div
-                      className="skills-item__progress"
+                      className={s.skillsItem__progress}
                       data-progress="90"
                     ></div>
                   </div>
-                  <div className="skills-item">
-                    <h3 className="skills__title">CSS 3</h3>
+                  <div className={s.skillsItem}>
+                    <span className={s.skills__title}>CSS 3</span>
                     <div
-                      className="skills-item__progress"
+                      className={s.skillsItem__progress}
                       data-progress="80"
                     ></div>
                   </div>
-                  <div className="skills-item">
-                    <h3 className="skills__title">JavaScript</h3>
+                  <div className={s.skillsItem}>
+                    <span className={s.skills__title}>JavaScript</span>
                     <div
-                      className="skills-item__progress"
+                      className={s.skillsItem__progress}
                       data-progress="50"
                     ></div>
                   </div>
-                  <div className="skills-item">
-                    <h3 className="skills__title">Jquery</h3>
+                  <div className={s.skillsItem}>
+                    <span className={s.skills__title}>Jquery</span>
                     <div
-                      className="skills-item__progress"
+                      className={s.skillsItem__progress}
                       data-progress="60"
                     ></div>
                   </div>
-                  <div className="skills-item">
-                    <h3 className="skills__title">@Media</h3>
+                  <div className={s.skillsItem}>
+                    <span className={s.skills__title}>@Media</span>
                     <div
-                      className="skills-item__progress"
+                      className={s.skillsItem__progress}
                       data-progress="90"
                     ></div>
                   </div>
-                  <div className="skills-item">
-                    <h3 className="skills__title">Ajax</h3>
+                  <div className={s.skillsItem}>
+                    <span className={s.skills__title}>Ajax</span>
                     <div
-                      className="skills-item__progress"
+                      className={s.skillsItem__progress}
                       data-progress="40"
                     ></div>
                   </div>
-                  <div className="skills-item">
-                    <h3 className="skills__title">PHP</h3>
+                  <div className={s.skillsItem}>
+                    <span className={s.skills__title}>PHP</span>
                     <div
-                      className="skills-item__progress"
+                      className={s.skillsItem__progress}
                       data-progress="30"
                     ></div>
                   </div>
-                  <div className="skills-item">
-                    <h3 className="skills__title">БЭМ</h3>
+                  <div className={s.skillsItem}>
+                    <span className={s.skills__title}>БЭМ</span>
                     <div
-                      className="skills-item__progress"
+                      className={s.skillsItem__progress}
                       data-progress="95"
                     ></div>
                   </div>
                 </div>
-                <div className="modal-work__footer">
-                  <button className="modal-work__btn slickPrev" type="button">
+                <div className={s.modalWork__footer}>
+                  <button className={s.modalWork__btn} type="button">
                     <img
-                      src="images/modal/modal-works-slider/left-arrow.svg"
+                      src="images/modal/modalWorks-slider/left-arrow.svg"
                       height="14"
                       alt=""
                     />
-                    Previous
+                    Previous work
                   </button>
-                  <button className="modal-work__btn slickNext" type="button">
-                    Next
+                  <button className={s.modalWork__btn} type="button">
+                    Next work
                     <img
-                      src="images/modal/modal-works-slider/right-arrow.svg"
+                      src="images/modal/modalWorks-slider/right-arrow.svg"
                       height="14"
                       alt=""
                     />
@@ -137,7 +128,7 @@ export default function ModalWork(props) {
               </div>
             </div>
           </div>
-        </div>
+        </Fade>
       </Modal>
     </>
   );

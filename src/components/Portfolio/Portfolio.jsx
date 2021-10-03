@@ -27,6 +27,7 @@ class Portfolio extends React.Component {
   };
 
   openModal = (workItem) => {
+    console.log(workItem);
     this.setState({ workItem });
   };
 
@@ -65,7 +66,12 @@ class Portfolio extends React.Component {
           <div className="text-center">
             <button className="btn btn_sm">Load More Work</button>
           </div>
-          {workItem && <ModalWork closeModal={this.closeModal} />}
+          {workItem && (
+            <ModalWork
+              workItem={this.state.workItem}
+              closeModal={this.closeModal}
+            />
+          )}
         </div>
       </div>
     );

@@ -5,6 +5,17 @@
       "categoryWork": "website",
       "workName": "Portfolio",
       "endWorkTime": "2020",
+      "clientName": "Maksym Poskanniy",
+      "useTechnology": {
+        "JavaScript": { "Used percentage this technology": "0" },
+        "Html 5": { "Used percentage this technology": "90" },
+        "SASS": { "Used percentage this technology": "30" },
+        "Flexbox": { "Used percentage this technology": "30" },
+        "Media Queries": { "Used percentage this technology": "30" },
+        "BEM methodology": { "Used percentage this technology": "30" },
+        "Gulp 4": { "Used percentage this technology": "30" },
+        "Git": { "Used percentage this technology": "30" }
+      },
       "img": "/images/modal/modal-works-slider/photo-Portfolio/intro.png"
     },
     {
@@ -12,6 +23,17 @@
       "categoryWork": "landing",
       "workName": "MoGo",
       "endWorkTime": "2019",
+      "clientName": "Creative Agency",
+      "useTechnology": {
+        "JavaScript": { "Used percentage this technology": "0" },
+        "Html 5": { "Used percentage this technology": "90" },
+        "SASS": { "Used percentage this technology": "30" },
+        "Flexbox": { "Used percentage this technology": "30" },
+        "Media Queries": { "Used percentage this technology": "30" },
+        "BEM methodology": { "Used percentage this technology": "30" },
+        "Gulp 4": { "Used percentage this technology": "30" },
+        "Git": { "Used percentage this technology": "30" }
+      },
       "img": "/images/modal/modal-works-slider/photo-MoGo/intro.png"
     },
     {
@@ -19,7 +41,17 @@
       "categoryWork": "landing",
       "workName": "Power",
       "endWorkTime": "2019",
-
+      "clientName": "Creative Agency",
+      "useTechnology": {
+        "JavaScript": { "Used percentage this technology": "0" },
+        "Html 5": { "Used percentage this technology": "90" },
+        "SASS": { "Used percentage this technology": "30" },
+        "Flexbox": { "Used percentage this technology": "30" },
+        "Media Queries": { "Used percentage this technology": "30" },
+        "BEM methodology": { "Used percentage this technology": "30" },
+        "Gulp 4": { "Used percentage this technology": "30" },
+        "Git": { "Used percentage this technology": "30" }
+      },
       "img": "/images/modal/modal-works-slider/photo-Power/intro.png"
     },
     {
@@ -27,13 +59,35 @@
       "categoryWork": "landing",
       "workName": "Anveshan",
       "endWorkTime": "2019",
-      "img": "/images/modal/modal-works-slider/photo-anveshan/title.png"
+      "clientName": "Creative Agency",
+      "img": "/images/modal/modal-works-slider/photo-anveshan/title.png",
+      "useTechnology": {
+        "JavaScript": { "Used percentage this technology": "0" },
+        "Html 5": { "Used percentage this technology": "90" },
+        "SASS": { "Used percentage this technology": "30" },
+        "Flexbox": { "Used percentage this technology": "30" },
+        "Media Queries": { "Used percentage this technology": "30" },
+        "BEM methodology": { "Used percentage this technology": "30" },
+        "Gulp 4": { "Used percentage this technology": "30" },
+        "Git": { "Used percentage this technology": "30" }
+      }
     },
     {
       "id": 5,
       "categoryWork": "landing",
       "workName": "Pantoflex",
       "endWorkTime": "2019",
+      "clientName": "Test work",
+      "useTechnology": {
+        "JavaScript": { "Used percentage this technology": "0" },
+        "Html 5": { "Used percentage this technology": "90" },
+        "SASS": { "Used percentage this technology": "30" },
+        "Flexbox": { "Used percentage this technology": "30" },
+        "Media Queries": { "Used percentage this technology": "30" },
+        "BEM methodology": { "Used percentage this technology": "30" },
+        "Gulp 4": { "Used percentage this technology": "30" },
+        "Git": { "Used percentage this technology": "30" }
+      },
       "img": "/images/modal/modal-works-slider/photo-pantoflex/title.png"
     },
     {
@@ -41,6 +95,17 @@
       "categoryWork": "website",
       "workName": "engPlatform",
       "endWorkTime": "2019",
+      "clientName": "FreeLance",
+      "useTechnology": {
+        "JavaScript": { "Used percentage this technology": "0" },
+        "Html 5": { "Used percentage this technology": "90" },
+        "SASS": { "Used percentage this technology": "30" },
+        "Flexbox": { "Used percentage this technology": "30" },
+        "Media Queries": { "Used percentage this technology": "30" },
+        "BEM methodology": { "Used percentage this technology": "30" },
+        "Gulp 4": { "Used percentage this technology": "30" },
+        "Git": { "Used percentage this technology": "30" }
+      },
       "img": "/images/modal/modal-works-slider/photo-engPlatform/title.png"
     }
   ]
