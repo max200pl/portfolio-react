@@ -2,6 +2,7 @@ import React from "react";
 import Modal from "react-modal";
 import Fade from "react-reveal/Fade";
 import s from "./ModalWork.module.scss";
+import Skills from "./Skills/Skills";
 
 export default function ModalWork(props) {
   return (
@@ -47,66 +48,8 @@ export default function ModalWork(props) {
                   {/* <img src="images/modal/referral.svg" height="40" alt=""> */}
                 </button>
 
-                <div className={s.skills}>
-                  <div className={s.skills__header}>Technologies used:</div>
+                <Skills useTechnology={props.workItem.useTechnology} />
 
-                  <div className={s.skillsItem}>
-                    <span className={s.skills__title}>HTML 5</span>
-                    <div
-                      className={s.skillsItem__progress}
-                      data-progress="90"
-                    ></div>
-                  </div>
-                  <div className={s.skillsItem}>
-                    <span className={s.skills__title}>CSS 3</span>
-                    <div
-                      className={s.skillsItem__progress}
-                      data-progress="80"
-                    ></div>
-                  </div>
-                  <div className={s.skillsItem}>
-                    <span className={s.skills__title}>JavaScript</span>
-                    <div
-                      className={s.skillsItem__progress}
-                      data-progress="50"
-                    ></div>
-                  </div>
-                  <div className={s.skillsItem}>
-                    <span className={s.skills__title}>Jquery</span>
-                    <div
-                      className={s.skillsItem__progress}
-                      data-progress="60"
-                    ></div>
-                  </div>
-                  <div className={s.skillsItem}>
-                    <span className={s.skills__title}>@Media</span>
-                    <div
-                      className={s.skillsItem__progress}
-                      data-progress="90"
-                    ></div>
-                  </div>
-                  <div className={s.skillsItem}>
-                    <span className={s.skills__title}>Ajax</span>
-                    <div
-                      className={s.skillsItem__progress}
-                      data-progress="40"
-                    ></div>
-                  </div>
-                  <div className={s.skillsItem}>
-                    <span className={s.skills__title}>PHP</span>
-                    <div
-                      className={s.skillsItem__progress}
-                      data-progress="30"
-                    ></div>
-                  </div>
-                  <div className={s.skillsItem}>
-                    <span className={s.skills__title}>БЭМ</span>
-                    <div
-                      className={s.skillsItem__progress}
-                      data-progress="95"
-                    ></div>
-                  </div>
-                </div>
                 <div className={s.modalWork__footer}>
                   <button className={s.modalWork__btn} type="button">
                     <img
