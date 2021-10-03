@@ -1,0 +1,265 @@
+@import "../../../design-tokens/breakpoints";
+@import "../../../design-tokens/variables";
+
+.modal {
+    /* width: 100vw;
+    height: 100vh;
+    overflow: auto;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000; */
+
+    @include xs-mb {
+        padding: 0;
+    }
+}
+
+.modal__overlay {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    inset: 0px;
+    background: rgba(6, 15, 49, 0.8) !important;
+}
+
+.modal__content {
+    min-width: 320px;
+}
+
+.modal__dialog {
+    min-width: 1000px;
+    max-width: 1200px;
+    position: relative;
+}
+
+.modal__close {
+    width: 24px;
+    height: 29px;
+    right: 10px;
+    top: 10px;
+    background: none;
+    border: 0;
+    cursor: pointer;
+    position: absolute;
+    z-index: 1;
+    transition: transform .2s linear;
+
+    &:hover {
+        transform: translateY(-3px);
+    }
+}
+
+.modal__title {
+    margin-bottom: 3.6rem;
+    font-size: 3rem;
+    text-transform: uppercase;
+    color: $color-white;
+    font-weight: 700;
+
+    @include xs-sm {
+        font-size: 2.5rem;
+    }
+}
+
+.modal__subtitle {
+    text-transform: uppercase;
+    font-size: 1.06rem;
+    color: $color-white;
+    font-weight: 400;
+
+    @include xs-mb {
+        font-size: 0.86rem;
+    }
+}
+
+//modalWork
+
+.modalWork {
+    display: flex;
+
+    @include xs-mb {
+        margin: 15px;
+    }
+
+
+    @include xs-mb {
+        margin: 0;
+        justify-content: center;
+        flex-wrap: wrap-reverse;
+    }
+}
+
+.modalWork__preview {
+    display: block;
+    width: 65%;
+    position: relative;
+    overflow: hidden;
+    padding-right: 1rem;
+
+    @include xs-mb {
+        flex-basis: 100%;
+        padding: 1rem;
+    }
+}
+
+.modalWork__photo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 1000;
+    width: 100%;
+    max-width: 100%;
+    height: auto !important;
+    transform: translate3d(-50%, -50%, 0);
+
+    &--tab {
+        max-width: 50%;
+    }
+
+    @include xs-mb {
+        position: relative;
+        min-width: 320px;
+
+        &--tab {
+            max-width: 90%;
+        }
+    }
+
+
+    @include xs-mb {
+        min-width: 320px;
+    }
+}
+
+.modalWork__content {
+    flex-basis: 35%;
+    border-radius: 20px;
+    padding: 20px;
+    position: relative;
+    border: 1px solid white;
+    min-width: 320px;
+
+    @include xs-mb {
+        border: none;
+        flex-basis: 100%;
+        min-width: 100%;
+    }
+}
+
+.modalWork__header {
+    margin-bottom: 2.2rem;
+}
+
+.modalWork__title {
+    margin-bottom: .2rem;
+    font-size: 2.12rem;
+    color: $color-blue;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.modalWork__info {
+    margin: 0.5rem 0;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+}
+
+.modalWork__infoDivider {
+    margin: 0 1rem;
+}
+
+.modalWork__client {
+    display: flex;
+}
+
+.modalWork__clientTitle {
+    font-size: 1.06rem;
+    color: $color-white;
+    font-weight: 700;
+}
+
+.modalWork__clientCompany {
+    font-size: 1.06rem;
+    margin-left: 4px;
+    font-style: italic;
+    color: $color-blue;
+}
+
+.modalWork__text {
+    & > h2 {
+        color: $color-blue;
+        line-height: 1.2;
+        margin-bottom: .5rem;
+    }
+
+    margin-bottom: 30px;
+    font-size: .8rem;
+    line-height: 2;
+    color: $color-white;
+    font-weight: 300;
+
+    @include xs-mb {
+        margin-bottom: 0;
+    }
+}
+
+.modalWork__footer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.modalWork__btnLink {
+    background: none;
+    border: 0;
+    cursor: pointer;
+    text-decoration: underline;
+    padding: 15px 0 15px 0;
+    font-family: inherit;
+    font-size: 1rem;
+    color: $color-white;
+    text-transform: uppercase;
+    margin-bottom: .2rem;
+
+    & > a {
+        color: inherit;
+    }
+
+    & > img {
+        padding-left: 5px;
+    }
+}
+
+.modalWork__btn {
+    padding: 0;
+    background: none;
+    border: 1px solid $color-white;
+    width: 160px;
+    padding: 5px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: .94rem;
+    color: $color-blue;
+    text-transform: uppercase;
+    transition: box-shadow .2s linear;
+    cursor: pointer;
+
+    &:hover {
+        box-shadow: 0 0 25px $color-white;
+        background-color: $color-white;
+    }
+
+    @include xs-lg {
+        padding: 3px;
+        font-size: .70rem;
+        width: 110px;
+    }
+
+
+    @include lg-xl {
+        width: 145px;
+    }
+}
+

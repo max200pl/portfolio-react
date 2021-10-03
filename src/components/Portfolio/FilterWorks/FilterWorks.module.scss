@@ -1,0 +1,25 @@
+@import "../../../design-tokens/breakpoints";
+@import "../../../design-tokens/variables";
+
+.filterWorks__nav {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1.4rem;
+    flex-wrap: wrap;
+}
+
+.filterWorks__nav_link {
+    font-size: 1.3rem;
+    margin: 0 1.2rem;
+    text-decoration: none;
+    color: $color-white;
+    opacity: 70%;
+
+    &:hover {
+        text-decoration: underline;
+    }
+
+    @include xs-mb {
+        font-size: 1.2rem;
+    }
+}

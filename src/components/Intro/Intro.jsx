@@ -1,9 +1,9 @@
 import React from "react";
-import socialLink1 from "../../img/intro/1.png";
-import socialLink2 from "../../img/intro/2.png";
-import socialLink3 from "../../img/intro/3.png";
-import socialLink4 from "../../img/intro/4.png";
-import socialLink5 from "../../img/intro/5.png";
+import socialLink1 from "../../images/intro/1.png";
+import socialLink2 from "../../images/intro/2.png";
+import socialLink3 from "../../images/intro/3.png";
+import socialLink4 from "../../images/intro/4.png";
+import socialLink5 from "../../images/intro/5.png";
 
 import s from "./Intro.module.scss";
 

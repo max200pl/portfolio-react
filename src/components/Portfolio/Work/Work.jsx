@@ -3,8 +3,9 @@ import React from "react";
 import s from "./Work.module.scss";
 
 const Work = (props) => {
+  let work = props.workItem;
   return (
-    <div className={s.work}>
+    <div className={s.work} onClick={() => props.openModal(work)}>
       <img className={s.work__img} src={props.imgWork} alt="work" />
       <div className={s.work__content}>
         <div className={s.work__cat}>category: {props.categoryWork}</div>

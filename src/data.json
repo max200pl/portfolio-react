@@ -1,0 +1,112 @@
+{
+  "works": [
+    {
+      "id": 1,
+      "categoryWork": "website",
+      "workName": "Portfolio",
+      "endWorkTime": "2020",
+      "clientName": "Maksym Poskanniy",
+      "useTechnology": [
+        { "JavaScript": "20" },
+        { "Html 5": "10" },
+        { "SASS": "30" },
+        { "Flexbox": "40" },
+        { "Media Queries": "10" },
+        { "BEM methodology": "50" },
+        { "Gulp 4": "60" },
+        { "Git": "30" }
+      ],
+      "img": "/images/modal/modal-works-slider/photo-Portfolio/intro.png"
+    },
+    {
+      "id": 2,
+      "categoryWork": "landing",
+      "workName": "MoGo",
+      "endWorkTime": "2019",
+      "clientName": "Creative Agency",
+      "useTechnology": [
+        { "JavaScript": "20" },
+        { "Html 5": "10" },
+        { "SASS": "30" },
+        { "Flexbox": "40" },
+        { "Media Queries": "10" },
+        { "BEM methodology": "50" },
+        { "Gulp 4": "60" },
+        { "Git": "30" }
+      ],
+      "img": "/images/modal/modal-works-slider/photo-MoGo/intro.png"
+    },
+    {
+      "id": 3,
+      "categoryWork": "landing",
+      "workName": "Power",
+      "endWorkTime": "2019",
+      "clientName": "Creative Agency",
+      "useTechnology": [
+        { "JavaScript": "20" },
+        { "Html 5": "10" },
+        { "SASS": "30" },
+        { "Flexbox": "40" },
+        { "Media Queries": "10" },
+        { "BEM methodology": "50" },
+        { "Gulp 4": "60" },
+        { "Git": "30" }
+      ],
+      "img": "/images/modal/modal-works-slider/photo-Power/intro.png"
+    },
+    {
+      "id": 4,
+      "categoryWork": "landing",
+      "workName": "Anveshan",
+      "endWorkTime": "2019",
+      "clientName": "Creative Agency",
+      "img": "/images/modal/modal-works-slider/photo-anveshan/title.png",
+      "useTechnology": [
+        { "JavaScript": "20" },
+        { "Html 5": "10" },
+        { "SASS": "30" },
+        { "Flexbox": "40" },
+        { "Media Queries": "10" },
+        { "BEM methodology": "50" },
+        { "Gulp 4": "60" },
+        { "Git": "30" }
+      ]
+    },
+    {
+      "id": 5,
+      "categoryWork": "landing",
+      "workName": "Pantoflex",
+      "endWorkTime": "2019",
+      "clientName": "Test work",
+      "useTechnology": [
+        { "JavaScript": "20" },
+        { "Html 5": "10" },
+        { "SASS": "30" },
+        { "Flexbox": "40" },
+        { "Media Queries": "10" },
+        { "BEM methodology": "50" },
+        { "Gulp 4": "60" },
+        { "Git": "30" }
+      ],
+      "img": "/images/modal/modal-works-slider/photo-pantoflex/title.png"
+    },
+    {
+      "id": 6,
+      "categoryWork": "website",
+      "workName": "engPlatform",
+      "endWorkTime": "2019",
+      "clientName": "FreeLance",
+      "useTechnology": [
+        { "JavaScript": "20" },
+        { "Html 5": "10" },
+        { "SASS": "30" },
+        { "Flexbox": "40" },
+        { "Media Queries": "10" },
+        { "BEM methodology": "50" },
+        { "Gulp 4": "60" },
+        { "Git": "30" }
+      ],
+      "img": "/images/modal/modal-works-slider/photo-engPlatform/title.png"
+    }
+  ]
+}

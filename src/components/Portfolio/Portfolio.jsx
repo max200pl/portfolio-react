@@ -1,95 +1,81 @@
 import React from "react";
 import Work from "./Work/Work";
-
-import photoPortfolio from "../../img/modal/modal-works-slider/photo-Portfolio/intro.png";
-import photoMoGo from "../../img/modal/modal-works-slider/photo-MoGo/intro.png";
-import photoPower from "../../img/modal/modal-works-slider/photo-Power/intro.png";
-import photoAnveshan from "../../img/modal/modal-works-slider/photo-anveshan/title.png";
-import photoPantoflex from "../../img/modal/modal-works-slider/photo-pantoflex/title.png";
-import photoEngPlatform from "../../img/modal/modal-works-slider/photo-engPlatform/title.png";
-
+import data from "../../data.json";
+import Fade from "react-reveal/Fade";
 import s from "./Portfolio.module.scss";
-let works = [
-  {
-    id: 1,
-    categoryWork: "website",
-    workName: "Portfolio",
-    endWorkTime: "2020",
-    img: photoPortfolio,
-  },
-  {
-    id: 2,
-    categoryWork: "landing",
-    workName: "MoGo",
-    endWorkTime: "2019",
-    img: photoMoGo,
-  },
-  {
-    id: 3,
-    categoryWork: "landing",
-    workName: "Power",
-    endWorkTime: "2019",
-    img: photoPower,
-  },
-  {
-    id: 4,
-    categoryWork: "landing",
-    workName: "Anveshan",
-    endWorkTime: "2019",
-    img: photoAnveshan,
-  },
-  {
-    id: 5,
-    categoryWork: "landing",
-    workName: "Pantoflex",
-    endWorkTime: "2019",
-    img: photoPantoflex,
-  },
-  {
-    id: 6,
-    categoryWork: "website",
-    workName: "engPlatform",
-    endWorkTime: "2019",
-    img: photoEngPlatform,
-  },
-];
+import FilterWorks from "./FilterWorks/FilterWorks";
+import ModalWork from "./ModalWork/ModalWork";
+class Portfolio extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      works: data.works,
+      workItem: null,
+    };
+  }
 
-const Portfolio = (props) => {
-  return (
-    <div className={s.works} id="portfolio">
-      <div className="container">
-        <div className={s.works__nav}>
-          <button className={s.works__nav_link} data-filter="all">
-            All
-          </button>
-          <button className={s.works__nav_link} data-filter="landing">
-            Landing
-          </button>
-          <button className={s.works__nav_link} data-filter="website">
-            Websites
-          </button>
-        </div>
+  filterWork = (event) => {
+    if (event.target.dataset.filter === "all") {
+      this.setState({ works: data.works });
+    } else {
+      this.setState({
+        works: data.works.filter(
+          (work) => work.categoryWork.indexOf(event.target.dataset.filter) >= 0
+        ),
+      });
+    }
+  };
 
-        <div className={s.portfolio}>
-          {works.map((workItem) => (
-            <div className={s.portfolio__col}>
-              <Work
-                id={workItem.id}
-                categoryWork={workItem.categoryWork}
-                workName={workItem.workName}
-                endWorkTime={workItem.endWorkTime}
-                imgWork={workItem.img}
-              />
+  openModal = (workItem) => {
+    console.log(workItem);
+    this.setState({ workItem });
+  };
+
+  closeModal = () => {
+    this.setState({ workItem: null });
+  };
+
+  render() {
+    const { workItem } = this.state;
+    return (
+      <div className={s.portfolio} id="portfolio">
+        <div className="container">
+          <FilterWorks filterWork={this.filterWork} />
+          <div className={s.portfolio__workCount}>
+            <span>Count works:</span> {this.state.works.length}
+          </div>
+          <Fade bottom cascade={true}>
+            <div className={s.portfolio__works}>
+              {this.state.works.map((workItem) => (
+                <div key={workItem.id} className={s.portfolio__col}>
+                  <Work
+                    workItem={workItem}
+                    countWork={this.state.works.length}
+                    id={workItem.id}
+                    categoryWork={workItem.categoryWork}
+                    workName={workItem.workName}
+                    endWorkTime={workItem.endWorkTime}
+                    imgWork={workItem.img}
+                    openModal={this.openModal}
+                  />
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
+          </Fade>
 
-        <div className="text-center">
-          <button className="btn btn_sm">Load More Work</button>
+          <div className="text-center">
+            <button className="btn btn_sm">Load More Work</button>
+          </div>
+          {workItem && (
+            <ModalWork
+              workItem={this.state.workItem}
+              closeModal={this.closeModal}
+            />
+          )}
         </div>
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
 
 export default Portfolio;
