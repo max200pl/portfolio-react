@@ -6,6 +6,7 @@
     max-width: 400px;
     margin-bottom: 30px;
     padding-right: 20px;
+    overflow: hidden;
 
     @include mb {
         padding-right: 20px;
@@ -26,34 +27,30 @@
     text-transform: uppercase;
 }
 
-.skills__title {
-    position: absolute;
-    display: block;
-    top: 0;
-    bottom: 0;
-    font-size: 16px;
-    font-weight: 400;
-    padding-left: 5px;
-    z-index: 3;
-}
-
 .skillsItem {
-    height: 22.5px;
-    border: 1px solid $color-white;
+    display: flex;
+    align-items: center;
     position: relative;
     margin-top: 5px;
     margin-bottom: 10px;
+    border: 1px solid $color-white;
     z-index: 2;
 }
 
-.skillsItemProgress {
-    width: 0;
+.skills__title {
+    display: block;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1;
+    padding: 2px 0 2px 5px;
+    z-index: 3;
+}
+
+.applyTech {
+    content: "";
     position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    height: 20.5px;
-    background-color: $color-red;
-    transition: cubic-bezier(0.86, 0, 0.07, 1) 1s;
-    z-index: 0;
+    display: block;
+    height: 100%;
+    background-color: #5322959e;
+    transition: width 5s ease-in-out;
 }
