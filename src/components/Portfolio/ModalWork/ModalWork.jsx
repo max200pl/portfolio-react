@@ -3,6 +3,7 @@ import Modal from "react-modal";
 import Fade from "react-reveal/Fade";
 import s from "./ModalWork.module.scss";
 import Skills from "./Skills/Skills";
+import SliderWorks from "./SliderWorks/SliderWorks";
 
 export default function ModalWork(props) {
   return (
@@ -19,7 +20,7 @@ export default function ModalWork(props) {
           <div className={s.modal__dialog}>
             <div className={s.modalWork}>
               <div className={s.modalWork__preview}>
-                {/* <!-- Подключение слайдера -->*/}
+                <SliderWorks />
               </div>
 
               <div className={s.modalWork__content}>
