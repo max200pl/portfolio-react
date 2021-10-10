@@ -3,8 +3,11 @@ import s from "./Skills.module.scss";
 import UseTechnology from "./UseTechnology/UseTechnology";
 
 const Skills = (props) => {
-  let useTechnology = props.useTechnology.map((technology, i) => (
-    <UseTechnology technology={technology} indexTechnology={technology[i]} />
+  let useTechnology = props.useTechnology.map((useTechnology, i) => (
+    <UseTechnology
+      useTechnology={useTechnology}
+      indexTechnology={useTechnology[i]}
+    />
   ));
 
   return (
