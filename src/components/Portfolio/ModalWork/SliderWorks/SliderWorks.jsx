@@ -11,9 +11,11 @@ const Wrapper = style.div`
 `;
 
 const SliderWorks = (props) => {
+  const images = props.applyTech;
+
   const [index, setIndex] = useState(0);
   const [width, setWidth] = useState(0);
-  const [xposition, setxPosition] = useState(0);
+  const [xPosition, setXPosition] = useState(0);
 
   const handleClickPrev = () => {
     if (index === 0) return;
@@ -22,7 +24,7 @@ const SliderWorks = (props) => {
   };
 
   const handleClickNext = () => {
-    if (index === images.lenght - 1) {
+    if (index === images.length - 1) {
       setIndex(0);
       setXPosition(0);
     } else {
@@ -33,7 +35,13 @@ const SliderWorks = (props) => {
 
   return (
     <Wrapper>
-      <Slider images={images} setWidth={setWidth} />
+      <Slider
+        images={images}
+        setWidth={setWidth}
+        xPosition={xPosition}
+        handleClickPrev={handleClickPrev}
+        handleClickNext={handleClickNext}
+      />
     </Wrapper>
   );
 };

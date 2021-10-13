@@ -5,11 +5,13 @@ import Fade from "react-reveal/Fade";
 import s from "./Portfolio.module.scss";
 import FilterWorks from "./FilterWorks/FilterWorks";
 import ModalWork from "./ModalWork/ModalWork";
-class Portfolio extends React.Component {
+class Portfolio extends React.Component
+{
   constructor() {
     super();
     this.state = {
       works: data.works,
+      
       workItem: null,
     };
   }
@@ -70,6 +72,7 @@ class Portfolio extends React.Component {
             <ModalWork
               workItem={this.state.workItem}
               closeModal={this.closeModal}
+              SliderWorks = {this.}
             />
           )}
         </div>
