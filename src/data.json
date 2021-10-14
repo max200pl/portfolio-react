@@ -108,5 +108,42 @@
       ],
       "img": "/images/modal/modal-works-slider/photo-engPlatform/title.png"
     }
+  ],
+
+  "photoWorks": [
+    {
+      "nameWork": "Portfolio",
+      "photoWork": [
+        {
+          "id": "1",
+          "image": "/images/modal/modal-works-slider/photo-engPlatform/title.png"
+        },
+        {
+          "id": "2",
+          "image": "/images/modal/modal-works-slider/photo-engPlatform/title.png"
+        },
+        {
+          "id": "3",
+          "image": "/images/modal/modal-works-slider/photo-engPlatform/title.png"
+        }
+      ]
+    },
+    {
+      "nameWork": "engPlatform",
+      "photoWork": [
+        {
+          "id": "1",
+          "image": "/images/modal/modal-works-slider/photo-engPlatform/title.png"
+        },
+        {
+          "id": "2",
+          "image": "/images/modal/modal-works-slider/photo-engPlatform/title.png"
+        },
+        {
+          "id": "3",
+          "image": "/images/modal/modal-works-slider/photo-engPlatform/title.png"
+        }
+      ]
+    }
   ]
 }

@@ -1,17 +1,24 @@
 import React, { useState } from "react";
-import Slider from "./Slider/Slider";
+//import Carousel from './components/Carousel';
+import styled from "styled-components";
+import Slider from "./Slider/Slider.jsx";
 
-const Wrapper = style.div`
-     width:100%;
-     height:100vh;
-     display:flex;
-     justify-content:center;
-     align-items:center;
-     background-color: #eaeaea;
+const Wrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #eaeaea;
 `;
 
 const SliderWorks = (props) => {
-  const images = props.applyTech;
+  /*   useEffect(() => {
+    const handleAutoplay = setInterval(handleClickNext, 3000);
+    return () => {
+      clearInterval(handleAutoplay);
+    };
+  }, [handleClickNext]);
+ */
+  const [nameWork, photoWork] = props.sliderWorks;
 
   const [index, setIndex] = useState(0);
   const [width, setWidth] = useState(0);
@@ -24,7 +31,7 @@ const SliderWorks = (props) => {
   };
 
   const handleClickNext = () => {
-    if (index === images.length - 1) {
+    if (index === photoWork.length - 1) {
       setIndex(0);
       setXPosition(0);
     } else {
@@ -36,7 +43,7 @@ const SliderWorks = (props) => {
   return (
     <Wrapper>
       <Slider
-        images={images}
+        photoWork={photoWork}
         setWidth={setWidth}
         xPosition={xPosition}
         handleClickPrev={handleClickPrev}
