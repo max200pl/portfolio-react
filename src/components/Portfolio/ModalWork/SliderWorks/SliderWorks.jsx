@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-//import Carousel from './components/Carousel';
 import styled from "styled-components";
 import Slider from "./Slider/Slider.jsx";
 
@@ -18,7 +17,7 @@ const SliderWorks = (props) => {
     };
   }, [handleClickNext]);
  */
-  const [nameWork, photoWork] = props.sliderWorks;
+  console.log(props.workPhotos[0].workPhoto);
 
   const [index, setIndex] = useState(0);
   const [width, setWidth] = useState(0);
@@ -27,11 +26,11 @@ const SliderWorks = (props) => {
   const handleClickPrev = () => {
     if (index === 0) return;
     setIndex(index - 1);
-    setXPosition(xPosition + width);
+    setXPosition(xPosition - width);
   };
 
   const handleClickNext = () => {
-    if (index === photoWork.length - 1) {
+    if (index === props.workPhotos[0].workPhoto.length - 1) {
       setIndex(0);
       setXPosition(0);
     } else {
@@ -43,7 +42,7 @@ const SliderWorks = (props) => {
   return (
     <Wrapper>
       <Slider
-        photoWork={photoWork}
+        workPhotos={props.workPhotos}
         setWidth={setWidth}
         xPosition={xPosition}
         handleClickPrev={handleClickPrev}

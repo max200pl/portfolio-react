@@ -20,7 +20,10 @@ export default function ModalWork(props) {
           <div className={s.modal__dialog}>
             <div className={s.modalWork}>
               <div className={s.modalWork__preview}>
-                <SliderWorks sliderWorks={props.sliderWorks} />
+                <SliderWorks
+                  workName={props.workItem.workName}
+                  workPhotos={props.workPhotos}
+                />
               </div>
 
               <div className={s.modalWork__content}>

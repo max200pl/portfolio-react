@@ -12,7 +12,11 @@ const Slide = styled.div`
   display: flex;
   width: 100%;
   transition: transform 0.6 ease-ind-out;
-  transform: ${(props) => `translateX(${props.xPosition}px)`};
+  transform: ${(props) =>
+    `translateX(${
+      // @ts-ignore
+      props.xPosition
+    }px)`};
 `;
 
 const SlickDots = styled.ul`
@@ -25,7 +29,18 @@ const SlickDots = styled.ul`
   padding: 0;
   margin: 0;
   list-style: none;
-  z-index: -1;
+  z-index: 10;
+
+  li > button {
+    background: #10aedf24;
+    width: 30px;
+    height: 30px;
+    margin: 4px;
+    border: 2px solid #10aedf;
+    border-radius: 50%;
+    color: transparent;
+    cursor: pointer;
+  }
 `;
 
 const Image = styled.img`
@@ -35,7 +50,6 @@ const Image = styled.img`
 
 const Slider = (props) => {
   const slideRef = useRef();
-  console.log(props.photoWork.photoWork);
   useEffect(() => {
     if (slideRef.current) {
       // @ts-ignore
@@ -45,8 +59,12 @@ const Slider = (props) => {
   }, [props, props.setWidth]);
   return (
     <Wrapper>
-      <Slide xPosition={props.xPosition} ref={slideRef}>
-        {props.photoWork.photoWork.map((work, i) => (
+      <Slide
+        // @ts-ignore
+        xPosition={props.xPosition}
+        ref={slideRef}
+      >
+        {props.workPhotos[0].workPhoto.map((work, i) => (
           <Image src={work.image} alt={"ok"} />
         ))}
       </Slide>
@@ -55,9 +73,12 @@ const Slider = (props) => {
         handleClickNext={props.handleClickNext}
       />
       <SlickDots>
-        {props.photoWork.photoWork.map((work, i) => (
-          <Image src={work.image} alt={"ok"} />
-        ))}
+        {/*   {props.photoWork.photoWork.map((work, i) => (
+          <li>
+            <button></button>
+            <button></button>
+          </li>
+        ))} */}
       </SlickDots>
     </Wrapper>
   );
