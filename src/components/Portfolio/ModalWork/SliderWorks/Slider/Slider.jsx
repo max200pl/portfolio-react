@@ -11,12 +11,8 @@ const Wrapper = styled.div`
 const Slide = styled.div`
   display: flex;
   width: 100%;
-  transition: transform 0.6 ease-ind-out;
-  transform: ${(props) =>
-    `translateX(${
-      // @ts-ignore
-      props.xPosition
-    }px)`};
+  transition: all 1s 0s ease;
+  transform: ${(props) => `translateX(${props.xPosition}px)`};
 `;
 
 const SlickDots = styled.ul`
@@ -59,11 +55,7 @@ const Slider = (props) => {
   }, [props, props.setWidth]);
   return (
     <Wrapper>
-      <Slide
-        // @ts-ignore
-        xPosition={props.xPosition}
-        ref={slideRef}
-      >
+      <Slide xPosition={props.xPosition} ref={slideRef}>
         {props.workPhotos[0].workPhoto.map((work, i) => (
           <Image src={work.image} alt={"ok"} />
         ))}

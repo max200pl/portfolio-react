@@ -17,20 +17,25 @@ const SliderWorks = (props) => {
     };
   }, [handleClickNext]);
  */
-  console.log(props.workPhotos[0].workPhoto);
+  // console.log(props.workPhotos[0].workPhoto);
 
-  const [index, setIndex] = useState(0);
+  let [index, setIndex] = useState(0);
   const [width, setWidth] = useState(0);
   const [xPosition, setXPosition] = useState(0);
 
   const handleClickPrev = () => {
-    if (index === 0) return;
-    setIndex(index - 1);
-    setXPosition(xPosition - width);
+    if (index <= 0) {
+      setXPosition(-(width * (props.workPhotos[0].workPhoto.length - 1)));
+      setIndex(props.workPhotos[0].workPhoto.length - 1);
+    } else {
+      setIndex(index - 1);
+      setXPosition(xPosition + width);
+    }
   };
+  console.log(index);
 
   const handleClickNext = () => {
-    if (index === props.workPhotos[0].workPhoto.length - 1) {
+    if (index >= props.workPhotos[0].workPhoto.length - 1) {
       setIndex(0);
       setXPosition(0);
     } else {

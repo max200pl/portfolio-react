@@ -40,7 +40,7 @@ class Portfolio extends React.Component {
         (workPhoto) => workPhoto.workName === workName
       ),
     });
-    console.log(this.state);
+    //console.log(this.state);
   };
 
   closeModal = () => {
