@@ -4,9 +4,6 @@ import Slider from "./Slider/Slider.jsx";
 
 const Wrapper = styled.div`
   display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #eaeaea;
 `;
 
 const SliderWorks = (props) => {

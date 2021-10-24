@@ -78,6 +78,7 @@
 
 .modalWork {
     display: flex;
+    max-height: 600px;
 
     @include xs-mb {
         margin: 15px;
@@ -262,4 +263,3 @@
         width: 145px;
     }
 }
-
