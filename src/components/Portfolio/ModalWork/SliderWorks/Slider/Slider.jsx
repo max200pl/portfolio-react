@@ -48,22 +48,22 @@ const Slider = (props) => {
   const slideRef = useRef();
   useEffect(() => {
     if (slideRef.current) {
-      // @ts-ignore
       const width = slideRef.current.clientWidth;
       props.setWidth(width);
     }
   }, [props, props.setWidth]);
   return (
     <Wrapper>
-      <Slide xPosition={props.xPosition} ref={slideRef}>
+      <Slide
+        // @ts-ignore
+        xPosition={props.xPosition}
+        ref={slideRef}
+      >
         {props.workPhotos[0].workPhoto.map((work, i) => (
           <Image src={work.image} alt={"ok"} />
         ))}
       </Slide>
-      <ButtonsSlider
-        handleClickPrev={props.handleClickPrev}
-        handleClickNext={props.handleClickNext}
-      />
+      <ButtonsSlider changeSlide={props.changeSlide} />
       <SlickDots>
         {/*   {props.photoWork.photoWork.map((work, i) => (
           <li>

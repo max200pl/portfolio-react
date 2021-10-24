@@ -25,14 +25,18 @@ const Button = styled.button`
   z-index: 10;
 `;
 
-function ButtonsSlider({ handleClickPrev, handleClickNext })
+function ButtonsSlider({ changeSlide })
 {
      return (
           <ButtonWrapper>
-               <Button data-slide="prev" onClick={handleClickPrev} >
+               <Button data-slide="prev"
+                    onClick={() => changeSlide("prev-slide")}
+               >
                     <img src={leftButtonSlide} alt="Button Slide" />
                </Button>
-               <Button data-slide="next" onClick={handleClickNext} >
+               <Button data-slide="next"
+                    onClick={() => changeSlide("next-slide")}
+               >
                     <img src={rightButtonSlide} alt="Button Slide" />
                </Button>
           </ButtonWrapper >

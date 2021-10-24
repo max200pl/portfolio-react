@@ -23,19 +23,30 @@ const SliderWorks = (props) => {
   const [width, setWidth] = useState(0);
   const [xPosition, setXPosition] = useState(0);
 
-  const handleClickPrev = () => {
+  const amountWorkPhotos = props.workPhotos[0].workPhoto.length - 1;
+
+  const changeSlide = (direction) => {
+    console.log(direction);
+    if (direction === "next-slide") {
+      changeToNextSlide();
+    }
+    if (direction === "prev-slide") {
+      changeToPrevSlide();
+    }
+  };
+
+  const changeToPrevSlide = () => {
     if (index <= 0) {
-      setXPosition(-(width * (props.workPhotos[0].workPhoto.length - 1)));
-      setIndex(props.workPhotos[0].workPhoto.length - 1);
+      setXPosition(-(width * amountWorkPhotos));
+      setIndex(amountWorkPhotos);
     } else {
       setIndex(index - 1);
       setXPosition(xPosition + width);
     }
   };
-  console.log(index);
 
-  const handleClickNext = () => {
-    if (index >= props.workPhotos[0].workPhoto.length - 1) {
+  const changeToNextSlide = () => {
+    if (index >= amountWorkPhotos) {
       setIndex(0);
       setXPosition(0);
     } else {
@@ -44,14 +55,23 @@ const SliderWorks = (props) => {
     }
   };
 
+  const handleKeyDownPress = (event) => {
+    console.log(event.key);
+    if (event.key === "ArrowLeft") {
+      changeToPrevSlide();
+    }
+    if (event.key === "ArrowRight") {
+      changeToNextSlide();
+    }
+  };
+
   return (
-    <Wrapper>
+    <Wrapper onKeyDown={handleKeyDownPress}>
       <Slider
         workPhotos={props.workPhotos}
         setWidth={setWidth}
         xPosition={xPosition}
-        handleClickPrev={handleClickPrev}
-        handleClickNext={handleClickNext}
+        changeSlide={changeSlide}
       />
     </Wrapper>
   );
