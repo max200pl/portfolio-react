@@ -26,7 +26,6 @@ const SliderWorks = (props) => {
   const amountWorkPhotos = props.workPhotos[0].workPhoto.length - 1;
 
   const changeSlide = (direction) => {
-    console.log(direction);
     if (direction === "next-slide") {
       changeToNextSlide();
     }
@@ -56,7 +55,6 @@ const SliderWorks = (props) => {
   };
 
   const handleKeyDownPress = (event) => {
-    console.log(event.key);
     if (event.key === "ArrowLeft") {
       changeToPrevSlide();
     }
