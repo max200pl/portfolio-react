@@ -28,12 +28,6 @@
     min-width: 320px;
 }
 
-.modal__dialog {
-    min-width: 1000px;
-    max-width: 1200px;
-    position: relative;
-}
-
 .modal__close {
     width: 24px;
     height: 29px;
@@ -79,6 +73,9 @@
 .modalWork {
     display: flex;
     max-height: 600px;
+    min-width: 1000px;
+    max-width: 1200px;
+    position: relative;
 
     @include xs-mb {
         margin: 15px;
@@ -102,35 +99,6 @@
     @include xs-mb {
         flex-basis: 100%;
         padding: 1rem;
-    }
-}
-
-.modalWork__photo {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    z-index: 1000;
-    width: 100%;
-    max-width: 100%;
-    height: auto !important;
-    transform: translate3d(-50%, -50%, 0);
-
-    &--tab {
-        max-width: 50%;
-    }
-
-    @include xs-mb {
-        position: relative;
-        min-width: 320px;
-
-        &--tab {
-            max-width: 90%;
-        }
-    }
-
-
-    @include xs-mb {
-        min-width: 320px;
     }
 }
 

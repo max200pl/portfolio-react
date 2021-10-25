@@ -3,9 +3,9 @@ import styled from "styled-components";
 import Slider from "./Slider/Slider.jsx";
 
 const Wrapper = styled.div`
-  display: flex;
+  position: relative;
+  overflow: hidden;
 `;
-
 const SliderWorks = (props) => {
   /*   useEffect(() => {
     const handleAutoplay = setInterval(handleClickNext, 3000);
@@ -14,7 +14,6 @@ const SliderWorks = (props) => {
     };
   }, [handleClickNext]);
  */
-  // console.log(props.workPhotos[0].workPhoto);
 
   let [index, setIndex] = useState(0);
   const [width, setWidth] = useState(0);
