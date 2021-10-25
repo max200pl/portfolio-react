@@ -6,7 +6,6 @@ import SlickDots from "./SlickDots";
 const Wrapper = styled.div`
   position: relative;
   overflow: hidden;
-  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.4);
 `;
 
 const Slide = styled.div`
@@ -28,7 +27,6 @@ const Slider = (props) => {
   const workPhotos = props.workPhotos[0].workPhoto;
   const slideRef = useRef();
   useEffect(() => {
-    console.log(slideRef.current);
     if (slideRef.current) {
       const width = slideRef.current.clientWidth;
       props.setWidth(width);
@@ -46,7 +44,11 @@ const Slider = (props) => {
         ))}
       </Slide>
       <ButtonsSlider changeSlide={props.changeSlide} />
-      <SlickDots workPhotos={workPhotos} />
+      <SlickDots
+        workPhotos={workPhotos}
+        changeToSlide={props.changeToSlide}
+        currentIndex={props.currentIndex}
+      />
     </Wrapper>
   );
 };

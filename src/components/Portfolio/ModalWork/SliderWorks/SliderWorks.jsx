@@ -20,6 +20,8 @@ const SliderWorks = (props) => {
   const [width, setWidth] = useState(0);
   const [xPosition, setXPosition] = useState(0);
 
+  let currentIndex = index;
+
   const amountWorkPhotos = props.workPhotos[0].workPhoto.length - 1;
 
   const changeSlide = (direction) => {
@@ -29,6 +31,10 @@ const SliderWorks = (props) => {
     if (direction === "prev-slide") {
       changeToPrevSlide();
     }
+  };
+  const changeToSlide = (id) => {
+    setXPosition(-(width * id));
+    setIndex((index = id));
   };
 
   const changeToPrevSlide = () => {
@@ -67,6 +73,8 @@ const SliderWorks = (props) => {
         setWidth={setWidth}
         xPosition={xPosition}
         changeSlide={changeSlide}
+        changeToSlide={changeToSlide}
+        currentIndex={currentIndex}
       />
     </Wrapper>
   );
