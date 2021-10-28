@@ -9,18 +9,17 @@
 }
 
 .modal__overlay {
-    position: fixed;
-    inset: 0px;
-    background: rgba(6, 15, 49, 0.8) !important;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100vw;
-    height: 100vh;
-    overflow: auto;
     position: fixed;
     top: 0;
     left: 0;
+    inset: 0px;
+    width: 100vw;
+    height: 100vh;
+    overflow: auto;
+    background: rgba(6, 15, 49, 0.8) !important;
 
     @include xs-mb {
         align-items: flex-start;
