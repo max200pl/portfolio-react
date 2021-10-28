@@ -2,6 +2,9 @@
 @import "../../../design-tokens/variables";
 
 .modal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 100vw;
     height: 100vh;
     overflow: auto;
@@ -11,14 +14,12 @@
     z-index: 1000;
 
     @include xs-mb {
+        align-items: flex-start;
         padding: 0;
     }
 }
 
 .modal__overlay {
-    display: flex;
-    align-items: center;
-    justify-content: center;
     position: fixed;
     inset: 0px;
     background: rgba(6, 15, 49, 0.8) !important;
@@ -108,7 +109,6 @@
     padding: 20px;
     position: relative;
     border: 1px solid white;
-    min-width: 320px;
 
     @include xs-mb {
         border: none;
