@@ -10,7 +10,9 @@ class Portfolio extends React.Component {
     super();
     this.state = {
       works: data.works,
+      photoWorks: data.photoWorks,
       workItem: null,
+      workPhotos: null,
     };
   }
 
@@ -27,8 +29,17 @@ class Portfolio extends React.Component {
   };
 
   openModal = (workItem) => {
-    console.log(workItem);
     this.setState({ workItem });
+    const workName = workItem.workName;
+    this.filterPhoto(workName);
+  };
+
+  filterPhoto = (workName) => {
+    this.setState({
+      workPhotos: data.photoWorks.filter(
+        (workPhoto) => workPhoto.workName === workName
+      ),
+    });
   };
 
   closeModal = () => {
@@ -70,6 +81,7 @@ class Portfolio extends React.Component {
             <ModalWork
               workItem={this.state.workItem}
               closeModal={this.closeModal}
+              workPhotos={this.state.workPhotos}
             />
           )}
         </div>

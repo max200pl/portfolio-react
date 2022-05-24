@@ -22,12 +22,7 @@
 }
 
 .portfolio__col {
-    @include xl {
-        flex-basis: 25%;
-    }
-
-
-    @include lg-xl {
+    @include lg {
         flex-basis: 33.33333%;
     }
 
