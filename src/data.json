@@ -112,36 +112,78 @@
 
   "photoWorks": [
     {
-      "nameWork": "Portfolio",
-      "photoWork": [
+      "workName": "Portfolio",
+      "workPhoto": [
         {
           "id": "1",
-          "image": "/images/modal/modal-works-slider/photo-engPlatform/title.png"
+          "image": "/images/modal/modal-works-slider/photo-Portfolio/intro.png"
         },
         {
           "id": "2",
-          "image": "/images/modal/modal-works-slider/photo-engPlatform/title.png"
+          "image": "/images/modal/modal-works-slider/photo-Portfolio/form.png"
         },
         {
           "id": "3",
-          "image": "/images/modal/modal-works-slider/photo-engPlatform/title.png"
+          "image": "/images/modal/modal-works-slider/photo-Portfolio/resume.png"
         }
       ]
     },
     {
-      "nameWork": "Portfolio",
-      "photoWork": [
+      "workName": "MoGo",
+      "workPhoto": [
         {
           "id": "1",
-          "image": "/images/modal/modal-works-slider/photo-engPlatform/title.png"
+          "image": "/images/modal/modal-works-slider/photo-MoGo/accordion.png"
         },
         {
           "id": "2",
-          "image": "/images/modal/modal-works-slider/photo-engPlatform/title.png"
+          "image": "/images/modal/modal-works-slider/photo-MoGo/intro.png"
         },
         {
           "id": "3",
-          "image": "/images/modal/modal-works-slider/photo-engPlatform/title.png"
+          "image": "/images/modal/modal-works-slider/photo-MoGo/tab_nav-menu.png"
+        }
+      ]
+    },
+    {
+      "workName": "Power",
+      "workPhoto": [
+        {
+          "id": "1",
+          "image": "/images/modal/modal-works-slider/photo-Power/main.png"
+        },
+        {
+          "id": "2",
+          "image": "/images/modal/modal-works-slider/photo-Power/ipad.png"
+        },
+        {
+          "id": "3",
+          "image": "/images/modal/modal-works-slider/photo-Power/slider1.png"
+        },
+        {
+          "id": "4",
+          "image": "/images/modal/modal-works-slider/photo-Power/slider2.png"
+        }
+      ]
+    },
+    {
+      "workName": "Anveshan",
+      "workPhoto": [
+        {
+          "id": "1",
+          "image": "/images/modal/modal-works-slider/photo-anveshan/main.png"
+        },
+        {
+          "id": "2",
+          "image": "/images/modal/modal-works-slider/photo-anveshan/prezent_anveshan.png"
+        },
+        {
+          "id": "3",
+          "image": "/images/modal/modal-works-slider/photo-anveshan/tab__nav-menu.png"
+        },
+        {
+          "id": "4",
+          "image": "/images/modal/modal-works-slider/photo-anveshan/title.png"
         }
       ]
     }

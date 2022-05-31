@@ -2,17 +2,10 @@
 @import "../../../design-tokens/variables";
 
 .modal {
-    /* width: 100vw;
-    height: 100vh;
-    overflow: auto;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 1000; */
-
-    @include xs-mb {
-        padding: 0;
-    }
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
 }
 
 .modal__overlay {
@@ -20,18 +13,23 @@
     align-items: center;
     justify-content: center;
     position: fixed;
+    top: 0;
+    left: 0;
     inset: 0px;
+    width: 100vw;
+    height: 100vh;
+    overflow: auto;
     background: rgba(6, 15, 49, 0.8) !important;
-}
 
-.modal__content {
-    min-width: 320px;
-}
+    @include xs-mb {
+        align-items: flex-start;
+        padding: 0;
+    }
 
-.modal__dialog {
-    min-width: 1000px;
-    max-width: 1200px;
-    position: relative;
+
+    @include xs-mb {
+        align-items: flex-start;
+    }
 }
 
 .modal__close {
@@ -78,15 +76,14 @@
 
 .modalWork {
     display: flex;
+    position: relative;
+    max-height: 600px;
+    max-width: 1200px;
+    margin: 20px;
 
     @include xs-mb {
-        margin: 15px;
-    }
-
-
-    @include xs-mb {
-        margin: 0;
-        justify-content: center;
+        max-height: initial;
+        margin: 0px;
         flex-wrap: wrap-reverse;
     }
 }
@@ -100,36 +97,8 @@
 
     @include xs-mb {
         flex-basis: 100%;
+        width: initial;
         padding: 1rem;
-    }
-}
-
-.modalWork__photo {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    z-index: 1000;
-    width: 100%;
-    max-width: 100%;
-    height: auto !important;
-    transform: translate3d(-50%, -50%, 0);
-
-    &--tab {
-        max-width: 50%;
-    }
-
-    @include xs-mb {
-        position: relative;
-        min-width: 320px;
-
-        &--tab {
-            max-width: 90%;
-        }
-    }
-
-
-    @include xs-mb {
-        min-width: 320px;
     }
 }
 
@@ -139,22 +108,27 @@
     padding: 20px;
     position: relative;
     border: 1px solid white;
-    min-width: 320px;
+
+    @include mb {
+        min-width: 320px;
+    }
+
 
     @include xs-mb {
         border: none;
         flex-basis: 100%;
-        min-width: 100%;
+        width: 100%;
     }
 }
 
 .modalWork__header {
     margin-bottom: 2.2rem;
+    text-align: center;
 }
 
 .modalWork__title {
     margin-bottom: .2rem;
-    font-size: 2.12rem;
+    font-size: 2.25rem;
     color: $color-blue;
     font-weight: 700;
     text-transform: uppercase;
@@ -262,4 +236,3 @@
         width: 145px;
     }
 }
-

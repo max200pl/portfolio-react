@@ -7,11 +7,16 @@ import './design-tokens/_breakpoints.scss'
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from "react-router-dom";
+import store from './redux/store';
+import StoreContext from './storeContext';
+
 
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <App />
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
+      <StoreContext.Provider value={store}>
+        <App />
+      </StoreContext.Provider>
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')

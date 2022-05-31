@@ -5,12 +5,19 @@ import Fade from "react-reveal/Fade";
 import s from "./Portfolio.module.scss";
 import FilterWorks from "./FilterWorks/FilterWorks";
 import ModalWork from "./ModalWork/ModalWork";
-class Portfolio extends React.Component {
+class Portfolio extends React.Component
+{
   constructor() {
     super();
     this.state = {
       works: data.works,
+<<<<<<< HEAD
+      photoWorks: data.photoWorks,
+=======
+      
+>>>>>>> 01917aa (add  functional component  SliderWorks)
       workItem: null,
+      workPhotos: null,
     };
   }
 
@@ -27,8 +34,17 @@ class Portfolio extends React.Component {
   };
 
   openModal = (workItem) => {
-    console.log(workItem);
     this.setState({ workItem });
+    const workName = workItem.workName;
+    this.filterPhoto(workName);
+  };
+
+  filterPhoto = (workName) => {
+    this.setState({
+      workPhotos: data.photoWorks.filter(
+        (workPhoto) => workPhoto.workName === workName
+      ),
+    });
   };
 
   closeModal = () => {
@@ -71,6 +87,11 @@ class Portfolio extends React.Component {
             <ModalWork
               workItem={this.state.workItem}
               closeModal={this.closeModal}
+<<<<<<< HEAD
+              workPhotos={this.state.workPhotos}
+=======
+              SliderWorks = {this.}
+>>>>>>> 01917aa (add  functional component  SliderWorks)
             />
           )}
         </div>
