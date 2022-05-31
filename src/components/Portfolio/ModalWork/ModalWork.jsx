@@ -1,9 +1,9 @@
 import React from "react";
 import Modal from "react-modal";
 import Fade from "react-reveal/Fade";
+import SliderWorks from "./SliderWorks/SliderWorks";
 import s from "./ModalWork.module.scss";
 import Skills from "./Skills/Skills";
-import SliderWorks from "./SliderWorks/SliderWorks";
 
 export default function ModalWork(props)
 {
@@ -18,12 +18,27 @@ export default function ModalWork(props)
 				shouldCloseOnOverlayClick={true}
 			>
 				<Fade left cascade={true}>
+					<div className={s.modalWork}>
+						<div className={s.modalWork__preview}>
+							<SliderWorks
+								workName={props.workItem.workName}
+								workPhotos={props.workPhotos}
+							/>
+						</div>
 
-					<div className={s.modal__dialog}>
-						<div className={s.modalWork}>
-							<div className={s.modalWork__preview}>
-								<SliderWorks />
-
+						<div className={s.modalWork__content}>
+							<button onClick={props.closeModal} className={s.modal__close}>
+								<img src="images/modal/exit.svg" alt="Close" />
+							</button>
+							<div className={s.modalWork__header}>
+								<span className={s.modalWork__title}>
+									{props.workItem.workName}
+								</span>
+								<div className={s.modalWork__info}>
+									{props.workItem.categoryWork}
+									<span className={s.modalWork__infoDivider}>|</span>
+									{props.workItem.endWorkTime}
+								</div>
 							</div>
 
 							<div className={s.modalWork__client}>

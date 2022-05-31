@@ -1,111 +1,89 @@
-// @ts-nocheck
-import React, { Component, Fragment } from "react";
-import data from "../../../../data.json";
-import Slide from "./Slide/Slide";
-import { Pagination, Button, Flex } from "./Slide/SliderStyle";
+import React, { useState } from "react";
+import styled from "styled-components";
+import Slider from "./Slider/Slider.jsx";
 
-export default class SliderWorks extends Component
+const Wrapper = styled.div`
+    position: relative;
+    overflow: hidden;
+`;
+const SliderWorks = (props) =>
 {
-	constructor()
-	{
-		super();
-		this.state = {
-			photoWorks: data.photoWorks,
-			currentIndex: 0,
-		};
-	}
+	/*   useEffect(() => {
+	  const handleAutoplay = setInterval(handleClickNext, 3000);
+	  return () => {
+		clearInterval(handleAutoplay);
+	  };
+	}, [handleClickNext]);
+   */
 
-<<<<<<< HEAD
-	previousSlide = () =>
+	let [index, setIndex] = useState(0);
+	const [width, setWidth] = useState(0);
+	const [xPosition, setXPosition] = useState(0);
+
+	let currentIndex = index;
+
+	const amountWorkPhotos = props.workPhotos[0].workPhoto.length - 1;
+	console.log(amountWorkPhotos);
+
+	const changeSlide = (direction) =>
 	{
-		const { photoWorks, currentIndex } = this.state;
-		if (currentIndex === 0) {
-			return this.setState({ currentIndex: photoWorks.length - 1 });
+		if (direction === "next-slide") {
+			changeToNextSlide();
 		}
-		this.setState({ currentIndex: currentIndex - 1 });
-	};
-=======
-const SliderWorks = (props) => {
-  const images = props.applyTech;
-
-  const [index, setIndex] = useState(0);
-  const [width, setWidth] = useState(0);
-  const [xPosition, setXPosition] = useState(0);
->>>>>>> 01917aa (add  functional component  SliderWorks)
-
-	nextSlide = () =>
-	{
-		const { photoWorks, currentIndex } = this.state;
-		if (currentIndex === photoWorks.length - 1) {
-			return this.setState({ currentIndex: 0 });
+		if (direction === "prev-slide") {
+			changeToPrevSlide();
 		}
-		this.setState({ currentIndex: currentIndex + 1 });
+	};
+	const changeToSlide = (id) =>
+	{
+		setXPosition(-(width * id));
+		setIndex((index = id));
 	};
 
-<<<<<<< HEAD
-	indexSlide = (info) =>
+	const changeToPrevSlide = () =>
 	{
-		const id = info;
-		this.setState({ currentIndex: id - 1 });
+		if (index <= 0) {
+			setXPosition(-(width * amountWorkPhotos));
+			setIndex(amountWorkPhotos);
+		} else {
+			setIndex(index - 1);
+			setXPosition(xPosition + width);
+		}
 	};
 
-	render()
+	const changeToNextSlide = () =>
 	{
-		const { photoWorks, currentIndex } = this.state;
-		return (
-			<Fragment>
-				<Slide
-					id={photoWorks.id}
-					key={photoWorks.id}
-					info={photoWorks[currentIndex].workPhoto[1].image}
-				/>
-				<Flex background>
-					{photoWorks.map((v) =>
-					{
-						let bgColor = "white";
-						if (currentIndex + 1 === +v.id) {
-							bgColor = "orange";
-						}
-						return (
-							<Pagination
-								key={v.id}
-								bgColor={bgColor}
-								onClick={() => this.indexSlide(v)}
-							/>
-						);
-					})}
-				</Flex>
-				<Flex>
-					<Button onClick={this.previousState}>Previous</Button>
-					<Button onClick={this.nextState}>Next</Button>
-				</Flex>
-			</Fragment>
-		);
-	}
-}
-=======
-  const handleClickNext = () => {
-    if (index === images.length - 1) {
-      setIndex(0);
-      setXPosition(0);
-    } else {
-      setIndex(index + 1);
-      setXPosition(xPosition - width);
-    }
-  };
+		if (index >= amountWorkPhotos) {
+			setIndex(0);
+			setXPosition(0);
+		} else {
+			setIndex(index + 1);
+			setXPosition(xPosition - width);
+		}
+	};
 
-  return (
-    <Wrapper>
-      <Slider
-        images={images}
-        setWidth={setWidth}
-        xPosition={xPosition}
-        handleClickPrev={handleClickPrev}
-        handleClickNext={handleClickNext}
-      />
-    </Wrapper>
-  );
+	const handleKeyDownPress = (event) =>
+	{
+		if (event.key === "ArrowLeft") {
+			changeToPrevSlide();
+		}
+		if (event.key === "ArrowRight") {
+			changeToNextSlide();
+		}
+	};
+
+	return (
+		<Wrapper onKeyDown={handleKeyDownPress}>
+			<Slider
+				workPhotos={props.workPhotos}
+				setWidth={setWidth}
+				xPosition={xPosition}
+				changeSlide={changeSlide}
+				changeToSlide={changeToSlide}
+				currentIndex={currentIndex}
+			/>
+		</Wrapper>
+	);
 };
 
 export default SliderWorks;
->>>>>>> 01917aa (add  functional component  SliderWorks)
