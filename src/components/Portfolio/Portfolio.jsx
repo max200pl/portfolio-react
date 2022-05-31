@@ -52,6 +52,7 @@ class Portfolio extends React.Component {
       <div className={s.portfolio} id="portfolio">
         <div className="container">
           <FilterWorks filterWork={this.filterWork} />
+
           <div className={s.portfolio__workCount}>
             <span>Count works:</span> {this.state.works.length}
           </div>

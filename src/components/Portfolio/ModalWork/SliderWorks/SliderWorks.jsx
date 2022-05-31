@@ -1,82 +1,75 @@
-import React, { useState } from "react";
-import styled from "styled-components";
-import Slider from "./Slider/Slider.jsx";
+// @ts-nocheck
+import React, { Component, Fragment } from "react";
+import data from "../../../../data.json";
+import Slide from "./Slide/Slide";
+import { Pagination, Button, Flex } from "./Slide/SliderStyle";
 
-const Wrapper = styled.div`
-  position: relative;
-  overflow: hidden;
-`;
-const SliderWorks = (props) => {
-  /*   useEffect(() => {
-    const handleAutoplay = setInterval(handleClickNext, 3000);
-    return () => {
-      clearInterval(handleAutoplay);
-    };
-  }, [handleClickNext]);
- */
+export default class SliderWorks extends Component
+{
+	constructor()
+	{
+		super();
+		this.state = {
+			photoWorks: data.photoWorks,
+			currentIndex: 0,
+		};
+	}
 
-  let [index, setIndex] = useState(0);
-  const [width, setWidth] = useState(0);
-  const [xPosition, setXPosition] = useState(0);
+	previousSlide = () =>
+	{
+		const { photoWorks, currentIndex } = this.state;
+		if (currentIndex === 0) {
+			return this.setState({ currentIndex: photoWorks.length - 1 });
+		}
+		this.setState({ currentIndex: currentIndex - 1 });
+	};
 
-  let currentIndex = index;
+	nextSlide = () =>
+	{
+		const { photoWorks, currentIndex } = this.state;
+		if (currentIndex === photoWorks.length - 1) {
+			return this.setState({ currentIndex: 0 });
+		}
+		this.setState({ currentIndex: currentIndex + 1 });
+	};
 
-  const amountWorkPhotos = props.workPhotos[0].workPhoto.length - 1;
+	indexSlide = (info) =>
+	{
+		const id = info;
+		this.setState({ currentIndex: id - 1 });
+	};
 
-  const changeSlide = (direction) => {
-    if (direction === "next-slide") {
-      changeToNextSlide();
-    }
-    if (direction === "prev-slide") {
-      changeToPrevSlide();
-    }
-  };
-  const changeToSlide = (id) => {
-    setXPosition(-(width * id));
-    setIndex((index = id));
-  };
-
-  const changeToPrevSlide = () => {
-    if (index <= 0) {
-      setXPosition(-(width * amountWorkPhotos));
-      setIndex(amountWorkPhotos);
-    } else {
-      setIndex(index - 1);
-      setXPosition(xPosition + width);
-    }
-  };
-
-  const changeToNextSlide = () => {
-    if (index >= amountWorkPhotos) {
-      setIndex(0);
-      setXPosition(0);
-    } else {
-      setIndex(index + 1);
-      setXPosition(xPosition - width);
-    }
-  };
-
-  const handleKeyDownPress = (event) => {
-    if (event.key === "ArrowLeft") {
-      changeToPrevSlide();
-    }
-    if (event.key === "ArrowRight") {
-      changeToNextSlide();
-    }
-  };
-
-  return (
-    <Wrapper onKeyDown={handleKeyDownPress}>
-      <Slider
-        workPhotos={props.workPhotos}
-        setWidth={setWidth}
-        xPosition={xPosition}
-        changeSlide={changeSlide}
-        changeToSlide={changeToSlide}
-        currentIndex={currentIndex}
-      />
-    </Wrapper>
-  );
-};
-
-export default SliderWorks;
+	render()
+	{
+		const { photoWorks, currentIndex } = this.state;
+		return (
+			<Fragment>
+				<Slide
+					id={photoWorks.id}
+					key={photoWorks.id}
+					info={photoWorks[currentIndex].workPhoto[1].image}
+				/>
+				<Flex background>
+					{photoWorks.map((v) =>
+					{
+						let bgColor = "white";
+						if (currentIndex + 1 === +v.id) {
+							bgColor = "orange";
+						}
+						return (
+							<Pagination
+								key={v.id}
+								bgColor={bgColor}
+								onClick={() => this.indexSlide(v)}
+							/>
+						);
+					})}
+				</Flex>
+				<Flex>
+					<Button onClick={this.previousState}>Previous</Button>
+					<Button onClick={this.nextState}>Next</Button>
+				</Flex>
+			</Fragment>
+		);
+	}
+}
