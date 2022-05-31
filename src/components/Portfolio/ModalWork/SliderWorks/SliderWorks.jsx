@@ -15,6 +15,7 @@ export default class SliderWorks extends Component
 		};
 	}
 
+<<<<<<< HEAD
 	previousSlide = () =>
 	{
 		const { photoWorks, currentIndex } = this.state;
@@ -23,6 +24,14 @@ export default class SliderWorks extends Component
 		}
 		this.setState({ currentIndex: currentIndex - 1 });
 	};
+=======
+const SliderWorks = (props) => {
+  const images = props.applyTech;
+
+  const [index, setIndex] = useState(0);
+  const [width, setWidth] = useState(0);
+  const [xPosition, setXPosition] = useState(0);
+>>>>>>> 01917aa (add  functional component  SliderWorks)
 
 	nextSlide = () =>
 	{
@@ -33,6 +42,7 @@ export default class SliderWorks extends Component
 		this.setState({ currentIndex: currentIndex + 1 });
 	};
 
+<<<<<<< HEAD
 	indexSlide = (info) =>
 	{
 		const id = info;
@@ -73,3 +83,29 @@ export default class SliderWorks extends Component
 		);
 	}
 }
+=======
+  const handleClickNext = () => {
+    if (index === images.length - 1) {
+      setIndex(0);
+      setXPosition(0);
+    } else {
+      setIndex(index + 1);
+      setXPosition(xPosition - width);
+    }
+  };
+
+  return (
+    <Wrapper>
+      <Slider
+        images={images}
+        setWidth={setWidth}
+        xPosition={xPosition}
+        handleClickPrev={handleClickPrev}
+        handleClickNext={handleClickNext}
+      />
+    </Wrapper>
+  );
+};
+
+export default SliderWorks;
+>>>>>>> 01917aa (add  functional component  SliderWorks)
