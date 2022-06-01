@@ -7,67 +7,60 @@ import socialLink5 from "../../images/intro/5.png";
 
 import s from "./Intro.module.scss";
 
-const Intro = (props) => {
-  return (
-    <section className={s.intro} id="hello">
-      <div className={s.inner}>
-        <div className="container">
-          <div className={s.content}>
-            <h2 className={s.subtitle}>Hello i'm</h2>
-            <h1 className={s.title}>Poskannui Maksym</h1>
-            <div className={s.text}>Frontend Developer</div>
+const dataSocialLinks = [
+	{
+		icon_link: socialLink1,
+		social_link: "https://www.instagram.com/maksym.poskannyi/?hl=ru"
+	},
+	{
+		icon_link: socialLink2,
+		social_link: "https://www.linkedin.com/in/maksym-poskannyi-114b08155/"
+	},
+	{
+		icon_link: socialLink3,
+		social_link: "https://www.facebook.com/Maksym.Poskannyi"
+	},
+	{
+		icon_link: socialLink4,
+		social_link: "viber://chat?number=+380508669945"
+	},
+	{
+		icon_link: socialLink5,
+		social_link: "https://t.me/max200pl"
+	},
+]
 
-            <div className={s.social}>
-              <a
-                className={s.social__link}
-                rel="noreferrer"
-                href="https://www.instagram.com/maksym.poskannyi/?hl=ru"
-                target="_blank"
-              >
-                <img src={socialLink1} alt="link instagram" />
-              </a>
-              <a
-                className={s.social__link}
-                rel="noreferrer"
-                href="https://www.linkedin.com/in/maksym-poskannyi-114b08155/"
-                target="_blank"
-              >
-                <img src={socialLink3} alt="link linkedin" />
-              </a>
-              <a
-                className={s.social__link}
-                rel="noreferrer"
-                href="https://www.facebook.com/Maksym.Poskannyi"
-                target="_blank"
-              >
-                <img src={socialLink2} alt="link facebook" />
-              </a>
-              <a
-                className={s.social__link}
-                rel="noreferrer"
-                href="viber://chat?number=+380508669945"
-                target="_blank"
-              >
-                <img src={socialLink4} alt="link viber" />
-              </a>
-              <a
-                className={s.social__link}
-                rel="noreferrer"
-                href="https://t.me/max200pl"
-                target="_blank"
-              >
-                <img src={socialLink5} alt="link telegram" />
-              </a>
-            </div>
-            <div className={s.link}>
-              <button className={"btn"}>Hire Me</button>
-              <button className={"btn"}>See My Resume</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-};
+const SocialLink = (props) => (
+	<a className={s.social__link} rel="noreferrer" href={props.social_link} target="_blank" >
+		<img src={props.icon_link} alt="link instagram" />
+	</a>
+)
+
+const SocialLinks = (props) => props.dataSocialLinks.map((link) =>
+	<SocialLink icon_link={link.icon_link} social_link={link.social_link} />
+)
+
+const Intro = () => (
+	<section className={s.intro} id="hello">
+		<div className="container">
+			<div className={s.inner}>
+				<div className={s.content}>
+					<h2 className={s.subtitle}>Hello i'm</h2>
+					<h1 className={s.title}>Poskannyi Maksym</h1>
+					<div className={s.text}>Frontend Developer</div>
+
+					<div className={s.social}>
+						<SocialLinks dataSocialLinks={dataSocialLinks} />
+					</div>
+
+					<div className={s.link}>
+						<button className={"btn"}>Hire Me</button>
+						<button className={"btn"}>See My Resume</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+)
 
 export default Intro;
