@@ -2,9 +2,15 @@
 @import "../../design-tokens/variables";
 
 .inner {
-    display: flex;
+	display: flex;
+    padding-top: 8rem;
+    padding-bottom: 8rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
     position: relative;
-    align-items: center;
+}
+
+.content {
+	width: 50%;
 }
 
 .link {
