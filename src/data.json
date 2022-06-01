@@ -16,7 +16,7 @@
         { "nameTech": "Gulp 4", "applyTech": 60 },
         { "nameTech": "Git", "applyTech": 60 }
       ],
-      "img": "/images/modal/modal-works-slider/photo-Portfolio/intro.png"
+      "img": "./images/modal/modal-works-slider/photo-Portfolio/intro.png"
     },
     {
       "id": 2,
@@ -34,7 +34,7 @@
         { "nameTech": "Gulp 4", "applyTech": 60 },
         { "nameTech": "Git", "applyTech": 30 }
       ],
-      "img": "/images/modal/modal-works-slider/photo-MoGo/intro.png"
+      "img": "./images/modal/modal-works-slider/photo-MoGo/intro.png"
     },
     {
       "id": 3,
@@ -52,7 +52,7 @@
         { "nameTech": "Gulp 4", "applyTech": 60 },
         { "nameTech": "Git", "applyTech": 30 }
       ],
-      "img": "/images/modal/modal-works-slider/photo-Power/intro.png"
+      "img": "./images/modal/modal-works-slider/photo-Power/intro.png"
     },
     {
       "id": 4,
@@ -60,7 +60,7 @@
       "workName": "Anveshan",
       "endWorkTime": "2019",
       "clientName": "Creative Agency",
-      "img": "/images/modal/modal-works-slider/photo-anveshan/title.png",
+      "img": "./images/modal/modal-works-slider/photo-anveshan/title.png",
       "useTechnology": [
         { "nameTech": "JavaScript", "applyTech": 10 },
         { "nameTech": "Html 5", "applyTech": 10 },
@@ -88,7 +88,7 @@
         { "nameTech": "Gulp 4", "applyTech": 60 },
         { "nameTech": "Git", "applyTech": 30 }
       ],
-      "img": "/images/modal/modal-works-slider/photo-pantoflex/title.png"
+      "img": "./images/modal/modal-works-slider/photo-pantoflex/title.png"
     },
     {
       "id": 6,
@@ -106,7 +106,7 @@
         { "nameTech": "Gulp 4", "applyTech": 60 },
         { "nameTech": "Git", "applyTech": 30 }
       ],
-      "img": "/images/modal/modal-works-slider/photo-engPlatform/title.png"
+      "img": "./images/modal/modal-works-slider/photo-engPlatform/title.png"
     }
   ],
 
@@ -116,15 +116,15 @@
       "workPhoto": [
         {
           "id": "1",
-          "image": "/images/modal/modal-works-slider/photo-Portfolio/intro.png"
+          "image": "./images/modal/modal-works-slider/photo-Portfolio/intro.png"
         },
         {
           "id": "2",
-          "image": "/images/modal/modal-works-slider/photo-Portfolio/form.png"
+          "image": "./images/modal/modal-works-slider/photo-Portfolio/form.png"
         },
         {
           "id": "3",
-          "image": "/images/modal/modal-works-slider/photo-Portfolio/resume.png"
+          "image": "./images/modal/modal-works-slider/photo-Portfolio/resume.png"
         }
       ]
     },
@@ -133,15 +133,15 @@
       "workPhoto": [
         {
           "id": "1",
-          "image": "/images/modal/modal-works-slider/photo-MoGo/accordion.png"
+          "image": "./images/modal/modal-works-slider/photo-MoGo/accordion.png"
         },
         {
           "id": "2",
-          "image": "/images/modal/modal-works-slider/photo-MoGo/intro.png"
+          "image": "./images/modal/modal-works-slider/photo-MoGo/intro.png"
         },
         {
           "id": "3",
-          "image": "/images/modal/modal-works-slider/photo-MoGo/tab_nav-menu.png"
+          "image": "./images/modal/modal-works-slider/photo-MoGo/tab_nav-menu.png"
         }
       ]
     },
@@ -150,19 +150,19 @@
       "workPhoto": [
         {
           "id": "1",
-          "image": "/images/modal/modal-works-slider/photo-Power/main.png"
+          "image": "./images/modal/modal-works-slider/photo-Power/main.png"
         },
         {
           "id": "2",
-          "image": "/images/modal/modal-works-slider/photo-Power/ipad.png"
+          "image": "./images/modal/modal-works-slider/photo-Power/ipad.png"
         },
         {
           "id": "3",
-          "image": "/images/modal/modal-works-slider/photo-Power/slider1.png"
+          "image": "./images/modal/modal-works-slider/photo-Power/slider1.png"
         },
         {
           "id": "4",
-          "image": "/images/modal/modal-works-slider/photo-Power/slider2.png"
+          "image": "./images/modal/modal-works-slider/photo-Power/slider2.png"
         }
       ]
     },
@@ -171,19 +171,19 @@
       "workPhoto": [
         {
           "id": "1",
-          "image": "/images/modal/modal-works-slider/photo-anveshan/main.png"
+          "image": "./images/modal/modal-works-slider/photo-anveshan/main.png"
         },
         {
           "id": "2",
-          "image": "/images/modal/modal-works-slider/photo-anveshan/prezent_anveshan.png"
+          "image": "./images/modal/modal-works-slider/photo-anveshan/prezent_anveshan.png"
         },
         {
           "id": "3",
-          "image": "/images/modal/modal-works-slider/photo-anveshan/tab__nav-menu.png"
+          "image": "./images/modal/modal-works-slider/photo-anveshan/tab__nav-menu.png"
         },
         {
           "id": "4",
-          "image": "/images/modal/modal-works-slider/photo-anveshan/title.png"
+          "image": "./images/modal/modal-works-slider/photo-anveshan/title.png"
         }
       ]
     }
