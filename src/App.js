@@ -2,7 +2,7 @@ import React from 'react';
 import './App.scss';
 import Header from './components/Header/Header';
 import Intro from './components/Intro/Intro';
-import { Route, Switch } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import Portfolio from './components/Portfolio/Portfolio';
 import About from './components/About/About';
 
@@ -15,17 +15,17 @@ class App extends React.Component
 
       <div className="App">
         <Header />
-        <Switch>
-          <Route exact path="/"
-            render={() => <Intro />}
+        <Routes>
+          <Route path="/"
+            element={<Intro />}
           />
           <Route path="/portfolio"
-            render={() => <Portfolio />}
+            element={<Portfolio />}
           />
           <Route path="/about"
-            render={() => <About />}
+            element={<About />}
           />
-        </Switch>
+        </Routes>
       </div>
     );
   }
