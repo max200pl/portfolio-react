@@ -1,9 +1,11 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import socialLink1 from "../../images/intro/1.png";
 import socialLink2 from "../../images/intro/2.png";
 import socialLink3 from "../../images/intro/3.png";
 import socialLink4 from "../../images/intro/4.png";
 import socialLink5 from "../../images/intro/5.png";
+import arrowNext from "../../images/intro/nex-page__arrow.svg";
 
 import s from "./Intro.module.scss";
 
@@ -59,6 +61,13 @@ const Intro = () => (
 					</div>
 				</div>
 			</div>
+
+			<button></button>
+			<NavLink className={s.next_button}
+				to="/portfolio"
+			>
+				<img className={s.next_button_icon} src={arrowNext} alt="" />
+			</NavLink>
 		</div>
 	</section>
 )
