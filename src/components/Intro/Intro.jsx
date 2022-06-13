@@ -61,13 +61,11 @@ const Intro = () => (
 					</div>
 				</div>
 			</div>
-
-			<button></button>
-			<NavLink className={s.next_button}
-				to="/portfolio"
-			>
-				<img className={s.next_button_icon} src={arrowNext} alt="" />
-			</NavLink>
+			<div className={s.intro__footer}>
+				<NavLink className={s.next_button} to="/portfolio" >
+					<img className={s.next_button__icon} src={arrowNext} alt="arrow button" />
+				</NavLink>
+			</div>
 		</div>
 	</section>
 )
