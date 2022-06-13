@@ -1,12 +1,25 @@
 @import "../../design-tokens/breakpoints";
 @import "../../design-tokens/variables";
 
+.intro {
+	overflow-y: hidden;
+	position: relative;
+	height: 91vh;
+
+	&__footer{
+		position: fixed;
+		bottom: 30px;
+		left: 0;
+		right: 0;
+		width: 100%;
+	}
+}
+
 .inner {
 	display: flex;
-    padding-top: 8rem;
-    padding-bottom: 8rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
     position: relative;
+    padding: 8rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .content {
@@ -68,10 +81,14 @@
 }
 
 .next_button {
-	
+	display: flex;
+	justify-content: center;
 }
 
-.next_button_icon{
+.next_button__icon {
 	max-width: 80px;
-	overflow: hidden;
+	&:hover {
+		
+			fill: red;
+	}
 }
