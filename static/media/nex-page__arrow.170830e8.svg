@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 26.3.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 100 100" style="enable-background:new 0 0 100 100;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:url(#SVGID_1_); }
+	.st1{fill:none;stroke:#ffff;stroke-miterlimit:10;  overflow: hidden;}
+	.st2,
+	.st3,
+	.st4,
+	.st5,
+	.st6 {
+		stroke:#ffff;
+	}
+	.st8{font-family:'TimesNewRomanPSMT';}
+	.st9{font-size:12px;}
+	
+</style>
+
+<g>
+	<radialGradient id="SVGID_1_" cx="49.766" cy="95.9787" r="94.7237" gradientUnits="userSpaceOnUse">
+		<stop  offset="0.5744" style="stop-color:#ffff;stop-opacity:0"/>
+		<stop  offset="0.7977" style="stop-color:#ffff;stop-opacity:0.6512"/>
+		<stop  offset="1" style="stop-color:#ffff;stop-opacity:0.95"/>
+	</radialGradient>
+	<circle class="st0" cx="50" cy="50" r="46.47"/>
+</g>
+<g>
+<line transform='translate(0 )' style="fill:url(#SVGID_00000029747844530108750470000002965308252824032423_);stroke:#ffff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;" x1="49.86" y1="67.55" x2="19.86" y2="37.55"/>
+<animateTransform attributeName="transform"
+    type="translate"
+    from="0 0"
+    to="0 1000"
+    begin="2s"
+    dur="2s"
+    repeatCount="1"
+  />
+</g>
+<g>
+<line style="fill:url(#SVGID_00000021799261618256894040000011936466658499810968_);stroke:#ffff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;" x1="79.88" y1="37.55" x2="49.88" y2="67.55"/>
+<animateTransform attributeName="transform"
+    type="translate"
+    from="0 0"
+    to="0 1000"
+    begin="2s"
+    dur="2s"
+    repeatCount="1"
+  />
+</g>
+<g>
+<line style="fill:url(#SVGID_00000062175454720806298860000001058234739702564756_);stroke:#ffff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;" x1="49.86" y1="54.55" x2="19.86" y2="24.55"/>
+<animateTransform attributeName="transform"
+    type="translate"
+    from="0 0"
+    to="0 1000"
+    begin="2s"
+    dur="2s"
+    repeatCount="1"
+  />
+</g>
+<g>
+<g>
+<line style="fill:url(#SVGID_00000023248698869084501830000000357993886982201262_);stroke:#ffff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;" x1="79.88" y1="24.55" x2="49.88" y2="54.55"/></g>
+<animateTransform attributeName="transform"
+    type="translate"
+    from="0 0"
+    to="0 1000"
+    begin="2s"
+    dur="2s"
+    repeatCount="1"
+  />
+</g>
+<g>
+<line transform='translate(0 2)' style="fill:url(#SVGID_00000050632969179743757990000015971666890978893994_);stroke:#ffff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;" x1="49.86" y1="79.55" x2="19.86" y2="49.55"/>
+<animateTransform attributeName="transform"
+    type="translate"
+    from="0 0"
+    to="0 1000"
+    begin="2s"
+    dur="2s"
+    repeatCount="1"
+  />
+</g>
+<g>
+<line transform='translate(0 2)' style="fill:url(#SVGID_00000181802051122392163880000009162970687824560303_);stroke:#ffff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;" x1="79.88" y1="49.66" x2="49.88" y2="79.66"/>
+<animateTransform attributeName="transform"
+    type="translate"
+    from="0 0"
+    to="0 1000"
+    begin="2s"
+    dur="2s"
+    repeatCount="1"
+  />
+</g>
+<text transform="matrix(1 0 0 1 34.1931 24)" class="st8 st9">NEXT</text>
+</svg>
