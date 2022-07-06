@@ -29,8 +29,8 @@ let dataNavLink = [
 	}
 ]
 
-const NavLinkComponent = dataNavLink.map((data) =>
-	<NavLink
+const NavLinkComponent = dataNavLink.map((data, id) =>
+	<NavLink key={id}
 		className={({ isActive }) =>
 			isActive ? s.nav__link_active : s.nav__link
 		}

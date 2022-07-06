@@ -5,10 +5,8 @@ import Fade from "react-reveal/Fade";
 import s from "./Portfolio.module.scss";
 import FilterWorks from "./FilterWorks/FilterWorks";
 import ModalWork from "./ModalWork/ModalWork";
-class Portfolio extends React.Component
-{
-	constructor()
-	{
+class Portfolio extends React.Component {
+	constructor() {
 		super();
 		this.state = {
 			works: data.works,
@@ -18,8 +16,7 @@ class Portfolio extends React.Component
 		};
 	}
 
-	filterWork = (event) =>
-	{
+	filterWork = (event) => {
 		if (event.target.dataset.filter === "all") {
 			this.setState({ works: data.works });
 		} else {
@@ -31,15 +28,13 @@ class Portfolio extends React.Component
 		}
 	};
 
-	openModal = (workItem) =>
-	{
+	openModal = (workItem) => {
 		this.setState({ workItem });
 		const workName = workItem.workName;
 		this.filterPhoto(workName);
 	};
 
-	filterPhoto = (workName) =>
-	{
+	filterPhoto = (workName) => {
 		this.setState({
 			workPhotos: data.photoWorks.filter(
 				(workPhoto) => workPhoto.workName === workName
@@ -47,13 +42,11 @@ class Portfolio extends React.Component
 		});
 	};
 
-	closeModal = () =>
-	{
+	closeModal = () => {
 		this.setState({ workItem: null });
 	};
 
-	render()
-	{
+	render() {
 		const { workItem } = this.state;
 		return (
 			<div className={s.portfolio} id="portfolio">
