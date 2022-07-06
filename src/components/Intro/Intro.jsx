@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import socialLink1 from "../../images/intro/1.png";
 import socialLink2 from "../../images/intro/2.png";
@@ -6,6 +6,7 @@ import socialLink3 from "../../images/intro/3.png";
 import socialLink4 from "../../images/intro/4.png";
 import socialLink5 from "../../images/intro/5.png";
 import arrowNext from "../../images/intro/nex-page__arrow.svg";
+import Modal from "../Modal/Modal";
 
 import s from "./Intro.module.scss";
 
@@ -38,36 +39,42 @@ const SocialLink = (props) => (
 	</a>
 )
 
-const SocialLinks = (props) => props.dataSocialLinks.map((link) =>
-	<SocialLink icon_link={link.icon_link} social_link={link.social_link} />
+const SocialLinks = (props) => props.dataSocialLinks.map((link, id) =>
+	<SocialLink key={id} icon_link={link.icon_link} social_link={link.social_link} />
 )
 
-const Intro = () => (
-	<section className={s.intro} id="hello">
-		<div className="container">
-			<div className={s.inner}>
-				<div className={s.content}>
-					<h2 className={s.subtitle}>Hello i'm</h2>
-					<h1 className={s.title}>Poskannyi Maksym</h1>
-					<div className={s.text}>Frontend Developer</div>
+const Intro = () => {
+	const [show, setShow] = useState(false);
 
-					<div className={s.social}>
-						<SocialLinks dataSocialLinks={dataSocialLinks} />
-					</div>
+	return (
+		<section className={s.intro} id="hello">
+			<div className="container">
+				<div className={s.inner}>
+					<div className={s.content}>
+						<h2 className={s.subtitle}>Hello i'm</h2>
+						<h1 className={s.title}>Poskannyi Maksym</h1>
+						<div className={s.text}>Frontend Developer</div>
+						<button onClick={() => setShow(true)}>ShowModal</button>
+						<div className={s.social}>
+							<SocialLinks dataSocialLinks={dataSocialLinks} />
+						</div>
 
-					<div className={s.link}>
-						<button className={"btn"}>Hire Me</button>
-						<button className={"btn"}>See My Resume</button>
+						<div className={s.link}>
+							<button className={"btn"}>Hire Me</button>
+							<button className={"btn"}>See My Resume</button>
+						</div>
 					</div>
 				</div>
+				<div className={s.intro__footer}>
+					<NavLink className={s.next_button} to="/portfolio" >
+						<img className={s.next_button__icon} src={arrowNext} alt="arrow button" />
+					</NavLink>
+				</div>
 			</div>
-			<div className={s.intro__footer}>
-				<NavLink className={s.next_button} to="/portfolio" >
-					<img className={s.next_button__icon} src={arrowNext} alt="arrow button" />
-				</NavLink>
-			</div>
-		</div>
-	</section>
-)
+			<Modal onClose={() => setShow(false)} show={show} />
+		</section>
+	)
+}
+
 
 export default Intro;
