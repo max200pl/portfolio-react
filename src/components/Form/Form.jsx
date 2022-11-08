@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import s from "./Intro.module.scss";
 
 export default function Form(props) {
@@ -7,6 +7,27 @@ export default function Form(props) {
     const [enteredPassword, setEnteredPassword] = useState('');
     const [passwordIsValid, setPasswordIsValid] = useState(true);
     const [formIsValid, setFormIsValid] = useState(false);
+
+
+
+    useEffect(() => {
+        //* валидация только после определенного времени (Debouncing)
+        //* постоянная очистка таймера если пользователь не перестал печатать 
+        const identifier = setTimeout(() => {
+            console.log("Checking from validity!")
+            setFormIsValid(
+                enteredEmail.includes('@') && enteredPassword.trim().length > 6
+            );
+        }, 500);
+
+        return () => { // cleanup function
+            //* запускается перед запуском основной функции постоянно  
+            //* и когда компонента размонтируется (unmantling --- removed) 
+            console.log("CLEANUP");
+            clearTimeout(identifier) //* постоянно очищаем наш интервал  
+        }
+    }, [enteredEmail, enteredPassword]) // если зависимости обновились тогда вызываем функцию повторно 
+
 
     const submitHandler = (event) => {
         event.preventDefault();
@@ -23,10 +44,6 @@ export default function Form(props) {
 
     const passwordChangeHandler = (event) => {
         setEnteredPassword(event.target.value);
-
-        setFormIsValid(
-            enteredEmail.includes('@') && event.target.value.trim().length > 6
-        );
     };
 
     const validatePasswordHandler = () => {

@@ -12,6 +12,10 @@ const App = props => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     useEffect(() => {
+        //* записываем данные в localStorage
+        //* запускается после того как компонента обрисовались 
+        //* если не заданные [] то отрисовалась всего раз и все  
+        //*
         const storedUserLoggedInInformation = localStorage.getItem('isLoggedIn');
 
         if (storedUserLoggedInInformation === '1') {
