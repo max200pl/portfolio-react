@@ -8,26 +8,30 @@ export default function Form(props) {
     const [passwordIsValid, setPasswordIsValid] = useState(true);
     const [formIsValid, setFormIsValid] = useState(false);
 
-
-
     useEffect(() => {
-        //* валидация только после определенного времени (Debouncing)
-        //* постоянная очистка таймера если пользователь не перестал печатать 
-        const identifier = setTimeout(() => {
-            console.log("Checking from validity!")
-            setFormIsValid(
-                enteredEmail.includes('@') && enteredPassword.trim().length > 6
-            );
-        }, 500);
-
-        return () => { // cleanup function
-            //* запускается перед запуском основной функции постоянно  
-            //* и когда компонента размонтируется (unmantling --- removed) 
-            console.log("CLEANUP");
-            clearTimeout(identifier) //* постоянно очищаем наш интервал  
+        return () => { // вызывается только после изменения зависимостей 
         }
-    }, [enteredEmail, enteredPassword]) // если зависимости обновились тогда вызываем функцию повторно 
+    }, [enteredPassword])
 
+
+    /*  useEffect(() => {
+         const identifier = setTimeout(() => {
+             //* валидация только после определенного времени (Debouncing)
+             //* постоянная очистка таймера если пользователь не перестал печатать 
+             console.log("Checking from validity!") //* когда компонента только создалась вызывается один раз 
+             setFormIsValid(
+                 enteredEmail.includes('@') && enteredPassword.trim().length > 6
+             );
+         }, 500);
+ 
+         return () => { // cleanup function
+             //* запускается перед запуском основной функции постоянно  
+             //* и когда компонента размонтируется (unmantling --- removed) 
+             console.log("CLEANUP");
+             clearTimeout(identifier) //* постоянно очищаем наш интервал  
+         }
+     }, [enteredEmail, enteredPassword]) // если зависимости обновились тогда вызываем функцию повторно 
+  */
 
     const submitHandler = (event) => {
         event.preventDefault();
@@ -36,6 +40,9 @@ export default function Form(props) {
 
     const emailChangeHandler = (event) => {
         setEnteredEmail(event.target.value);
+        setFormIsValid(
+            enteredEmail.includes('@') && enteredPassword.trim().length > 6
+        );
     };
 
     const validateEmailHandler = () => {
@@ -44,6 +51,9 @@ export default function Form(props) {
 
     const passwordChangeHandler = (event) => {
         setEnteredPassword(event.target.value);
+        setFormIsValid(
+            enteredEmail.includes('@') && enteredPassword.trim().length > 6
+        );
     };
 
     const validatePasswordHandler = () => {
