@@ -5,7 +5,7 @@ import s from "./Header.module.scss";
 import HelloImg from "../../images/header/hello.svg";
 import PortfolioImg from "../../images/header/portfolio.svg";
 import AboutImg from "../../images/header/about.svg";
-import GithubImg from "../../images/header/github.svg";
+/* import GithubImg from "../../images/header/github.svg"; */
 import ContactImg from "../../images/header/contact.svg";
 
 let dataNavLink = [
@@ -53,10 +53,10 @@ const Header = (props) => (
             <div id="header__container" className={s.container}>
                 <nav className={s.nav} id="nav">
                     {NavLinkComponent}
-                    <a className={s.nav__link} href="https://github.com/max200pl" target="_blank" rel="noreferrer">
+                    {/* <a className={s.nav__link} href="https://github.com/max200pl" target="_blank" rel="noreferrer">
                         <img className={s.nav__img} src={GithubImg} alt="link github" />
                         <span>My github</span>
-                    </a>
+                    </a> */}
                     <button className={s.nav__link + " " + s.nav__link_btn}>
                         <img className={s.nav__img} src={ContactImg} alt="contact me"></img>
                         <span>Contact me</span>
