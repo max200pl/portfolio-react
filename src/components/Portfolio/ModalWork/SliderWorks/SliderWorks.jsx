@@ -23,7 +23,6 @@ const SliderWorks = (props) =>
 	let currentIndex = index;
 
 	const amountWorkPhotos = props.workPhotos[0].workPhoto.length - 1;
-	console.log(amountWorkPhotos);
 
 	const changeSlide = (direction) =>
 	{

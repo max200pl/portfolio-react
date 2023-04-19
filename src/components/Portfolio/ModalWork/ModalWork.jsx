@@ -61,10 +61,10 @@ export default function ModalWork(props)
 										height="14"
 										alt=""
 									/>
-									Previous work
+									Previous 
 								</button>
 								<button className={s.modalWork__btn} type="button">
-									Next work
+									Next 
 									<img
 										src="images/modal/modalWorks-slider/right-arrow.svg"
 										height="14"

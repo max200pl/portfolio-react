@@ -9,6 +9,7 @@ import arrowNext from "../../images/intro/nex-page__arrow.svg";
 import Modal from "../Modal/Modal";
 
 import s from "./Intro.module.scss";
+import ModalHireMe from "../Modal/ModalHireMe/ModalHireMe";
 
 const dataSocialLinks = [
 	{
@@ -44,7 +45,7 @@ const SocialLinks = (props) => props.dataSocialLinks.map((link, id) =>
 )
 
 const Intro = () => {
-	const [show, setShow] = useState(false);
+	const [isOpen, setIsOpen] = useState(false);
 
 	return (
 		<section className={s.intro} id="hello">
@@ -54,13 +55,12 @@ const Intro = () => {
 						<h2 className={s.subtitle}>Hello i'm</h2>
 						<h1 className={s.title}>Poskannyi Maksym</h1>
 						<div className={s.text}>Frontend Developer</div>
-						<button onClick={() => setShow(true)}>ShowModal</button>
 						<div className={s.social}>
 							<SocialLinks dataSocialLinks={dataSocialLinks} />
 						</div>
 
 						<div className={s.link}>
-							<button className={"btn"}>Hire Me</button>
+							<button className={"btn"} onClick={() => setIsOpen(true)}>Hire Me</button>
 							<button className={"btn"}>See My Resume</button>
 						</div>
 					</div>
@@ -71,7 +71,9 @@ const Intro = () => {
 					</NavLink>
 				</div>
 			</div>
-			<Modal onClose={() => setShow(false)} show={show} />
+            <Modal handleClose={() => setIsOpen(false)} isOpen={isOpen}>
+                <ModalHireMe handleClose={() => setIsOpen(false)} isOpen={isOpen}/>
+            </Modal>
 		</section>
 	)
 }

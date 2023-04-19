@@ -104,7 +104,7 @@
 
 .modalWork__content {
     flex-basis: 35%;
-    border-radius: 20px;
+    border-radius: 18px;
     padding: 20px;
     position: relative;
     border: 1px solid white;
@@ -162,7 +162,7 @@
 }
 
 .modalWork__text {
-    & > h2 {
+    &>h2 {
         color: $color-blue;
         line-height: 1.2;
         margin-bottom: .5rem;
@@ -196,11 +196,11 @@
     text-transform: uppercase;
     margin-bottom: .2rem;
 
-    & > a {
+    &>a {
         color: inherit;
     }
 
-    & > img {
+    &>img {
         padding-left: 5px;
     }
 }
