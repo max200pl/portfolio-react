@@ -2,35 +2,42 @@ import React, { useState, useEffect } from 'react';
 import s from "./ModalHireMeForm.module.scss";
 
 const ModalHireMeForm = () => {
- 
-    //2) Валидировать данные 
+    //2) Проверять данные 
     //3) Отобразить кнопку (добавить класс)
-       //1) Собрать данные и хранить их в localStorage 
-        // при закрытии окна если не отправили форму 
-       // 1.1 при открытии показывать пользователю 
-    
+    //1) Собрать данные и хранить их в localStorage 
+    // при закрытии окна если не отправили форму 
+    // 1.1 при открытии показывать пользователю 
+
     const [enteredEmail, setEnteredEmail] = useState('');
     const [enteredName, setEnteredName] = useState('');
     const [enteredDescription, setEnteredDescription] = useState('');
     const [formIsValid, setFormIsValid] = useState('');
 
-    useEffect(()=>{
-        setFormIsValid ( //когда компонента первый раз отрендерилась 
-            enteredEmail.includes('@') && enteredName.trim().length > 6
-       )
+    useEffect(() => { 
+        const identifier = setTimeout(() => { //use debouncing
+            setFormIsValid( //когда компонента первый раз отрендерилась 
+                enteredEmail.includes('@') && enteredName.trim().length > 6
+            )
+        }, 1000)
+
+        return ()=> { 
+            //cleanup function before useEffect executes this function next time, 
+            //and not ran when first execution
+            clearTimeout(identifier);
+        }; 
     }, [enteredEmail, enteredName])
-    
+
     const emailChangeHandler = (e) => {
-       setEnteredEmail(e.target.value);
-    } 
+        setEnteredEmail(e.target.value);
+    }
 
     const nameChangeHandler = (e) => {
-       setEnteredName(e.target.value);
-    } 
+        setEnteredName(e.target.value);
+    }
 
     const descriptionChangeHandler = (e) => {
         setEnteredDescription(e.target.value);
-    } 
+    }
 
     const submitHandler = (event) => {
         event.preventDefault();
@@ -38,7 +45,9 @@ const ModalHireMeForm = () => {
 
     return (
         <form className={s.form} onSubmit={submitHandler}>
-           {/*  <input type="hidden" name="project_name" value="Portfolio" />
+
+            {/** NEED FOR SEND MAIL */}
+            {/*  <input type="hidden" name="project_name" value="Portfolio" />
             <input
                 type="hidden"
                 name="admin_email"
