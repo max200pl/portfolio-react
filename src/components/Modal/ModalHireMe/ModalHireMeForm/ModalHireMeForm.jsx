@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import s from "./ModalHireMeForm.module.scss";
+import Input from '../../../Input/Input';
 
 const ModalHireMeForm = () => {
     //2) Проверять данные 
@@ -13,29 +13,50 @@ const ModalHireMeForm = () => {
     const [enteredDescription, setEnteredDescription] = useState('');
     const [formIsValid, setFormIsValid] = useState('');
 
-    useEffect(() => { 
+    //const {isValid: emailIsValid} = emailState;
+    //const {isValid: nameIsValid} = nameState;
+
+    let dataForm = {
+        name: enteredName,
+        email: enteredEmail,
+        request: enteredDescription
+    }
+
+    console.log(dataForm)
+
+    useEffect(() => {
         const identifier = setTimeout(() => { //use debouncing
+
+            // eslint-disable-next-line no-undef
             setFormIsValid( //когда компонента первый раз отрендерилась 
                 enteredEmail.includes('@') && enteredName.trim().length > 6
             )
         }, 1000)
 
-        return ()=> { 
+        return () => {
             //cleanup function before useEffect executes this function next time, 
             //and not ran when first execution
             clearTimeout(identifier);
-        }; 
+        };
     }, [enteredEmail, enteredName])
 
     const emailChangeHandler = (e) => {
         setEnteredEmail(e.target.value);
     }
 
+    const validateNameHandler = (e)=>{
+        
+    }
+
+    const validateEmailHandler  = (e)=>{
+        
+    }
+
     const nameChangeHandler = (e) => {
         setEnteredName(e.target.value);
     }
-
     const descriptionChangeHandler = (e) => {
+        // eslint-disable-next-line no-undef
         setEnteredDescription(e.target.value);
     }
 
@@ -44,9 +65,8 @@ const ModalHireMeForm = () => {
     };
 
     return (
-        <form className={s.form} onSubmit={submitHandler}>
-
-            {/** NEED FOR SEND MAIL */}
+        <form onSubmit={submitHandler}>
+            {/** NEED FOR SEND */}
             {/*  <input type="hidden" name="project_name" value="Portfolio" />
             <input
                 type="hidden"
@@ -54,51 +74,41 @@ const ModalHireMeForm = () => {
                 value="max2000pl@gmail.com"
             />
             <input type="hidden" name="form_subject" value="Заявка с формы" /> */}
-            <div className={s.form__group}>
-                <label className={s.form__label} for="input-name">
-                    Name
-                </label>
-                <input
-                    className={s.form__input}
-                    name="name"
-                    type="text"
-                    id="input-name"
-                    placeholder="What's your name?"
-                    onChange={nameChangeHandler}
-                    onBlur={nameChangeHandler}
-                    required
-                />
-            </div>
 
-            <div className={s.form__group}>
-                <label className={s.form__label} for="input-email">
-                    Address e-mail
-                </label>
-                <input
-                    className={s.form__input}
-                    name="email"
-                    type="email"
-                    id="input-email"
-                    placeholder="Address e-mail"
-                    required
-                    onChange={emailChangeHandler}
-                    onBlur={emailChangeHandler}
-                />
-            </div>
+            <Input 
+                //value={nameState.value}
+                label="Name"
+                name="name"
+                type="text"
+                id="input-name"
+                placeholder="What's your name?"
+                onChange={nameChangeHandler}
+                onBlur={validateNameHandler} 
+            />
+            <Input 
+                 //value={emailState.value}
+                 label="Name"
+                 name="email"
+                 type="email"
+                 id="input-email"
+                 placeholder="Address e-mail"
+                 required
+                 //isValid={emailIsValid}
+                 onChange={emailChangeHandler}
+                 onBlur={validateEmailHandler}
+            />
 
-            <div className={s.form__group}>
-                <label className={s.form__label} for="input-text">
-                    Request
-                </label>
-                <textarea
-                    onChange={descriptionChangeHandler}
-                    className={s.form__textarea}
-                    name="messages"
-                    id="input-text"
-                    type="text"
-                ></textarea>
-            </div>
-            <button id="btn-form" class="btn btn__hide" type="submit">
+            <Input 
+                 // value={requestState.value}
+                 name="messages"
+                 type="textarea"
+                 id="input-text"
+                 placeholder="Request"
+                 required
+                 onChange={descriptionChangeHandler}
+            /> 
+
+            <button id="btn-form" class={ `${formIsValid? "btn_hide" : "btn"} position_right` } type="submit">
                 Send
             </button>
         </form>
