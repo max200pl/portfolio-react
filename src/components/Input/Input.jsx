@@ -11,16 +11,18 @@ const Input = (props) => {
         placeholder,
         onChange,
         onBlur,
+        value
     } = props;
 
     return (
         <div className={`${s.form__group} ${isValid === false ? s.invalid : ''}`}>
-            <label htmlFor={id} className={s.form__label} for="input-name">
+            <label   className={s.form__label} for="input-name">
                 {label}
             </label>
 
             {(type === "text" || type === "email") &&
                 <input
+                    value={value}
                     className={s.form__input}
                     name={name}
                     type={type}
@@ -34,6 +36,7 @@ const Input = (props) => {
 
             {type === "textarea" &&
                 <textarea
+                    value={value}
                     onChange={onChange}
                     className={s.form__textarea}
                     name="messages"
