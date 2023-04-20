@@ -10,6 +10,8 @@ const ModalHireMeForm = () => {
 
     const [enteredEmail, setEnteredEmail] = useState('');
     const [enteredName, setEnteredName] = useState('');
+    const [emailIsValid, setEmailIsValid] = useState('');
+    const [nameIsValid, setNameIsValid] = useState('');
     const [enteredDescription, setEnteredDescription] = useState('');
     const [formIsValid, setFormIsValid] = useState('');
 
@@ -42,19 +44,28 @@ const ModalHireMeForm = () => {
 
     const emailChangeHandler = (e) => {
         setEnteredEmail(e.target.value);
-    }
 
-    const validateNameHandler = (e)=>{
-        
-    }
-
-    const validateEmailHandler  = (e)=>{
-        
+        setFormIsValid(
+            e.target.value.includes('@') && enteredName.trim().length > 6
+        )
     }
 
     const nameChangeHandler = (e) => {
         setEnteredName(e.target.value);
+
+        setFormIsValid(
+            enteredEmail.includes('@') && e.target.value.trim().length > 6
+        )
     }
+
+    const validateNameHandler = (e)=>{
+        setNameIsValid(enteredName.trim().length > 6)
+    }
+    
+    const validateEmailHandler  = (e)=>{
+        setEmailIsValid(enteredEmail.includes('@'))
+    }
+
     const descriptionChangeHandler = (e) => {
         // eslint-disable-next-line no-undef
         setEnteredDescription(e.target.value);
