@@ -6,10 +6,10 @@ import socialLink3 from "../../images/intro/3.png";
 import socialLink4 from "../../images/intro/4.png";
 import socialLink5 from "../../images/intro/5.png";
 import arrowNext from "../../images/intro/nex-page__arrow.svg";
-import Modal from "../Modal/Modal";
+import Modal from "../../components/Modal/Modal";
 
 import s from "./Intro.module.scss";
-import ModalHireMe from "../Modal/ModalHireMe/ModalHireMe";
+import ModalHireMe from "../../components/Modal/ModalHireMe/ModalHireMe";
 
 const dataSocialLinks = [
 	{
