@@ -5,6 +5,15 @@
     width: 100%;
     margin-bottom: 1.8rem;
     position: relative;
+
+    .error {
+        color: #ff2dff;
+        position: absolute;
+        top: 5px;
+        padding: 5px;
+        text-align: center;
+        top: 100%;
+    }
 }
 
 .form__label {
@@ -56,4 +65,7 @@
     @include xs-mb {
         padding: 1rem 1.8rem;
     }
+
+
+
 }

@@ -1,6 +1,12 @@
 import React from "react";
 import s from "./Input.module.scss"
 
+/* const errorMessages = {
+    length : "At least 3 characters required!",
+    format : "Your email address must be in the format of name@domain.com",
+    empty: "Please specify your name"
+} */
+
 const Input = (props) => {
     const {
         id,
@@ -11,12 +17,13 @@ const Input = (props) => {
         placeholder,
         onChange,
         onBlur,
-        value
+        value,
+        //errorType,
     } = props;
 
     return (
-        <div className={`${s.form__group} ${isValid === false ? s.invalid : ''}`}>
-            <label   className={s.form__label} for="input-name">
+        <div className={`${s.form__group} ${isValid ? '': s.invalid }`}>
+            <label  className={s.form__label} htmlFor="input-name">
                 {label}
             </label>
 
@@ -27,12 +34,16 @@ const Input = (props) => {
                     name={name}
                     type={type}
                     id={id}
-                    placeholder={placeholder} // "What's your name?"
+                    placeholder={placeholder}  
                     onChange={onChange}
                     onBlur={onBlur}
                     required
                 />
             }
+
+           {/*  <label id="input-name-error" className="error" htmlFor="input-name">
+                {errorMessages[errorType]}
+            </label> */}
 
             {type === "textarea" &&
                 <textarea

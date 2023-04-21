@@ -1,54 +1,70 @@
 import React, { useState, useEffect, useReducer } from "react";
 import Input from "../../../Input/Input";
-import { addToLocalStorageObj, getFromLocalStorageObj } from "../../../../helpers/helpers";
 
 const emailReducer = (state, action) => {
     if (action.type === "USER_INPUT") {
-        return { value: action.value, isValid: action.value.includes("@") };
+        return {
+            value: action.value,
+            isValid: action.value.includes("@") 
+            //errorType: action.value.includes("@") ? "":  "format" ,
+        };
     }
     if (action.type === "INPUT_BLUR") {
-        return { value: state.value, isValid: state.value.includes("@") };
+        return { 
+            value: state.value, 
+            isValid: state.value.includes("@") ,
+            //errorType: state.value.includes("@") ?  "" : "format",
+        };
     }
-    return { value: "", isValid: false };
+    return { value: "", isValid: false, errorType: "" };
 };
 
 const nameReducer = (state, action) => {
     if (action.type === "USER_INPUT") {
-        return { value: action.value, isValid: action.value.trim().length > 6 };
+        return { 
+            value: action.value, 
+            isValid: action.value.length > 2,
+            //errorType: action.value.length > 2 ? "" : "length",
+        };
     }
     if (action.type === "INPUT_BLUR") {
-        return { value: state.value, isValid: state.value.trim().length > 6 };
+        console.log(state.value, "state.value")
+        return { 
+            value: state.value, 
+            isValid: state.value.length > 2,
+            //errorType: action.value.length > 2 ? "" : "length",
+        };
     }
-    return { value: "", isValid: false };
+    return { 
+        value: "", 
+        isValid: false,
+        //errorType: "" 
+    };
 };
 
 const ModalHireMeForm = (props) => {
-    //2) Проверять данные
-    //3) Отобразить кнопку (добавить класс)
-    //1) Собрать данные и хранить их в localStorage
-    // при закрытии окна если не отправили форму
-    // 1.1 при открытии показывать пользователю
-
     /* const [enteredEmail, setEnteredEmail] = useState('');
-    const [enteredName, setEnteredName] = useState(""); */
+      const [enteredName, setEnteredName] = useState(""); */
     // const [emailIsValid, setEmailIsValid] = useState("");
     // const [nameIsValid, setNameIsValid] = useState("");
     const [enteredDescription, setEnteredDescription] = useState("");
     const [formIsValid, setFormIsValid] = useState("");
 
     const [emailState, dispatchEmail] = useReducer(emailReducer, {
-        value: getFromLocalStorageObj('hireMeForm', "email"),
+        value: "", // getFromLocalStorageObj("hireMeForm", "email"),
         isValid: null,
+        errorType: "",
     });
     const [nameState, dispatchName] = useReducer(nameReducer, {
-        value: getFromLocalStorageObj('hireMeForm', "name"),
+        value: "", // getFromLocalStorageObj("hireMeForm", "name"),
         isValid: null,
+        errorType: "",
     });
 
-    const { isValid: emailIsValid} = emailState;
-    const { isValid: nameIsValid} = nameState;
+    // This is an alias assignment if need not run useeEffect if only value change and validity not change   
+    const { isValid: emailIsValid } = emailState; // other simple if we don't wanna rerun the effect whenever props change 
+    const { isValid: nameIsValid } = nameState;
 
-    
     useEffect(() => {
         const identifier = setTimeout(() => {
             //use debouncing
@@ -63,7 +79,7 @@ const ModalHireMeForm = (props) => {
             //and not ran when first execution
             clearTimeout(identifier);
         };
-    }, [emailIsValid, nameIsValid ]);
+    }, [emailIsValid, nameIsValid]); // check only emailIsValid, nameIsValid changed not value from input
 
     const emailChangeHandler = (e) => {
         dispatchEmail({ type: "USER_INPUT", value: e.target.value }); // setEnteredEmail(e.target.value);
@@ -77,30 +93,32 @@ const ModalHireMeForm = (props) => {
 
     const descriptionChangeHandler = (e) => {
         setEnteredDescription(e.target.value);
-        addToLocalStorageObj('hireMeForm', "description", enteredDescription)
+        //addToLocalStorageObj("hireMeForm", "description", enteredDescription);
     };
 
     const validateNameHandler = (e) => {
         //setNameIsValid(enteredName.trim().length > 6)
         dispatchName({ type: "INPUT_BLUR" });
-        localStorage.setItem('hireMeForm', JSON.stringify({name: nameState.value}))
-        addToLocalStorageObj('hireMeForm', "name", nameState.value)
+        localStorage.setItem(
+            "hireMeForm",
+            JSON.stringify({ name: nameState.value })
+        );
+        //addToLocalStorageObj("hireMeForm", "name", nameState.value);
     };
 
     const validateEmailHandler = (e) => {
         // setEmailIsValid(emailState.isValid)
         dispatchEmail({ type: "INPUT_BLUR" });
-        addToLocalStorageObj('hireMeForm', "email", emailState.value)
+        //addToLocalStorageObj("hireMeForm", "email", emailState.value);
     };
 
     const submitHandler = (event) => {
         event.preventDefault();
-        localStorage.removeItem("hireMeForm")
+        //localStorage.removeItem("hireMeForm");
     };
 
     return (
         <form onSubmit={submitHandler}>
-         
             <Input
                 value={nameState.value}
                 label="Name"
@@ -111,11 +129,12 @@ const ModalHireMeForm = (props) => {
                 isValid={nameState.isValid}
                 onChange={nameChangeHandler}
                 onBlur={validateNameHandler}
+                //errorType={nameState.errorType}
             />
 
             <Input
                 value={emailState.value}
-                label="Name"
+                label="Email"
                 name="email"
                 type="email"
                 id="input-email"
@@ -123,10 +142,11 @@ const ModalHireMeForm = (props) => {
                 isValid={emailState.isValid}
                 onChange={emailChangeHandler}
                 onBlur={validateEmailHandler}
+                //errorType={emailState.errorType}
             />
 
             <Input
-                // value={requestState.value}
+                value={enteredDescription}
                 name="messages"
                 type="textarea"
                 id="input-text"
@@ -136,7 +156,8 @@ const ModalHireMeForm = (props) => {
 
             <button
                 id="btn-form"
-                className={`${formIsValid ? "btn light" : "btn btn_hide"} position_right`}
+                className={`${formIsValid ? "btn light" : "btn btn_hide"
+                    } position_right`}
                 type="submit"
             >
                 Send
