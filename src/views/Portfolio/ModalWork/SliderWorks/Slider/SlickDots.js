@@ -34,24 +34,23 @@ const ButtonToggle = styled.div`
      };
      opacity: 0.6;
      ${({ active }) =>
-          active &&
-          `
+        active &&
+        `
           box-shadow: 0 0 20px #fff;
      opacity: 1;
 `}
 `;
 
-function SlickDots({ workPhotos, changeToSlide, currentIndex })
-{
-     return (
-          <DotsSliderButtons>
-               {workPhotos.map((work, i) => (
-                    <li>
-                         <ButtonToggle key={i} active={i === currentIndex} onClick={() => { changeToSlide(i) }}></ButtonToggle>
-                    </li>
-               ))
-               }
-          </DotsSliderButtons >
-     );
+function SlickDots({ workPhotos, changeToSlide, currentIndex }) {
+    return (
+        <DotsSliderButtons>
+            {workPhotos.map((work, i) => (
+                <li key={i}>
+                    <ButtonToggle key={i} active={i === currentIndex} onClick={() => { changeToSlide(i) }}></ButtonToggle>
+                </li>
+            ))
+            }
+        </DotsSliderButtons >
+    );
 }
 export default SlickDots;

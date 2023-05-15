@@ -7,15 +7,13 @@ import FilterWorks from "./FilterWorks/FilterWorks";
 import ModalWork from "./ModalWork/ModalWork";
 import ResumeListWorks from "../../components/Resume/ResumeListWorks";
 class Portfolio extends React.Component {
-	constructor() {
-		super();
-		this.state = {
-			works: data.works,
+
+    state = {
+        works: data.works,
 			photoWorks: data.photoWorks,
 			workItem: null,
 			workPhotos: null,
-		};
-	}
+      };
 
 	filterWork = (event) => {
 		if (event.target.dataset.filter === "all") {

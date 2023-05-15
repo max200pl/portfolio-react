@@ -72,15 +72,6 @@ const typePage = {
     site: "Site",
 };
 
-
-const nameSectionDescription = {
-    features: "features",
-    layout: "layout",
-    pluginsLibraries: "pluginsLibraries",
-    helpers: "helpers"
-}
-
-
 const resumeWorksData = [
     {
         nameProject: "MoGo",
@@ -92,7 +83,7 @@ const resumeWorksData = [
                 sectionsDescription: [
                     {
                         nameSection: nameSection.layout,
-                        layout: [
+                        section: [
                             layoutTechnology.technology,
                             layoutTechnology.media,
                             layoutTechnology.BEM,
@@ -100,14 +91,14 @@ const resumeWorksData = [
                     },
                     {
                         nameSection: nameSection.pluginsLibraries,
-                        pluginsLibraries: [
+                        section: [
                             pluginsLibraries.jquery.scroll,
                             pluginsLibraries.jquery.accordion,
                         ],
                     },
                     {
                         nameSection: nameSection.applications,
-                        helpers: [applications.git, applications.textEditor.brackets],
+                        section: [applications.git, applications.textEditor.brackets],
                     },
                 ],
             }
@@ -123,7 +114,7 @@ const resumeWorksData = [
                 sectionsDescription: [
                     {
                         nameSection: nameSection.layout,
-                        layout: [
+                        section: [
                             layoutTechnology.technology,
                             layoutTechnology.media,
                             layoutTechnology.BEM,
@@ -132,11 +123,11 @@ const resumeWorksData = [
                     },
                     {
                         nameSection: nameSection.pluginsLibraries,
-                        pluginsLibraries: [pluginsLibraries.jquery.scroll],
+                        section: [pluginsLibraries.jquery.scroll],
                     },
                     {
                         nameSection: nameSection.applications,
-                        helpers: [
+                        section: [
                             applications.graphicsEditor.adobePhotoshop,
                             applications.textEditor.sublimeText,
                         ],
@@ -156,7 +147,7 @@ const resumeWorksData = [
                 sectionsDescription: [
                     {
                         nameSection: nameSection.layout,
-                        layout: [
+                        section: [
                             layoutTechnology.technology,
                             layoutTechnology.media,
                             layoutTechnology.CSSPreprocessors.less,
@@ -164,14 +155,14 @@ const resumeWorksData = [
                     },
                     {
                         nameSection: nameSection.pluginsLibraries,
-                        pluginsLibraries: [
+                        section: [
                             pluginsLibraries.jquery.scroll,
                             pluginsLibraries.jquery.slickSlider,
                         ],
                     },
                     {
                         nameSection: nameSection.applications,
-                        helpers: [
+                        section: [
                             applications.graphicsEditor.adobeXD,
                             applications.textEditor.brackets,
                             applications.git,
@@ -190,10 +181,9 @@ const resumeWorksData = [
             { titleSections: "Верстка 8 блоков с слайдерами" },
             {
                 sectionsDescription: [
-
                     {
                         nameSection: nameSection.layout,
-                        layout: [
+                        section: [
                             layoutTechnology.technology,
                             layoutTechnology.media,
                             layoutTechnology.CSSPreprocessors.less,
@@ -203,7 +193,7 @@ const resumeWorksData = [
                     },
                     {
                         nameSection: nameSection.pluginsLibraries,
-                        pluginsLibraries: [
+                        section: [
                             pluginsLibraries.jquery.scroll,
                             pluginsLibraries.jquery.slickSlider,
                             pluginsLibraries.jquery.validateForm,
@@ -211,7 +201,7 @@ const resumeWorksData = [
                     },
                     {
                         nameSection: nameSection.applications,
-                        helpers: [
+                        section: [
                             automation.gulp,
                             applications.graphicsEditor.adobeXD,
                             applications.textEditor.VSCode,
@@ -233,7 +223,7 @@ const resumeWorksData = [
 
                     {
                         nameSection: nameSection.layout,
-                        layout: [
+                        section: [
                             layoutTechnology.technology,
                             layoutTechnology.media,
                             layoutTechnology.BEM,
@@ -242,11 +232,11 @@ const resumeWorksData = [
                     },
                     {
                         nameSection: nameSection.pluginsLibraries,
-                        pluginsLibraries: [pluginsLibraries.bundlers.parcel, pluginsLibraries.axios],
+                        section: [pluginsLibraries.bundlers.parcel, pluginsLibraries.axios],
                     },
                     {
                         nameSection: nameSection.applications,
-                        helpers: [
+                        section: [
                             automation.gulp,
                             applications.graphicsEditor.adobeXD,
                             applications.textEditor.VSCode,
@@ -267,7 +257,7 @@ const resumeWorksData = [
                 sectionsDescription: [
                     {
                         nameSection: nameSection.layout,
-                        layout: [
+                        section: [
                             layoutTechnology.technology,
                             layoutTechnology.skeleton.bootstrap,
                         ],
@@ -275,7 +265,7 @@ const resumeWorksData = [
 
                     {
                         nameSection: nameSection.applications,
-                        helpers: [
+                        section: [
                             applications.graphicsEditor.adobePhotoshop,
                             applications.textEditor.VSCode,
                         ],
@@ -294,7 +284,7 @@ const resumeWorksData = [
                 sectionsDescription: [
                     {
                         nameSection: nameSection.layout,
-                        layout: [
+                        section: [
                             layoutTechnology.technology,
                             layoutTechnology.media,
                             layoutTechnology.mediaVariable,
@@ -306,11 +296,11 @@ const resumeWorksData = [
                     },
                     {
                         nameSection: nameSection.pluginsLibraries,
-                        pluginsLibraries: [automation.gulpScssStarter],
+                        section: [automation.gulpScssStarter],
                     },
                     {
                         nameSection: nameSection.applications,
-                        helpers: [
+                        section: [
                             applications.graphicsEditor.adobeXD,
                             applications.textEditor.VSCode,
                         ],
@@ -329,7 +319,7 @@ const resumeWorksData = [
                 sectionsDescription: [
                     {
                         nameSection: nameSection.layout,
-                        layout: [
+                        section: [
                             layoutTechnology.technology,
                             layoutTechnology.skeleton.bootstrap,
                             layoutTechnology.BEM,
@@ -337,14 +327,14 @@ const resumeWorksData = [
                     },
                     {
                         nameSection: nameSection.pluginsLibraries,
-                        pluginsLibraries: [
+                        section: [
                             automation.gulpScssStarter,
                             feature.GoogleMapsAPI,
                         ],
                     },
                     {
                         nameSection: nameSection.applications,
-                        helpers: [
+                        section: [
                             applications.graphicsEditor.adobePhotoshop,
                             applications.textEditor.VSCode,
                         ],
@@ -363,7 +353,7 @@ const resumeWorksData = [
                 sectionsDescription: [
                     {
                         nameSection: nameSection.layout,
-                        layout: [
+                        section: [
                             layoutTechnology.technology,
                             layoutTechnology.media,
                             layoutTechnology.modalWindow.jquery,
@@ -374,11 +364,11 @@ const resumeWorksData = [
                     },
                     {
                         nameSection: nameSection.pluginsLibraries,
-                        pluginsLibraries: [automation.gulpScssStarter],
+                        section: [automation.gulpScssStarter],
                     },
                     {
                         nameSection: nameSection.applications,
-                        helpers: [
+                        section: [
                             applications.graphicsEditor.adobePhotoshop,
                             applications.textEditor.VSCode,
                         ],
@@ -397,37 +387,20 @@ const WorkDescription = (props) => {
         <div>
             {
                 props.sectionsDescription?.map((section, id) => {
-                    let els = section[nameSectionDescription[Object.keys(section)[1]]];
-
-                    console.log(Array.isArray(els));
-
-                    if (!Array.isArray(els)) {
-                        console.log(els);
-                    }
-
                     return (
                         <div key={id}>
                             <h3>{section.nameSection}</h3>
-
                             <div>
-
-                                <div>
-                                    {
-                                        els?.map((el) => {
-                                            return (
-                                                <div>
-                                                    {el}
-
-                                                </div>
-                                            )
-                                        })
-                                    }
-                                </div>
-
-
+                                {
+                                    section.section?.map((el, id) => {
+                                        return (
+                                            <div key={id}>
+                                                {el}
+                                            </div>
+                                        )
+                                    })
+                                }
                             </div>
-
-
                         </div>
                     )
                 })
