@@ -99,10 +99,6 @@ const ModalHireMeForm = (props) => {
     const validateNameHandler = (e) => {
         //setNameIsValid(enteredName.trim().length > 6)
         dispatchName({ type: "INPUT_BLUR" });
-        localStorage.setItem(
-            "hireMeForm",
-            JSON.stringify({ name: nameState.value })
-        );
         //addToLocalStorageObj("hireMeForm", "name", nameState.value);
     };
 
@@ -126,7 +122,7 @@ const ModalHireMeForm = (props) => {
                 type="text"
                 id="input-name"
                 placeholder="What's your name?"
-                isValid={nameState.isValid}
+                isValid={nameIsValid}
                 onChange={nameChangeHandler}
                 onBlur={validateNameHandler}
                 //errorType={nameState.errorType}
@@ -139,7 +135,7 @@ const ModalHireMeForm = (props) => {
                 type="email"
                 id="input-email"
                 placeholder="Address e-mail"
-                isValid={emailState.isValid}
+                isValid={emailIsValid}
                 onChange={emailChangeHandler}
                 onBlur={validateEmailHandler}
                 //errorType={emailState.errorType}

@@ -5,6 +5,7 @@ import Fade from "react-reveal/Fade";
 import s from "./Portfolio.module.scss";
 import FilterWorks from "./FilterWorks/FilterWorks";
 import ModalWork from "./ModalWork/ModalWork";
+import ResumeListWorks from "../../components/Resume/ResumeListWorks";
 class Portfolio extends React.Component {
 	constructor() {
 		super();
@@ -84,6 +85,8 @@ class Portfolio extends React.Component {
 							workPhotos={this.state.workPhotos}
 						/>
 					)}
+
+                    <ResumeListWorks/>
 				</div>
 			</div>
 		);

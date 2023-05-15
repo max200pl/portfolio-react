@@ -1,0 +1,50 @@
+.modal__dialog {
+    min-width: 450px;
+    width: 100%;
+    border-radius: 18px;
+    position: relative;
+    border: 1px solid $color-white;
+    background: linear-gradient(to right top, #051937, #000, #008793, #bf0000, #f00);
+    display: flex;
+    flex-basis: 100%;
+
+
+    @include xs-mb {
+        min-width: 320px;
+        border: none;
+        flex-basis: 100%;
+        width: 100%;
+    }
+}
+
+
+.modal__close {
+    width: 34px;
+    height: 39px;
+    padding: 0;
+
+    background: none;
+    border: 0;
+    cursor: pointer;
+
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 1;
+
+    transition: transform .2s linear;
+
+    &:hover {
+        transform: translateY(-3px);
+    }
+
+    @include sm-mb {
+        width: 24px;
+        height: 29px;
+        right: 10px;
+
+        &--right-5 {
+            right: 5px;
+        }
+    }
+}
