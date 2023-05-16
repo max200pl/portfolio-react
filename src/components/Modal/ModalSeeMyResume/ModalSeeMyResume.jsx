@@ -6,11 +6,9 @@ const ModalSeeMyResume = ({ isOpen, handleClose }) => {
 
     return (
         <div className={s.modal__dialog}>
-            <button className={s.modal__close} onClick={handleClose} type="button" data-close>
+            <button className={s.modal__close} onClick={handleClose} type="button">
                 <img className={s.modal__close_image} src={exitImg} alt="Close" />
             </button>
-
-
             <Resume />
         </div>
     );

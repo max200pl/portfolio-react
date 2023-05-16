@@ -2,20 +2,23 @@
 @import "../../../design-tokens/variables";
 
 .modal__dialog {
+    margin: 1rem;
     min-width: 450px;
-    width: 100%;
+    max-width: 1200px;
     border-radius: 18px;
     position: relative;
     border: 1px solid $color-white;
-    background: linear-gradient(to right top, #051937, #000, #008793, #bf0000, #f00);
+    background-color: rgba(6, 15, 49, 0.9);
     display: flex;
-    flex-basis: 100%;
+
+    padding: 1rem;
+    overflow-x: hidden;
 
     @include xs-mb {
         min-width: 320px;
         border: none;
         flex-basis: 100%;
-        width: 100%;
+
     }
 }
 

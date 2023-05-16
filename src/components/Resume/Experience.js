@@ -1,4 +1,4 @@
-import s from "./ResumeListWorks.module.scss";
+import s from "./Experience.module.scss";
 
 const layoutTechnology = {
     media: "- Адаптивная верстка (Media Queries)",
@@ -377,7 +377,7 @@ const resumeWorksData = [
     },
 ];
 
-const WorkDescription = (props) => {
+const ExperienceDescription = (props) => {
     return (
         <>
             {props.sectionsDescription?.map((section, id) => {
@@ -396,34 +396,38 @@ const WorkDescription = (props) => {
     );
 };
 
-const ResumeListWorks = () => {
+const Experience = () => {
     return (
         <div>
             {resumeWorksData.map((work, id) => {
                 const { nameProject, startDate, endDate, typePage } = work;
 
                 return (
-                    <div className={s.work} id="workMoGo" key={id}>
-                        <div className={s.work__data}>
-                            <div className={s.work__nameProject}>{nameProject}</div>
-                            <div className={s.work__time}>
-                                <span className={s.work__startDate}>{startDate}</span>
-                                <span className={s.work__endDate}>{endDate}</span>
+                    <div className={s.experience} key={id}>
+                        <div className={s.experience__data}>
+                            <div className={s.experience__name_project}>{nameProject}</div>
+                            <div className={s.experience__time}>
+                                <span className={s.experience__startDate}>{startDate}</span>
+                                <span className={s.experience__end_date}>{endDate}</span>
                             </div>
-                            <div className={s.work__typePage}>{typePage}</div>
                         </div>
 
-                        {work.description.map((workDescription, id) => {
-                            return (
-                                <div className={s.work__description} key={id}>
-                                    <h2>{workDescription.titleSections}</h2>
+                        <div className={s.experience__description} >
+                            <div className={s.experience__type_page}>{typePage}</div>
+                            {work.description.map((workDescription, id) => {
+                                return (
+                                    <div key={id} className={s.experience__section}>
+                                        <h2 className={s.experience__section_title}>
+                                            {workDescription.titleSections}
+                                        </h2>
 
-                                    <WorkDescription
-                                        sectionsDescription={workDescription.sectionsDescription}
-                                    />
-                                </div>
-                            );
-                        })}
+                                        <ExperienceDescription
+                                            sectionsDescription={workDescription.sectionsDescription}
+                                        />
+                                    </div>
+                                );
+                            })}
+                        </div>
                     </div>
                 );
             })}
@@ -431,4 +435,4 @@ const ResumeListWorks = () => {
     );
 };
 
-export default ResumeListWorks;
+export default Experience;

@@ -1,0 +1,155 @@
+@import "../../helpers/../design-tokens/breakpoints";
+@import "../../helpers/../design-tokens/variables";
+
+
+.resume {
+    width: 100%;
+
+    &__section {
+        padding: 2rem;
+
+        @include xs-mb {
+            padding: 1rem;
+        }
+    }
+
+    &__title_section {
+        margin-top: 20px;
+        margin-bottom: 20px;
+        font-size: 36px;
+        font-weight: 400;
+        color: #10AEDF;
+
+        @include xs-mb {
+            margin-top: 10px;
+            font-size: 28px;
+        }
+    }
+}
+
+.resume_header {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 40px;
+    font-size: 16px;
+    font-family: "Bitter";
+    border-radius: 10px;
+
+    background-color: #147796;
+    box-shadow: 1px 1px 1px black;
+
+    @include xs-lg {
+        font-size: 14px;
+        padding: 20px 20px;
+    }
+
+    @include mb {
+        align-items: center;
+        justify-content: space-around;
+
+        // :nth-child(1) {
+        //      order: 2;
+        // }
+        :nth-child(2) {
+            order: 1;
+        }
+
+        :nth-child(3) {
+            order: 2;
+        }
+    }
+
+    @include sm-mb {
+        flex-wrap: wrap;
+
+        &:nth-child(2) {
+            order: 2;
+        }
+
+        &:nth-child(3) {
+            order: 1;
+        }
+    }
+
+    &__text {
+        font-weight: 400;
+        color: #fff;
+
+        padding-right: 5px;
+        max-width: 730px;
+    }
+
+    &__img {
+        display: block;
+        max-width: 120px;
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+
+        margin-right: 20px;
+
+        @include sm-mb {
+            display: none;
+        }
+
+    }
+
+    &__title {
+        font-size: 28px;
+        line-height: 1.5em;
+        font-weight: 400;
+    }
+
+    &__subtitle {
+
+        margin-top: 0px;
+        line-height: 1.2em;
+        font-weight: 400;
+        font-size: 18px;
+        display: none;
+
+        @include mb {
+            display: flex;
+        }
+    }
+
+    &__info {
+        flex-direction: column;
+        justify-content: center;
+        padding: 10px 0 10px;
+        display: none;
+        line-height: 1.2em;
+        font-weight: 400;
+        border-left: 1px solid #fff;
+
+        min-width: 220px;
+
+        @include lg {
+            display: flex;
+        }
+
+        @include sm-mb {
+            font-size: 16px;
+            display: flex;
+        }
+    }
+
+    &__email {
+        display: flex;
+        flex-wrap: wrap;
+        margin-bottom: 10px;
+
+        &>span {
+            padding-left: 10px;
+        }
+    }
+
+    &__phone {
+        display: flex;
+        flex-wrap: wrap;
+
+        &>span {
+            padding-left: 10px;
+        }
+    }
+}

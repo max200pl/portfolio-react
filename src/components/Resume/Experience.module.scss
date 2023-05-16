@@ -1,0 +1,131 @@
+@import "../../helpers/../design-tokens/breakpoints";
+@import "../../helpers/../design-tokens/variables";
+
+$blue-border: #001aff9d;
+
+.experience {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    &__data {
+        display: block;
+        font-size: 12px;
+
+        min-width: 220px;
+        max-width: 220px;
+
+        padding-bottom: 20px;
+
+        @include xs-mb {
+            padding-bottom: 10px;
+            padding-left: 20px;
+            border-left: 1px solid $blue-border;
+        }
+    }
+
+    &__name_project {
+        @include mb {
+            font-size: 22px;
+        }
+
+        font-size: 18px;
+        font-weight: 400;
+    }
+
+    &__time {
+        font-size: 16px;
+        font-style: italic;
+    }
+
+    &__end_date {
+        &::before {
+            content: "-";
+            padding-right: 2px;
+        }
+    }
+
+
+
+    &__section_title {
+        margin: 5px 0 25px;
+        font-size: 18px;
+        color: rgba($color: white, $alpha: 0.9);
+
+        @include mb {
+            font-size: 22px;
+        }
+    }
+}
+
+
+.experience__description {
+    display: block;
+    position: relative;
+    padding-left: 20px;
+    cursor: pointer;
+    border-left: 1px solid #001aff9d;
+
+    flex-basis: 65%;
+
+    @include xs-mb {
+        flex-basis: 100%;
+    }
+
+    &::before {
+        @include xs-mb {
+            top: -42.5px;
+        }
+
+        content: "";
+        position: absolute;
+        display: block;
+        width: 10px;
+        height: 10px;
+        top: 5px;
+        left: -5px;
+        background: red;
+        border-radius: 50%;
+    }
+}
+
+.experience__type_page {
+    position: relative;
+    font-size: 20px;
+    font-weight: 400;
+    color: #10AEDF;
+    display: block;
+    padding-bottom: 10px;
+
+    @include xs-mb {
+        font-size: 16px;
+    }
+
+    &::after {
+        content: "";
+        display: block;
+        width: 12px;
+        height: 12px;
+        border-top: 2px solid #fff;
+        border-right: 2px solid #fff;
+        position: absolute;
+        top: 10px;
+        left: 140px;
+        z-index: 1;
+        transform: translateY(-50%) rotate(135deg);
+        transition: 2s;
+    }
+
+}
+
+.experience__summary {
+    display: none;
+}
+
+.experience__summary>h2 {
+    @include xs-mb {
+        font-size: 1.2rem;
+    }
+
+    font-size: 1.4rem;
+}

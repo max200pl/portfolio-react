@@ -5,7 +5,6 @@ import Fade from "react-reveal/Fade";
 import s from "./Portfolio.module.scss";
 import FilterWorks from "./FilterWorks/FilterWorks";
 import ModalWork from "./ModalWork/ModalWork";
-import ResumeListWorks from "../../components/Resume/ResumeListWorks";
 class Portfolio extends React.Component {
 
     state = {
