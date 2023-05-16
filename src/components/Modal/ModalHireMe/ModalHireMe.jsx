@@ -1,11 +1,11 @@
 import React from "react";
 import ModalHireMeForm from "./ModalHireMeForm/ModalHireMeForm";
 import s from "./ModalHireMe.module.scss";
-import exitImg  from "../../../images/modal/exit.svg"
-import emailImg  from "../../../images/modal/modal-form/email.svg"
-import phoneImg  from "../../../images/modal/modal-form/phone.svg"
+import exitImg from "../../../images/modal/exit.svg"
+import emailImg from "../../../images/modal/modal-form/email.svg"
+import phoneImg from "../../../images/modal/modal-form/phone.svg"
 
-const ModalHireMe = ({isOpen, handleClose}) => {
+const ModalHireMe = ({ isOpen, handleClose }) => {
     // записать в local storage если закрыли окно 
     // как проверить что окно было закрыто 
     // если потом опять открыли проверить на содержание данных и отобразить в форме 
@@ -17,29 +17,29 @@ const ModalHireMe = ({isOpen, handleClose}) => {
             </button>
 
             <div className={s.contact}>
-                    <h3 className={s.contact__title}>Let's talk!</h3>
-                    <h4 className={s.contact__subtitle}>Call me or send me request</h4>
+                <h3 className={s.contact__title}>Let's talk!</h3>
+                <h4 className={s.contact__subtitle}>Call me or send me request</h4>
 
-                    <ul className={s.contact__info}>
-                        <li className={s.contact__info_item}>
-                            <img
-                                className={s.contact__info_icon}
-                                src={phoneImg}
-                                alt=""
-                            />
-                            (+380)508669945
-                        </li>
-                        <li className={s.contact__info_item} >
-                            <img
-                                className={s.contact__info_icon} 
-                                src={emailImg}
-                                alt=""
-                            />
-                            max2000pl@gmail.сom
-                        </li>
-                    </ul>
+                <ul className={s.contact__info}>
+                    <li className={s.contact__info_item}>
+                        <img
+                            className={s.contact__info_icon}
+                            src={phoneImg}
+                            alt=""
+                        />
+                        (+380)508669945
+                    </li>
+                    <li className={s.contact__info_item} >
+                        <img
+                            className={s.contact__info_icon}
+                            src={emailImg}
+                            alt=""
+                        />
+                        max2000pl@gmail.сom
+                    </li>
+                </ul>
 
-                    <ModalHireMeForm/>
+                <ModalHireMeForm />
             </div>
         </div>
     );

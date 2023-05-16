@@ -10,72 +10,79 @@ import Modal from "../../components/Modal/Modal";
 
 import s from "./Intro.module.scss";
 import ModalHireMe from "../../components/Modal/ModalHireMe/ModalHireMe";
+import ModalSeeMyResume from "../../components/Modal/ModalSeeMyResume/ModalSeeMyResume";
 
 const dataSocialLinks = [
-	{
-		icon_link: socialLink1,
-		social_link: "https://www.instagram.com/maksym.poskannyi/?hl=ru"
-	},
-	{
-		icon_link: socialLink2,
-		social_link: "https://www.linkedin.com/in/maksym-poskannyi-114b08155/"
-	},
-	{
-		icon_link: socialLink3,
-		social_link: "https://www.facebook.com/Maksym.Poskannyi"
-	},
-	{
-		icon_link: socialLink4,
-		social_link: "viber://chat?number=+380508669945"
-	},
-	{
-		icon_link: socialLink5,
-		social_link: "https://t.me/max200pl"
-	},
+    {
+        icon_link: socialLink1,
+        social_link: "https://www.instagram.com/maksym.poskannyi/?hl=ru"
+    },
+    {
+        icon_link: socialLink2,
+        social_link: "https://www.linkedin.com/in/maksym-poskannyi-114b08155/"
+    },
+    {
+        icon_link: socialLink3,
+        social_link: "https://www.facebook.com/Maksym.Poskannyi"
+    },
+    {
+        icon_link: socialLink4,
+        social_link: "viber://chat?number=+380508669945"
+    },
+    {
+        icon_link: socialLink5,
+        social_link: "https://t.me/max200pl"
+    },
 ]
 
 const SocialLink = (props) => (
-	<a className={s.social__link} rel="noreferrer" href={props.social_link} target="_blank" >
-		<img src={props.icon_link} alt="link instagram" />
-	</a>
+    <a className={s.social__link} rel="noreferrer" href={props.social_link} target="_blank" >
+        <img src={props.icon_link} alt="link instagram" />
+    </a>
 )
 
 const SocialLinks = (props) => props.dataSocialLinks.map((link, id) =>
-	<SocialLink key={id} icon_link={link.icon_link} social_link={link.social_link} />
+    <SocialLink key={id} icon_link={link.icon_link} social_link={link.social_link} />
 )
 
 const Intro = () => {
-	const [isOpen, setIsOpen] = useState(false);
+    const [isOpenHireMeModal, setIsOpenHireMeModal] = useState(false);
+    const [isOpenResumeModal, setIsOpenSeeMyResumeModal] = useState(false);
 
-	return (
-		<section className={s.intro} id="hello">
-			<div className="container">
-				<div className={s.inner}>
-					<div className={s.content}>
-						<h2 className={s.subtitle}>Hello i'm</h2>
-						<h1 className={s.title}>Poskannyi Maksym</h1>
-						<div className={s.text}>Frontend Developer</div>
-						<div className={s.social}>
-							<SocialLinks dataSocialLinks={dataSocialLinks} />
-						</div>
+    return (
+        <section className={s.intro} id="hello">
+            <div className="container">
+                <div className={s.inner}>
+                    <div className={s.content}>
+                        <h2 className={s.subtitle}>Hello i'm</h2>
+                        <h1 className={s.title}>Poskannyi Maksym</h1>
+                        <div className={s.text}>Frontend Developer</div>
+                        <div className={s.social}>
+                            <SocialLinks dataSocialLinks={dataSocialLinks} />
+                        </div>
 
-						<div className={s.link}>
-							<button className={"btn"} onClick={() => setIsOpen(true)}>Hire Me</button>
-							<button className={"btn"}>See My Resume</button>
-						</div>
-					</div>
-				</div>
-				<div className={s.intro__footer}>
-					<NavLink className={s.next_button} to="/portfolio" >
-						<img className={s.next_button__icon} src={arrowNext} alt="arrow button" />
-					</NavLink>
-				</div>
-			</div>
-            <Modal handleClose={() => setIsOpen(false)} isOpen={isOpen}>
-                <ModalHireMe handleClose={() => setIsOpen(false)} isOpen={isOpen}/>
+                        <div className={s.link}>
+                            <button className={"btn"} onClick={() => setIsOpenHireMeModal(true)}>Hire Me</button>
+                            <button className={"btn"} onClick={() => setIsOpenSeeMyResumeModal(true)}>See My Resume</button>
+                        </div>
+                    </div>
+                </div>
+                <div className={s.intro__footer}>
+                    <NavLink className={s.next_button} to="/portfolio" >
+                        <img className={s.next_button__icon} src={arrowNext} alt="arrow button" />
+                    </NavLink>
+                </div>
+            </div>
+
+            <Modal handleClose={() => setIsOpenHireMeModal(false)} isOpen={isOpenHireMeModal}>
+                <ModalHireMe handleClose={() => setIsOpenHireMeModal(false)} isOpen={isOpenHireMeModal} />
             </Modal>
-		</section>
-	)
+
+            <Modal handleClose={() => setIsOpenSeeMyResumeModal(false)} isOpen={isOpenResumeModal}>
+                <ModalSeeMyResume handleClose={() => setIsOpenSeeMyResumeModal(false)} isOpen={isOpenResumeModal} />
+            </Modal>
+        </section>
+    )
 }
 
 

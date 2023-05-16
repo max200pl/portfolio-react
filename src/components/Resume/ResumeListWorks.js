@@ -1,3 +1,5 @@
+import s from "./ResumeListWorks.module.scss";
+
 const layoutTechnology = {
     media: "- Адаптивная верстка (Media Queries)",
     mediaVariable:
@@ -78,7 +80,7 @@ const resumeWorksData = [
         startDate: "October 2019",
         typePage: typePage.landing,
         description: [
-            { titleSections: "Крупная верстка 16 блоков", },
+            { titleSections: "Крупная верстка 16 блоков" },
             {
                 sectionsDescription: [
                     {
@@ -101,7 +103,7 @@ const resumeWorksData = [
                         section: [applications.git, applications.textEditor.brackets],
                     },
                 ],
-            }
+            },
         ],
     },
     {
@@ -109,7 +111,7 @@ const resumeWorksData = [
         startDate: "November 2019",
         typePage: typePage.landing,
         description: [
-            { titleSections: "Адаптивная верстка 7 блоков", },
+            { titleSections: "Адаптивная верстка 7 блоков" },
             {
                 sectionsDescription: [
                     {
@@ -133,7 +135,7 @@ const resumeWorksData = [
                         ],
                     },
                 ],
-            }
+            },
         ],
     },
     {
@@ -142,7 +144,7 @@ const resumeWorksData = [
         endDate: "February 2020",
         typePage: typePage.landing,
         description: [
-            { titleSections: "Верстка с модальными окнами и формой обратной связи", },
+            { titleSections: "Верстка с модальными окнами и формой обратной связи" },
             {
                 sectionsDescription: [
                     {
@@ -169,7 +171,7 @@ const resumeWorksData = [
                         ],
                     },
                 ],
-            }
+            },
         ],
     },
     {
@@ -209,7 +211,7 @@ const resumeWorksData = [
                         ],
                     },
                 ],
-            }
+            },
         ],
     },
     {
@@ -217,10 +219,9 @@ const resumeWorksData = [
         startDate: "February 2020",
         typePage: typePage.site,
         description: [
-            { titleSections: "Магазин товаров native JS", },
+            { titleSections: "Магазин товаров native JS" },
             {
                 sectionsDescription: [
-
                     {
                         nameSection: nameSection.layout,
                         section: [
@@ -244,7 +245,7 @@ const resumeWorksData = [
                         ],
                     },
                 ],
-            }
+            },
         ],
     },
     {
@@ -252,7 +253,7 @@ const resumeWorksData = [
         startDate: "March 2020",
         typePage: typePage.landing,
         description: [
-            { titleSections: "Верстка c фреймворком Bootstrap 4", },
+            { titleSections: "Верстка c фреймворком Bootstrap 4" },
             {
                 sectionsDescription: [
                     {
@@ -271,7 +272,7 @@ const resumeWorksData = [
                         ],
                     },
                 ],
-            }
+            },
         ],
     },
     {
@@ -279,7 +280,7 @@ const resumeWorksData = [
         startDate: "April 2020",
         typePage: typePage.landing,
         description: [
-            { titleSections: "Верстка под заказчика", },
+            { titleSections: "Верстка под заказчика" },
             {
                 sectionsDescription: [
                     {
@@ -306,7 +307,7 @@ const resumeWorksData = [
                         ],
                     },
                 ],
-            }
+            },
         ],
     },
     {
@@ -314,7 +315,7 @@ const resumeWorksData = [
         startDate: "May 2020",
         typePage: typePage.page,
         description: [
-            { titleSections: "Страница с картой и маркером на GoogleMaps", },
+            { titleSections: "Страница с картой и маркером на GoogleMaps" },
             {
                 sectionsDescription: [
                     {
@@ -327,10 +328,7 @@ const resumeWorksData = [
                     },
                     {
                         nameSection: nameSection.pluginsLibraries,
-                        section: [
-                            automation.gulpScssStarter,
-                            feature.GoogleMapsAPI,
-                        ],
+                        section: [automation.gulpScssStarter, feature.GoogleMapsAPI],
                     },
                     {
                         nameSection: nameSection.applications,
@@ -340,7 +338,7 @@ const resumeWorksData = [
                         ],
                     },
                 ],
-            }
+            },
         ],
     },
     {
@@ -348,7 +346,7 @@ const resumeWorksData = [
         startDate: "Jun 2020",
         typePage: typePage.page,
         description: [
-            { titleSections: "Фриланс работа на заказчика", },
+            { titleSections: "Фриланс работа на заказчика" },
             {
                 sectionsDescription: [
                     {
@@ -374,40 +372,29 @@ const resumeWorksData = [
                         ],
                     },
                 ],
-            }
-        ]
+            },
+        ],
     },
 ];
 
-
-
 const WorkDescription = (props) => {
-
     return (
-        <div>
-            {
-                props.sectionsDescription?.map((section, id) => {
-                    return (
-                        <div key={id}>
-                            <h3>{section.nameSection}</h3>
-                            <div>
-                                {
-                                    section.section?.map((el, id) => {
-                                        return (
-                                            <div key={id}>
-                                                {el}
-                                            </div>
-                                        )
-                                    })
-                                }
-                            </div>
+        <>
+            {props.sectionsDescription?.map((section, id) => {
+                return (
+                    <div className={s.experience__summary} key={id}>
+                        <h3>{section.nameSection}</h3>
+                        <div>
+                            {section.section.map((el, id) => {
+                                return <p key={id}>{el}</p>;
+                            })}
                         </div>
-                    )
-                })
-            }
-        </div>
-    )
-}
+                    </div>
+                );
+            })}
+        </>
+    );
+};
 
 const ResumeListWorks = () => {
     return (
@@ -416,31 +403,27 @@ const ResumeListWorks = () => {
                 const { nameProject, startDate, endDate, typePage } = work;
 
                 return (
-                    <div className="work" id="workMoGo" key={id}>
-                        <br></br>
-                        <div className="work__data">
-                            <div className="work__nameProject">{nameProject}</div>
-                            <div className="work__time">
-                                <span className="work__startDate">{startDate}</span>
-                                <span className="work__endDate">{endDate}</span>
+                    <div className={s.work} id="workMoGo" key={id}>
+                        <div className={s.work__data}>
+                            <div className={s.work__nameProject}>{nameProject}</div>
+                            <div className={s.work__time}>
+                                <span className={s.work__startDate}>{startDate}</span>
+                                <span className={s.work__endDate}>{endDate}</span>
                             </div>
-                            <div className="work__typePage">{typePage}</div>
+                            <div className={s.work__typePage}>{typePage}</div>
                         </div>
 
+                        {work.description.map((workDescription, id) => {
+                            return (
+                                <div className={s.work__description} key={id}>
+                                    <h2>{workDescription.titleSections}</h2>
 
-                        {
-                            work.description.map((workDescription, id) => {
-
-                                return (
-                                    <div className="work__description" key={id}>
-                                        <h2>{workDescription.titleSections}</h2>
-
-                                        <WorkDescription sectionsDescription={workDescription.sectionsDescription} />
-
-                                    </div>
-                                );
-                            })}
-
+                                    <WorkDescription
+                                        sectionsDescription={workDescription.sectionsDescription}
+                                    />
+                                </div>
+                            );
+                        })}
                     </div>
                 );
             })}
@@ -449,4 +432,3 @@ const ResumeListWorks = () => {
 };
 
 export default ResumeListWorks;
-

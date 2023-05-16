@@ -1,0 +1,12 @@
+@import "../../helpers/../design-tokens/breakpoints";
+@import "../../helpers/../design-tokens/variables";
+
+
+.resume {
+    width: 100%;
+    padding: 2rem;
+
+    @include xs-mb {
+        padding: 1.5rem;
+    }
+}

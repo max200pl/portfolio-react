@@ -1,3 +1,6 @@
+@import "../../../design-tokens/breakpoints";
+@import "../../../design-tokens/variables";
+
 .modal__dialog {
     min-width: 450px;
     width: 100%;
@@ -7,7 +10,6 @@
     background: linear-gradient(to right top, #051937, #000, #008793, #bf0000, #f00);
     display: flex;
     flex-basis: 100%;
-
 
     @include xs-mb {
         min-width: 320px;
