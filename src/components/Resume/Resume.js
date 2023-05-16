@@ -9,10 +9,11 @@ const Resume = () => {
                 <img className={s.resume_header__img} src={Avatar} alt="" />
                 <div className={s.resume_header__text}>
                     <div className={s.resume_header__title}>Maksym Poskannyi</div>
-                    <p className={s.resume_header__subtitle}>
-                        An engineer who is constantly evolving. I love creating new stuff and I love my job.
-                        I have over fifteen completed web projects, two desktop projects for Windows OS and the Arduino projects as well.
-                    </p>
+                    <div className={s.resume_header__subtitle}>
+                        <p>An engineer who is constantly evolving.
+                            I love creating new stuff and I love my job.</p>
+                        <p>  I have over fifteen completed web projects, two desktop projects for Windows OS and the Arduino projects as well.</p>
+                    </div>
                 </div>
                 <div className={s.resume_header__info}>
                     <div className={s.resume_header__email}>

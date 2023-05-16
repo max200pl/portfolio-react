@@ -101,15 +101,18 @@
     }
 
     &__subtitle {
-
         margin-top: 0px;
         line-height: 1.2em;
         font-weight: 400;
         font-size: 18px;
         display: none;
 
+        p {
+            margin: 0; //reset 
+        }
+
         @include mb {
-            display: flex;
+            display: block;
         }
     }
 
