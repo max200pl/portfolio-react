@@ -4,6 +4,7 @@
 
 .resume {
     width: 100%;
+    background: rgba(6, 15, 49, 0.9);
 
     &__section {
         padding: 2rem;
@@ -34,9 +35,7 @@
     font-size: 16px;
     font-family: "Bitter";
     border-radius: 10px;
-
-    background-color: #147796;
-    box-shadow: 1px 1px 1px black;
+    background: #147796;
 
     @include xs-lg {
         font-size: 14px;

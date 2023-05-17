@@ -1,10 +1,11 @@
 import Experience from "./Experience";
 import s from "./Resume.module.scss";
 import Avatar from "../../images/modal/modal-resume/photo.jpg"
+import React from "react";
 
-const Resume = () => {
+const Resume = React.forwardRef((props, ref) => {
     return (
-        <div className={s.resume}>
+        <div className={s.resume} ref={ref} id="RESUME">
             <div className={s.resume_header}>
                 <img className={s.resume_header__img} src={Avatar} alt="" />
                 <div className={s.resume_header__text}>
@@ -32,8 +33,8 @@ const Resume = () => {
 
                 <Experience />
             </section>
-        </div>
+        </div >
     )
-}
+})
 
 export default Resume
