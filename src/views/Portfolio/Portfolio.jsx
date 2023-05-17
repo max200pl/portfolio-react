@@ -1,7 +1,7 @@
 import React from "react";
 import Work from "./Work/Work";
 import data from "../../data.json";
-import Fade from "react-reveal/Fade";
+import { Fade } from "react-awesome-reveal";
 import s from "./Portfolio.module.scss";
 import FilterWorks from "./FilterWorks/FilterWorks";
 import ModalWork from "./ModalWork/ModalWork";

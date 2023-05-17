@@ -1,6 +1,6 @@
 import React from "react";
 import s from "../Skills.module.scss";
-import Fade from "react-reveal/Fade";
+import { Fade } from "react-awesome-reveal";
 
 export default function UseTechnology(props) {
     const applyTech = {
