@@ -1,0 +1,137 @@
+@import "../../helpers/../design-tokens/breakpoints";
+@import "../../helpers/../design-tokens/variables";
+
+.wrapper {
+    padding: 0 20px;
+}
+
+.container {
+    display: flex;
+
+    justify-content: space-between;
+
+    @include xs-mb {
+        flex-wrap: wrap;
+    }
+
+    .data {
+        display: block;
+        padding-bottom: 20px;
+
+        @include xs-mb {
+            padding-bottom: 10px;
+            padding-left: 20px;
+            border-left: 1px solid $color-blue-border;
+        }
+
+        &__title {
+            color: $color-green-light;
+            font-size: 26px;
+            font-weight: 600;
+        }
+
+        &__subtitle {
+            padding-top: 5px;
+            padding-bottom: 5px;
+            padding-left: 10px;
+            font-size: 20px;
+            color: $color-blue;
+
+            @include xs-mb {
+                font-size: 18px;
+            }
+        }
+
+        &__time {
+            font-size: 16px;
+            font-style: italic;
+            padding-top: 5px;
+            padding-left: 10px;
+        }
+
+        &__endDate {
+            &::before {
+                content: "-";
+                padding: 0 5px;
+            }
+        }
+
+        &__fulDate {
+            padding-left: 5px;
+        }
+    }
+
+    .description {
+        display: block;
+        position: relative;
+        flex-basis: 65%;
+        padding-left: 20px;
+        border-left: 1px solid $color-blue-border;
+
+
+        &::after {
+            content: "";
+            display: block;
+            width: 12px;
+            height: 12px;
+            border-top: 2px solid $color-green-light;
+            border-right: 2px solid $color-green-light;
+            position: absolute;
+            top: 10px;
+            left: 190px;
+            z-index: 1;
+            transform: translateY(-50%) rotate(135deg);
+            transition: 2s;
+        }
+
+        @include mb {
+            flex-basis: 55%;
+            padding-bottom: 10px;
+        }
+
+        @include xs-mb {
+            flex-basis: 100%;
+        }
+
+        &::before {
+            content: "";
+            position: absolute;
+            display: block;
+            width: 10px;
+            height: 10px;
+            top: 5px;
+            left: -5px;
+            background: $color-green-light;
+            border-radius: 50%;
+
+            @include xs-mb {
+                top: -84px;
+            }
+        }
+
+        &__title {
+            position: relative;
+            font-size: 20px;
+            font-weight: 400;
+            color: $color-blue;
+            display: block;
+            padding-bottom: 5px;
+
+            @include xs-mb {
+                padding-left: 10px;
+                font-size: 18px;
+            }
+        }
+
+        &__list {
+            margin: 0;
+            margin-bottom: 20px;
+            font-size: 18px;
+
+            @include xs-mb {
+                padding-left: 10px;
+                font-size: 16px;
+            }
+        }
+    }
+}

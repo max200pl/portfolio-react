@@ -5,6 +5,7 @@ const ProgressBar = (props) => {
     const {
         text,
         precentFill,
+        color,
     } = props
 
     const applyTech = {
@@ -12,7 +13,7 @@ const ProgressBar = (props) => {
     };
 
     return (
-        <div className={s.progress_bar}>
+        <div color={color} className={s.progress_bar}>
             <span style={applyTech} className={s.progress_bar__filler}></span>
             <span className={s.progress_bar__text}>{text}</span>
         </div>

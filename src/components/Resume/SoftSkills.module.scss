@@ -1,0 +1,25 @@
+@import "../../helpers/../design-tokens/breakpoints";
+@import "../../helpers/../design-tokens/variables";
+
+.soft_skills {
+
+    &__container {
+        display: flex;
+        flex-direction: column;
+        max-width: 400px;
+        min-width: 300px;
+        margin-bottom: 30px;
+        padding-left: 20px;
+        padding-right: 40px;
+    }
+
+    &__title {
+        display: block;
+        margin: 0;
+        font-size: 20px;
+        font-weight: 400;
+        color: $color-blue;
+        padding-bottom: 5px;
+        padding-left: 20px;
+    }
+}

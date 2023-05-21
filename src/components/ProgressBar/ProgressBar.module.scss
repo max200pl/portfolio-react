@@ -2,10 +2,15 @@
 @import "../../helpers/../design-tokens/variables";
 
 .progress_bar {
+    &[color="green"] {
+        .progress_bar__filler {
+            background: #13744a;
+        }
+    }
+
     display: flex;
     align-items: center;
     position: relative;
-    margin-top: 5px;
     margin-bottom: 10px;
     border: 1px solid $color-white;
     z-index: 2;

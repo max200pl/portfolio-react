@@ -3,12 +3,16 @@
 
 
 .languages_skills {
+    padding-left: 20px;
+
     &__row {
-        padding-bottom: 20px;
+        &:not(:last-child) {
+            padding-bottom: 20px;
+        }
     }
 
     &__title {
-        color: red;
+        color: $color-green-light;
         margin: 0;
         font-size: 22px;
         font-weight: 400;

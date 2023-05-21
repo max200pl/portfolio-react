@@ -21,36 +21,41 @@
             }
         }
 
+        &_experience {
+            border-right: 1px solid $color-blue-border;
+        }
+
         &_row {
             display: flex;
             flex-wrap: wrap;
 
             &>.resume__section {
                 &:first-child {
-                    border-right: 1px solid #001aff9d;
+                    border-right: 1px solid $color-blue-border;
                 }
 
                 &:nth-child(2) {
+                    padding-left: 20px;
+
                     @include xs-mb {
-                        border-left: 1px solid #001aff9d;
+                        border-left: 1px solid $color-blue-border;
                     }
                 }
-
-                padding-left: 20px;
             }
         }
     }
 
     &__title_section {
-        margin-top: 20px;
+        margin-top: 0;
+        padding-top: 30px;
         margin-bottom: 20px;
         font-size: 36px;
         font-weight: 400;
-        color: #10AEDF;
+        color: $color-blue;
 
         @include xs-mb {
             text-align: center;
-            margin-top: 10px;
+            padding-top: 20px;
             font-size: 28px;
         }
     }

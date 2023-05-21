@@ -1,7 +1,7 @@
 @import "../../helpers/../design-tokens/breakpoints";
 @import "../../helpers/../design-tokens/variables";
 
-$blue-border: #001aff9d;
+
 
 .experience {
     padding: 0 20px;
@@ -12,6 +12,8 @@ $blue-border: #001aff9d;
         justify-content: space-between;
     }
 
+
+
     &__data {
         display: block;
 
@@ -21,12 +23,12 @@ $blue-border: #001aff9d;
         @include xs-mb {
             padding-bottom: 10px;
             padding-left: 20px;
-            border-left: 1px solid $blue-border;
+            border-left: 1px solid $color-blue-border;
         }
     }
 
     &__name_project {
-        color: red;
+        color: $color-green-light;
 
         @include mb {
             font-size: 22px;
@@ -68,8 +70,11 @@ $blue-border: #001aff9d;
     padding-left: 20px;
     cursor: pointer;
     border-left: 1px solid #001aff9d;
-
     flex-basis: 65%;
+
+    @include mb-lg {
+        flex-basis: 54%;
+    }
 
     @include xs-mb {
         flex-basis: 100%;
@@ -87,7 +92,7 @@ $blue-border: #001aff9d;
         height: 10px;
         top: 5px;
         left: -5px;
-        background: red;
+        background: $color-green-light;
         border-radius: 50%;
     }
 }

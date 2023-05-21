@@ -14,7 +14,18 @@ export const technologies = {
     Bootstrap: "Bootstrap 4-5",
     PHP: "PHP",
 }
-
+// https://www.jobseeker.com/en/resume/articles/resume-soft-skills?cq_src=google_ads&cq_cmp=15092453692&cq_term=&cq_plac=&cq_net=g&cq_plt=gp&gad=1&gclid=CjwKCAjwgqejBhBAEiwAuWHioB4gbmiId5ZL9uRPrJf_gzE7qfKdx2H8jOPnY0VgalldS2DHBtfiwxoCBq8QAvD_BwE
+export const softSkills = [
+    {
+        "Communication skills:": [
+            { "Giving and receiving constructive feedback": 100 },
+            { "Friendliness": 100 },
+            { "Storytelling": 100 },
+            { "Mutual respect": 100 },
+            { "Public speaking": 70 },
+        ],
+    },
+]
 export const precentHardSkillsTechnologies = {
     HTML: 95,
     CSS: 95,

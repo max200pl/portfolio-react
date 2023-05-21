@@ -2,19 +2,17 @@
 @import "../../helpers/../design-tokens/variables";
 
 .hard_skills {
-    display: block;
+    display: flex;
+    flex-direction: column;
     max-width: 400px;
     min-width: 300px;
     margin-bottom: 30px;
-    padding-right: 30px;
-
-    @media sm-mb {
-
-        padding-right: 20px;
-        margin: 0 auto 30px;
-    }
+    padding-left: 20px;
+    padding-right: 40px;
 
     @media xs-mb {
-        padding-right: 0;
+        flex-basis: 50%;
+        margin: 0 auto 30px;
+        padding-left: 40px;
     }
 }
