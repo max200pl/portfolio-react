@@ -17,8 +17,11 @@
     .data {
         display: block;
         padding-bottom: 20px;
+        padding-right: 20px;
+        flex-basis: 50%;
 
         @include xs-mb {
+            flex-basis: 100%;
             padding-bottom: 10px;
             padding-left: 20px;
             border-left: 1px solid $color-blue-border;

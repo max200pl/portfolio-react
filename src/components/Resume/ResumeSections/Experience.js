@@ -7,6 +7,7 @@ const resumeWorksData = [
         nameProject: "MoGo",
         startDate: "October 2019",
         typePage: typePage.landing,
+        link: "http:...",
         description: [
             { titleSections: "Крупная верстка 16 блоков" },
             {
@@ -38,6 +39,7 @@ const resumeWorksData = [
         nameProject: "Anveshan",
         startDate: "November 2019",
         typePage: typePage.landing,
+        link: "http:...",
         description: [
             { titleSections: "Адаптивная верстка 7 блоков" },
             {
@@ -71,6 +73,7 @@ const resumeWorksData = [
         startDate: "January 2020",
         endDate: "February 2020",
         typePage: typePage.landing,
+        link: "http:...",
         description: [
             { titleSections: "Верстка с модальными окнами и формой обратной связи" },
             {
@@ -107,6 +110,7 @@ const resumeWorksData = [
         startDate: "December 2019",
         endDate: "January 2020",
         typePage: typePage.landing,
+        link: "http:...",
         description: [
             { titleSections: "Верстка 8 блоков с слайдерами" },
             {
@@ -146,6 +150,7 @@ const resumeWorksData = [
         nameProject: "ShopOfGoods",
         startDate: "February 2020",
         typePage: typePage.site,
+        link: "http:...",
         description: [
             { titleSections: "Магазин товаров native JS" },
             {
@@ -180,6 +185,7 @@ const resumeWorksData = [
         nameProject: "WebDev",
         startDate: "March 2020",
         typePage: typePage.landing,
+        link: "http:...",
         description: [
             { titleSections: "Верстка c фреймворком Bootstrap 4" },
             {
@@ -207,6 +213,7 @@ const resumeWorksData = [
         nameProject: "PantoFlex",
         startDate: "April 2020",
         typePage: typePage.landing,
+        link: "http:...",
         description: [
             { titleSections: "Верстка под заказчика" },
             {
@@ -242,6 +249,7 @@ const resumeWorksData = [
         nameProject: "PrimeTime",
         startDate: "May 2020",
         typePage: typePage.page,
+        link: "http:...",
         description: [
             { titleSections: "Страница с картой и маркером на GoogleMaps" },
             {
@@ -273,6 +281,7 @@ const resumeWorksData = [
         nameProject: "Platform English learn",
         startDate: "Jun 2020",
         typePage: typePage.page,
+        link: "http:...",
         description: [
             { titleSections: "Фриланс работа на заказчика" },
             {
@@ -311,6 +320,9 @@ const ExperienceDescription = (props) => {
             {props.sectionsDescription?.map((section, id) => {
                 return (
                     <div className={s.experience__summary} key={id}>
+                        <h2 className={s.experience__section_title}>
+                            {section.titleSections}
+                        </h2>
                         <h3>{section.nameSection}</h3>
                         <div>
                             {section.section.map((el, id) => {
@@ -328,7 +340,7 @@ const Experience = () => {
     return (
         <div className={s.experience}>
             {resumeWorksData.map((work, id) => {
-                const { nameProject, startDate, endDate, typePage } = work;
+                const { nameProject, startDate, endDate, typePage, link } = work;
 
                 return (
                     <div className={s.experience__container} key={id}>
@@ -344,12 +356,12 @@ const Experience = () => {
 
                         <div className={s.experience__description} >
                             <div className={s.experience__type_page}>{typePage}</div>
+                            <a href={link} className={s.experience__link}>Link to work</a>
                             {work.description.map((workDescription, id) => {
                                 return (
                                     <div key={id} className={s.experience__section}>
-                                        <h2 className={s.experience__section_title}>
-                                            {workDescription.titleSections}
-                                        </h2>
+
+
 
                                         <ExperienceDescription
                                             sectionsDescription={workDescription.sectionsDescription}

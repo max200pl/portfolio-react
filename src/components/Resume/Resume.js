@@ -37,10 +37,6 @@ const Resume = React.forwardRef((props, ref) => {
                     <h1 className={s.resume__title_section}>Experience</h1>
                     <WorkHistory />
                 </section>
-                <section className={s.resume__section}>
-                    <h1 className={s.resume__title_section}>Education</h1>
-                    <EducationHistory />
-                </section>
 
                 <div className={s.resume__section_row}>
                     <section className={`${s.resume__section} ${s.resume__section_basics_50}`}>
@@ -54,6 +50,11 @@ const Resume = React.forwardRef((props, ref) => {
                         <SoftSkills />
                     </section>
                 </div>
+                <section className={s.resume__section}>
+                    <h1 className={s.resume__title_section}>Education</h1>
+                    <EducationHistory />
+                </section>
+
                 <section className={`${s.resume__section} ${s.resume__section_experience} `}>
                     <h1 className={s.resume__title_section}>My Works</h1>
                     <Experience />

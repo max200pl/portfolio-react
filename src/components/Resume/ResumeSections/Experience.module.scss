@@ -12,7 +12,6 @@
     }
 
 
-
     &__data {
         display: block;
 
@@ -37,7 +36,9 @@
         font-weight: 400;
     }
 
-    &__time {
+    &__time,
+    &__link {
+        color: $color-white;
         font-size: 16px;
         font-style: italic;
         padding-top: 5px;
@@ -54,7 +55,7 @@
     &__section_title {
         margin: 0px 0 10px;
         font-size: 16px;
-        color: rgba($color: white, $alpha: 0.9);
+        color: rgba($color: $color-white, $alpha: 0.9);
 
         @include xs-lg {
             display: none;
@@ -70,12 +71,14 @@
     cursor: pointer;
     border-left: 1px solid #001aff9d;
     flex-basis: 65%;
+    padding-bottom: 15px;
 
     @include mb-lg {
         flex-basis: 54%;
     }
 
     @include xs-mb {
+        padding-bottom: 10px;
         flex-basis: 100%;
     }
 
@@ -102,7 +105,7 @@
     font-weight: 400;
     color: #10AEDF;
     display: block;
-    padding-bottom: 10px;
+    padding-bottom: 5px;
 
     @include xs-mb {
         padding-left: 10px;
@@ -126,9 +129,7 @@
 
 }
 
-.experience__summary {
-    display: none;
-}
+.experience__summary {}
 
 .experience__summary>h2 {
     @include xs-mb {
