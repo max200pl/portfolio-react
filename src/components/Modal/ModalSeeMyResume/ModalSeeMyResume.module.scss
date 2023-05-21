@@ -9,16 +9,17 @@
     position: relative;
     border: 1px solid $color-white;
     background: rgba(6, 15, 49, 0.9);
-    display: flex;
 
     padding: 1rem;
     overflow-x: hidden;
 
     @include xs-mb {
+        margin: 0;
+        padding: 0;
         min-width: 320px;
         border: none;
         flex-basis: 100%;
-
+        border-radius: 0;
     }
 }
 
@@ -50,7 +51,7 @@
         transform: translateY(-3px);
     }
 
-    @include sm-mb {
+    @include xs-mb {
         width: 24px;
         height: 29px;
         right: 10px;

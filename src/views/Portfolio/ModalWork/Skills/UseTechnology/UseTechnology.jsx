@@ -2,7 +2,7 @@ import React from "react";
 import s from "../Skills.module.scss";
 import { Fade } from "react-awesome-reveal";
 
-export default function UseTechnology(props) {
+const UseTechnology = (props) => {
     const applyTech = {
         width: `${props.useTechnology.applyTech}%`,
     };
@@ -15,3 +15,4 @@ export default function UseTechnology(props) {
         </div>
     );
 }
+export default UseTechnology; 

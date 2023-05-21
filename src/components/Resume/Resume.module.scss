@@ -6,11 +6,38 @@
     width: 100%;
     background: rgba(6, 15, 49, 0.9);
 
-    &__section {
-        padding: 2rem;
+    &__content {
+        padding: 0 1rem;
+    }
 
-        @include xs-mb {
-            padding: 1rem;
+    &__section {
+        border-bottom: 1px solid #001aff9d;
+
+        &_basics_50 {
+            flex-basis: 50%;
+
+            @include xs-mb {
+                flex-basis: 100%;
+            }
+        }
+
+        &_row {
+            display: flex;
+            flex-wrap: wrap;
+
+            &>.resume__section {
+                &:first-child {
+                    border-right: 1px solid #001aff9d;
+                }
+
+                &:nth-child(2) {
+                    @include xs-mb {
+                        border-left: 1px solid #001aff9d;
+                    }
+                }
+
+                padding-left: 20px;
+            }
         }
     }
 
@@ -22,6 +49,7 @@
         color: #10AEDF;
 
         @include xs-mb {
+            text-align: center;
             margin-top: 10px;
             font-size: 28px;
         }
@@ -37,18 +65,20 @@
     border-radius: 10px;
     background: #147796;
 
-    @include xs-lg {
+    @include mb-lg {
         font-size: 14px;
         padding: 20px 20px;
+    }
+
+    @include xs-mb {
+        font-size: 14px;
+        padding: 16px 10px;
     }
 
     @include mb {
         align-items: center;
         justify-content: space-around;
 
-        // :nth-child(1) {
-        //      order: 2;
-        // }
         :nth-child(2) {
             order: 1;
         }
@@ -74,7 +104,7 @@
         font-weight: 400;
         color: #fff;
 
-        padding-right: 5px;
+        padding-right: 13px;
         max-width: 730px;
     }
 
@@ -87,7 +117,7 @@
 
         margin-right: 20px;
 
-        @include sm-mb {
+        @include xs-mb {
             display: none;
         }
 

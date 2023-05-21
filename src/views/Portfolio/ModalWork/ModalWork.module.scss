@@ -102,25 +102,6 @@
     }
 }
 
-.modalWork__content {
-    flex-basis: 35%;
-    border-radius: 18px;
-    padding: 20px;
-    position: relative;
-    border: 1px solid white;
-
-    @include mb {
-        min-width: 320px;
-    }
-
-
-    @include xs-mb {
-        border: none;
-        flex-basis: 100%;
-        width: 100%;
-    }
-}
-
 .modalWork__header {
     margin-bottom: 2.2rem;
     text-align: center;

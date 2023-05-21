@@ -4,18 +4,19 @@
 $blue-border: #001aff9d;
 
 .experience {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    padding: 0 20px;
+
+    &__container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
 
     &__data {
         display: block;
-        font-size: 12px;
-
-        min-width: 220px;
-        max-width: 220px;
 
         padding-bottom: 20px;
+        font-size: 12px;
 
         @include xs-mb {
             padding-bottom: 10px;
@@ -25,6 +26,8 @@ $blue-border: #001aff9d;
     }
 
     &__name_project {
+        color: red;
+
         @include mb {
             font-size: 22px;
         }
@@ -36,6 +39,8 @@ $blue-border: #001aff9d;
     &__time {
         font-size: 16px;
         font-style: italic;
+        padding-top: 5px;
+        padding-left: 10px;
     }
 
     &__end_date {
@@ -45,15 +50,13 @@ $blue-border: #001aff9d;
         }
     }
 
-
-
     &__section_title {
-        margin: 5px 0 25px;
-        font-size: 18px;
+        margin: 0px 0 10px;
+        font-size: 16px;
         color: rgba($color: white, $alpha: 0.9);
 
-        @include mb {
-            font-size: 22px;
+        @include xs-lg {
+            display: none;
         }
     }
 }
@@ -74,7 +77,7 @@ $blue-border: #001aff9d;
 
     &::before {
         @include xs-mb {
-            top: -42.5px;
+            top: -50.5px;
         }
 
         content: "";
@@ -98,6 +101,7 @@ $blue-border: #001aff9d;
     padding-bottom: 10px;
 
     @include xs-mb {
+        padding-left: 10px;
         font-size: 16px;
     }
 

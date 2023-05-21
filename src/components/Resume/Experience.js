@@ -1,78 +1,6 @@
+import { applications, automation, feature, layoutTechnology, nameSection, pluginsLibraries, typePage } from "../../data/data";
 import s from "./Experience.module.scss";
 
-const layoutTechnology = {
-    media: "- Адаптивная верстка (Media Queries)",
-    mediaVariable:
-        "- Реализована новая структура переменных медиа запросов (Variable Media Queries)",
-    skeleton: {
-        flexBoxCalc: "- Реализована адоптивная Flex-box сетка (calc())",
-        bootstrap: "- Реализована адоптивная bootstrap сетка (4.4.1)",
-    },
-    technology: "- Flex-box верстка (HTML 5, CSS 3)",
-    BEM: "- Реализовано разделение интерфейса на независимые блоки (БЭМ)",
-    W3C: "- Валидная верстка по спецификациям W3C",
-    modalWindow: {
-        jquery: "Реализовано открытие модальных окна (Jquery)",
-    },
-    adaptiveImg: "- Адоптация изображений",
-    CSSPreprocessors: {
-        less: "- Верстка с препроцессором (less)",
-        scss: "- Верстка с препроцессором (SCSS)",
-        scssVariables: "- Реализована структура цветов (variable Sass)",
-    },
-};
-
-const automation = {
-    gulp: "- Применение таск-менеджера (Gulp 4)",
-    gulpScssStarter:
-        "- Применение сборщика gulp-scss-starter (babelrc, bemrc, eslintrc, stylelintrc, webpack)",
-};
-
-const nameSection = {
-    layout: "Верстка:",
-    pluginsLibraries: "Плагины и библиотеки:",
-    applications: "Утилиты и приложения:",
-    features: "Реализованный функциональность:",
-};
-
-const pluginsLibraries = {
-    jquery: {
-        scroll:
-            "- Реализован плавный скролл по якорям на странице с фиксированной шапкой (Jquery)",
-        accordion: '- Реализован "аккордеон" посредством data- атрибутов (Jquery)',
-        slickSlider: "- Реализованы слайдеры  (Jquery-Slick-Slider)",
-        validateForm:
-            " - Реализована валидация формы обратной связи (jquery-validate)",
-    },
-    bundlers: {
-        parcel: "- Использовался сборщик приложения (Parcel)",
-    },
-    axios: "Реализовано получение данных при помощи библиотеки (Axios.js)",
-};
-
-const feature = {
-    feedback: "- Реализована обратная связь через почту (Ajax, PHP)",
-    GoogleMapsAPI: "- Реализована установка маркера на карте (Google Maps API) ",
-};
-
-const applications = {
-    git: "- Применение распределённой системы управления версиями (Git)",
-    textEditor: {
-        brackets: "- Применение текстового редактора (Brackets)",
-        sublimeText: "- Применение текстового редактора (Sublime Text 3)",
-        VSCode: "- Применение текстового редактора (Visual Studio Code)",
-    },
-    graphicsEditor: {
-        adobePhotoshop: "- Работа с макетом через AdobePhotoshop (Desktop-First)",
-        adobeXD: "- Применение графического редактора AdobeXD (Desktop-First)",
-    },
-};
-
-const typePage = {
-    landing: "Landing page",
-    page: "Web page",
-    site: "Site",
-};
 
 const resumeWorksData = [
     {
@@ -398,17 +326,19 @@ const ExperienceDescription = (props) => {
 
 const Experience = () => {
     return (
-        <div>
+        <div className={s.experience}>
             {resumeWorksData.map((work, id) => {
                 const { nameProject, startDate, endDate, typePage } = work;
 
                 return (
-                    <div className={s.experience} key={id}>
+                    <div className={s.experience__container} key={id}>
                         <div className={s.experience__data}>
                             <div className={s.experience__name_project}>{nameProject}</div>
                             <div className={s.experience__time}>
                                 <span className={s.experience__startDate}>{startDate}</span>
-                                <span className={s.experience__end_date}>{endDate}</span>
+                                {endDate &&
+                                    <span className={s.experience__end_date}>{endDate}</span>
+                                }
                             </div>
                         </div>
 

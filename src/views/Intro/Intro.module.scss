@@ -2,28 +2,35 @@
 @import "../../design-tokens/variables";
 
 .intro {
-	overflow-y: hidden;
-	position: relative;
-	height: 91vh;
+    position: relative;
 
-	&__footer{
-		position: fixed;
-		bottom: 30px;
-		left: 0;
-		right: 0;
-		width: 100%;
-	}
+    &__footer {
+        position: fixed;
+        bottom: 30px;
+        left: 0;
+        right: 0;
+        width: 100%;
+    }
 }
 
 .inner {
-	display: flex;
+    display: flex;
     position: relative;
     padding: 8rem 0;
     border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+
+    @include xs-mb {
+        border-bottom: none;
+        padding: 1rem 0 7rem;
+    }
 }
 
 .content {
-	width: 50%;
+    flex-basis: 50%;
+
+    @include xs-mb {
+        flex-basis: 100%;
+    }
 }
 
 .link {
@@ -34,7 +41,7 @@
             width: 100%;
             margin-top: 20px;
 
-            & + .btn {
+            &+.btn {
                 margin-left: 0;
             }
         }
@@ -81,14 +88,10 @@
 }
 
 .next_button {
-	display: flex;
-	justify-content: center;
+    display: flex;
+    justify-content: center;
 }
 
 .next_button__icon {
-	max-width: 80px;
-	&:hover {
-		
-			fill: red;
-	}
+    max-width: 80px;
 }

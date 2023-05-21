@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 // How To Generate PDF From HTML Using Javascript
 //  https://techsolutionstuff.com/post/how-to-generate-pdf-from-html-using-javascript
 
@@ -49,11 +50,11 @@ const ModalSeeMyResume = ({ isOpen, handleClose }) => {
             <button className={s.modal__close} onClick={handleClose} type="button">
                 <img className={s.modal__close_image} src={exitImg} alt="Close" />
             </button>
-            <button
+            {/*  <button
                 onClick={handleSaveResume}
             >
                 download
-            </button>
+            </button> */}
 
             <Resume ref={componentRef} />
         </div>

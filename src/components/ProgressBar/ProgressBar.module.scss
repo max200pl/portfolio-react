@@ -1,0 +1,30 @@
+@import "../../helpers/../design-tokens/breakpoints";
+@import "../../helpers/../design-tokens/variables";
+
+.progress_bar {
+    display: flex;
+    align-items: center;
+    position: relative;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    border: 1px solid $color-white;
+    z-index: 2;
+
+    &__text {
+        display: block;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 1;
+        padding: 2px 0 2px 5px;
+        z-index: 3;
+    }
+
+    &__filler {
+        content: "";
+        position: absolute;
+        display: block;
+        height: 100%;
+        background-color: $color-blue;
+        transition: width 5s ease-in-out;
+    }
+}

@@ -26,31 +26,3 @@
     font-weight: 700;
     text-transform: uppercase;
 }
-
-.skillsItem {
-    display: flex;
-    align-items: center;
-    position: relative;
-    margin-top: 5px;
-    margin-bottom: 10px;
-    border: 1px solid $color-white;
-    z-index: 2;
-}
-
-.skills__title {
-    display: block;
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 1;
-    padding: 2px 0 2px 5px;
-    z-index: 3;
-}
-
-.applyTech {
-    content: "";
-    position: absolute;
-    display: block;
-    height: 100%;
-    background-color: $color-blue;
-    transition: width 5s ease-in-out;
-}
