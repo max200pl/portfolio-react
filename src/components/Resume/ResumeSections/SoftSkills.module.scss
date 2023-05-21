@@ -1,8 +1,8 @@
-@import "../../helpers/../design-tokens/breakpoints";
-@import "../../helpers/../design-tokens/variables";
+@import "../../../helpers/../design-tokens/breakpoints";
+@import "../../../helpers/../design-tokens/variables";
+
 
 .soft_skills {
-
     &__container {
         display: flex;
         flex-direction: column;

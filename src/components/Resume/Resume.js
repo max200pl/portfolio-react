@@ -1,11 +1,12 @@
-import Experience from "./Experience";
+import Experience from "./ResumeSections/Experience";
 import s from "./Resume.module.scss";
 import Avatar from "../../images/modal/modal-resume/photo.jpg"
 import React from "react";
-import HardSkills from "./HardSkills";
-import LanguagesSkills from "./LanguagesSkills";
-import WorkHistory from "./WorkHistory";
-import SoftSkills from "./SoftSkills";
+import HardSkills from "./ResumeSections/HardSkills";
+import LanguagesSkills from "./ResumeSections/LanguagesSkills";
+import WorkHistory from "./ResumeSections/WorkHistory";
+import SoftSkills from "./ResumeSections/SoftSkills";
+import EducationHistory from "./ResumeSections/EducationHistory";
 
 const Resume = React.forwardRef((props, ref) => {
     return (
@@ -33,8 +34,12 @@ const Resume = React.forwardRef((props, ref) => {
             </div>
             <div className={s.resume__content}>
                 <section className={s.resume__section}>
-                    <h1 className={s.resume__title_section}>Work History</h1>
+                    <h1 className={s.resume__title_section}>Experience</h1>
                     <WorkHistory />
+                </section>
+                <section className={s.resume__section}>
+                    <h1 className={s.resume__title_section}>Education</h1>
+                    <EducationHistory />
                 </section>
 
                 <div className={s.resume__section_row}>
@@ -50,7 +55,7 @@ const Resume = React.forwardRef((props, ref) => {
                     </section>
                 </div>
                 <section className={`${s.resume__section} ${s.resume__section_experience} `}>
-                    <h1 className={s.resume__title_section}>Experience</h1>
+                    <h1 className={s.resume__title_section}>My Works</h1>
                     <Experience />
                 </section>
             </div>

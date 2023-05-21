@@ -1,4 +1,4 @@
-import { applications, automation, feature, layoutTechnology, nameSection, pluginsLibraries, typePage } from "../../data/data";
+import { applications, automation, feature, layoutTechnology, nameSection, pluginsLibraries, typePage } from "../../../data/data";
 import s from "./Experience.module.scss";
 
 

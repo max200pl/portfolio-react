@@ -1,5 +1,5 @@
-import { technologies, precentHardSkillsTechnologies } from "../../data/data";
-import ProgressBar from "../ProgressBar/ProgressBar";
+import { technologies, precentHardSkillsTechnologies } from "../../../data/data";
+import ProgressBar from "../../ProgressBar/ProgressBar";
 
 import s from "./HardSkills.module.scss";
 
