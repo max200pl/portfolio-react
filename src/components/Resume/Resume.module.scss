@@ -101,6 +101,11 @@
     }
 
     &__text {
+
+        @include xs-mb {
+            margin: auto;
+        }
+
         font-weight: 400;
         color: #fff;
 
@@ -160,10 +165,7 @@
             display: flex;
         }
 
-        @include sm-mb {
-            font-size: 16px;
-            display: flex;
-        }
+
     }
 
     &__email {
