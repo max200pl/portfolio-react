@@ -1,0 +1,25 @@
+.resume_action_bar {
+    position: sticky;
+    z-index: 10000;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+
+    background-color: gray;
+    background-color: green;
+    border: 2px solid #4CAF50;
+
+
+
+    &__button {
+        display: block;
+        border: 1px solid red;
+        padding: 5px;
+
+        &:not(:last-child) {
+            margin-right: 10px;
+        }
+    }
+}

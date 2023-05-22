@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import s from "./Modal.module.scss";
 import ReactPortal from "../../helpers/ReactPortal";
 import { CSSTransition } from "react-transition-group";
+import ModalSeeMyResumeActionBar from "./ModalSeeMyResume/ModalSeeMyResumeActionBar";
 
 const Modal = ({ children, isOpen, handleClose }) => {
     const nodeRef = useRef(null);
@@ -34,10 +35,7 @@ const Modal = ({ children, isOpen, handleClose }) => {
                     onClick={handleClose}
                 >
                     <div className={s.modal__dialog} onClick={(e) => e.stopPropagation()}>
-                        
-                        <div className={s.modal__content}>
-                            {children}
-                        </div>
+                        {children}
                     </div>
                 </div>
             </CSSTransition>

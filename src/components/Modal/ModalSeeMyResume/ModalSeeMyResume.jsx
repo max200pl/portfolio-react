@@ -8,6 +8,7 @@ import Resume from "../../Resume/Resume";
 import { useRef } from "react";
 import { useReactToPrint } from "react-to-print";
 import Html2Pdf from 'js-html2pdf';
+import ModalSeeMyResumeActionBar from "./ModalSeeMyResumeActionBar";
 
 const ModalSeeMyResume = ({ isOpen, handleClose }) => {
     const componentRef = useRef();
@@ -47,16 +48,15 @@ const ModalSeeMyResume = ({ isOpen, handleClose }) => {
 
     return (
         <div className={s.modal__dialog}>
-            <button className={s.modal__close} onClick={handleClose} type="button">
-                <img className={s.modal__close_image} src={exitImg} alt="Close" />
-            </button>
-            {/*  <button
-                onClick={handleSaveResume}
-            >
-                download
-            </button> */}
+            <div className={s.modal__content}>
+                <button className={s.modal__close} onClick={handleClose} type="button">
+                    <img className={s.modal__close_image} src={exitImg} alt="Close" />
+                </button>
 
-            <Resume ref={componentRef} />
+                <Resume ref={componentRef} />
+                <ModalSeeMyResumeActionBar />
+
+            </div>
         </div>
     );
 };
