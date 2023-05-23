@@ -25,7 +25,7 @@ const ModalSeeMyResume = ({ isOpen, handleClose }) => {
         onAfterPrint: () => console.log("OK")
     })
 
-    const handleSaveResume = useReactToPrint({
+    const handleSavePDF = useReactToPrint({
         content: () => componentRef.current,
         removeAfterPrint: true,
         print: async (printIframe) => {
@@ -52,10 +52,9 @@ const ModalSeeMyResume = ({ isOpen, handleClose }) => {
                 <button className={s.modal__close} onClick={handleClose} type="button">
                     <img className={s.modal__close_image} src={exitImg} alt="Close" />
                 </button>
+                <ModalSeeMyResumeActionBar handlePrint={() => handlePrint()} handleSavePDF={() => handleSavePDF()} />
 
                 <Resume ref={componentRef} />
-                <ModalSeeMyResumeActionBar />
-
             </div>
         </div>
     );

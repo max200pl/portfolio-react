@@ -15,7 +15,12 @@
     border: 1px solid $color-white;
     z-index: 2;
 
+    height: 21px;
+
     &__text {
+        position: absolute;
+        left: 0;
+        top: 0;
         display: block;
         font-size: 16px;
         font-weight: 400;

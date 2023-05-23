@@ -7,6 +7,7 @@ import LanguagesSkills from "./ResumeSections/LanguagesSkills";
 import WorkHistory from "./ResumeSections/WorkHistory";
 import SoftSkills from "./ResumeSections/SoftSkills";
 import EducationHistory from "./ResumeSections/EducationHistory";
+import Achievements from "./ResumeSections/Achievements";
 
 const Resume = React.forwardRef((props, ref) => {
     return (
@@ -50,6 +51,7 @@ const Resume = React.forwardRef((props, ref) => {
                         <SoftSkills />
                     </section>
                 </div>
+
                 <section className={s.resume__section}>
                     <h1 className={s.resume__title_section}>Education</h1>
                     <EducationHistory />
@@ -58,6 +60,10 @@ const Resume = React.forwardRef((props, ref) => {
                 <section className={`${s.resume__section} ${s.resume__section_experience} `}>
                     <h1 className={s.resume__title_section}>My Works</h1>
                     <Experience />
+                </section>
+                <section className={s.resume__section}>
+                    <h1 className={s.resume__title_section}>Achievements</h1>
+                    <Achievements />
                 </section>
             </div>
         </div >

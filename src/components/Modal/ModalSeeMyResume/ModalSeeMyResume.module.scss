@@ -23,6 +23,11 @@
 
 .modal__content {
     height: 93vh;
+
+    @include xs-mb {
+        height: 100vh;
+    }
+
     position: relative;
 
     overflow: auto;
@@ -66,7 +71,7 @@
     cursor: pointer;
 
     position: absolute;
-    top: 10px;
+    top: 0;
     right: 10px;
     z-index: 1;
 
@@ -77,12 +82,9 @@
     }
 
     @include xs-mb {
+        top: 10px;
         width: 24px;
         height: 29px;
         right: 10px;
-
-        &--right-5 {
-            right: 5px;
-        }
     }
 }

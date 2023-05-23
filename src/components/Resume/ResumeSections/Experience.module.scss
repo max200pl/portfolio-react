@@ -129,7 +129,9 @@
 
 }
 
-.experience__summary {}
+.experience__summary {
+    display: none;
+}
 
 .experience__summary>h2 {
     @include xs-mb {

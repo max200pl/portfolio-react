@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import s from "./Modal.module.scss";
 import ReactPortal from "../../helpers/ReactPortal";
 import { CSSTransition } from "react-transition-group";
-import ModalSeeMyResumeActionBar from "./ModalSeeMyResume/ModalSeeMyResumeActionBar";
+
 
 const Modal = ({ children, isOpen, handleClose }) => {
     const nodeRef = useRef(null);
