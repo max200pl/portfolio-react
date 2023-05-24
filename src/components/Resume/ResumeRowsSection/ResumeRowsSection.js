@@ -1,6 +1,8 @@
 import s from "./ResumeRowsSection.module.scss"
 
 const ResumeRowsSection = (props) => {
+    const { isPrinting } = props;
+
     return (
         <div>
             {props.data.map((el) => {
@@ -20,11 +22,13 @@ const ResumeRowsSection = (props) => {
                                 </div>
                             </div>
 
-                            <div className={s.description}>
-                                {description.responsibilities.length > 0 &&
-                                    <span className={s.description__arrow}></span>
-                                }
-                                <div className={s.description__title}>{description.title}</div>
+                            <div className={s.description} isprinting={isPrinting ? "true" : undefined}>
+                                <div className={s.description__title}>
+                                    {description.title}
+                                    {description.responsibilities.length > 0 &&
+                                        <span className={s.description__arrow}></span>
+                                    }
+                                </div>
                                 <ul className={s.description__list}>
                                     {description.responsibilities.map((el, id) => {
                                         return <li key={id}>{el}</li>;

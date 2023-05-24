@@ -3,6 +3,10 @@
 
 .wrapper {
     padding: 0 20px;
+
+    @include xs-mb {
+        padding-right: 0;
+    }
 }
 
 .container {
@@ -23,7 +27,8 @@
         @include xs-mb {
             flex-basis: 100%;
             padding-bottom: 10px;
-            padding-left: 20px;
+            padding-left: 32px;
+            padding-right: 0;
             border-left: 1px solid $color-blue-border;
         }
 
@@ -41,6 +46,7 @@
             color: $color-blue;
 
             @include xs-mb {
+                padding-left: 20px;
                 font-size: 18px;
             }
         }
@@ -50,6 +56,11 @@
             font-style: italic;
             padding-top: 5px;
             padding-left: 10px;
+
+            @include xs-mb {
+                padding-left: 20px;
+                font-size: 18px;
+            }
         }
 
         &__endDate {
@@ -65,11 +76,32 @@
     }
 
     .description {
+        &[isprinting="true"] {
+
+            .description__list,
+            .description__title,
+            .description__arrow {
+                opacity: 0;
+            }
+        }
+
         display: block;
         position: relative;
-        flex-basis: 65%;
-        padding-left: 20px;
+        padding-left: 52px;
         border-left: 1px solid $color-blue-border;
+        cursor: pointer;
+
+        @include xs-mb {
+            padding-bottom: 20px;
+        }
+
+        &:hover,
+        &:active {
+            .description__arrow {
+                transform: translateY(-50%) rotate(-45deg);
+                border-color: $color-green-light_action ;
+            }
+        }
 
         &__arrow {
             display: block;
@@ -77,17 +109,18 @@
             height: 12px;
             border-top: 2px solid $color-green-light;
             border-right: 2px solid $color-green-light;
+            border-left: 2px solid transparent;
+            border-bottom: 2px solid transparent;
             position: absolute;
-            top: 10px;
+            top: 15px;
             left: 190px;
             z-index: 1;
             transform: translateY(-50%) rotate(135deg);
-            transition: 2s;
+            transition: 1s;
         }
 
         @include mb {
-            flex-basis: 55%;
-            padding-bottom: 10px;
+            flex-basis: 50%;
         }
 
         @include xs-mb {
@@ -100,7 +133,7 @@
             display: block;
             width: 10px;
             height: 10px;
-            top: 5px;
+            top: 10px;
             left: -5px;
             background: $color-green-light;
             border-radius: 50%;
@@ -117,9 +150,10 @@
             color: $color-blue;
             display: block;
             padding-bottom: 5px;
+            padding-top: 4px;
 
             @include xs-mb {
-                padding-left: 10px;
+
                 font-size: 18px;
             }
         }

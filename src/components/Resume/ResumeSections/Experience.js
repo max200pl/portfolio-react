@@ -336,7 +336,7 @@ const ExperienceDescription = (props) => {
     );
 };
 
-const Experience = () => {
+const Experience = (props) => {
     return (
         <div className={s.experience}>
             {resumeWorksData.map((work, id) => {
@@ -355,7 +355,9 @@ const Experience = () => {
                         </div>
 
                         <div className={s.experience__description} >
-                            <div className={s.experience__type_page}>{typePage}</div>
+                            <div className={s.experience__type_page} isprinting={props.isPrinting ? "true" : undefined}>
+                                {typePage}
+                            </div>
                             <a href={link} className={s.experience__link}>Link to work</a>
                             {work.description.map((workDescription, id) => {
                                 return (

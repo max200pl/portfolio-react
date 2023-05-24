@@ -15,6 +15,12 @@
     border: 1px solid $color-white;
     z-index: 2;
 
+    overflow: hidden;
+
+    /* enables ellipsis */
+    white-space: nowrap;
+    /* keeps the text in a single line */
+
     height: 21px;
 
     &__text {
@@ -27,6 +33,9 @@
         line-height: 1;
         padding: 2px 0 2px 5px;
         z-index: 3;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        /* keeps the element from overflowing its parent */
     }
 
     &__filler {

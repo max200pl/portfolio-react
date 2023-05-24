@@ -10,9 +10,10 @@
     padding-left: 20px;
     padding-right: 40px;
 
-    @media xs-mb {
-        flex-basis: 50%;
-        margin: 0 auto 30px;
-        padding-left: 40px;
+    @include sm-mb {
+        max-width: 100%;
+        flex-basis: 100%;
+        padding-left: 52px;
+        padding-right: 52px;
     }
 }

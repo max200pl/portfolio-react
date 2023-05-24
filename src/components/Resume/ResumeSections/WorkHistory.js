@@ -76,6 +76,6 @@ const dataWorkHistory = [
 ];
 
 
-const WorkHistory = () => <ResumeRowsSection data={dataWorkHistory} />
+const WorkHistory = (props) => <ResumeRowsSection data={dataWorkHistory} isPrinting={props.isPrinting} />
 
 export default WorkHistory;

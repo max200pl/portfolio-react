@@ -6,8 +6,22 @@
     padding-left: 20px;
 
     &__row {
+        position: relative;
+
         &:not(:last-child) {
             padding-bottom: 20px;
+        }
+
+        &::before {
+            content: "";
+            position: absolute;
+            display: block;
+            width: 10px;
+            height: 10px;
+            top: 6px;
+            left: -57px;
+            background: #02d021;
+            border-radius: 50%;
         }
     }
 

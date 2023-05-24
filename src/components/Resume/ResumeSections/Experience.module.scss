@@ -20,7 +20,7 @@
 
         @include xs-mb {
             padding-bottom: 10px;
-            padding-left: 20px;
+            padding-left: 52px;
             border-left: 1px solid $color-blue-border;
         }
     }
@@ -66,16 +66,12 @@
 
 .experience__description {
     display: block;
+    flex-basis: 50%;
     position: relative;
     padding-left: 20px;
-    cursor: pointer;
-    border-left: 1px solid #001aff9d;
-    flex-basis: 65%;
     padding-bottom: 15px;
-
-    @include mb-lg {
-        flex-basis: 54%;
-    }
+    border-left: 1px solid #001aff9d;
+    cursor: pointer;
 
     @include xs-mb {
         padding-bottom: 10px;
@@ -112,21 +108,38 @@
         font-size: 16px;
     }
 
+    &[isprinting="true"] {
+        &.experience__type_page::after {
+            opacity: 0;
+        }
+    }
+
+
+    &:hover,
+    &:active {
+        &.experience__type_page::after {
+            transform: translateY(-50%) rotate(-45deg);
+            border-color: $color-green-light_action ;
+        }
+    }
+
+
     &::after {
         content: "";
         display: block;
         width: 12px;
         height: 12px;
-        border-top: 2px solid #fff;
-        border-right: 2px solid #fff;
+        border-top: 2px solid $color-green-light;
+        border-right: 2px solid $color-green-light;
+        border-left: 2px solid transparent;
+        border-bottom: 2px solid transparent;
         position: absolute;
-        top: 10px;
-        left: 140px;
+        top: 15px;
+        left: 190px;
         z-index: 1;
         transform: translateY(-50%) rotate(135deg);
-        transition: 2s;
+        transition: 1s;
     }
-
 }
 
 .experience__summary {

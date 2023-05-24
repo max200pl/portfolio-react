@@ -5,29 +5,50 @@
 import s from "././ModalSeeMyResume.module.scss";
 import exitImg from "../../../images/modal/exit.svg";
 import Resume from "../../Resume/Resume";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useReactToPrint } from "react-to-print";
 import Html2Pdf from 'js-html2pdf';
 import ModalSeeMyResumeActionBar from "./ModalSeeMyResumeActionBar";
 
+const nameFile = "Maksym_Poskannyi_Frontend_Developer_Resume"
+
 const ModalSeeMyResume = ({ isOpen, handleClose }) => {
+    const [isPrinting, setIsPrinting] = useState(false);
+
     const componentRef = useRef();
+    const promiseResolveRef = useRef(null);
+
+    useEffect(() => {
+        if (isPrinting && promiseResolveRef.current) {
+            promiseResolveRef.current();
+        }
+    }, [isPrinting]);
+
 
     const handlePrint = useReactToPrint({
         content: () => componentRef.current,
-        documentTitle: 'emp-data',
-        /*   onBeforeGetContent: () => {
-              return new Promise((resolve) => {
-                  promiseResolveRef.current = resolve;
-                  setIsPrinting(true);
-              });
-          }, */
-        onAfterPrint: () => console.log("OK")
+        documentTitle: nameFile,
+        onBeforeGetContent: () => {
+            return new Promise((resolve) => {
+                promiseResolveRef.current = resolve;
+                setIsPrinting(true);
+            });
+        },
+        onAfterPrint: () => {
+            promiseResolveRef.current = null
+            setIsPrinting(false)
+        }
     })
 
     const handleSavePDF = useReactToPrint({
         content: () => componentRef.current,
         removeAfterPrint: true,
+        onBeforeGetContent: () => {
+            return new Promise((resolve) => {
+                promiseResolveRef.current = resolve;
+                setIsPrinting(true);
+            });
+        },
         print: async (printIframe) => {
             const document = printIframe.contentDocument;
             if (document) {
@@ -36,7 +57,7 @@ const ModalSeeMyResume = ({ isOpen, handleClose }) => {
                 const exporter = new Html2Pdf(html, {
                     margin: 0,
                     fontWeight: 16,
-                    filename: 'myfile.pdf',
+                    filename: nameFile,
                     image: { type: 'jpeg', quality: 1 },
                     html2canvas: { scale: 1 },
                     jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
@@ -44,6 +65,10 @@ const ModalSeeMyResume = ({ isOpen, handleClose }) => {
                 exporter.getPdf(true);
             }
         },
+        onAfterPrint: () => {
+            promiseResolveRef.current = null
+            setIsPrinting(false)
+        }
     })
 
     return (
@@ -52,9 +77,8 @@ const ModalSeeMyResume = ({ isOpen, handleClose }) => {
                 <button className={s.modal__close} onClick={handleClose} type="button">
                     <img className={s.modal__close_image} src={exitImg} alt="Close" />
                 </button>
-                <ModalSeeMyResumeActionBar handlePrint={() => handlePrint()} handleSavePDF={() => handleSavePDF()} />
-
-                <Resume ref={componentRef} />
+                <ModalSeeMyResumeActionBar isPrinting={isPrinting} handlePrint={() => handlePrint()} handleSavePDF={() => handleSavePDF()} />
+                <Resume ref={componentRef} isPrinting={isPrinting} />
             </div>
         </div>
     );

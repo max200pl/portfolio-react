@@ -8,11 +8,10 @@ const SoftSkills = () => {
         <div className={s.soft_skills}>
             {softSkills.map((el, id) => {
                 return (<div key={id}>
-                    <h3 className={s.soft_skills__title}>
+                    {/*   <h3 className={s.soft_skills__title}>
                         {Object.keys(el)[0]}
-                    </h3>
+                    </h3> */}
                     <div className={s.soft_skills__container}>
-
                         {Object.values(el)[0].map((el, id) => {
                             return (
                                 <ProgressBar

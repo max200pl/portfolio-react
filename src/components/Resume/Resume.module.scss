@@ -7,12 +7,10 @@
     background: rgba(6, 15, 49, 0.9);
 
     &__content {
-        padding: 0 1rem;
+        padding: 0 17px;
     }
 
     &__section {
-        border-bottom: 1px solid #001aff9d;
-
         &_basics_50 {
             flex-basis: 50%;
 
@@ -21,41 +19,63 @@
             }
         }
 
-        &_experience {
-            border-right: 1px solid $color-blue-border;
-        }
-
         &_row {
             display: flex;
             flex-wrap: wrap;
 
             &>.resume__section {
-                &:first-child {
-                    border-right: 1px solid $color-blue-border;
-                }
-
-                &:nth-child(2) {
-                    padding-left: 20px;
-
+                &:nth-child(1) {
                     @include xs-mb {
                         border-left: 1px solid $color-blue-border;
                     }
+                }
+
+                &:nth-child(2) {
+                    padding-left: 32px;
+
+                    border-left: 1px solid $color-blue-border;
+                }
+
+                @include xs-mb {
+                    margin-left: 20px;
                 }
             }
         }
     }
 
+    &__section__title {
+        display: flex;
+    }
+
     &__title_section {
-        margin-top: 0;
-        padding-top: 30px;
-        margin-bottom: 20px;
+        margin: 0; //reset H1
+        padding: 20px 20px 20px 0;
         font-size: 36px;
         font-weight: 400;
         color: $color-blue;
+        flex-basis: 50%;
+
+        @include xs-mb {
+            flex-basis: 100%;
+        }
+
+        &:nth-child(2) {
+            border-left: 1px solid $color-blue-border;
+
+            @include xs-mb {
+                display: none;
+            }
+        }
+
+        &_border {
+            @include xs-mb {
+                margin-left: 20px;
+                border-left: 1px solid $color-blue-border;
+            }
+        }
 
         @include xs-mb {
             text-align: center;
-            padding-top: 20px;
             font-size: 28px;
         }
     }
@@ -64,7 +84,7 @@
 .resume_header {
     display: flex;
     justify-content: space-between;
-    padding: 20px 40px;
+    padding: 15px 20px;
     font-size: 16px;
     font-family: "Bitter";
     border-radius: 10px;

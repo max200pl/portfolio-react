@@ -10,6 +10,8 @@ import EducationHistory from "./ResumeSections/EducationHistory";
 import Achievements from "./ResumeSections/Achievements";
 
 const Resume = React.forwardRef((props, ref) => {
+    const { isPrinting } = props;
+
     return (
         <div className={s.resume} ref={ref} id="RESUME">
             <div className={s.resume_header}>
@@ -36,33 +38,43 @@ const Resume = React.forwardRef((props, ref) => {
             <div className={s.resume__content}>
                 <section className={s.resume__section}>
                     <h1 className={s.resume__title_section}>Experience</h1>
-                    <WorkHistory />
+                    <WorkHistory isPrinting={isPrinting} />
                 </section>
 
                 <div className={s.resume__section_row}>
                     <section className={`${s.resume__section} ${s.resume__section_basics_50}`}>
-                        <h1 className={s.resume__title_section}>HARD Skills</h1>
+                        <h1 className={s.resume__title_section}>Hard Skills</h1>
                         <HardSkills />
                     </section>
                     <section className={`${s.resume__section} ${s.resume__section_basics_50}`}>
-                        <h1 className={s.resume__title_section}>Languages</h1>
+                        <h1 className={`${s.resume__title_section}`}>Languages</h1>
                         <LanguagesSkills />
-                        <h1 className={s.resume__title_section}>SOFTSkills</h1>
+                        <h1 className={s.resume__title_section}>Soft Skills</h1>
                         <SoftSkills />
                     </section>
                 </div>
 
                 <section className={s.resume__section}>
-                    <h1 className={s.resume__title_section}>Education</h1>
+                    <div className={s.resume__section__title}>
+                        <h1 className={`${s.resume__title_section} ${s.resume__title_section_border}`}>Education</h1>
+                        <div className={`${s.resume__title_section}`}></div>
+                    </div>
                     <EducationHistory />
                 </section>
 
                 <section className={`${s.resume__section} ${s.resume__section_experience} `}>
-                    <h1 className={s.resume__title_section}>My Works</h1>
-                    <Experience />
+                    <div className={s.resume__section__title}>
+                        <h1 className={`${s.resume__title_section} ${s.resume__title_section_border}`}>My Works</h1>
+                        <div className={`${s.resume__title_section}`}></div>
+                    </div>
+
+                    <Experience isPrinting={isPrinting} />
                 </section>
                 <section className={s.resume__section}>
-                    <h1 className={s.resume__title_section}>Achievements</h1>
+                    <div className={s.resume__section__title}>
+                        <h1 className={`${s.resume__title_section} ${s.resume__title_section_border}`}>Achievements</h1>
+                        <div className={`${s.resume__title_section}`}></div>
+                    </div>
                     <Achievements />
                 </section>
             </div>
