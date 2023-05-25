@@ -11,6 +11,11 @@
         margin-bottom: 30px;
         padding-left: 20px;
         padding-right: 40px;
+
+        @include xs-mb {
+            max-width: 100%;
+            padding-right: 52px;
+        }
     }
 
     &__title {
