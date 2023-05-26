@@ -1,13 +1,16 @@
-import Experience from "./ResumeSections/Experience";
+
 import s from "./Resume.module.scss";
 import Avatar from "../../images/modal/modal-resume/photo.jpg"
 import React from "react";
+
+import WorkHistory from "./ResumeSections/WorkHistory";
 import HardSkills from "./ResumeSections/HardSkills";
 import LanguagesSkills from "./ResumeSections/LanguagesSkills";
-import WorkHistory from "./ResumeSections/WorkHistory";
 import SoftSkills from "./ResumeSections/SoftSkills";
 import EducationHistory from "./ResumeSections/EducationHistory";
+import Experience from "./ResumeSections/Experience";
 import Achievements from "./ResumeSections/Achievements";
+
 
 const Resume = React.forwardRef((props, ref) => {
     const { isPrinting } = props;

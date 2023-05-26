@@ -15,7 +15,8 @@ const dataWorkHistory = [
 
         description: {
             title: "Automation and computer-integrated technologies",
-            responsibilities: [],
+            descriptionList:
+                [],
         },
     },
     {
@@ -32,7 +33,7 @@ const dataWorkHistory = [
 
         description: {
             title: "Technical maintenance of machines with PU and RTC",
-            responsibilities: [],
+            descriptionList: [],
         },
     },
 ];

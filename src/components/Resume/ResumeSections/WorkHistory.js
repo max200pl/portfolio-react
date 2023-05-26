@@ -14,7 +14,7 @@ const dataWorkHistory = [
 
         description: {
             title: "My responsibilities:",
-            responsibilities: [
+            descriptionList: [
                 "Implemented / customized new features for desktop apps.",
                 "Made markup pages for a website.",
                 "Developed highly-responsive pixel-perfect user interface components.",
@@ -22,7 +22,7 @@ const dataWorkHistory = [
                 "Refactoring existing code.",
                 "Participate in the architecture of new projects.",
                 "Coordinated with the development team to discuss user interface ideas and applications.",
-                "Fixed bugs and supported projects."
+                "Fixed bugs and supported projects.",
             ],
         },
     },
@@ -40,14 +40,14 @@ const dataWorkHistory = [
 
         description: {
             title: "My responsibilities:",
-            responsibilities: [
+            descriptionList: [
                 "Cross - browser layout with templates (Figma)",
                 "Implementation of responsive sliders (native js/@media)",
                 "Application of BEM methodology",
                 "Turning a PSD template into code (HTML/CSS/SASS)",
                 "Integration of layout pages into project (ExpressJS/NodeJS)",
                 " Sliders in pure js",
-                "Form submission (fetch, axios)"
+                "Form submission (fetch, axios)",
             ],
         },
     },
@@ -65,7 +65,7 @@ const dataWorkHistory = [
 
         description: {
             title: "My responsibilities:",
-            responsibilities: [
+            descriptionList: [
                 "Adaptation for different screen sizes (@media)",
                 "Turning a PSD template into code HTMLCSS",
                 "Integration of layout pages into project (Laravel/PHP)",
@@ -75,7 +75,8 @@ const dataWorkHistory = [
     },
 ];
 
-
-const WorkHistory = (props) => <ResumeRowsSection data={dataWorkHistory} isPrinting={props.isPrinting} />
+const WorkHistory = (props) => (
+    <ResumeRowsSection data={dataWorkHistory} isPrinting={props.isPrinting} />
+);
 
 export default WorkHistory;

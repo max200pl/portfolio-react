@@ -14,7 +14,7 @@ const dataWorkHistory = [
 
         description: {
             title: "Automation and computer-integrated technologies",
-            responsibilities: [],
+            descriptionList: [],
         },
     },
 ];
