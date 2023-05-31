@@ -7,7 +7,6 @@ import socialLink4 from "../../images/intro/4.png";
 import socialLink5 from "../../images/intro/5.png";
 import arrowNext from "../../images/intro/nex-page__arrow.svg";
 import Modal from "../../components/Modal/Modal";
-
 import s from "./Intro.module.scss";
 import ModalHireMe from "../../components/Modal/ModalHireMe/ModalHireMe";
 import ModalSeeMyResume from "../../components/Modal/ModalSeeMyResume/ModalSeeMyResume";
