@@ -22,10 +22,13 @@ const Resume = React.forwardRef((props, ref) => {
                 <div className={s.resume_header__text}>
                     <div className={s.resume_header__title}>Maksym Poskannyi</div>
                     <div className={s.resume_header__subtitle}>
+                        <h2>Frontend Developer</h2>
+                    </div>
+                    {/*     <div className={s.resume_header__subtitle}>
                         <p>An engineer who is constantly evolving.
                             I love creating new stuff and I love my job.</p>
                         <p>  I have over fifteen completed web projects, two desktop projects for Windows OS and the Arduino projects as well.</p>
-                    </div>
+                    </div> */}
                 </div>
                 <div className={s.resume_header__info}>
                     <div className={s.resume_header__email}>
@@ -40,7 +43,7 @@ const Resume = React.forwardRef((props, ref) => {
             </div>
             <div className={s.resume__content}>
                 <section className={s.resume__section}>
-                    <h1 className={s.resume__title_section}>Experience</h1>
+                    <h1 className={s.resume__title_section}>Employment history</h1>
                     <WorkHistory isPrinting={isPrinting} />
                 </section>
 
@@ -64,7 +67,13 @@ const Resume = React.forwardRef((props, ref) => {
                     </div>
                     <EducationHistory />
                 </section>
-
+                <section className={s.resume__section}>
+                    <div className={s.resume__section__title}>
+                        <h1 className={`${s.resume__title_section} ${s.resume__title_section_border}`}>Achievements</h1>
+                        <div className={`${s.resume__title_section}`}></div>
+                    </div>
+                    <Achievements />
+                </section>
                 <section className={`${s.resume__section} ${s.resume__section_experience} `}>
                     <div className={s.resume__section__title}>
                         <h1 className={`${s.resume__title_section} ${s.resume__title_section_border}`}>My Works</h1>
@@ -73,13 +82,7 @@ const Resume = React.forwardRef((props, ref) => {
 
                     <Experience isPrinting={isPrinting} />
                 </section>
-                <section className={s.resume__section}>
-                    <div className={s.resume__section__title}>
-                        <h1 className={`${s.resume__title_section} ${s.resume__title_section_border}`}>Achievements</h1>
-                        <div className={`${s.resume__title_section}`}></div>
-                    </div>
-                    <Achievements />
-                </section>
+
             </div>
         </div >
     )

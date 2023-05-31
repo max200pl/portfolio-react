@@ -7,8 +7,7 @@ const dataWorkHistory = [
             title: "Youth Technical Creativity",
             link: "https://nure.ua/ru/department/kafedra-kompyuterno-integrirovannyih-tehno-logiy-avtomatizatsii-i-mehatroniki-kitam/laboratorii-kafedry/studencheskoe-konstruktorskoe-tehnologicheskoe-bjuro-po-robototehnike-i-mehatronike",
             time: {
-                start: "Place: First place",
-                end: "Nomination: devices and mechanism",
+                start: "Nomination: devices and mechanism (First place)",
             },
         },
 

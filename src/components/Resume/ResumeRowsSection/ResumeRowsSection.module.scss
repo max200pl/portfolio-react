@@ -38,6 +38,14 @@
             font-weight: 600;
         }
 
+        &__link {
+            display: block;
+            color: $color-white;
+            font-size: 18px;
+            padding-left: 10px;
+            padding-top: 5px;
+        }
+
         &__subtitle {
             padding-top: 5px;
             padding-bottom: 5px;
@@ -85,23 +93,44 @@
             }
         }
 
+        transition: all 2s linear;
+
+        &[openDescription="true"] {
+            .description__arrow {
+                transform: translateY(-50%) rotate(-45deg);
+                border-color: $color-green-light_action ;
+            }
+
+            .description__list {
+                height: 100%;
+                opacity: 1;
+                transform: translateY(0);
+                transition-delay: 0.2s;
+                transition-timing-function: ease-in-out;
+                transition-duration: 0.2s;
+                transition-property: opacity, transform;
+            }
+        }
+
+        &[openDescription="false"] {
+            .description__list {
+                transition-delay: 0s;
+                transition-duration: 0s;
+                transition-property: transform;
+            }
+        }
+
         display: block;
         position: relative;
         padding-left: 52px;
         border-left: 1px solid $color-blue-border;
         cursor: pointer;
 
+
         @include xs-mb {
             padding-bottom: 20px;
         }
 
-        &:hover,
-        &:active {
-            .description__arrow {
-                transform: translateY(-50%) rotate(-45deg);
-                border-color: $color-green-light_action ;
-            }
-        }
 
         &__arrow {
             display: block;
@@ -144,6 +173,7 @@
         }
 
         &__title {
+
             position: relative;
             font-size: 20px;
             font-weight: 400;
@@ -159,7 +189,13 @@
         }
 
         &__list {
-            display: none;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition-timing-function: linear, ease;
+            transition-duration: 0.1s;
+            transition-property: opacity, transform;
+            transition-delay: 0.5s;
+            height: 0;
             margin: 0;
             margin-bottom: 20px;
             font-size: 18px;

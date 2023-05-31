@@ -14,9 +14,7 @@
 
     &__data {
         display: block;
-
-        padding-bottom: 20px;
-        font-size: 12px;
+        padding-bottom: 15px;
 
         @include xs-mb {
             padding-bottom: 10px;

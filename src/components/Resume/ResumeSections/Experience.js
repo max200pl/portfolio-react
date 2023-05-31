@@ -2,81 +2,7 @@ import { applications, automation, feature, layoutTechnology, nameSection, plugi
 import ResumeRowsSection from "../ResumeRowsSection/ResumeRowsSection";
 
 const resumeWorksData = [
-    {
-        id: 11111,
-        data: {
-            title: "MoGo",
-            time: {
-                start: "Oct 2019",
-                end: "...",
-            },
 
-            typePage: typePage.landing,
-            link: "http:...",
-        },
-        description: {
-            title: "Крупная верстка 16 блоков",
-            descriptionList: [/* 
-                {
-                    nameSection: nameSection.layout,
-                    section: [
-                        layoutTechnology.technology,
-                        layoutTechnology.media,
-                        layoutTechnology.BEM,
-                    ],
-                },
-                {
-                    nameSection: nameSection.pluginsLibraries,
-                    section: [
-                        pluginsLibraries.jquery.scroll,
-                        pluginsLibraries.jquery.accordion,
-                    ],
-                },
-                {
-                    nameSection: nameSection.applications,
-                    section: [applications.git, applications.textEditor.brackets],
-                }, */
-            ],
-        },
-    },
-    {
-        id: 222222,
-        data: {
-            title: "Anveshan",
-            time: {
-                start: "Nov 2022",
-                end: "...",
-            },
-            typePage: typePage.landing,
-            link: "http:...",
-        },
-        description: {
-            title: "Адаптивная верстка 7 блоков",
-
-            descriptionList: [/* 
-                {
-                    nameSection: nameSection.layout,
-                    section: [
-                        layoutTechnology.technology,
-                        layoutTechnology.media,
-                        layoutTechnology.BEM,
-                        layoutTechnology.adaptiveImg,
-                    ],
-                },
-                {
-                    nameSection: nameSection.pluginsLibraries,
-                    section: [pluginsLibraries.jquery.scroll],
-                },
-                {
-                    nameSection: nameSection.applications,
-                    section: [
-                        applications.graphicsEditor.adobePhotoshop,
-                        applications.textEditor.sublimeText,
-                    ],
-                }, */
-            ],
-        },
-    },
     {
         id: 333333333,
         data: {
@@ -91,7 +17,7 @@ const resumeWorksData = [
         description: {
             title: "Верстка с модальными окнами и формой обратной связи",
 
-            descriptionList: [/* 
+            descriptionList: [
                 {
                     nameSection: nameSection.layout,
                     section: [
@@ -114,7 +40,7 @@ const resumeWorksData = [
                         applications.textEditor.brackets,
                         applications.git,
                     ],
-                }, */
+                },
             ],
         },
     },
@@ -132,7 +58,7 @@ const resumeWorksData = [
         description: {
             title: "Верстка 8 блоков с слайдерами",
 
-            descriptionList: [/* 
+            descriptionList: [
                 {
                     nameSection: nameSection.layout,
                     section: [
@@ -159,7 +85,7 @@ const resumeWorksData = [
                         applications.textEditor.VSCode,
                         applications.git,
                     ],
-                }, */
+                },
             ],
         },
     },
@@ -178,7 +104,7 @@ const resumeWorksData = [
         description: {
             title: "Магазин товаров native JS",
 
-            descriptionList: [/* 
+            descriptionList: [
                 {
                     nameSection: nameSection.layout,
                     section: [
@@ -200,43 +126,11 @@ const resumeWorksData = [
                         applications.textEditor.VSCode,
                         applications.git,
                     ],
-                }, */
-            ],
-        },
-    },
-    {
-        id: 6666666666,
-        data: {
-            title: "WebDev",
-            time: {
-                start: "Mar 2020",
-                end: "...",
-            },
-            typePage: typePage.landing,
-            link: "http:...",
-        },
-        description: {
-            title: "Верстка c фреймворком Bootstrap 4",
-
-            descriptionList: [/* 
-                {
-                    nameSection: nameSection.layout,
-                    section: [
-                        layoutTechnology.technology,
-                        layoutTechnology.skeleton.bootstrap,
-                    ],
                 },
-
-                {
-                    nameSection: nameSection.applications,
-                    section: [
-                        applications.graphicsEditor.adobePhotoshop,
-                        applications.textEditor.VSCode,
-                    ],
-                }, */
             ],
         },
     },
+
     {
         id: 7777777,
         data: {
@@ -251,7 +145,7 @@ const resumeWorksData = [
         description: {
             title: "Верстка под заказчика",
 
-            descriptionList: [/* 
+            descriptionList: [
                 {
                     nameSection: nameSection.layout,
                     section: [
@@ -274,47 +168,11 @@ const resumeWorksData = [
                         applications.graphicsEditor.adobeXD,
                         applications.textEditor.VSCode,
                     ],
-                }, */
+                },
             ],
         },
     },
-    {
-        id: 88888888,
-        data: {
-            title: "PrimeTime",
-            time: {
-                start: "May 2020",
-                end: "...",
-            },
-            typePage: typePage.page,
-            link: "http:...",
-        },
-        description: {
-            title: "Страница с картой и маркером на GoogleMaps",
 
-            descriptionList: [/* 
-                {
-                    nameSection: nameSection.layout,
-                    section: [
-                        layoutTechnology.technology,
-                        layoutTechnology.skeleton.bootstrap,
-                        layoutTechnology.BEM,
-                    ],
-                },
-                {
-                    nameSection: nameSection.pluginsLibraries,
-                    section: [automation.gulpScssStarter, feature.GoogleMapsAPI],
-                },
-                {
-                    nameSection: nameSection.applications,
-                    section: [
-                        applications.graphicsEditor.adobePhotoshop,
-                        applications.textEditor.VSCode,
-                    ],
-                }, */
-            ],
-        },
-    },
     {
         id: 999999999,
         data: {
@@ -328,7 +186,7 @@ const resumeWorksData = [
         },
         description: {
             title: "Фриланс работа на заказчика",
-            descriptionList: [/* 
+            descriptionList: [
                 {
                     nameSection: nameSection.layout,
                     section: [
@@ -350,7 +208,7 @@ const resumeWorksData = [
                         applications.graphicsEditor.adobePhotoshop,
                         applications.textEditor.VSCode,
                     ],
-                }, */
+                },
             ],
         },
     },
@@ -362,3 +220,150 @@ const Experience = (props) => (
 );
 
 export default Experience;
+
+// {
+//     id: 88888888,
+//     data: {
+//         title: "PrimeTime",
+//         time: {
+//             start: "May 2020",
+//             end: "...",
+//         },
+//         typePage: typePage.page,
+//         link: "http:...",
+//     },
+//     description: {
+//         title: "Страница с картой и маркером на GoogleMaps",
+
+//         descriptionList: [
+//             {
+//                 nameSection: nameSection.layout,
+//                 section: [
+//                     layoutTechnology.technology,
+//                     layoutTechnology.skeleton.bootstrap,
+//                     layoutTechnology.BEM,
+//                 ],
+//             },
+//             {
+//                 nameSection: nameSection.pluginsLibraries,
+//                 section: [automation.gulpScssStarter, feature.GoogleMapsAPI],
+//             },
+//             {
+//                 nameSection: nameSection.applications,
+//                 section: [
+//                     applications.graphicsEditor.adobePhotoshop,
+//                     applications.textEditor.VSCode,
+//                 ],
+//             },
+//         ],
+//     },
+// },
+// {
+    //     id: 11111,
+    //     data: {
+    //         title: "MoGo",
+    //         time: {
+    //             start: "Oct 2019",
+    //             end: "...",
+    //         },
+
+    //         typePage: typePage.landing,
+    //         link: "http:...",
+    //     },
+    //     description: {
+    //         title: "Summary", // "Крупная верстка 16 блоков",
+    //         descriptionList: [
+    //             {
+    //                 nameSection: nameSection.layout,
+    //                 section: [
+    //                     layoutTechnology.technology,
+    //                     layoutTechnology.media,
+    //                     layoutTechnology.BEM,
+    //                 ],
+    //             },
+    //             {
+    //                 nameSection: nameSection.pluginsLibraries,
+    //                 section: [
+    //                     pluginsLibraries.jquery.scroll,
+    //                     pluginsLibraries.jquery.accordion,
+    //                 ],
+    //             },
+    //             {
+    //                 nameSection: nameSection.applications,
+    //                 section: [applications.git, applications.textEditor.brackets],
+    //             },
+    //         ],
+    //     },
+    // },
+    // {
+    //     id: 222222,
+    //     data: {
+    //         title: "Anveshan",
+    //         time: {
+    //             start: "Nov 2022",
+    //             end: "...",
+    //         },
+    //         typePage: typePage.landing,
+    //         link: "http:...",
+    //     },
+    //     description: {
+    //         title: "Адаптивная верстка 7 блоков",
+
+    //         descriptionList: [
+    //             {
+    //                 nameSection: nameSection.layout,
+    //                 section: [
+    //                     layoutTechnology.technology,
+    //                     layoutTechnology.media,
+    //                     layoutTechnology.BEM,
+    //                     layoutTechnology.adaptiveImg,
+    //                 ],
+    //             },
+    //             {
+    //                 nameSection: nameSection.pluginsLibraries,
+    //                 section: [pluginsLibraries.jquery.scroll],
+    //             },
+    //             {
+    //                 nameSection: nameSection.applications,
+    //                 section: [
+    //                     applications.graphicsEditor.adobePhotoshop,
+    //                     applications.textEditor.sublimeText,
+    //                 ],
+    //             },
+    //         ],
+    //     },
+    // },
+
+        // {
+    //     id: 6666666666,
+    //     data: {
+    //         title: "WebDev",
+    //         time: {
+    //             start: "Mar 2020",
+    //             end: "...",
+    //         },
+    //         typePage: typePage.landing,
+    //         link: "http:...",
+    //     },
+    //     description: {
+    //         title: "Верстка c фреймворком Bootstrap 4",
+
+    //         descriptionList: [
+    //             {
+    //                 nameSection: nameSection.layout,
+    //                 section: [
+    //                     layoutTechnology.technology,
+    //                     layoutTechnology.skeleton.bootstrap,
+    //                 ],
+    //             },
+
+    //             {
+    //                 nameSection: nameSection.applications,
+    //                 section: [
+    //                     applications.graphicsEditor.adobePhotoshop,
+    //                     applications.textEditor.VSCode,
+    //                 ],
+    //             },
+    //         ],
+    //     },
+    // },
