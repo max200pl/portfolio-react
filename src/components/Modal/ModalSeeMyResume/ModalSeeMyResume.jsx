@@ -59,7 +59,7 @@ const ModalSeeMyResume = ({ isOpen, handleClose }) => {
                     fontWeight: 16,
                     filename: nameFile,
                     image: { type: 'jpeg', quality: 1 },
-                    html2canvas: { scale: 1 },
+                    html2canvas: { scale: 3 },
                     jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
                 },);
                 exporter.getPdf(true);

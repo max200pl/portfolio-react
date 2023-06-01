@@ -2,7 +2,7 @@ import { useState } from "react";
 import s from "./ResumeRowsSection.module.scss";
 
 const ResumeRowsSection = (props) => {
-    const { isPrinting } = props;
+    const { isPrinting, experience } = props;
     const [currentOpen, setCurrentOpen] = useState(undefined);
 
 
@@ -40,7 +40,12 @@ const ResumeRowsSection = (props) => {
                             <div
                                 openDescription={`${currentOpen === id}`}
                                 className={s.description}
-                                isprinting={isPrinting ? "true" : undefined}
+                                isPrintingExperience={`${isPrinting && experience}`}
+                                isprinting={
+                                    isPrinting
+                                        ? "true"
+                                        : undefined
+                                }
                                 onClick={() => toggleHandler(id)}
                             >
 

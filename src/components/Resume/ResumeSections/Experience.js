@@ -1,5 +1,8 @@
-import { applications, automation, feature, layoutTechnology, nameSection, pluginsLibraries, typePage } from "../../../data/data";
+import { applications, automation, layoutTechnology, nameSection, pluginsLibraries, typePage } from "../../../data/data";
 import ResumeRowsSection from "../ResumeRowsSection/ResumeRowsSection";
+
+const title = "Description project:"
+
 
 const resumeWorksData = [
 
@@ -15,7 +18,7 @@ const resumeWorksData = [
             link: "http:...",
         },
         description: {
-            title: "Верстка с модальными окнами и формой обратной связи",
+            title,
 
             descriptionList: [
                 {
@@ -56,7 +59,7 @@ const resumeWorksData = [
             link: "http:...",
         },
         description: {
-            title: "Верстка 8 блоков с слайдерами",
+            title,
 
             descriptionList: [
                 {
@@ -102,7 +105,7 @@ const resumeWorksData = [
             link: "http:...",
         },
         description: {
-            title: "Магазин товаров native JS",
+            title,
 
             descriptionList: [
                 {
@@ -131,47 +134,7 @@ const resumeWorksData = [
         },
     },
 
-    {
-        id: 7777777,
-        data: {
-            title: "PantoFlex",
-            time: {
-                start: "Apr 2020",
-                end: "...",
-            },
-            typePage: typePage.landing,
-            link: "http:...",
-        },
-        description: {
-            title: "Верстка под заказчика",
 
-            descriptionList: [
-                {
-                    nameSection: nameSection.layout,
-                    section: [
-                        layoutTechnology.technology,
-                        layoutTechnology.media,
-                        layoutTechnology.mediaVariable,
-                        layoutTechnology.CSSPreprocessors.scssVariables,
-                        layoutTechnology.BEM,
-                        layoutTechnology.adaptiveImg,
-                        layoutTechnology.skeleton.flexBoxCalc,
-                    ],
-                },
-                {
-                    nameSection: nameSection.pluginsLibraries,
-                    section: [automation.gulpScssStarter],
-                },
-                {
-                    nameSection: nameSection.applications,
-                    section: [
-                        applications.graphicsEditor.adobeXD,
-                        applications.textEditor.VSCode,
-                    ],
-                },
-            ],
-        },
-    },
 
     {
         id: 999999999,
@@ -185,7 +148,7 @@ const resumeWorksData = [
             link: "http:...",
         },
         description: {
-            title: "Фриланс работа на заказчика",
+            title,
             descriptionList: [
                 {
                     nameSection: nameSection.layout,
@@ -216,7 +179,7 @@ const resumeWorksData = [
 
 
 const Experience = (props) => (
-    <ResumeRowsSection data={resumeWorksData} isPrinting={props.isPrinting} />
+    <ResumeRowsSection data={resumeWorksData} isPrinting={props.isPrinting} experience={true} />
 );
 
 export default Experience;
@@ -361,6 +324,48 @@ export default Experience;
     //                 nameSection: nameSection.applications,
     //                 section: [
     //                     applications.graphicsEditor.adobePhotoshop,
+    //                     applications.textEditor.VSCode,
+    //                 ],
+    //             },
+    //         ],
+    //     },
+    // },
+
+    // {
+    //     id: 7777777,
+    //     data: {
+    //         title: "PantoFlex",
+    //         time: {
+    //             start: "Apr 2020",
+    //             end: "...",
+    //         },
+    //         typePage: typePage.landing,
+    //         link: "http:...",
+    //     },
+    //     description: {
+    //         title: "Верстка под заказчика",
+
+    //         descriptionList: [
+    //             {
+    //                 nameSection: nameSection.layout,
+    //                 section: [
+    //                     layoutTechnology.technology,
+    //                     layoutTechnology.media,
+    //                     layoutTechnology.mediaVariable,
+    //                     layoutTechnology.CSSPreprocessors.scssVariables,
+    //                     layoutTechnology.BEM,
+    //                     layoutTechnology.adaptiveImg,
+    //                     layoutTechnology.skeleton.flexBoxCalc,
+    //                 ],
+    //             },
+    //             {
+    //                 nameSection: nameSection.pluginsLibraries,
+    //                 section: [automation.gulpScssStarter],
+    //             },
+    //             {
+    //                 nameSection: nameSection.applications,
+    //                 section: [
+    //                     applications.graphicsEditor.adobeXD,
     //                     applications.textEditor.VSCode,
     //                 ],
     //             },

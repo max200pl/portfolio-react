@@ -20,15 +20,20 @@ const Resume = React.forwardRef((props, ref) => {
             <div className={s.resume_header}>
                 <img className={s.resume_header__img} src={Avatar} alt="" />
                 <div className={s.resume_header__text}>
-                    <div className={s.resume_header__title}>Maksym Poskannyi</div>
-                    <div className={s.resume_header__subtitle}>
-                        <h2>Frontend Developer</h2>
+                    <div className={s.resume_header__title}>
+                        Maksym Poskannyi
+                        {!isPrinting && <span> - Frontend Developer</span>}
                     </div>
-                    {/*     <div className={s.resume_header__subtitle}>
-                        <p>An engineer who is constantly evolving.
-                            I love creating new stuff and I love my job.</p>
-                        <p>  I have over fifteen completed web projects, two desktop projects for Windows OS and the Arduino projects as well.</p>
-                    </div> */}
+
+                    <div className={s.resume_header__subtitle}>
+                        <p>An engineer who is constantly evolving. I love creating new stuff and I love my job.
+                            {!isPrinting &&
+                                <span>
+                                    I have over fifteen completed web projects, two desktop projects for Windows OS and the Arduino projects as well.
+                                </span>}
+                        </p>
+                    </div>
+
                 </div>
                 <div className={s.resume_header__info}>
                     <div className={s.resume_header__email}>
@@ -56,9 +61,11 @@ const Resume = React.forwardRef((props, ref) => {
                         <h1 className={`${s.resume__title_section}`}>Languages</h1>
                         <LanguagesSkills />
                         <h1 className={s.resume__title_section}>Soft Skills</h1>
-                        <SoftSkills />
+                        <SoftSkills isPrinting={isPrinting} />
                     </section>
                 </div>
+
+                <div className={s.page_break} isPrinting={isPrinting.toString()}></div>
 
                 <section className={s.resume__section}>
                     <div className={s.resume__section__title}>
@@ -79,10 +86,8 @@ const Resume = React.forwardRef((props, ref) => {
                         <h1 className={`${s.resume__title_section} ${s.resume__title_section_border}`}>My Works</h1>
                         <div className={`${s.resume__title_section}`}></div>
                     </div>
-
                     <Experience isPrinting={isPrinting} />
                 </section>
-
             </div>
         </div >
     )

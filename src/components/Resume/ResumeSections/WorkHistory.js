@@ -15,14 +15,10 @@ const dataWorkHistory = [
         description: {
             title: "My responsibilities:",
             descriptionList: [
-                "Implemented / customized new features for desktop apps.",
-                "Made markup pages for a website.",
-                "Developed highly-responsive pixel-perfect user interface components.",
+                "Implemented features for desktop apps.",
+                "Developed highly-responsive pixel-perfect user interface.",
                 "Mentoring new employers.",
-                "Refactoring existing code.",
                 "Participate in the architecture of new projects.",
-                "Coordinated with the development team to discuss user interface ideas and applications.",
-                "Fixed bugs and supported projects.",
             ],
         },
     },
@@ -41,13 +37,8 @@ const dataWorkHistory = [
         description: {
             title: "My responsibilities:",
             descriptionList: [
-                "Cross - browser layout with templates (Figma)",
-                "Implementation of responsive sliders (native js/@media)",
-                "Application of BEM methodology",
                 "Turning a PSD template into code (HTML/CSS/SASS)",
                 "Integration of layout pages into project (ExpressJS/NodeJS)",
-                " Sliders in pure js",
-                "Form submission (fetch, axios)",
             ],
         },
     },
@@ -55,7 +46,7 @@ const dataWorkHistory = [
         id: 3333,
         data: {
             title: "Spanch web-studio",
-            subtitle: "Junior HTML developer",
+            subtitle: "Markup developer",
             time: {
                 start: "Feb 2020",
                 end: "July 2020",
@@ -66,10 +57,9 @@ const dataWorkHistory = [
         description: {
             title: "My responsibilities:",
             descriptionList: [
-                "Adaptation for different screen sizes (@media)",
-                "Turning a PSD template into code HTMLCSS",
+                "Turning a PSD template into markup layout",
                 "Integration of layout pages into project (Laravel/PHP)",
-                "Making edits to existing code (HTML/CSS)",
+                "Making edits to existing code",
             ],
         },
     },
