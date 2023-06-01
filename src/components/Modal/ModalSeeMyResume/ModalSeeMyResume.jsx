@@ -7,13 +7,16 @@ import exitImg from "../../../images/modal/exit.svg";
 import Resume from "../../Resume/Resume";
 import { useEffect, useRef, useState } from "react";
 import { useReactToPrint } from "react-to-print";
-import Html2Pdf from 'js-html2pdf';
+import Html2Pdf from "js-html2pdf";
 import ModalSeeMyResumeActionBar from "./ModalSeeMyResumeActionBar";
+import Modal from "../Modal";
+import ModalHireMe from "../ModalHireMe/ModalHireMe";
 
-const nameFile = "Maksym_Poskannyi_Frontend_Developer_Resume"
+const nameFile = "Maksym_Poskannyi_Frontend_Developer_Resume";
 
 const ModalSeeMyResume = ({ isOpen, handleClose }) => {
     const [isPrinting, setIsPrinting] = useState(false);
+    const [isOpenHireMeModal, setIsOpenHireMeModal] = useState(false);
 
     const componentRef = useRef();
     const promiseResolveRef = useRef(null);
@@ -23,7 +26,6 @@ const ModalSeeMyResume = ({ isOpen, handleClose }) => {
             promiseResolveRef.current();
         }
     }, [isPrinting]);
-
 
     const handlePrint = useReactToPrint({
         content: () => componentRef.current,
@@ -35,10 +37,10 @@ const ModalSeeMyResume = ({ isOpen, handleClose }) => {
             });
         },
         onAfterPrint: () => {
-            promiseResolveRef.current = null
-            setIsPrinting(false)
-        }
-    })
+            promiseResolveRef.current = null;
+            setIsPrinting(false);
+        },
+    });
 
     const handleSavePDF = useReactToPrint({
         content: () => componentRef.current,
@@ -58,18 +60,18 @@ const ModalSeeMyResume = ({ isOpen, handleClose }) => {
                     margin: 0,
                     fontWeight: 16,
                     filename: nameFile,
-                    image: { type: 'jpeg', quality: 1 },
+                    image: { type: "jpeg", quality: 1 },
                     html2canvas: { scale: 3 },
-                    jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
-                },);
+                    jsPDF: { unit: "in", format: "letter", orientation: "portrait" },
+                });
                 exporter.getPdf(true);
             }
         },
         onAfterPrint: () => {
-            promiseResolveRef.current = null
-            setIsPrinting(false)
-        }
-    })
+            promiseResolveRef.current = null;
+            setIsPrinting(false);
+        },
+    });
 
     return (
         <div className={s.modal__dialog}>
@@ -77,8 +79,23 @@ const ModalSeeMyResume = ({ isOpen, handleClose }) => {
                 <button className={s.modal__close} onClick={handleClose} type="button">
                     <img className={s.modal__close_image} src={exitImg} alt="Close" />
                 </button>
-                <ModalSeeMyResumeActionBar isPrinting={isPrinting} handlePrint={() => handlePrint()} handleSavePDF={() => handleSavePDF()} />
+                <ModalSeeMyResumeActionBar
+                    isPrinting={isPrinting}
+                    handlePrint={() => handlePrint()}
+                    handleSavePDF={() => handleSavePDF()}
+                    openHireMeModal={() => setIsOpenHireMeModal(true)}
+                />
                 <Resume ref={componentRef} isPrinting={isPrinting} />
+
+                <Modal
+                    handleClose={() => setIsOpenHireMeModal(false)}
+                    isOpen={isOpenHireMeModal}
+                >
+                    <ModalHireMe
+                        handleClose={() => setIsOpenHireMeModal(false)}
+                        isOpen={isOpenHireMeModal}
+                    />
+                </Modal>
             </div>
         </div>
     );
