@@ -18,10 +18,10 @@ export const technologies = {
 export const softSkills = [
     {
         "Communication skills:": [
-            { "Giving and receiving constructive feedback": 100 },
-            { "Friendliness": 100 },
-            { "Storytelling": 100 },
-            { "Mutual respect": 100 },
+            { "Giving and receiving constructive feedback": 94 },
+            { "Friendliness": 98 },
+            { "Storytelling": 80 },
+            { "Mutual respect": 90 },
             { "Public speaking": 70 },
         ],
     },
