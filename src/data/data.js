@@ -38,70 +38,67 @@ export const precentHardSkillsTechnologies = {
     jQuery: 70,
     Bootstrap: 60,
 }
-
 export const layoutTechnology = {
-    media: "Адаптивная верстка (Media Queries)",
-    mediaVariable: "Реализована новая структура переменных медиа запросов (Variable Media Queries)",
+    media: "Responsive Design (Media Queries)",
+    mediaVariable: "Implemented Variable Media Queries for flexible responsiveness",
     skeleton: {
-        flexBoxCalc: "Реализована адоптивная Flex-box сетка (calc())",
-        bootstrap: "Реализована адоптивная bootstrap сетка (4.4.1)",
+        flexBoxCalc: "Implemented Adaptive Flex-box Grid using calc()",
+        bootstrap: "Utilized Adaptive Bootstrap Grid (version 4.4.1)",
     },
-    technology: "Flex-box верстка (HTML 5, CSS 3)",
-    BEM: "Реализовано разделение интерфейса на независимые блоки (БЭМ)",
-    W3C: "Валидная верстка по спецификациям W3C",
+    technology: "Advanced Flex-box Layout (HTML5, CSS3)",
+    BEM: "Utilized Block Element Modifier (BEM) methodology for modular and reusable code",
+    W3C: "Valid Markup according to W3C Specifications",
     modalWindow: {
-        jquery: "Реализовано открытие модальных окна (Jquery)",
+        jquery: "Implemented Modal Window functionality using jQuery",
     },
-    adaptiveImg: "Адоптация изображений",
+    adaptiveImg: "Image Adaptation for optimal display across devices",
     CSSPreprocessors: {
-        less: "Верстка с препроцессором (less)",
-        scss: "Верстка с препроцессором (SCSS)",
-        scssVariables: "Реализована структура цветов (variable Sass)",
+        less: "Utilized Less preprocessor for streamlined CSS development",
+        scss: "Utilized SCSS preprocessor for enhanced CSS features and organization",
+        scssVariables: "Implemented structured color palette using Sass variables",
     },
 };
 
 export const automation = {
-    gulp: "Применение таск-менеджера (Gulp 4)",
-    gulpScssStarter: "Применение сборщика gulp-scss-starter (babelrc, bemrc, eslintrc, stylelintrc, webpack)",
+    gulp: "Utilized Gulp 4 as a task runner for automated workflows",
+    gulpScssStarter: "Configured and utilized gulp-scss-starter build system (babelrc, bemrc, eslintrc, stylelintrc, webpack)",
 };
 
 export const nameSection = {
-    layout: "Верстка:",
-    pluginsLibraries: "Плагины и библиотеки:",
-    applications: "Утилиты и приложения:",
-    features: "Реализованный функциональность:",
+    layout: "Layout:",
+    pluginsLibraries: "Libraries & Plugins:",
+    applications: "Applications & Utilities:",
+    features: "Implemented Features:",
 };
 
 export const pluginsLibraries = {
     jquery: {
-        scroll:
-            "Реализован плавный скролл по якорям на странице с фиксированной шапкой (Jquery)",
-        accordion: "Реализован \"аккордеон\" посредством data- атрибутов (Jquery)",
-        slickSlider: "Реализованы слайдеры  (Jquery-Slick-Slider)",
-        validateForm:
-            "Реализована валидация формы обратной связи (jquery-validate)",
+        scroll: "Implemented Smooth Scrolling to Anchor Points with fixed header using jQuery",
+        accordion: "Implemented Accordion functionality using data attributes (jQuery)",
+        slickSlider: "Utilized jQuery-Slick-Slider for creating responsive sliders",
+        validateForm: "Implemented Form Validation for enhanced user feedback using jquery-validate",
     },
     bundlers: {
-        parcel: "Использовался сборщик приложения (Parcel)",
+        parcel: "Utilized Parcel as an efficient application bundler",
     },
-    axios: "Реализовано получение данных при помощи библиотеки (Axios.js)",
+    axios: "Utilized Axios.js library for simplified data retrieval",
 };
 
 export const feature = {
-    feedback: "Реализована обратная связь через почту (Ajax, PHP)",
-    GoogleMapsAPI: "Реализована установка маркера на карте (Google Maps API) ",
+    feedback: "Implemented Feedback Form with server-side functionality for effective user communication (Ajax, PHP)",
+    GoogleMapsAPI: "Integrated Google Maps API for interactive map with marker placement",
 };
 
 export const applications = {
-    git: "Применение распределённой системы управления версиями (Git)",
+    git: "Utilized Git for distributed version control and collaboration",
     textEditor: {
-        brackets: "Применение текстового редактора (Brackets)",
-        sublimeText: "Применение текстового редактора (Sublime Text 3)",
-        VSCode: "Применение текстового редактора (Visual Studio Code)",
+        brackets: "Utilized Brackets as a lightweight text editor",
+        sublimeText: "Utilized Sublime Text 3 as a versatile text editor",
+        VSCode: "Utilized Visual Studio Code (VSCode) as a powerful text editor",
     },
     graphicsEditor: {
-        adobePhotoshop: "Работа с макетом через AdobePhotoshop (Desktop-First)",
-        adobeXD: "Применение графического редактора AdobeXD (Desktop-First)",
+        adobePhotoshop: "Utilized Adobe Photoshop for design layouts and image editing (Desktop-First approach)",
+        adobeXD: "Utilized Adobe XD for designing and prototyping user interfaces (Desktop-First approach)",
     },
 };
 

@@ -27,7 +27,9 @@ const ResumeRowsSection = (props) => {
 
                                 <div className={s.data__time}>
                                     <span className={s.data__startDate}>{data.time.start}</span>
-                                    <span className={s.data__endDate}>{data.time.end}</span>
+                                    {data.time.end &&
+                                        <span className={s.data__endDate}>{data.time.end}</span>
+                                    }
                                     {data.time.full && (
                                         <span className={s.data__fulDate}>({data.time.full})</span>
                                     )}
