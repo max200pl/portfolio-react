@@ -5,6 +5,8 @@
     position: relative;
 
     &__footer {
+        display: flex;
+        justify-content: center;
         position: fixed;
         bottom: 30px;
         left: 0;
@@ -88,10 +90,11 @@
 }
 
 .next_button {
-    display: flex;
-    justify-content: center;
+    cursor: pointer;
+    margin: auto;
 }
 
 .next_button__icon {
+    height: 80px;
     max-width: 80px;
 }
