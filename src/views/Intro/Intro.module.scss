@@ -28,10 +28,10 @@
 }
 
 .content {
-    flex-basis: 50%;
+
 
     @include xs-mb {
-        flex-basis: 100%;
+        flex-basis: 80%;
     }
 }
 
@@ -54,12 +54,14 @@
     font-size: 2.13rem;
     font-weight: 200;
     color: $color-white;
+    margin-bottom: 5px;
 }
 
 .title {
     font-size: 3rem;
     font-weight: 700;
     margin-bottom: 5px;
+    margin-top: 10px;
 
     @include xs-mb {
         font-size: 1.8rem;

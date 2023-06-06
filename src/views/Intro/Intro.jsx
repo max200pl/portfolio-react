@@ -53,9 +53,9 @@ const Intro = () => {
             <div className="container">
                 <div className={s.inner}>
                     <div className={s.content}>
-                        <h2 className={s.subtitle}>Hello i'm</h2>
-                        <h1 className={s.title}>Poskannyi Maksym</h1>
-                        <div className={s.text}>Frontend Developer</div>
+                        <h2 className={s.subtitle}>I'm Maksym</h2>
+                        <h1 className={s.title}>Frontend Developer </h1>
+                        <div className={s.text}></div>
                         <div className={s.social}>
                             <SocialLinks dataSocialLinks={dataSocialLinks} />
                         </div>
