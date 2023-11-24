@@ -14,7 +14,6 @@ const uiSlice = createSlice({
             state.requestLoading = action.payload.loading;
         }
     }
-
 })
 
 export default uiSlice;
