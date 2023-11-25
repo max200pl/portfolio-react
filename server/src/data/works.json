@@ -1,0 +1,250 @@
+{
+    "works": [
+        {
+            "categoryWork": "website",
+            "clientName": "Maksym Poskanniy",
+            "endWorkTime": "2020",
+            "img": "portfolio.png",
+            "useTechnology": [
+                {
+                    "applyTech": 70,
+                    "nameTech": "JavaScript"
+                },
+                {
+                    "applyTech": 100,
+                    "nameTech": "Html 5"
+                },
+                {
+                    "applyTech": 100,
+                    "nameTech": "SASS"
+                },
+                {
+                    "applyTech": 60,
+                    "nameTech": "Flexbox"
+                },
+                {
+                    "applyTech": 100,
+                    "nameTech": "Media Queries"
+                },
+                {
+                    "applyTech": 100,
+                    "nameTech": "BEM methodology"
+                },
+                {
+                    "applyTech": 60,
+                    "nameTech": "Gulp 4"
+                },
+                {
+                    "applyTech": 60,
+                    "nameTech": "Git"
+                }
+            ],
+            "workName": "Portfolio"
+        },
+        {
+            "categoryWork": "landing",
+            "clientName": "Creative Agency",
+            "endWorkTime": "2019",
+            "img": "mo-go.png",
+            "useTechnology": [
+                {
+                    "applyTech": 10,
+                    "nameTech": "JavaScript"
+                },
+                {
+                    "applyTech": 10,
+                    "nameTech": "Html 5"
+                },
+                {
+                    "applyTech": 30,
+                    "nameTech": "SASS"
+                },
+                {
+                    "applyTech": 40,
+                    "nameTech": "Flexbox"
+                },
+                {
+                    "applyTech": 10,
+                    "nameTech": "Media Queries"
+                },
+                {
+                    "applyTech": 50,
+                    "nameTech": "BEM methodology"
+                },
+                {
+                    "applyTech": 60,
+                    "nameTech": "Gulp 4"
+                },
+                {
+                    "applyTech": 30,
+                    "nameTech": "Git"
+                }
+            ],
+            "workName": "MoGo"
+        },
+        {
+            "categoryWork": "landing",
+            "clientName": "Creative Agency",
+            "endWorkTime": "2019",
+            "img": "power.png",
+            "useTechnology": [
+                {
+                    "applyTech": 10,
+                    "nameTech": "JavaScript"
+                },
+                {
+                    "applyTech": 10,
+                    "nameTech": "Html 5"
+                },
+                {
+                    "applyTech": 30,
+                    "nameTech": "SASS"
+                },
+                {
+                    "applyTech": 40,
+                    "nameTech": "Flexbox"
+                },
+                {
+                    "applyTech": 10,
+                    "nameTech": "Media Queries"
+                },
+                {
+                    "applyTech": 50,
+                    "nameTech": "BEM methodology"
+                },
+                {
+                    "applyTech": 60,
+                    "nameTech": "Gulp 4"
+                },
+                {
+                    "applyTech": 30,
+                    "nameTech": "Git"
+                }
+            ],
+            "workName": "Power"
+        },
+        {
+            "categoryWork": "landing",
+            "clientName": "Creative Agency",
+            "endWorkTime": "2019",
+            "img": "anveshan.png",
+            "useTechnology": [
+                {
+                    "applyTech": 10,
+                    "nameTech": "JavaScript"
+                },
+                {
+                    "applyTech": 10,
+                    "nameTech": "Html 5"
+                },
+                {
+                    "applyTech": 30,
+                    "nameTech": "SASS"
+                },
+                {
+                    "applyTech": 40,
+                    "nameTech": "Flexbox"
+                },
+                {
+                    "applyTech": 10,
+                    "nameTech": "Media Queries"
+                },
+                {
+                    "applyTech": 50,
+                    "nameTech": "BEM methodology"
+                },
+                {
+                    "applyTech": 60,
+                    "nameTech": "Gulp 4"
+                },
+                {
+                    "applyTech": 30,
+                    "nameTech": "Git"
+                }
+            ],
+            "workName": "Anveshan"
+        },
+        {
+            "categoryWork": "landing",
+            "clientName": "Test work",
+            "endWorkTime": "2019",
+            "img": "pantoflex.png",
+            "useTechnology": [
+                {
+                    "applyTech": 10,
+                    "nameTech": "JavaScript"
+                },
+                {
+                    "applyTech": 10,
+                    "nameTech": "Html 5"
+                },
+                {
+                    "applyTech": 30,
+                    "nameTech": "SASS"
+                },
+                {
+                    "applyTech": 40,
+                    "nameTech": "Flexbox"
+                },
+                {
+                    "applyTech": 10,
+                    "nameTech": "Media Queries"
+                },
+                {
+                    "applyTech": 50,
+                    "nameTech": "BEM methodology"
+                },
+                {
+                    "applyTech": 60,
+                    "nameTech": "Gulp 4"
+                },
+                {
+                    "applyTech": 30,
+                    "nameTech": "Git"
+                }
+            ],
+            "workName": "Pantoflex"
+        },
+        {
+            "categoryWork": "website",
+            "clientName": "FreeLance",
+            "endWorkTime": "2019",
+            "img": "eng-platform.png",
+            "useTechnology": [
+                {
+                    "applyTech": 10,
+                    "nameTech": "JavaScript"
+                },
+                {
+                    "applyTech": 10,
+                    "nameTech": "Html 5"
+                },
+                {
+                    "applyTech": 30,
+                    "nameTech": "SASS"
+                },
+                {
+                    "applyTech": 40,
+                    "nameTech": "Flexbox"
+                },
+                {
+                    "applyTech": 10,
+                    "nameTech": "Media Queries"
+                },
+                {
+                    "applyTech": 50,
+                    "nameTech": "BEM methodology"
+                },
+                {
+                    "applyTech": 60,
+                    "nameTech": "Gulp 4"
+                },
+                {
+                    "applyTech": 30,
+                    "nameTech": "Git"
+                }
+            ],
+            "workName": "engPlatform"
+        }
+    ]
+}
