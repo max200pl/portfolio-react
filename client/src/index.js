@@ -9,16 +9,24 @@ import { BrowserRouter } from "react-router-dom";
 import store from './redux/redux-store';
 import StoreContext from './storeContext';
 import { createRoot } from 'react-dom/client';
-import { Provider } from 'react-redux';
+
+import {
+    QueryClientProvider,
+} from '@tanstack/react-query'
+
+
 const container = document.getElementById('root');
 const root = createRoot(container); // createRoot(container!) if you use TypeScript
+
+
+
 root.render(
     <React.Fragment>
         <BrowserRouter basename={process.env.PUBLIC_URL}>
             <StoreContext.Provider value={store}>
-                <Provider store={store}>
-                    <App />
-                </Provider>
+
+                <App />
+
             </StoreContext.Provider>
         </BrowserRouter>
     </React.Fragment>
