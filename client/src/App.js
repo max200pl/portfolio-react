@@ -6,7 +6,7 @@ import LogIn from './views/LogIn/LogIn';
 import Header from './views/Header/Header';
 import Intro from './views/Intro/Intro';
 import NotFoundPage from './views/NotFoundPage/NotFoundPage';
-import Portfolio from './views/Portfolio/Portfolio';
+import Works from './views/Works/Works';
 import AuthContext from './store/auth-context';
 
 const App = props => {
@@ -39,7 +39,7 @@ const App = props => {
             <Header />
             <Routes>
                 <Route path="/" element={<Intro />} />
-                <Route path="/portfolio" element={<Portfolio />} />
+                <Route path="/portfolio" element={<Works />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/form" element={<LogIn onLogin={loginHandler} onLogout={logoutHandler} />} />
                 <Route path="*" element={<NotFoundPage />} />

@@ -3,31 +3,30 @@ import './index.scss';
 import './design-tokens/_variables.scss'
 import './design-tokens/_helpers.scss'
 import './design-tokens/_breakpoints.scss'
-import App from './App';
+
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from "react-router-dom";
-import store from './redux/redux-store';
-import StoreContext from './storeContext';
 import { createRoot } from 'react-dom/client';
-
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import {
+    QueryClient,
     QueryClientProvider,
 } from '@tanstack/react-query'
+import App from './App';
 
 
 const container = document.getElementById('root');
 const root = createRoot(container); // createRoot(container!) if you use TypeScript
 
-
+const queryClient = new QueryClient()
 
 root.render(
     <React.Fragment>
         <BrowserRouter basename={process.env.PUBLIC_URL}>
-            <StoreContext.Provider value={store}>
-
+            <QueryClientProvider client={queryClient}>
                 <App />
-
-            </StoreContext.Provider>
+                <ReactQueryDevtools initialIsOpen={false} />
+            </QueryClientProvider>
         </BrowserRouter>
     </React.Fragment>
 );

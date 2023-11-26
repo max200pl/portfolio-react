@@ -1,20 +1,19 @@
 import React from "react";
 import Work from "./Work/Work";
 import data from "../../data.json";
-import Fade from "react-reveal/Fade";
-import s from "./Portfolio.module.scss";
+import { Fade } from "react-awesome-reveal";
+import s from "./Works.module.scss";
 import FilterWorks from "./FilterWorks/FilterWorks";
-import ModalWork from "./ModalWork/ModalWork";
+import WorkModal from "./WorkModal/WorkModal";
+
 class Portfolio extends React.Component {
-    constructor() {
-        super();
-        this.state = {
-            works: data.works,
-            photoWorks: data.photoWorks,
-            workItem: null,
-            workPhotos: null,
-        };
-    }
+
+    state = {
+        works: data.works,
+        photoWorks: data.photoWorks,
+        workItem: null,
+        workPhotos: null,
+    };
 
     filterWork = (event) => {
         if (event.target.dataset.filter === "all") {
@@ -45,8 +44,8 @@ class Portfolio extends React.Component {
     closeModal = () => {
         this.setState({ workItem: null });
     };
+
     render() {
-        console.log(workItem);
         const { workItem } = this.state;
         return (
             <div className={s.portfolio} id="portfolio">
@@ -78,7 +77,7 @@ class Portfolio extends React.Component {
                         <button className="btn btn_sm">Load More Work</button>
                     </div>
                     {workItem && (
-                        <ModalWork
+                        <WorkModal
                             workItem={this.state.workItem}
                             closeModal={this.closeModal}
                             workPhotos={this.state.workPhotos}

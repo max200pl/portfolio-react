@@ -2,10 +2,10 @@ import React from "react";
 import Modal from "react-modal";
 import { Fade } from "react-awesome-reveal";
 import SliderWorks from "./SliderWorks/SliderWorks";
-import s from "./ModalWork.module.scss";
-import Skills from "./Skills/Skills";
+import s from "./WorkModal.module.scss";
+import Skills from "./Skils/Skills";
 
-export default function ModalWork(props) {
+export default function WorkModal(props) {
     return (
         <>
             <Modal
