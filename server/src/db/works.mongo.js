@@ -1,15 +1,15 @@
 const mongoose = require("mongoose");
 
 const workSchema = new mongoose.Schema({
-    categoryWork: {
+    category: {
         type: String,
         required: true,
     },
-    clientName: {
+    client: {
         type: String,
         required: true,
     },
-    endWorkTime: {
+    date: {
         type: Date,
         required: true,
     },
@@ -17,19 +17,19 @@ const workSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    useTechnology: {
+    name: {
+        required: true,
+        type: String
+    },
+    technology: {
         required: true,
         type: [
             {
-                applyTech: Number,
-                nameTech: String,
+                apply: Number,
+                name: String,
             }
         ]
     },
-    workName: {
-        required: true,
-        type: String
-    }
 })
 
 module.exports = mongoose.model("Works", workSchema);

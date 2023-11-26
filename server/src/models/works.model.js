@@ -6,7 +6,7 @@ async function saveWork(work) {
     try {
         // create or update work in DB
         await workSchema.updateOne(
-            { workName: work.workName }, // create
+            { name: work.name }, // create
             work, // update if it does in already exist
             {
                 upsert: true,
@@ -34,6 +34,16 @@ async function loadWorks() {
     }
 }
 
+async function getAllWorks() {
+    return await workSchema.find(
+        {},
+        { // which fields are included in the response
+            "_id": 0, "__v": 0, // exclude fields
+        }
+    )
+}
+
 module.exports = {
-    loadWorks
+    loadWorks,
+    getAllWorks
 }
