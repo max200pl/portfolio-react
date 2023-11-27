@@ -13,14 +13,13 @@ async function saveWork(work) {
             }
         )
 
-        console.log(work, "Work");
-        console.log('Work saved');
+        console.log('Work saved from local storage');
     } catch (err) {
         console.log(`Could not save work ${err}`);
     }
 }
 
-async function loadWorks() {
+async function setLocalWorksInDB() {
     try {
         const filePath = join(__dirname, "..", "data", "works.json");
         const data = await readFile(filePath);
@@ -31,6 +30,16 @@ async function loadWorks() {
         works.map((work) => saveWork(work))
     } catch (error) {
         console.error(error.message);
+    }
+}
+
+async function loadWorks() {
+    const isDbEmpty = (await getAllWorks()).length === 0;
+
+    if (!isDbEmpty) {
+        console.log("Works already loaded in DB");
+    } else {
+        await setLocalWorksInDB();
     }
 }
 
