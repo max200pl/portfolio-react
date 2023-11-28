@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import leftButtonSlide from "../../../../../images/modal-works-slider/left-arrow.svg";
-import rightButtonSlide from "../../../../../images/modal-works-slider/right-arrow.svg";
+import leftButtonSlide from "../../../../../images/modal/modal-works-slider/left-arrow.svg";
+import rightButtonSlide from "../../../../../images/modal/modal-works-slider/right-arrow.svg";
 const ButtonWrapper = styled.div`
 > * {
      &:last-child {
@@ -31,17 +31,16 @@ const Button = styled.button`
   }
 `;
 
-function ButtonsSlider({ changeSlide })
-{
-     return (
-          <ButtonWrapper>
-               <Button data-slide="prev" onClick={() => changeSlide("prev-slide")}>
-                    <img src={leftButtonSlide} alt="Button Slide" />
-               </Button>
-               <Button data-slide="next" onClick={() => changeSlide("next-slide")}>
-                    <img src={rightButtonSlide} alt="Button Slide" />
-               </Button>
-          </ButtonWrapper >
-     );
+function ButtonsSlider({ changeSlide }) {
+    return (
+        <ButtonWrapper>
+            <Button data-slide="prev" onClick={() => changeSlide("prev-slide")}>
+                <img src={leftButtonSlide} alt="Button Slide" />
+            </Button>
+            <Button data-slide="next" onClick={() => changeSlide("next-slide")}>
+                <img src={rightButtonSlide} alt="Button Slide" />
+            </Button>
+        </ButtonWrapper >
+    );
 }
 export default ButtonsSlider;

@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import Work from "./Work/Work";
-import data from "../../data.json";
+
 import { Fade } from "react-awesome-reveal";
 import s from "./Works.module.scss";
-import FilterWorks from "./FilterWorks/FilterWorks";
-import WorkModal from "./WorkModal/WorkModal";
+
 import { useWorks } from "./WorksAPI";
 
 
@@ -62,18 +61,11 @@ const Works = () => {
                         </div>
                         <Fade bottom cascade={true}>
                             <div className={s.portfolio__works}>
-                                {works?.map((work, id) => (
-                                    <div key={id} className={s.portfolio__col}>
-                                        <Work
-                                            name={work.name}
-                                            category={work.category}
-                                            date={work.date}
-                                            img={work.img}
-                                            key={id}
-                                        // openModal={openModal}
-                                        />
+                                {works?.map((work, id) => {
+                                    return <div key={id} className={s.portfolio__col}>
+                                        <Work {...work} />
                                     </div>
-                                ))}
+                                })}
                             </div>
                         </Fade>
 
