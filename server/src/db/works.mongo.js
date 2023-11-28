@@ -30,6 +30,16 @@ const workSchema = new mongoose.Schema({
             }
         ]
     },
+    cardImage: {
+        name: String,
+        blurHash: String
+    },
+    images: [
+        {
+            name: String,
+            blurHash: String
+        }
+    ]
 })
 
 module.exports = mongoose.model("Works", workSchema);

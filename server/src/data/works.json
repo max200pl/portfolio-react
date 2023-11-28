@@ -1,250 +1,429 @@
 {
-    "works": [
+  "works": [
+    {
+      "id": "portfolioOld",
+      "category": "website",
+      "client": "Maksym Poskanniy",
+      "date": "2020",
+      "name": "Portfolio",
+      "technology": [
         {
-            "category": "website",
-            "client": "Maksym Poskanniy",
-            "date": "2020",
-            "img": "portfolio.png",
-            "name": "Portfolio",
-            "technology": [
-                {
-                    "apply": 70,
-                    "name": "JavaScript"
-                },
-                {
-                    "apply": 100,
-                    "name": "Html 5"
-                },
-                {
-                    "apply": 100,
-                    "name": "SASS"
-                },
-                {
-                    "apply": 60,
-                    "name": "Flexbox"
-                },
-                {
-                    "apply": 100,
-                    "name": "Media Queries"
-                },
-                {
-                    "apply": 100,
-                    "name": "BEM methodology"
-                },
-                {
-                    "apply": 60,
-                    "name": "Gulp 4"
-                },
-                {
-                    "apply": 60,
-                    "name": "Git"
-                }
-            ]
+          "apply": 70,
+          "name": "JavaScript"
         },
         {
-            "category": "landing",
-            "client": "Creative Agency",
-            "date": "2019",
-            "img": "mo-go.png",
-            "name": "MoGo",
-            "technology": [
-                {
-                    "apply": 10,
-                    "name": "JavaScript"
-                },
-                {
-                    "apply": 10,
-                    "name": "Html 5"
-                },
-                {
-                    "apply": 30,
-                    "name": "SASS"
-                },
-                {
-                    "apply": 40,
-                    "name": "Flexbox"
-                },
-                {
-                    "apply": 10,
-                    "name": "Media Queries"
-                },
-                {
-                    "apply": 50,
-                    "name": "BEM methodology"
-                },
-                {
-                    "apply": 60,
-                    "name": "Gulp 4"
-                },
-                {
-                    "apply": 30,
-                    "name": "Git"
-                }
-            ]
+          "apply": 100,
+          "name": "Html 5"
         },
         {
-            "category": "landing",
-            "client": "Creative Agency",
-            "date": "2019",
-            "img": "power.png",
-            "name": "Power",
-            "technology": [
-                {
-                    "apply": 10,
-                    "name": "JavaScript"
-                },
-                {
-                    "apply": 10,
-                    "name": "Html 5"
-                },
-                {
-                    "apply": 30,
-                    "name": "SASS"
-                },
-                {
-                    "apply": 40,
-                    "name": "Flexbox"
-                },
-                {
-                    "apply": 10,
-                    "name": "Media Queries"
-                },
-                {
-                    "apply": 50,
-                    "name": "BEM methodology"
-                },
-                {
-                    "apply": 60,
-                    "name": "Gulp 4"
-                },
-                {
-                    "apply": 30,
-                    "name": "Git"
-                }
-            ]
+          "apply": 100,
+          "name": "SASS"
         },
         {
-            "category": "landing",
-            "client": "Creative Agency",
-            "date": "2019",
-            "img": "anveshan.png",
-            "name": "Anveshan",
-            "technology": [
-                {
-                    "apply": 10,
-                    "name": "JavaScript"
-                },
-                {
-                    "apply": 10,
-                    "name": "Html 5"
-                },
-                {
-                    "apply": 30,
-                    "name": "SASS"
-                },
-                {
-                    "apply": 40,
-                    "name": "Flexbox"
-                },
-                {
-                    "apply": 10,
-                    "name": "Media Queries"
-                },
-                {
-                    "apply": 50,
-                    "name": "BEM methodology"
-                },
-                {
-                    "apply": 60,
-                    "name": "Gulp 4"
-                },
-                {
-                    "apply": 30,
-                    "name": "Git"
-                }
-            ]
+          "apply": 60,
+          "name": "Flexbox"
         },
         {
-            "category": "landing",
-            "client": "Test work",
-            "date": "2019",
-            "img": "pantoflex.png",
-            "name": "Pantoflex",
-            "technology": [
-                {
-                    "apply": 10,
-                    "name": "JavaScript"
-                },
-                {
-                    "apply": 10,
-                    "name": "Html 5"
-                },
-                {
-                    "apply": 30,
-                    "name": "SASS"
-                },
-                {
-                    "apply": 40,
-                    "name": "Flexbox"
-                },
-                {
-                    "apply": 10,
-                    "name": "Media Queries"
-                },
-                {
-                    "apply": 50,
-                    "name": "BEM methodology"
-                },
-                {
-                    "apply": 60,
-                    "name": "Gulp 4"
-                },
-                {
-                    "apply": 30,
-                    "name": "Git"
-                }
-            ]
+          "apply": 100,
+          "name": "Media Queries"
         },
         {
-            "category": "website",
-            "client": "FreeLance",
-            "date": "2019",
-            "img": "eng-platform.png",
-            "name": "engPlatform",
-            "technology": [
-                {
-                    "apply": 10,
-                    "name": "JavaScript"
-                },
-                {
-                    "apply": 10,
-                    "name": "Html 5"
-                },
-                {
-                    "apply": 30,
-                    "name": "SASS"
-                },
-                {
-                    "apply": 40,
-                    "name": "Flexbox"
-                },
-                {
-                    "apply": 10,
-                    "name": "Media Queries"
-                },
-                {
-                    "apply": 50,
-                    "name": "BEM methodology"
-                },
-                {
-                    "apply": 60,
-                    "name": "Gulp 4"
-                },
-                {
-                    "apply": 30,
-                    "name": "Git"
-                }
-            ]
+          "apply": 100,
+          "name": "BEM methodology"
+        },
+        {
+          "apply": 60,
+          "name": "Gulp 4"
+        },
+        {
+          "apply": 60,
+          "name": "Git"
         }
-    ]
+      ],
+      "cardImage": {
+        "name": "portfolioOld/intro.png",
+        "blurHash": "UEIC]J2]8|%#.n8b?]rD-Bn$S1OY}sMx9vx^"
+      },
+      "images": [
+        {
+          "name": "portfolioOld/form.png",
+          "blurHash": "U46Q[3BV00|y{zO@7e*|R5sAtlODBorX;3Gt"
+        },
+        {
+          "name": "portfolioOld/resume.png",
+          "blurHash": "UJ5~39$+soX9h2bIayflLNK4W;oMlVkCfRbI"
+        }
+      ]
+    },
+    {
+      "id": "boostingWorld",
+      "category": "website",
+      "client": "TuraevCompany",
+      "date": "2020",
+      "name": "Portfolio",
+      "technology": [
+        {
+          "apply": 70,
+          "name": "JavaScript"
+        },
+        {
+          "apply": 100,
+          "name": "Html 5"
+        },
+        {
+          "apply": 100,
+          "name": "SASS"
+        },
+        {
+          "apply": 60,
+          "name": "Flexbox"
+        },
+        {
+          "apply": 100,
+          "name": "Media Queries"
+        },
+        {
+          "apply": 100,
+          "name": "BEM methodology"
+        },
+        {
+          "apply": 60,
+          "name": "Gulp 4"
+        },
+        {
+          "apply": 60,
+          "name": "Git"
+        }
+      ],
+      "cardImage": {
+        "name": "boostingWorld/intro.png",
+        "blurHash": "UQ7-X3xtR-kD-@t6WYj]x|oeWCoex{axRkoK"
+      },
+      "images": [
+        {
+          "name": "boostingWorld/1.png",
+          "blurHash": "U36@gg.4V[EJ.9TlN;R7?0=kR$I,6FR.R~xc"
+        },
+        {
+          "name": "boostingWorld/2.png",
+          "blurHash": "U55}IM?1XdTA%6%4otX3D}M^NEaPRXD~ImaP"
+        },
+        {
+          "name": "boostingWorld/3.png",
+          "blurHash": "UDSY?e?bj]_N~Wj[ayoznlt7bFNG_4ozjZae"
+        },
+        {
+          "name": "boostingWorld/4.png",
+          "blurHash": "UESF@W-=n,~X_3j[WVs:X9t7jYM{_3s:bFWB"
+        },
+        {
+          "name": "boostingWorld/5.png",
+          "blurHash": "UKQv%q~W^*-;?bWBR*WVt1RlWEWC?bj]fRj["
+        },
+        {
+          "name": "boostingWorld/6.png",
+          "blurHash": "UCRMb]?wM~?bEExrxbM|02--ayM|52ItIqt6"
+        },
+        {
+          "name": "boostingWorld/7.png",
+          "blurHash": "UcO|hltRj^%N~mWBWBof0CRkM}WC%Lt6oyoe"
+        }
+      ]
+    },
+    {
+      "id": "moGo",
+      "category": "landing",
+      "client": "Creative Agency",
+      "date": "2019",
+      "name": "MoGo",
+      "technology": [
+        {
+          "apply": 10,
+          "name": "JavaScript"
+        },
+        {
+          "apply": 10,
+          "name": "Html 5"
+        },
+        {
+          "apply": 30,
+          "name": "SASS"
+        },
+        {
+          "apply": 40,
+          "name": "Flexbox"
+        },
+        {
+          "apply": 10,
+          "name": "Media Queries"
+        },
+        {
+          "apply": 50,
+          "name": "BEM methodology"
+        },
+        {
+          "apply": 60,
+          "name": "Gulp 4"
+        },
+        {
+          "apply": 30,
+          "name": "Git"
+        }
+      ],
+      "cardImage": {
+        "name": "moGo/intro.png",
+        "blurHash": "U9Q@ng^jM{^i.zRQRjjJs;aekWWp}ZxatRoJ"
+      },
+      "images": [
+        {
+          "name": "moGo/desktop.png",
+          "blurHash": "UNRo:DD%M{-;}t-;xujbvMxut7aeQSIUM{oe"
+        },
+        {
+          "name": "moGo/mb.png",
+          "blurHash": "UWQJQ7%M.8?b^kofWCofL~sCn$jF~Cs:Mxae"
+        },
+        {
+          "name": "moGo/tab.png",
+          "blurHash": "UTNI$]?ao}r?_+R6ogWA^kOqenxb.-+^RPtR"
+        }
+      ]
+    },
+    {
+      "id": "power",
+      "category": "landing",
+      "client": "Creative Agency",
+      "date": "2019",
+      "name": "Power",
+      "technology": [
+        {
+          "apply": 10,
+          "name": "JavaScript"
+        },
+        {
+          "apply": 10,
+          "name": "Html 5"
+        },
+        {
+          "apply": 30,
+          "name": "SASS"
+        },
+        {
+          "apply": 40,
+          "name": "Flexbox"
+        },
+        {
+          "apply": 10,
+          "name": "Media Queries"
+        },
+        {
+          "apply": 50,
+          "name": "BEM methodology"
+        },
+        {
+          "apply": 60,
+          "name": "Gulp 4"
+        },
+        {
+          "apply": 30,
+          "name": "Git"
+        }
+      ],
+      "cardImage": {
+        "name": "power/intro.png",
+        "blurHash": "U$Pj7D~qIUV@xaWBV@of-;M{j[ozxat6aeWB"
+      },
+      "images": [
+        {
+          "name": "power/1.png",
+          "blurHash": "UNOg4*Wsn,%Mo2R+8_V@.8%1~qt7Mys:%Mof"
+        },
+        {
+          "name": "power/2.png",
+          "blurHash": "UgOMss%Mxu%M?^RjV?V@m,WCRjbH00fkt7oL"
+        },
+        {
+          "name": "power/3.png",
+          "blurHash": "UBRfh3_3R6~q00IVr?oe00NGsoRj4TbIxFRj"
+        },
+        {
+          "name": "power/present.jpg",
+          "blurHash": "UFO|X_~q?uM{00ofNGRjt7IUM{-;%MWA-;t7"
+        },
+        {
+          "name": "power/tab.png",
+          "blurHash": "UESiNz^+.S~q.mRjmRso^kaKMxs:}uaKX8t7"
+        }
+      ]
+    },
+    {
+      "id": "anveshan",
+      "category": "landing",
+      "client": "Creative Agency",
+      "date": "2019",
+      "name": "Anveshan",
+      "technology": [
+        {
+          "apply": 10,
+          "name": "JavaScript"
+        },
+        {
+          "apply": 10,
+          "name": "Html 5"
+        },
+        {
+          "apply": 30,
+          "name": "SASS"
+        },
+        {
+          "apply": 40,
+          "name": "Flexbox"
+        },
+        {
+          "apply": 10,
+          "name": "Media Queries"
+        },
+        {
+          "apply": 50,
+          "name": "BEM methodology"
+        },
+        {
+          "apply": 60,
+          "name": "Gulp 4"
+        },
+        {
+          "apply": 30,
+          "name": "Git"
+        }
+      ],
+      "cardImage": {
+        "name": "anveshan/intro.png",
+        "blurHash": "U17l~Y}_xd=%xB9q9qNE0v$-=zWT0dxI}]$,"
+      },
+      "images": [
+        {
+          "name": "anveshan/main.png",
+          "blurHash": "UaQc-l%2}@x^=#f*J7n$Q:bHNbae9aaL-BkC"
+        },
+        {
+          "name": "anveshan/present.jpg",
+          "blurHash": "UaNTn4-;_NR*01ozt7V@.8M{D%xu-;V@Rjg3"
+        },
+        {
+          "name": "anveshan/tab.png",
+          "blurHash": "ULRCMc?^tl?b00X-OsRj00XSS2V@FyeoivaK"
+        }
+      ]
+    },
+    {
+      "id": "pantoFlex",
+      "category": "landing",
+      "client": "Test work",
+      "date": "2019",
+      "name": "Pantoflex",
+      "technology": [
+        {
+          "apply": 10,
+          "name": "JavaScript"
+        },
+        {
+          "apply": 10,
+          "name": "Html 5"
+        },
+        {
+          "apply": 30,
+          "name": "SASS"
+        },
+        {
+          "apply": 40,
+          "name": "Flexbox"
+        },
+        {
+          "apply": 10,
+          "name": "Media Queries"
+        },
+        {
+          "apply": 50,
+          "name": "BEM methodology"
+        },
+        {
+          "apply": 60,
+          "name": "Gulp 4"
+        },
+        {
+          "apply": 30,
+          "name": "Git"
+        }
+      ],
+      "cardImage": {
+        "name": "pantoFlex/intro.png",
+        "blurHash": "URQ,OA-;~qxa%Mj[R+M{?GR-IoRjx]t7%Moe"
+      },
+      "images": [
+        {
+          "name": "pantoFlex/1.png",
+          "blurHash": "UeRV^K~qD%-p%2WBt7V@%MMxxuWC%MWCofs:"
+        },
+        {
+          "name": "pantoFlex/2.png",
+          "blurHash": "UJQ,K}tQI;SiyG_4ni9F0KxUtRIr-=xus,M{"
+        }
+      ]
+    },
+    {
+      "id": "engPlatform",
+      "category": "website",
+      "client": "FreeLance",
+      "date": "2019",
+      "name": "English Platform",
+      "technology": [
+        {
+          "apply": 10,
+          "name": "JavaScript"
+        },
+        {
+          "apply": 10,
+          "name": "Html 5"
+        },
+        {
+          "apply": 30,
+          "name": "SASS"
+        },
+        {
+          "apply": 40,
+          "name": "Flexbox"
+        },
+        {
+          "apply": 10,
+          "name": "Media Queries"
+        },
+        {
+          "apply": 50,
+          "name": "BEM methodology"
+        },
+        {
+          "apply": 60,
+          "name": "Gulp 4"
+        },
+        {
+          "apply": 30,
+          "name": "Git"
+        }
+      ],
+      "cardImage": {
+        "name": "engPlatform/intro.png",
+        "blurHash": "UCSs4~_2_3~q~qofRjWBIUayt7of_3j[t7of"
+      },
+      "images": [
+        {
+          "name": "engPlatform/1.png",
+          "blurHash": "UGSs86?b_2?b?boft7WBt7ayRjof~qaeM{t7"
+        },
+        {
+          "name": "engPlatform/2.png",
+          "blurHash": "UES$ot?b_3_3?bofxuWBaya|j@fQ~qayRjt7"
+        }
+      ]
+    }
+  ]
 }
