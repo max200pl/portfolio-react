@@ -29,11 +29,11 @@ export const addToLocalStorageObj = function (name, key, value) {
 };
 
 /**
- * Get object from localStorage() 
+ * Get object from localStorage()
  * @param {String} name  The localStorage() key
  * @param {String} key   The localStorage() value object key
  * @param {String} value The localStorage() value object value
- * @return {Object} 
+ * @return {Object}
  */
 export const getFromLocalStorageObj = function (name, key, value = undefined) {
     // Get the existing data
@@ -47,3 +47,11 @@ export const getFromLocalStorageObj = function (name, key, value = undefined) {
         return "";
     }
 };
+
+export const getImageName = (str) => {
+    return str.slice(str.indexOf("/") + 1)
+}
+
+export const getFolderName = (str) => {
+    return str.slice(0, str.indexOf("/"))
+}

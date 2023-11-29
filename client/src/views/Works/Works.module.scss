@@ -3,6 +3,8 @@
 
 .portfolio {
     margin: 3.8rem 0;
+    overflow: hidden;
+    min-height: 827.172px;
 
     @include xs-mb {
         margin: 1.8rem 0;
@@ -26,11 +28,9 @@
         flex-basis: 33.33333%;
     }
 
-
     @include mb-lg {
         flex-basis: 50%;
     }
-
 
     @include xs-mb {
         flex-basis: 100%;
