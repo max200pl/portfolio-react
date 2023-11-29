@@ -124,5 +124,5 @@ async function getAllWorks() {
 module.exports = {
     loadWorks,
     getAllWorks,
-    updateLocalWorks
+    updateLocalWorks,
 }

@@ -13,7 +13,7 @@ async function startServer() {
     await mongoConnect();
 
     //* wait load data before starting server;
-    await createImageJson();
+    // await createImageJson();
     await updateLocalWorks()
     await loadWorks();
 
