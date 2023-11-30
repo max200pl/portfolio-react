@@ -32,12 +32,11 @@ const Work = ({
     };
 
     const handleLoadStarted = () => {
-        console.log("Started: ");
         setLoadStarted(true);
     };
 
     useLayoutEffect(() => {
-        handleLoadStarted(true)
+        handleLoadStarted(false)
     }, [])
 
 
@@ -47,6 +46,7 @@ const Work = ({
             onClick={() => { }}
         >
             <div className={s.work__img_wrapper}>
+
                 <LazyLoadImage
                     className={s.work__img}
                     key={cardImage.name}
