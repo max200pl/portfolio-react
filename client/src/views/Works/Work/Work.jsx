@@ -10,14 +10,11 @@ import { getFolderName, getImageName } from "../../../helpers/helpers";
 
 
 const Work = ({
-    id,
     category,
-    client,
     date,
     name,
-    technology,
     cardImage,
-    images,
+    onOpenModal
 }) => {
 
     const imageName = getImageName(cardImage.name)
@@ -37,16 +34,14 @@ const Work = ({
 
     useLayoutEffect(() => {
         handleLoadStarted(false)
-    }, [])
+    }, [isLoaded])
 
 
     return (
-        <div key={id} className={s.work}
-            // onClick={() => props.openModal(work)}
-            onClick={() => { }}
+        <div className={s.work}
+            onClick={() => onOpenModal(true)}
         >
             <div className={s.work__img_wrapper}>
-
                 <LazyLoadImage
                     className={s.work__img}
                     key={cardImage.name}

@@ -2,31 +2,33 @@ import React from "react";
 import Modal from "react-modal";
 import { Fade } from "react-awesome-reveal";
 import SliderWorks from "./SliderWorks/SliderWorks";
-import s from "./WorkModal.module.scss";
+import s from "./WorksModal.module.scss";
 import Skills from "./Skils/Skills";
 
-export default function WorkModal(props) {
+export default function WorksModal({
+    isOpen,
+    onClose
+}) {
     return (
-        <>
-            <Modal
-                isOpen={true}
-                onRequestClose={props.closeModal}
-                ariaHideApp={false}
-                className={s.modal}
-                overlayClassName={s.modal__overlay}
-                shouldCloseOnOverlayClick={true}
-            >
-                <Fade left cascade={true}>
-                    <div className={s.modalWork}>
-                        <div className={s.modalWork__preview}>
+        <Modal
+            isOpen={isOpen}
+            onRequestClose={() => onClose(false)}
+            ariaHideApp={false}
+            className={s.modal}
+            overlayClassName={s.modal__overlay}
+            shouldCloseOnOverlayClick={true}
+        >
+            <Fade left cascade={true}>
+                <div className={s.modalWork}>
+                    {/*   <div className={s.modalWork__preview}>
                             <SliderWorks
                                 workName={props.workItem.workName}
                                 workPhotos={props.workPhotos}
                             />
-                        </div>
+                        </div> */}
 
-                        <div className={s.modalWork__content}>
-                            <button onClick={props.closeModal} className={s.modal__close}>
+                    <div className={s.modalWork__content}>
+                        {/*  <button onClick={props.closeModal} className={s.modal__close}>
                                 <img src="images/modal/exit.svg" alt="Close" />
                             </button>
                             <div className={s.modalWork__header}>
@@ -48,7 +50,7 @@ export default function WorkModal(props) {
                             </div>
                             <button className={s.modalWork__btnLink} type="button">
                                 <a href="https://devmax.info/">Link to work</a>
-                                {/* <img src="images/modal/referral.svg" height="40" alt=""> */}
+                                <img src="images/modal/referral.svg" height="40" alt="" />
                             </button>
 
                             <Skills useTechnology={props.workItem.useTechnology} />
@@ -70,11 +72,10 @@ export default function WorkModal(props) {
                                         alt=""
                                     />
                                 </button>
-                            </div>
-                        </div>
+                            </div> */}
                     </div>
-                </Fade>
-            </Modal>
-        </>
+                </div>
+            </Fade>
+        </Modal>
     );
 }
