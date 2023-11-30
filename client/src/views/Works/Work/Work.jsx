@@ -57,7 +57,7 @@ const Work = ({
                     beforeLoad={handleLoadStarted}
                 />
 
-                {!isLoaded && isLoadStarted &&
+                {!isLoaded &&
                     <Blurhash
                         className={s.work__img_blurHash}
                         hash={cardImage.blurHash}
