@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useLayoutEffect, useState } from "react";
 import moment from "moment";
 import s from "./Work.module.scss";
 import { Blurhash } from "react-blurhash";
@@ -36,6 +36,10 @@ const Work = ({
         setLoadStarted(true);
     };
 
+    useLayoutEffect(() => {
+        handleLoadStarted(true)
+    }, [])
+
 
     return (
         <div key={id} className={s.work}
@@ -58,7 +62,7 @@ const Work = ({
                         className={s.work__img_blurHash}
                         hash={cardImage.blurHash}
                         width={"100%"}
-                        height={234.219}
+                        height={234}
                         resolutionX={32}
                         resolutionY={32}
                         punch={1}
@@ -68,7 +72,7 @@ const Work = ({
 
             {/* <img src={cardImage.blurHash} alt="work" /> */}
             <div className={s.work__content}>
-                <div className={s.work__cat}>category: {category}</div>
+                <div className={s.work__cat}>{category}</div>
                 <div className={s.work__title}>
                     {name}
                     <time className={s.work__date}>{moment(date).format("yyyy")}</time>

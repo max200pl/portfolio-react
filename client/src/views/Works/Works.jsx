@@ -1,42 +1,24 @@
-import React, { useState } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import Work from "./Work/Work";
 
 import { Fade } from "react-awesome-reveal";
 import s from "./Works.module.scss";
 
-import { useWorks } from "./WorksAPI";
+import { useCategoriesWorks, useWorks } from "./WorksAPI";
 import FilterWorks from "./FilterWorks/FilterWorks";
+
+import { getUniqCategoriesWork } from "../../helpers/helpers";
 
 
 const Works = () => {
     //1. получить данные
-    const { status, data: works, error, isFetching } = useWorks();
+    const [filter, setFilter] = useState({ category: "" });
+    const { status, data: works, } = useWorks(filter);
 
-    // const [currentWork, setCurrentWork] = useState();
+    const { status: statusCategories, data: categories } = useCategoriesWorks();
+    const uniqCategoriesWork = getUniqCategoriesWork(categories);
 
-    const [filterWorks, setFilterWorks] = useState(works);
 
-    //3. настроить фильтр
-    //4. настроить открытие модального окна
-
-    // const filterWork = (event) => {
-    //     if (event.target.dataset.filter === "all") {
-    //         setFilterWorks(works)
-
-    //     } else {
-    //         setFilterWorks(works.filter(
-    //             (work) => work.categoryWork.indexOf(event.target.dataset.filter) >= 0
-    //         ))
-    //     }
-    // };
-
-    // const filterPhoto = (workName) => {
-    //     this.setState({
-    //         workPhotos: data.photoWorks.filter(
-    //             (workPhoto) => workPhoto.workName === workName
-    //         ),
-    //     });
-    // };
 
     // const openModal = (workItem) => {
     //     setCurrentWork()
@@ -52,23 +34,28 @@ const Works = () => {
     return (
         <div className={s.portfolio} id="portfolio">
             <div className="container">
+                {statusCategories === "success" &&
+                    <FilterWorks onFilterChange={setFilter} categories={uniqCategoriesWork} />
+                }
+                {status === "success" &&
+                    <>
+                        < div className={s.portfolio__workCount}>
+                            <span>Count works:</span> {works?.length}
+                        </div>
+                        <div className={s.portfolio__works}>
+                            <Fade direction="right" delay={40} cascade className={s.portfolio__col} >
+                                {works?.map((work, id) => {
+                                    return <Work {...work} key={work.name} />
+                                })}
+                            </Fade >
+                        </div>
 
-                {/* <FilterWorks filterWork={filterWork} /> */}
-                <div className={s.portfolio__workCount}>
-                    <span>Count works:</span> {works?.length}
-                </div>
-                <div className={s.portfolio__works}>
-                    <Fade direction="right" cascade className={s.portfolio__col} >
-                        {works?.map((work, id) => {
-                            return <Work {...work} />
+                        <div className="text-center">
+                            <button className="btn btn_sm">Load More Work</button>
+                        </div>
+                    </>
+                }
 
-                        })}
-                    </Fade >
-                </div>
-
-                <div className="text-center">
-                    <button className="btn btn_sm">Load More Work</button>
-                </div>
                 {/* {work && (
                     <WorkModal
                         work={state.work}
@@ -80,7 +67,7 @@ const Works = () => {
 
 
             </div>
-        </div>
+        </div >
 
     )
 }

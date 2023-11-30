@@ -115,14 +115,29 @@ async function loadWorks() {
 async function getAllWorks() {
     return await workSchema.find(
         {},
-        { // which fields are included in the response
-            "_id": 0, "__v": 0, // exclude fields
+        {
+            "_id": 0, "__v": 0,
         }
     )
+}
+
+async function getGetFilterWorks(category) {
+    return await workSchema.find(
+        { "category": category }, // which fields are included in the response
+        {
+            "_id": 0, "__v": 0,
+        }
+    )
+}
+
+async function getAllCategories() {
+    return await workSchema.find({}, { "category": 1, "_id": 0 })
 }
 
 module.exports = {
     loadWorks,
     getAllWorks,
     updateLocalWorks,
+    getAllCategories,
+    getGetFilterWorks,
 }

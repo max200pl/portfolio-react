@@ -55,3 +55,12 @@ export const getImageName = (str) => {
 export const getFolderName = (str) => {
     return str.slice(0, str.indexOf("/"))
 }
+
+export const getUniqCategoriesWork = (categories) => {
+    return categories?.reduce((acc, { category }) => {
+        if (!acc.includes(category)) {
+            acc.push(category);
+        }
+        return acc
+    }, [])
+}
