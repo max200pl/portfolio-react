@@ -5,7 +5,7 @@ import ReactPortal from "../../helpers/ReactPortal";
 import { CSSTransition } from "react-transition-group";
 
 
-const Modal = ({ children, isOpen, handleClose }) => {
+const Modal = ({ children, isOpen, handleClose, position = undefined }) => {
     const nodeRef = useRef(null);
 
     useEffect(() => {
@@ -23,6 +23,7 @@ const Modal = ({ children, isOpen, handleClose }) => {
                 timeout={{ entry: 0, exit: 300 }}
                 unmountOnExit
                 classNames="modal"
+                position={position}
                 nodeRef={nodeRef}
             >
                 <div

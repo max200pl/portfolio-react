@@ -64,3 +64,7 @@ export const getUniqCategoriesWork = (categories) => {
         return acc
     }, [])
 }
+
+export const getCurrentWork = (works, currentWork) => {
+    return works.filter((work) => work.name === currentWork.name)
+}

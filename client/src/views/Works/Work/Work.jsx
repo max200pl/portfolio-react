@@ -14,7 +14,7 @@ const Work = ({
     date,
     name,
     cardImage,
-    onOpenModal
+    onCardClick
 }) => {
 
     const imageName = getImageName(cardImage.name)
@@ -39,7 +39,7 @@ const Work = ({
 
     return (
         <div className={s.work}
-            onClick={() => onOpenModal(true)}
+            onClick={() => onCardClick()}
         >
             <div className={s.work__img_wrapper}>
                 <LazyLoadImage
