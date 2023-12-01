@@ -1,7 +1,5 @@
 import React from "react";
-import Modal from "react-modal";
-import { Fade } from "react-awesome-reveal";
-import SliderWorks from "./SliderWorks/SliderWorks";
+
 import s from "./WorksModal.module.scss";
 import Skills from "./Skils/Skills";
 import exitImg from "../../../images/modal/exit.svg";
