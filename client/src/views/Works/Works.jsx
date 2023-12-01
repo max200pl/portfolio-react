@@ -38,8 +38,8 @@ const Works = () => {
                         </div>
                         <div className={s.portfolio__works}>
                             <Fade
+                                triggerOnce="true"
                                 direction="right"
-                                delay={40}
                                 cascade
                                 className={s.portfolio__col}
                             >
