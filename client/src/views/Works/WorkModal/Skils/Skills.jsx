@@ -3,9 +3,9 @@ import s from "./Skills.module.scss";
 
 import ProgressBar from "../../../../components/ProgressBar/ProgressBar";
 
-const Skills = ({ technology }) => {
+const Skills = ({ technology, mixin, position }) => {
     return (
-        <div className={s.skills} >
+        <div position={position} mixin={mixin} className={s.skills} >
             <div className={s.skills__header}>Technologies used:</div>
             {
                 technology.map(({ name, apply }, i) => {

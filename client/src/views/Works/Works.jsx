@@ -9,6 +9,7 @@ import FilterWorks from "./FilterWorks/FilterWorks";
 
 import { getUniqCategoriesWork } from "../../helpers/helpers";
 import WorksModal from "./WorkModal/WorksModal";
+import Modal from "../../components/Modal/Modal";
 
 
 const Works = () => {
@@ -65,12 +66,16 @@ const Works = () => {
                     </>
                 )}
 
-                <WorksModal
-                    isOpen={isOpenModal}
-                    onClose={toggleOpenModal}
-                    works={works}
-                    currentWork={currentWork}
-                />
+
+
+                <Modal handleClose={() => toggleOpenModal(false)} isOpen={isOpenModal}>
+                    <WorksModal
+                        isOpen={isOpenModal}
+                        onClose={toggleOpenModal}
+                        works={works}
+                        currentWork={currentWork}
+                    />
+                </Modal>
             </div>
         </div>
     );

@@ -1,3 +1,4 @@
+import moment from 'moment';
 import { useEffect } from 'react';
 
 export function addBodyClass(className) {
@@ -67,4 +68,8 @@ export const getUniqCategoriesWork = (categories) => {
 
 export const getCurrentWork = (works, currentWork) => {
     return works.filter((work) => work.name === currentWork.name)
+}
+
+export const getYear = (date) => {
+    return moment(date).format("yyyy")
 }

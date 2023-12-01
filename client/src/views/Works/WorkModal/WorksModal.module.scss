@@ -2,218 +2,104 @@
 @import "../../../design-tokens/variables";
 
 .modal {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1000;
-}
+    &__close {
+        position: absolute;
+        z-index: 1;
+        top: 10px;
+        right: 10px;
 
-.modal__overlay {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: fixed;
-    top: 0;
-    left: 0;
-    inset: 0px;
-    width: 100vw;
-    height: 100vh;
-    overflow: auto;
-    background: rgba(6, 15, 49, 0.8) !important;
+        width: 24px;
+        height: 29px;
 
-    @include xs-mb {
-        align-items: flex-start;
-        padding: 0;
-    }
+        border: 0;
+        cursor: pointer;
+        background: none;
 
-
-    @include xs-mb {
-        align-items: flex-start;
+        transition: transform 0.2s linear;
+        &:hover {
+            transform: translateY(-3px);
+        }
     }
 }
 
-.modal__close {
-    width: 24px;
-    height: 29px;
-    right: 10px;
-    top: 10px;
-    background: none;
-    border: 0;
-    cursor: pointer;
-    position: absolute;
-    z-index: 1;
-    transition: transform .2s linear;
-
-    &:hover {
-        transform: translateY(-3px);
-    }
-}
-
-.modal__title {
-    margin-bottom: 3.6rem;
-    font-size: 3rem;
-    text-transform: uppercase;
-    color: $color-white;
-    font-weight: 700;
-
-    @include xs-sm {
-        font-size: 2.5rem;
-    }
-}
-
-.modal__subtitle {
-    text-transform: uppercase;
-    font-size: 1.06rem;
-    color: $color-white;
-    font-weight: 400;
-
-    @include xs-mb {
-        font-size: 0.86rem;
-    }
-}
-
-//modalWork
-
-.modalWork {
-    display: flex;
-    position: relative;
+.modal {
+    width: 100%;
     max-height: 600px;
     max-width: 1200px;
     margin: 20px;
 
-    @include xs-mb {
-        max-height: initial;
-        margin: 0px;
-        flex-wrap: wrap-reverse;
+    &__header {
+        margin-top: 30px;
+        margin-bottom: 2.2rem;
+        padding: 10px 20px;
+        text-align: center;
     }
-}
 
-.modalWork__preview {
-    display: block;
-    width: 65%;
-    position: relative;
-    overflow: hidden;
-    padding-right: 1rem;
-
-    @include xs-mb {
-        flex-basis: 100%;
-        width: initial;
-        padding: 1rem;
-    }
-}
-
-.modalWork__header {
-    margin-bottom: 2.2rem;
-    text-align: center;
-}
-
-.modalWork__title {
-    margin-bottom: .2rem;
-    font-size: 2.25rem;
-    color: $color-blue;
-    font-weight: 700;
-    text-transform: uppercase;
-}
-
-.modalWork__info {
-    margin: 0.5rem 0;
-    font-size: 1.2rem;
-    text-transform: uppercase;
-}
-
-.modalWork__infoDivider {
-    margin: 0 1rem;
-}
-
-.modalWork__client {
-    display: flex;
-}
-
-.modalWork__clientTitle {
-    font-size: 1.06rem;
-    color: $color-white;
-    font-weight: 700;
-}
-
-.modalWork__clientCompany {
-    font-size: 1.06rem;
-    margin-left: 4px;
-    font-style: italic;
-    color: $color-blue;
-}
-
-.modalWork__text {
-    &>h2 {
+    &__title {
+        margin-bottom: 0.2rem;
+        font-size: 2.5rem;
         color: $color-blue;
-        line-height: 1.2;
-        margin-bottom: .5rem;
+        font-weight: 700;
+        text-transform: uppercase;
     }
 
-    margin-bottom: 30px;
-    font-size: .8rem;
-    line-height: 2;
-    color: $color-white;
-    font-weight: 300;
+    &__subtitle {
+        margin: 0.5rem 0;
 
-    @include xs-mb {
-        margin-bottom: 0;
+        text-transform: capitalize;
+
+        font-size: 1.6rem;
+        color: $color-white;
+        font-weight: 400;
+
+        &_divider {
+            margin: 0 1rem;
+        }
+
+        @include xs-mb {
+            font-size: 0.86rem;
+        }
+    }
+
+    &__work_link {
+        background: none; // rest button
+        border: 0; // rest button
+        cursor: pointer; // rest button
+
+        margin-bottom: 0.2rem;
+        padding: 15px 0 15px 0;
+
+        text-transform: uppercase;
+        font-family: inherit;
+        font-size: 1rem;
+        color: $color-white;
+
+        & > a {
+            color: inherit;
+        }
     }
 }
 
-.modalWork__footer {
+.work {
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
-}
+    // background: red;
+    flex-basis: 100%;
 
-.modalWork__btnLink {
-    background: none;
-    border: 0;
-    cursor: pointer;
-    text-decoration: underline;
-    padding: 15px 0 15px 0;
-    font-family: inherit;
-    font-size: 1rem;
-    color: $color-white;
-    text-transform: uppercase;
-    margin-bottom: .2rem;
-
-    &>a {
-        color: inherit;
+    &__slider {
+        flex-basis: 100%;
+        background: green;
+        /*   width: 100%;
+        height: 100%; */
     }
 
-    &>img {
-        padding-left: 5px;
-    }
-}
-
-.modalWork__btn {
-    padding: 0;
-    background: none;
-    border: 1px solid $color-white;
-    width: 160px;
-    padding: 5px;
-    border-radius: 20px;
-    cursor: pointer;
-    font-family: inherit;
-    font-size: .94rem;
-    color: $color-blue;
-    text-transform: uppercase;
-    transition: box-shadow .2s linear;
-    cursor: pointer;
-
-    &:hover {
-        box-shadow: 0 0 25px $color-white;
-        background-color: $color-white;
-    }
-
-    @include xs-lg {
-        padding: 3px;
-        font-size: .70rem;
-        width: 110px;
-    }
-
-
-    @include lg-xl {
-        width: 145px;
+    &__panel {
+        border: 1px solid white;
+        border-radius: 20px;
+        // background: blue;
+        display: flex;
+        margin-left: 10px;
+        padding: 20px;
     }
 }

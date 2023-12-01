@@ -60,7 +60,6 @@
     z-index: 2;
 }
 
-
 .modal__close {
     width: 34px;
     height: 39px;
@@ -75,7 +74,7 @@
     right: 10px;
     z-index: 1;
 
-    transition: transform .2s linear;
+    transition: transform 0.2s linear;
 
     &:hover {
         transform: translateY(-3px);

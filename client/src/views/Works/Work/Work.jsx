@@ -1,12 +1,11 @@
 import React, { useLayoutEffect, useState } from "react";
-import moment from "moment";
 import s from "./Work.module.scss";
 import { Blurhash } from "react-blurhash";
 
 import {
     LazyLoadImage,
 } from "react-lazy-load-image-component";
-import { getFolderName, getImageName } from "../../../helpers/helpers";
+import { getFolderName, getImageName, getYear } from "../../../helpers/helpers";
 
 
 const Work = ({
@@ -70,7 +69,7 @@ const Work = ({
                 <div className={s.work__cat}>{category}</div>
                 <div className={s.work__title}>
                     {name}
-                    <time className={s.work__date}>{moment(date).format("yyyy")}</time>
+                    <time className={s.work__date}>{getYear(date)}</time>
                 </div>
             </div>
         </div>

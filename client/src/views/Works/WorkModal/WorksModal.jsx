@@ -4,6 +4,8 @@ import { Fade } from "react-awesome-reveal";
 import SliderWorks from "./SliderWorks/SliderWorks";
 import s from "./WorksModal.module.scss";
 import Skills from "./Skils/Skills";
+import exitImg from "../../../images/modal/exit.svg";
+import { getYear } from "../../../helpers/helpers";
 
 export default function WorksModal({
     isOpen,
@@ -12,70 +14,34 @@ export default function WorksModal({
     currentWork
 }) {
     return (
-        <Modal
-            isOpen={isOpen}
-            onRequestClose={() => onClose(false)}
-            ariaHideApp={false}
-            className={s.modal}
-            overlayClassName={s.modal__overlay}
-            shouldCloseOnOverlayClick={true}
-        >
-            <div className={s.modalWork}>
-                <div className={s.modalWork__preview}>
-                    {/*    <SliderWorks
-                        workName={name}
-                        workPhotos={props.workPhotos}
-                    /> */}
+        <div className={s.modal}>
+            <button className={s.modal__close} onClick={onClose} type="button">
+                <img className={s.modal__close_image} src={exitImg} alt="Close" />
+            </button>
+            <div className={s.modal__header}>
+                <span className={s.modal__title}>
+                    {currentWork.name}
+                </span>
+                <div className={s.modal__subtitle}>
+                    {currentWork.category}
+                    <span className={s.modal__subtitle_divider}>|</span>
+                    {getYear(currentWork.date)}
                 </div>
 
-                <div className={s.modalWork__content}>
-                    <button onClick={onClose} className={s.modal__close}>
-                        <img src="images/modal/exit.svg" alt="Close" />
-                    </button>
-                    <div className={s.modalWork__header}>
-                        <span className={s.modalWork__title}>
-                            {currentWork.name}
-                        </span>
-                        <div className={s.modalWork__info}>
-                            {currentWork.category}
-                            <span className={s.modalWork__infoDivider}>|</span>
-                            {currentWork.date}
-                        </div>
-                    </div>
+                <button className={s.modal__work_link} type="button">
+                    <a href="https://devmax.info/">Link to work</a>
+                </button>
+            </div>
 
-                    <div className={s.modalWork__client}>
-                        <div className={s.modalWork__clientTitle}>Client:</div>
-                        <div className={s.modalWork__clientCompany}>
-                            Creative Agency
-                        </div>
-                    </div>
-                    <button className={s.modalWork__btnLink} type="button">
-                        <a href="https://devmax.info/">Link to work</a>
-                        <img src="images/modal/referral.svg" height="40" alt="" />
-                    </button>
+            <div className={s.work}>
+                <div className={s.work__slider}>
 
-                    <Skills technology={currentWork.technology} />
+                </div>
 
-                    <div className={s.modalWork__footer}>
-                        <button className={s.modalWork__btn} type="button">
-                            <img
-                                src="images/modal/modalWorks-slider/left-arrow.svg"
-                                height="14"
-                                alt=""
-                            />
-                            Previous
-                        </button>
-                        <button className={s.modalWork__btn} type="button">
-                            Next
-                            <img
-                                src="images/modal/modalWorks-slider/right-arrow.svg"
-                                height="14"
-                                alt=""
-                            />
-                        </button>
-                    </div>
+                <div className={s.work__panel}>
+                    <Skills position="right" mixin="works" technology={currentWork.technology} />
                 </div>
             </div>
-        </Modal>
+        </div>
     );
 }

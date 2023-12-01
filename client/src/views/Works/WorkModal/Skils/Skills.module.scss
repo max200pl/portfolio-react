@@ -2,6 +2,10 @@
 @import "../../../../design-tokens/variables";
 
 .skills {
+    &[position="right"] {
+        margin-left: auto;
+    }
+
     display: block;
     max-width: 400px;
     margin-bottom: 30px;
@@ -13,9 +17,13 @@
         margin: 0 auto 30px;
     }
 
-
     @include xs-mb {
         padding-right: 0;
+    }
+
+    &[mixin="works"] {
+        margin: 0;
+        padding: 0;
     }
 }
 
