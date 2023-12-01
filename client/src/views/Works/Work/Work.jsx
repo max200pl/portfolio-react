@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useState } from "react";
+import React, { useState } from "react";
 import s from "./Work.module.scss";
 import { Blurhash } from "react-blurhash";
 
@@ -21,19 +21,11 @@ const Work = ({
     const urlImage = `http://localhost:8000/works/image?project=${folderName}&name=${imageName}`;
 
     const [isLoaded, setLoaded] = useState(false);
-    const [isLoadStarted, setLoadStarted] = useState(false);
+
 
     const handleLoad = () => {
         setLoaded(true);
     };
-
-    const handleLoadStarted = () => {
-        setLoadStarted(true);
-    };
-
-    useLayoutEffect(() => {
-        handleLoadStarted(false)
-    }, [isLoaded])
 
 
     return (
@@ -48,7 +40,6 @@ const Work = ({
                     width={"100%"}
                     height={"100%"}
                     onLoad={handleLoad}
-                    beforeLoad={handleLoadStarted}
                 />
 
                 {!isLoaded &&

@@ -1,6 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios"
-import { getUniqCategoriesWork } from "../../helpers/helpers";
 
 export function useWorks(filter) {
     return useQuery({
