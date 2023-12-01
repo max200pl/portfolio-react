@@ -3,30 +3,29 @@
 
 .portfolio {
     margin: 3.8rem 0;
-    overflow: hidden;
     min-height: 827.172px;
 
     @include xs-mb {
         margin: 1.8rem 0;
     }
-}
 
-.portfolio__works {
-    display: flex;
-    flex-wrap: wrap;
-    margin: -15px;
-    margin-bottom: 25px;
-}
+    &__works {
+        overflow: hidden;
+        display: flex;
+        flex-wrap: wrap;
+        margin: -15px;
+        margin-bottom: 25px;
+    }
 
-.portfolio__workCount {
-    margin: 10px 0 10px 10px;
-    padding-bottom: 10px;
+    &__workCount {
+        margin: 10px 0 10px 10px;
+        padding-bottom: 10px;
+    }
 }
 
 .portfolio__col {
-    @include lg {
-        flex-basis: 33.33333%;
-    }
+    overflow: hidden;
+    flex-basis: 33.33333%;
 
     @include mb-lg {
         flex-basis: 50%;

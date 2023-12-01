@@ -32,7 +32,7 @@ const Works = () => {
                     />
                 )}
                 {status === "success" && (
-                    <>
+                    <div className={s.portfolio__container}>
                         <div className={s.portfolio__workCount}>
                             <span>Count works:</span> {works?.length}
                         </div>
@@ -59,14 +59,8 @@ const Works = () => {
                                 })}
                             </Fade>
                         </div>
-
-                        <div className="text-center">
-                            <button className="btn btn_sm">Load More Work</button>
-                        </div>
-                    </>
+                    </div>
                 )}
-
-
 
                 <Modal handleClose={() => toggleOpenModal(false)} isOpen={isOpenModal}>
                     <WorksModal

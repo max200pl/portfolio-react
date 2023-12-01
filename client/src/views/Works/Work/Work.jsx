@@ -32,9 +32,9 @@ const Work = ({
         <div className={s.work}
             onClick={() => onCardClick()}
         >
-            <div className={s.work__img_wrapper}>
+            <div className={s.img__wrapper}>
                 <LazyLoadImage
-                    className={s.work__img}
+                    className={s.img}
                     key={cardImage.name}
                     src={urlImage}
                     width={"100%"}
@@ -44,7 +44,7 @@ const Work = ({
 
                 {!isLoaded &&
                     <Blurhash
-                        className={s.work__img_blurHash}
+                        className={s.img__blurHash}
                         hash={cardImage.blurHash}
                         width={"100%"}
                         height={234}
