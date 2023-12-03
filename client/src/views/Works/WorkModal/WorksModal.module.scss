@@ -79,10 +79,17 @@
         }
 
         &__panel {
+            width: 60%;
             padding: 20px;
             margin-left: 20px;
             border: 1px solid white;
             border-radius: 20px;
+
+            @include xs-mb {
+                width: 100%;
+
+                margin-left: 0;
+            }
         }
     }
 }
