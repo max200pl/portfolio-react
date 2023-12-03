@@ -6,12 +6,11 @@
 
     @include xs-mb {
         position: fixed;
-        top: 250px;
+        top: 120px;
         right: -99px;
         z-index: 1000;
         padding: 0;
     }
-
 
     @media xs-mb {
         right: -103.2px;
@@ -44,7 +43,7 @@
 .nav__link,
 .nav__link_active {
     position: relative;
-    font-size: .93rem;
+    font-size: 0.93rem;
     font-weight: 700;
     margin-left: 15px;
     padding: 10px 5px 10px 10px;
@@ -56,13 +55,13 @@
 
     &:before,
     &:after {
-        content: '';
+        content: "";
         position: absolute;
         left: 0;
         display: block;
         width: 100%;
         height: 1px;
-        transition: transform .3s ease;
+        transition: transform 0.3s ease;
         background-color: $color-white;
         transition: all 0.7s ease-in-out;
 
@@ -94,10 +93,11 @@
         transform: translateX(0);
     }
 
-
     &_btn {
         padding: 10px;
-        transition: background-color .2s linear, .2s color linear;
+        transition:
+            background-color 0.2s linear,
+            0.2s color linear;
         border: 1.5px solid $color-white;
         border-radius: 20px;
 
@@ -115,7 +115,6 @@
         }
 
         @include mb {
-
             &:before,
             &:after {
                 width: 0;
@@ -134,7 +133,7 @@
         transform: translateX(0);
         transition: all 1s;
 
-        &>span {
+        & > span {
             width: 100px;
             opacity: 0;
             transition: all 1s;
@@ -143,7 +142,7 @@
         border-radius: 25px;
 
         &:hover {
-            &>span {
+            & > span {
                 opacity: 1;
             }
 
@@ -170,9 +169,7 @@
     }
 }
 
-
 .nav__link_active {
-
     &:before,
     &:after {
         opacity: 1;

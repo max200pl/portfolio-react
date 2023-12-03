@@ -25,6 +25,10 @@ export const WorkModalSlider = ({ images }) => {
             navigation
             pagination={{ clickable: true }}
             scrollbar={{ draggable: true }}
+            style={{
+                "--swiper-navigation-color": "#10AEDF",
+                "--swiper-pagination-color": "#10AEDF",
+            }}
         >
             {images &&
                 images.map((image, id) => {

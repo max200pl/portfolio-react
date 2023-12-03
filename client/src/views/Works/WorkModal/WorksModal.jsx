@@ -38,8 +38,7 @@ export default function WorksModal({
 
             <div className={s.content} onClick={(e) => e.stopPropagation()}>
                 <div className={s.content__slider}>
-                    <div></div>
-                    {/*   <WorkModalSlider images={currentWork.images} /> */}
+                    <WorkModalSlider images={currentWork.images} />
                 </div>
 
                 <div className={s.content__panel}>
