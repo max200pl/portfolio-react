@@ -19,20 +19,29 @@ const Work = ({
         <div className={s.work}
             onClick={() => onCardClick()}
         >
-            <div className={s.work__image}>
-                <ImageLazyLoad
-                    mixin="work"
-                    blurHash={cardImage.blurHash}
-                    name={cardImage.name}
-                    url={urlImage}
-                />
-            </div>
 
-            <div className={s.work__content}>
-                <div className={s.work__cat}>{category}</div>
-                <div className={s.work__title}>
-                    {name}
-                    <time className={s.work__date}>{getYear(date)}</time>
+            <button className={s.work__edit_button} onClick={(e) => e.stopPropagation()}>
+                Edit work
+            </button>
+
+            <div
+                className={s.work__container}
+            >
+                <div className={s.work__image}>
+                    <ImageLazyLoad
+                        mixin="work"
+                        blurHash={cardImage.blurHash}
+                        name={cardImage.name}
+                        url={urlImage}
+                    />
+                </div>
+
+                <div className={s.work__content}>
+                    <div className={s.work__cat}>{category}</div>
+                    <div className={s.work__title}>
+                        {name}
+                        <time className={s.work__date}>{getYear(date)}</time>
+                    </div>
                 </div>
             </div>
         </div>

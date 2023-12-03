@@ -3,6 +3,7 @@
 
 .intro {
     position: relative;
+    overflow-x: hidden;
 
     &__footer {
         display: flex;
@@ -28,8 +29,6 @@
 }
 
 .content {
-
-
     @include xs-mb {
         flex-basis: 80%;
     }
@@ -43,7 +42,7 @@
             width: 100%;
             margin-top: 20px;
 
-            &+.btn {
+            & + .btn {
                 margin-left: 0;
             }
         }
@@ -83,7 +82,7 @@
     max-width: 40px;
     max-height: 40px;
     margin-right: 10px;
-    transition: transform .2s linear;
+    transition: transform 0.2s linear;
     text-decoration: none;
 
     &:hover {

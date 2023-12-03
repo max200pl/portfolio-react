@@ -7,6 +7,12 @@
         .img__lazy_load {
             border-radius: 10px 10px 0 0 !important;
         }
+
+        .img__blurHash {
+            & > canvas {
+                border-radius: 10px 10px 0 0 !important;
+            }
+        }
     }
 }
 
