@@ -10,6 +10,7 @@ import FilterWorks from "./FilterWorks/FilterWorks";
 import { getUniqCategoriesWork } from "../../helpers/helpers";
 import WorksModal from "./WorkModal/WorksModal";
 import Modal from "../../components/Modal/Modal";
+import { LazyLoadComponent } from "react-lazy-load-image-component";
 
 
 const Works = () => {
@@ -24,53 +25,57 @@ const Works = () => {
 
     return (
         <div className={s.portfolio} id="portfolio">
-            <div className="container">
-                {statusCategories === "success" && (
-                    <FilterWorks
-                        onFilterChange={setFilter}
-                        categories={uniqCategoriesWork}
-                    />
-                )}
-                {status === "success" && (
-                    <div className={s.portfolio__container}>
-                        <div className={s.portfolio__workCount}>
-                            <span>Count works:</span> {works?.length}
-                        </div>
-                        <div className={s.portfolio__works}>
-                            <Fade
-                                triggerOnce="true"
-                                direction="right"
-                                cascade
-                                className={s.portfolio__col}
-                            >
-                                {works?.map((work, id) => {
-                                    return (
-                                        <Work
-                                            {...work}
-                                            key={work.name}
-                                            onCardClick={
-                                                () => {
-                                                    setCurrentWork(work)
-                                                    toggleOpenModal(true)
-                                                }
-                                            }
-                                        />
-                                    );
-                                })}
-                            </Fade>
-                        </div>
-                    </div>
-                )}
 
-                <Modal handleClose={() => toggleOpenModal(false)} isOpen={isOpenModal}>
-                    <WorksModal
-                        isOpen={isOpenModal}
-                        onClose={toggleOpenModal}
-                        works={works}
-                        currentWork={currentWork}
-                    />
-                </Modal>
-            </div>
+            {statusCategories === "success" && (
+                <FilterWorks
+                    onFilterChange={setFilter}
+                    categories={uniqCategoriesWork}
+                />
+            )}
+            {status === "success" && (
+                <div className={s.portfolio__container}>
+                    <div className={s.portfolio__workCount}>
+                        <span>Count works:</span> {works?.length}
+                    </div>
+                    <div className={s.portfolio__works}>
+                        <Fade
+                            triggerOnce="true"
+                            direction="right"
+                            cascade
+                            className={s.portfolio__col}
+                        >
+                            {works?.map((work, id) => {
+                                return (
+                                    <div className={s.portfolio__col}>
+                                        <LazyLoadComponent>
+                                            <Work
+                                                {...work}
+                                                key={work.name}
+                                                onCardClick={
+                                                    () => {
+                                                        setCurrentWork(work)
+                                                        toggleOpenModal(true)
+                                                    }
+                                                }
+                                            />
+                                        </LazyLoadComponent>
+                                    </div>
+                                );
+                            })}
+                        </Fade>
+                    </div>
+                </div>
+            )}
+
+            <Modal handleClose={() => toggleOpenModal(false)} isOpen={isOpenModal}>
+                <WorksModal
+                    isOpen={isOpenModal}
+                    onClose={toggleOpenModal}
+                    works={works}
+                    currentWork={currentWork}
+                />
+            </Modal>
+
         </div>
     );
 };

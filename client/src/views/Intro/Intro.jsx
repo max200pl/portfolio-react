@@ -10,6 +10,7 @@ import Modal from "../../components/Modal/Modal";
 import s from "./Intro.module.scss";
 import ModalHireMe from "../../components/Modal/ModalHireMe/ModalHireMe";
 import ModalSeeMyResume from "../../components/Modal/ModalSeeMyResume/ModalSeeMyResume";
+import Works from "../Works/Works";
 
 const dataSocialLinks = [
     {
@@ -54,7 +55,7 @@ const Intro = () => {
                 <div className={s.inner}>
                     <div className={s.content}>
                         <h2 className={s.subtitle}>I'm Maksym</h2>
-                        <h1 className={s.title}>Frontend Developer </h1>
+                        <h1 className={s.title}>Full Stack Web Developer</h1>
                         <div className={s.text}></div>
                         <div className={s.social}>
                             <SocialLinks dataSocialLinks={dataSocialLinks} />
@@ -66,6 +67,8 @@ const Intro = () => {
                         </div>
                     </div>
                 </div>
+                <Works />
+
                 <div className={s.intro__footer}>
                     <NavLink className={s.next_button} to="/portfolio" >
                         <img className={s.next_button__icon} src={arrowNext} alt="arrow button" />

@@ -1,18 +1,13 @@
-
-
 import LoaderImg from "../../images/loader.svg";
-import "./Loader.scss"
+import "./Loader.scss";
 
-
-const Loader = ({
-    loading,
-}) => {
+const Loader = ({ loading }) => {
     return (
-        <div className="loader" loading={loading} >
+        <div className="loader" loading={loading}>
             <img className="loader__img" src={LoaderImg} alt="loader circle" />
             <span className="loader__text">Loading...</span>
         </div>
-    )
-}
+    );
+};
 
 export default Loader;

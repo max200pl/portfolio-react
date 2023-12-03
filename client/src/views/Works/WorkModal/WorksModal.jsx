@@ -4,6 +4,8 @@ import s from "./WorksModal.module.scss";
 import Skills from "./Skils/Skills";
 import exitImg from "../../../images/modal/exit.svg";
 import { getYear } from "../../../helpers/helpers";
+import { Fade } from "react-awesome-reveal";
+import { WorkModalSlider } from "./WorkModalSlider/WorkModalSlider";
 
 export default function WorksModal({
     isOpen,
@@ -17,26 +19,29 @@ export default function WorksModal({
                 <img className={s.modal__close_image} src={exitImg} alt="Close" />
             </button>
             <div className={s.modal__header}>
-                <span className={s.modal__title}>
+                <Fade duration={100} triggerOnce="true" direction="left" cascade className={s.modal__title}>
                     {currentWork.name}
-                </span>
+                </Fade>
+
                 <div className={s.modal__subtitle}>
                     {currentWork.category}
                     <span className={s.modal__subtitle_divider}>|</span>
                     {getYear(currentWork.date)}
                 </div>
 
-                <button className={s.modal__work_link} type="button">
-                    <a href="https://devmax.info/">Link to work</a>
-                </button>
+                <Fade triggerOnce="true" direction="left" cascade className={s.modal__title}>
+                    <button className={s.modal__work_link} type="button">
+                        <a href="https://devmax.info/">Link to work</a>
+                    </button>
+                </Fade>
             </div>
 
-            <div className={s.work}>
-                <div className={s.work__slider}>
-
+            <div className={s.slider}>
+                <div className={s.slider__content}>
+                    <WorkModalSlider images={currentWork.images} />
                 </div>
 
-                <div className={s.work__panel}>
+                <div className={s.slider__panel}>
                     <Skills position="right" mixin="works" technology={currentWork.technology} />
                 </div>
             </div>

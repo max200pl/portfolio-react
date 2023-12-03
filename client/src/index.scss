@@ -4,7 +4,7 @@
 body {
     font-size: 1rem;
     color: #fff;
-    background: linear-gradient(to right top, #051937, #000, #008793, #bf0000, #f00) no-repeat center center fixed;
+    background: linear-gradient(to right top, #000000, #000, #008793, #000000, #000) no-repeat center center fixed;
     background-size: 100% 100%;
 
     //overflow-x: hidden;
@@ -21,18 +21,15 @@ body {
         padding: 0 20px;
     }
 
-
     @include lg {
         max-width: 1200px;
         padding: 0 20px;
     }
 
-
     @include mb {
         max-width: 990px;
         padding: 0 15px;
     }
-
 
     @include sm-mb {
         &_non-p-m {
@@ -41,7 +38,6 @@ body {
 
         padding: 0 15px;
     }
-
 
     @include xs-sm {
         &_non-p-m {
@@ -54,7 +50,7 @@ body {
 }
 
 code {
-    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
 
 button {
@@ -84,7 +80,11 @@ button {
     color: #fff;
     border: 1.5px solid #fff;
     border-radius: 1.8em;
-    transition: background-color 0.2s linear, color 0.2s linear, box-shadow 0.2s linear, border-color 0.2s linear;
+    transition:
+        background-color 0.2s linear,
+        color 0.2s linear,
+        box-shadow 0.2s linear,
+        border-color 0.2s linear;
     background: none;
 
     &:hover {
@@ -101,7 +101,7 @@ button {
         opacity: 0;
     }
 
-    +.btn {
+    + .btn {
         margin-left: 15px;
     }
 
@@ -116,21 +116,20 @@ button {
 
     &_thin {
         min-width: 145px;
-        font-size: .8rem;
+        font-size: 0.8rem;
     }
 
     @include xs-lg {
         font-size: 1rem;
-        padding: 1.0em 1.5em;
+        padding: 1em 1.5em;
         min-width: 140px;
     }
-
 
     @include xs-mb {
         display: block;
         width: 100%;
 
-        +.btn {
+        + .btn {
             margin-left: 0;
             margin-top: 1rem;
         }
