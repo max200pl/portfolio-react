@@ -1,0 +1,28 @@
+.loader {
+    &[loading="hidden"] {
+        display: none;
+    }
+
+    &[loading="failed"] {
+        display: none;
+    }
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 98;
+    display: flex;
+    align-items: center;
+
+    padding: 5px 10px;
+    border-radius: 30px;
+    background: rgba($color: #000, $alpha: 0.3);
+    &__img {
+    }
+
+    &__text {
+        padding-left: 5px;
+        color: white;
+    }
+}
