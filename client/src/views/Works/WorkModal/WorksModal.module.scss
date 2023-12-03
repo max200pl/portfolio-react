@@ -12,9 +12,8 @@
     margin: 0 auto;
     padding-top: 200px;
 
-    overflow-y: scroll;
-
     @include xs-lg {
+        overflow-y: scroll;
         padding-top: 60px;
     }
 

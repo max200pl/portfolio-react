@@ -2,8 +2,6 @@
 @import "../../../../design-tokens/variables";
 
 .skills {
-    min-width: 300px;
-
     &[mixin="works"] {
         margin: 0;
         padding: 0;
