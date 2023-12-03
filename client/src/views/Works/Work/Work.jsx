@@ -21,6 +21,7 @@ const Work = ({
         >
             <div className={s.work__image}>
                 <ImageLazyLoad
+                    mixin="work"
                     blurHash={cardImage.blurHash}
                     name={cardImage.name}
                     url={urlImage}

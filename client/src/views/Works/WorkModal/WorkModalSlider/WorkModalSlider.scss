@@ -10,5 +10,10 @@
 .swiper .swiper-slide {
     height: auto;
     max-height: 500px;
-    line-height: 300px;
+    max-width: 100%;
+}
+
+.swiper {
+    width: 100%;
+    height: 100%;
 }

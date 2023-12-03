@@ -31,13 +31,12 @@ const Modal = ({ children, isOpen, handleClose, position = undefined }) => {
                         isOpen
                             ? `${s.modal} ${s["modal-enter-done"]}`
                             : `${s.modal} ${s["modal-exit"]}`
+
                     }
                     ref={nodeRef}
                     onClick={handleClose}
                 >
-                    <div className={s.modal__dialog} onClick={(e) => e.stopPropagation()}>
-                        {children}
-                    </div>
+                    {children}
                 </div>
             </CSSTransition>
         </ReactPortal>

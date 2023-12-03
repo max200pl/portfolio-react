@@ -7,7 +7,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
-
+import "swiper/css/zoom";
 import 'swiper/css/effect-fade';
 import ImageLazyLoad from '../../../../components/ImageLazyLoad/ImageLazyLoad';
 import { getUrlWorkImage } from '../../../../helpers/helpers';
@@ -21,7 +21,7 @@ export const WorkModalSlider = ({ images }) => {
             centeredSlides={true}
             onSlideChange={() => console.log('slide change')}
             onSwiper={(swiper) => console.log(swiper)}
-
+            zoom={true}
             navigation
             pagination={{ clickable: true }}
             scrollbar={{ draggable: true }}
@@ -31,7 +31,7 @@ export const WorkModalSlider = ({ images }) => {
                     const URL_IMG = getUrlWorkImage(image.name)
 
                     return <SwiperSlide key={id} className={s.work_slide}>
-                        <div className='swiper-zoom-container'>
+                        <div className="swiper-zoom-container">
                             <ImageLazyLoad blurHash={image.blurHash} name={image.name} url={URL_IMG} />
                         </div>
                     </SwiperSlide>

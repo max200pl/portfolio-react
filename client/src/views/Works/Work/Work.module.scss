@@ -22,6 +22,12 @@
         position: relative;
         min-width: 299.983px;
         min-height: 234.219px;
+
+        border-radius: 10px 10px 0 0 !important;
+
+        .img {
+            background: #000;
+        }
     }
 
     &__content {
