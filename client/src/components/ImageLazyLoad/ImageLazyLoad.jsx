@@ -12,7 +12,7 @@ export default function ImageLazyLoad({ url, name, blurHash }) {
     };
 
     return (
-        <div className={s.img}>
+        <div className={s.img_container}>
             <LazyLoadImage
                 className={s.img__lazy_load}
                 key={name}

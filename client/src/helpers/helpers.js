@@ -57,6 +57,13 @@ export const getFolderName = (str) => {
     return str.slice(0, str.indexOf("/"))
 }
 
+export const getUrlWorkImage = (image) => {
+    const folderName = getFolderName(image)
+    const imageName = getImageName(image)
+
+    return `http://localhost:8000/works/image?project=${folderName}&name=${imageName}`
+}
+
 export const getUniqCategoriesWork = (categories) => {
     return categories?.reduce((acc, { category }) => {
         if (!acc.includes(category)) {

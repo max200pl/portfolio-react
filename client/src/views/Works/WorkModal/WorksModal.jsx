@@ -15,7 +15,7 @@ export default function WorksModal({
 }) {
     return (
         <div className={s.modal}>
-            <button className={s.modal__close} onClick={onClose} type="button">
+            <button className={s.modal__close} onClick={() => onClose()} type="button">
                 <img className={s.modal__close_image} src={exitImg} alt="Close" />
             </button>
             <div className={s.modal__header}>
@@ -36,12 +36,12 @@ export default function WorksModal({
                 </Fade>
             </div>
 
-            <div className={s.slider}>
-                <div className={s.slider__content}>
+            <div className={s.content}>
+                <div className={s.content__slider}>
                     <WorkModalSlider images={currentWork.images} />
                 </div>
 
-                <div className={s.slider__panel}>
+                <div className={s.content__panel}>
                     <Skills position="right" mixin="works" technology={currentWork.technology} />
                 </div>
             </div>
