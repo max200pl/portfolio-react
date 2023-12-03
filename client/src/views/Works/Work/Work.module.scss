@@ -7,14 +7,13 @@
     box-shadow: 0 0 4px $color-white;
     border-radius: 10px;
     transition: box-shadow 0.2s linear;
+
     cursor: pointer;
 
     &:hover {
         box-shadow: 0 0 25px $color-white;
-
         .work__edit_button {
             top: -35px;
-            transition: all 0.3s ease-in-out;
         }
     }
 
@@ -28,6 +27,7 @@
         top: 0;
         right: 8px;
         height: 50px;
+        transition: top 0.3s ease;
 
         &:hover {
             box-shadow: 0 0 25px #10aedf;
