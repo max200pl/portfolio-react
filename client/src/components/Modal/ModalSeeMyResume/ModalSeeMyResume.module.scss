@@ -23,6 +23,8 @@
 
 .modal__content {
     height: 93vh;
+    margin: 15px;
+    padding: 10px;
 
     @include xs-mb {
         height: 100vh;

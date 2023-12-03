@@ -74,7 +74,7 @@ const ModalSeeMyResume = ({ isOpen, handleClose }) => {
     });
 
     return (
-        <div className={s.modal__dialog}>
+        <div className={s.modal__dialog} onClick={(e) => e.stopPropagation()}>
             <div className={s.modal__content}>
                 <button className={s.modal__close} onClick={handleClose} type="button">
                     <img className={s.modal__close_image} src={exitImg} alt="Close" />
