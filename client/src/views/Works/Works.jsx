@@ -34,9 +34,6 @@ const Works = () => {
             )}
             {status === "success" && (
                 <div className={s.portfolio__container}>
-                    <div className={s.portfolio__workCount}>
-                        <span>Count works:</span> {works?.length}
-                    </div>
                     <div className={s.portfolio__works}>
                         <Fade
                             triggerOnce="true"
