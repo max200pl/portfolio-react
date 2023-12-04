@@ -4,10 +4,6 @@ import s from "./WorkCreator.module.scss";
 import { ReactComponent as PlusImage } from "../../../images/plus.svg";
 
 const WorkCreator = ({
-    category,
-    date,
-    name,
-    cardImage,
     onCardClick
 }) => {
 

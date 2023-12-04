@@ -8,10 +8,11 @@ import { useCategoriesWorks, useWorks } from "./WorksAPI";
 import FilterWorks from "./FilterWorks/FilterWorks";
 
 import { getUniqCategoriesWork } from "../../helpers/helpers";
-import WorksModal from "./WorkModal/WorksModal";
+import WorkModal from "./WorkModal/WorksModal";
 import Modal from "../../components/Modal/Modal";
 import { LazyLoadComponent } from "react-lazy-load-image-component";
 import WorkCreator from "./WorkCreator/WorkCreator";
+import ChangeWorkModal from "./ChangeWorkModal/ChangeWorkModal";
 
 
 const Works = () => {
@@ -22,6 +23,7 @@ const Works = () => {
     const uniqCategoriesWork = getUniqCategoriesWork(categories);
 
     const [isOpenModal, toggleOpenModal] = useState(false);
+    const [isOpenEditWorkModal, toggleEditWorkOpenModal] = useState(false);
     const [currentWork, setCurrentWork] = useState({});
 
     return (
@@ -46,7 +48,14 @@ const Works = () => {
                         >
                             <div className={s.portfolio__col}>
                                 <LazyLoadComponent>
-                                    <WorkCreator />
+                                    <WorkCreator
+                                        onCardClick={
+                                            () => {
+                                                setCurrentWork(undefined)
+                                                toggleEditWorkOpenModal(true)
+                                            }
+                                        }
+                                    />
                                 </LazyLoadComponent>
                             </div>
                         </Fade>
@@ -80,14 +89,18 @@ const Works = () => {
             )}
 
             <Modal handleClose={() => toggleOpenModal(false)} isOpen={isOpenModal}>
-                <WorksModal
-                    isOpen={isOpenModal}
+                <WorkModal
                     onClose={toggleOpenModal}
-                    works={works}
                     currentWork={currentWork}
                 />
             </Modal>
 
+            <Modal handleClose={() => toggleEditWorkOpenModal(false)} isOpen={isOpenEditWorkModal}>
+                <ChangeWorkModal
+                    onClose={toggleEditWorkOpenModal}
+                    currentWork={currentWork}
+                />
+            </Modal>
         </div>
     );
 };

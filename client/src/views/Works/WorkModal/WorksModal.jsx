@@ -7,10 +7,8 @@ import { getYear } from "../../../helpers/helpers";
 import { Fade } from "react-awesome-reveal";
 import { WorkModalSlider } from "./WorkModalSlider/WorkModalSlider";
 
-export default function WorksModal({
-    isOpen,
+export default function WorkModal({
     onClose,
-    works,
     currentWork
 }) {
     return (
