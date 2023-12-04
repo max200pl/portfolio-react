@@ -11,6 +11,7 @@ import { getUniqCategoriesWork } from "../../helpers/helpers";
 import WorksModal from "./WorkModal/WorksModal";
 import Modal from "../../components/Modal/Modal";
 import { LazyLoadComponent } from "react-lazy-load-image-component";
+import WorkCreator from "./WorkCreator/WorkCreator";
 
 
 const Works = () => {
@@ -32,9 +33,23 @@ const Works = () => {
                     categories={uniqCategoriesWork}
                 />
             )}
+
+
             {status === "success" && (
                 <div className={s.portfolio__container}>
                     <div className={s.portfolio__works}>
+                        <Fade
+                            triggerOnce="true"
+                            direction="right"
+                            cascade
+                            className={s.portfolio__col}
+                        >
+                            <div className={s.portfolio__col}>
+                                <LazyLoadComponent>
+                                    <WorkCreator />
+                                </LazyLoadComponent>
+                            </div>
+                        </Fade>
                         <Fade
                             triggerOnce="true"
                             direction="right"

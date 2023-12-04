@@ -10,3 +10,7 @@
 ## Swiper DEMOS
 
 <https://swiperjs.com/demos#responsive-breakpoints>
+
+## Using SVG Component
+
+<https://www.copycat.dev/blog/react-svg/>

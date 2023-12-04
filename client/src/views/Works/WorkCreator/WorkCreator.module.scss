@@ -1,0 +1,39 @@
+@import "../../../design-tokens/breakpoints";
+@import "../../../design-tokens/variables";
+
+.work {
+    position: relative;
+    margin: 15px;
+    box-shadow: 0 0 4px $color-white;
+    border-radius: 10px;
+    transition: box-shadow 0.2s linear;
+
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    &:hover {
+        box-shadow: 0 0 25px$color-blue;
+
+        .work__image_plus {
+            fill: $color-blue;
+        }
+    }
+
+    @include xs-mb {
+        max-width: 370px;
+        margin: 15px auto;
+    }
+
+    &__image {
+        min-width: 299.983px;
+        min-height: 308.212px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        & > img {
+            max-width: 80px;
+        }
+    }
+}
