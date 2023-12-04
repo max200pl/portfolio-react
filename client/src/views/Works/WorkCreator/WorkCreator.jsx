@@ -12,11 +12,11 @@ const WorkCreator = ({
 }) => {
 
     return (
-        <div className={s.work}
+        <div className={s.work_creator}
             onClick={() => onCardClick()}
         >
-            <div className={s.work__image}>
-                <PlusImage className={s.work__image_plus} />
+            <div className={s.work_creator__image}>
+                <PlusImage className={s.work_creator__image_plus} />
             </div>
         </div>
     );

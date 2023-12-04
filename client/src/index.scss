@@ -21,12 +21,12 @@ body {
         padding: 0 20px;
     }
 
-    @include lg {
+    @include lg-xl {
         max-width: 1200px;
         padding: 0 20px;
     }
 
-    @include mb {
+    @include mb-lg {
         max-width: 990px;
         padding: 0 15px;
     }
