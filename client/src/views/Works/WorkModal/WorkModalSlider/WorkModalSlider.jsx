@@ -19,8 +19,8 @@ export const WorkModalSlider = ({ images }) => {
             spaceBetween={50}
             slidesPerView={1}
             centeredSlides={true}
-            onSlideChange={() => console.log('slide change')}
-            onSwiper={(swiper) => console.log(swiper)}
+            onSlideChange={() => { }}
+            onSwiper={(swiper) => { }}
             zoom={true}
             navigation
             pagination={{ clickable: true }}

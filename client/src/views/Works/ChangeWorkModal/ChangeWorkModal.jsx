@@ -7,8 +7,9 @@ import { Fade } from "react-awesome-reveal";
 
 const ChangeWorkModal = ({
     onClose,
-    currentWork
+    work
 }) => {
+
     return (
         <div className={s.modal}>
             <button className={s.modal__close} onClick={() => onClose()} type="button">

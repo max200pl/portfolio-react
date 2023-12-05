@@ -9,7 +9,7 @@ import { WorkModalSlider } from "./WorkModalSlider/WorkModalSlider";
 
 export default function WorkModal({
     onClose,
-    currentWork
+    work
 }) {
     return (
         <div className={s.modal}>
@@ -18,13 +18,13 @@ export default function WorkModal({
             </button>
             <div className={s.modal__header}>
                 <Fade duration={100} triggerOnce="true" direction="left" cascade className={s.modal__title}>
-                    {currentWork.name}
+                    {work.name}
                 </Fade>
 
                 <div className={s.modal__subtitle}>
-                    {currentWork.category}
+                    {work.category}
                     <span className={s.modal__subtitle_divider}>|</span>
-                    {getYear(currentWork.date)}
+                    {getYear(work.date)}
                 </div>
 
                 <Fade triggerOnce="true" direction="left" cascade className={s.modal__title}>
@@ -36,11 +36,11 @@ export default function WorkModal({
 
             <div className={s.content} onClick={(e) => e.stopPropagation()}>
                 <div className={s.content__slider}>
-                    <WorkModalSlider images={currentWork.images} />
+                    <WorkModalSlider images={work.images} />
                 </div>
 
                 <div className={s.content__panel}>
-                    <Skills position="right" mixin="works" technology={currentWork.technology} />
+                    <Skills position="right" mixin="works" technology={work.technology} />
                 </div>
             </div>
         </div>

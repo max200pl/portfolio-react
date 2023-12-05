@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Work from "./Work/Work";
+import { Work as WorkComponent } from "./Work/Work";
 
 import { Fade } from "react-awesome-reveal";
 import s from "./Works.module.scss";
@@ -13,6 +13,7 @@ import Modal from "../../components/Modal/Modal";
 import { LazyLoadComponent } from "react-lazy-load-image-component";
 import WorkCreator from "./WorkCreator/WorkCreator";
 import ChangeWorkModal from "./ChangeWorkModal/ChangeWorkModal";
+import { Work } from "./helpers"
 
 
 const Works = () => {
@@ -51,7 +52,9 @@ const Works = () => {
                                     <WorkCreator
                                         onCardClick={
                                             () => {
-                                                setCurrentWork(undefined)
+                                                setCurrentWork(
+                                                    Work.create()
+                                                )
                                                 toggleEditWorkOpenModal(true)
                                             }
                                         }
@@ -69,7 +72,7 @@ const Works = () => {
                                 return (
                                     <div className={s.portfolio__col}>
                                         <LazyLoadComponent>
-                                            <Work
+                                            <WorkComponent
                                                 {...work}
                                                 key={work.name}
                                                 onCardClick={
@@ -91,14 +94,14 @@ const Works = () => {
             <Modal handleClose={() => toggleOpenModal(false)} isOpen={isOpenModal}>
                 <WorkModal
                     onClose={toggleOpenModal}
-                    currentWork={currentWork}
+                    work={currentWork}
                 />
             </Modal>
 
             <Modal handleClose={() => toggleEditWorkOpenModal(false)} isOpen={isOpenEditWorkModal}>
                 <ChangeWorkModal
                     onClose={toggleEditWorkOpenModal}
-                    currentWork={currentWork}
+                    work={currentWork}
                 />
             </Modal>
         </div>

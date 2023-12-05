@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import s from "./Work.module.scss";
 import { getFolderName, getImageName, getYear } from "../../../helpers/helpers";
 import ImageLazyLoad from "../../../components/ImageLazyLoad/ImageLazyLoad";
 
-
-const Work = ({
+export const Work = ({
     category,
     date,
     name,
@@ -47,5 +46,3 @@ const Work = ({
         </div>
     );
 };
-
-export default Work;
