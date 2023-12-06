@@ -1,12 +1,11 @@
 
-import exitImg from "../../../../../assets/images/modal/exit.svg";
+import exitImg from "../../assets/images/modal/exit.svg";
 import { Fade } from "react-awesome-reveal";
 
-import s from "./WorkChangeModal.module.scss";
+import s from "./ModalWorkEditor.module.scss";
 
 
-
-const WorkChangeModal = ({
+const ModalWorkEditor = ({
     onClose,
     work
 }) => {
@@ -29,4 +28,4 @@ const WorkChangeModal = ({
     );
 }
 
-export default WorkChangeModal
+export default ModalWorkEditor
