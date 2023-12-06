@@ -1,11 +1,11 @@
-import s from "./WorksModal.module.scss";
-import Skills from "./Skils/Skills";
-import exitImg from "../../../../../assets/images/modal/exit.svg";
-import { getYear } from "../../../../../assets/helpers/helpers";
+import s from "./ModalWork.module.scss";
+import ModalWorkSkills from "./ModalWorkSkills/ModalWorkSkills";
+import ModalWorkSlider from "./ModalWorkSlider/ModalWorkSlider";
+import exitImg from "../../assets/images/modal/exit.svg";
+import { getYear } from "../../assets/helpers/helpers";
 import { Fade } from "react-awesome-reveal";
-import { WorkModalSlider } from "./WorkModalSlider/WorkModalSlider";
 
-export default function WorkModal({
+export default function ModalWork({
     onClose,
     work
 }) {
@@ -34,11 +34,11 @@ export default function WorkModal({
 
             <div className={s.content} onClick={(e) => e.stopPropagation()}>
                 <div className={s.content__slider}>
-                    <WorkModalSlider images={work.images} />
+                    <ModalWorkSlider images={work.images} />
                 </div>
 
                 <div className={s.content__panel}>
-                    <Skills position="right" mixin="works" technology={work.technology} />
+                    <ModalWorkSkills position="right" mixin="works" technology={work.technology} />
                 </div>
             </div>
         </div>

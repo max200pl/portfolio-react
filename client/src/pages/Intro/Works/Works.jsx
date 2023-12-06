@@ -8,7 +8,7 @@ import { useCategoriesWorks, useWorks } from "./WorksAPI";
 import FilterWorks from "./FilterWorks/FilterWorks";
 
 import { getUniqCategoriesWork } from "../../../assets/helpers/helpers";
-import WorkModal from "./Work/WorkModal/WorksModal";
+import ModalWork from "../../../modals/ModalWork/ModalWork";
 import Modal from "../../../assets/components/Modal/Modal";
 import { LazyLoadComponent } from "react-lazy-load-image-component";
 
@@ -93,7 +93,7 @@ const Works = () => {
             )}
 
             <Modal handleClose={() => toggleOpenModal(false)} isOpen={isOpenModal}>
-                <WorkModal
+                <ModalWork
                     onClose={toggleOpenModal}
                     work={currentWork}
                 />

@@ -1,7 +1,6 @@
-import React from "react";
-import s from "./Skills.module.scss";
+import s from "./ModalWorkSkills.module.scss";
 
-import ProgressBar from "../../../../../../assets/components/ProgressBar/ProgressBar";
+import ProgressBar from "../../../assets/components/ProgressBar/ProgressBar";
 
 const Skills = ({ technology, mixin, position }) => {
     return (

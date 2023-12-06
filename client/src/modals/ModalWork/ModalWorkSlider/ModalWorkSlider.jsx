@@ -1,4 +1,4 @@
-import s from "./WorkModalSlider.scss"
+import s from "./ModalWorkSlider.scss"
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
 import 'swiper/css';
@@ -7,10 +7,10 @@ import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import "swiper/css/zoom";
 import 'swiper/css/effect-fade';
-import ImageLazyLoad from '../../../../../../assets/components/ImageLazyLoad/ImageLazyLoad';
-import { getUrlWorkImage } from '../../../../../../assets/helpers/helpers';
+import ImageLazyLoad from '../../../assets/components/ImageLazyLoad/ImageLazyLoad';
+import { getUrlWorkImage } from '../../../assets/helpers/helpers';
 
-export const WorkModalSlider = ({ images }) => {
+const ModalWorkSlider = ({ images }) => {
     return (
         <Swiper
             modules={[Navigation, Pagination, Scrollbar, A11y]}
@@ -43,3 +43,5 @@ export const WorkModalSlider = ({ images }) => {
     );
 
 };
+
+export default ModalWorkSlider
