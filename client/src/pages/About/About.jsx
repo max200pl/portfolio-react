@@ -1,4 +1,4 @@
-import React from "react";
+
 import s from "./About.module.scss";
 
 //import aboutPhoto from "../../img/About__me/about__photo.png";

@@ -15,16 +15,16 @@ let dataNavLink = [
         iconUrl: HelloImg,
     },
     {
-        name: "Portfolio",
-        to: "/portfolio",
-        alt: "my works portfolio",
-        iconUrl: PortfolioImg,
-    },
-    {
         name: "About me",
         to: "/about",
         alt: "about me",
         iconUrl: AboutImg,
+    },
+    {
+        name: "Gallery photos",
+        to: "/gallery",
+        alt: "my works photos",
+        iconUrl: PortfolioImg,
     },
     {
         name: "LogIN",

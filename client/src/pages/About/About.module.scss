@@ -1,5 +1,4 @@
-@import "../../design-tokens/breakpoints";
-@import "../../design-tokens/variables";
+@import "../../assets/styles/helpers";
 
 .about__inner {
     display: flex;
@@ -42,7 +41,6 @@
         margin-left: auto;
         margin-right: auto;
     }
-
 
     @include xs-mb {
         padding-left: 0;
