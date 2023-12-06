@@ -1,0 +1,78 @@
+@import "../../../../assets/styles/helpers";
+
+.work {
+    position: relative;
+    margin: 15px;
+    box-shadow: 0 0 4px $color-white;
+    border-radius: 10px;
+    transition: box-shadow 0.2s linear;
+
+    cursor: pointer;
+
+    &:hover {
+        box-shadow: 0 0 25px $color-white;
+        .work__edit_button {
+            top: -35px;
+        }
+    }
+
+    @include xs-mb {
+        max-width: 370px;
+        margin: 15px auto;
+    }
+
+    &__edit_button {
+        position: absolute;
+        top: 0;
+        right: 8px;
+        height: 50px;
+        transition: top 0.3s ease;
+
+        &:hover {
+            box-shadow: 0 0 25px $color-blue;
+        }
+
+        padding: 0 20px 10px;
+        border-radius: 10px;
+        box-shadow: 0 0 25px $color-white;
+        border: 1px solid $color-white;
+        border-width: 1px 1px 0 1px;
+    }
+
+    &__container {
+        position: relative;
+    }
+
+    &__image {
+        position: relative;
+        min-width: 299.983px;
+        min-height: 234.219px;
+
+        border-radius: 10px 10px 0 0 !important;
+
+        .img {
+            background: #000;
+        }
+    }
+
+    &__content {
+        padding: 22px 0.8rem;
+    }
+}
+
+.work__cat {
+    font-style: 12px;
+    color: $color-white;
+    text-transform: uppercase;
+    font-size: 1.06;
+    font-weight: 700;
+}
+
+.work__title {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.06;
+    color: $color-white;
+    text-transform: uppercase;
+    font-weight: 700;
+}

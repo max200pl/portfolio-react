@@ -1,0 +1,112 @@
+@import "../../assets/styles/helpers";
+
+.modal__dialog {
+    min-width: 450px;
+    border-radius: 18px;
+    position: relative;
+    border: 1px solid $color-white;
+    background: linear-gradient(to right top, #051937, #000, #008793, #bf0000, #f00);
+    display: flex;
+    height: 100%;
+
+    @include xs-mb {
+        min-width: 320px;
+        border: none;
+    }
+}
+
+.modal__close {
+    width: 34px;
+    height: 39px;
+    padding: 0;
+
+    background: none;
+    border: 0;
+    cursor: pointer;
+
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 1;
+
+    transition: transform 0.2s linear;
+
+    &:hover {
+        transform: translateY(-3px);
+    }
+
+    @include sm-mb {
+        width: 24px;
+        height: 29px;
+        right: 10px;
+
+        &--right-5 {
+            right: 5px;
+        }
+    }
+}
+
+.contact {
+    width: 100%;
+    padding: 2rem;
+
+    @include xs-mb {
+        padding: 1.5rem;
+    }
+}
+
+.contact__info {
+    font-size: 0.94rem;
+    font-weight: 300;
+
+    margin: 2rem 0 3rem;
+    padding: 0;
+
+    list-style: none;
+
+    color: $color-white;
+
+    @include xs-mb {
+        margin: 1.5rem 0 2.5rem;
+    }
+}
+
+.contact__info_item {
+    display: flex;
+    align-items: center;
+
+    margin-bottom: 0.75rem;
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
+
+.contact__info_icon {
+    margin-right: 0.75rem;
+}
+
+.contact__title {
+    margin: 0 0 1.6rem;
+    margin-bottom: 1.6rem;
+
+    font-size: 3rem;
+    text-transform: uppercase;
+    color: $color-white;
+    font-weight: 700;
+
+    @include xs-mb {
+        font-size: 2.5rem;
+    }
+}
+
+.contact__subtitle {
+    text-transform: uppercase;
+    font-size: 1.06rem;
+    color: $color-white;
+    font-weight: 400;
+
+    @include xs-mb {
+        font-size: 0.86rem;
+    }
+}

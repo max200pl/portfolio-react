@@ -1,0 +1,26 @@
+@import "../../../../assets/styles/helpers";
+
+.filterWorks__nav {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.filterWorks__nav_link {
+    font-size: 1.3rem;
+    margin: 0 1.2rem;
+    text-decoration: none;
+    color: $color-white;
+    opacity: 70%;
+
+    text-transform: capitalize;
+
+    &:hover {
+        text-decoration: underline;
+    }
+
+    @include xs-mb {
+        font-size: 1.2rem;
+    }
+}

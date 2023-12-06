@@ -1,0 +1,90 @@
+@import "../../assets/styles/helpers";
+
+.modal__dialog {
+    margin: 1rem auto;
+    min-width: 450px;
+    max-width: 1200px;
+    border-radius: 18px;
+    position: relative;
+    border: 1px solid $color-white;
+    background: rgba(6, 15, 49, 0.9);
+    padding: 15px 3px 15px 15px;
+
+    @include xs-mb {
+        margin: 1rem;
+        padding: 0;
+        min-width: 320px;
+        border: none;
+        flex-basis: 100%;
+        border-radius: 0;
+    }
+}
+
+.modal__content {
+    height: 93vh;
+    margin: 15px;
+    padding: 10px;
+
+    @include xs-mb {
+        height: 100vh;
+    }
+
+    position: relative;
+
+    overflow: auto;
+    /* Firefox */
+    scrollbar-width: thin;
+    scrollbar-color: #147796 #ffffff;
+
+    scroll-padding: 50px 0px 0px 50px;
+
+    /* Chrome, Edge, and Safari */
+    &::-webkit-scrollbar {
+        width: 11px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: #147796;
+        border-radius: 10px;
+        border: 1px solid $color-white;
+    }
+}
+
+.modal__download_button {
+    position: absolute;
+    top: 0;
+    right: 9;
+    z-index: 2;
+}
+
+.modal__close {
+    width: 34px;
+    height: 39px;
+    padding: 0;
+
+    background: none;
+    border: 0;
+    cursor: pointer;
+
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    z-index: 1;
+
+    transition: transform 0.2s linear;
+
+    &:hover {
+        transform: translateY(-3px);
+    }
+
+    @include xs-mb {
+        top: 10px;
+        width: 24px;
+        height: 29px;
+        right: 10px;
+    }
+}

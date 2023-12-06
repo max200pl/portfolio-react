@@ -1,0 +1,16 @@
+@import "../../../../../../assets/styles/helpers";
+
+.skills {
+    &[mixin="works"] {
+        margin: 0;
+        padding: 0;
+    }
+}
+
+.skills__header {
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+    color: $color-blue;
+    font-weight: 700;
+    text-transform: uppercase;
+}

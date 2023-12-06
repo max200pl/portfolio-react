@@ -1,0 +1,100 @@
+@import "../../assets/styles/helpers";
+
+.intro {
+    position: relative;
+    overflow-x: hidden;
+
+    &__footer {
+        display: flex;
+        justify-content: center;
+        position: fixed;
+        bottom: 30px;
+        left: 0;
+        right: 0;
+        width: 100%;
+    }
+}
+
+.inner {
+    display: flex;
+    position: relative;
+    padding: 8rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+
+    @include xs-mb {
+        border-bottom: none;
+        padding: 1rem 0 7rem;
+    }
+}
+
+.content {
+    @include xs-mb {
+        flex-basis: 80%;
+    }
+}
+
+.link {
+    .btn {
+        min-width: 196px;
+
+        @include lg {
+            width: 100%;
+            margin-top: 20px;
+
+            & + .btn {
+                margin-left: 0;
+            }
+        }
+    }
+}
+
+.subtitle {
+    font-size: 2.13rem;
+    font-weight: 200;
+    color: $color-white;
+    margin-bottom: 5px;
+}
+
+.title {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 5px;
+    margin-top: 10px;
+
+    @include xs-mb {
+        font-size: 1.8rem;
+    }
+}
+
+.text {
+    font-size: 1.2rem;
+    margin-bottom: 25px;
+    opacity: 0.7;
+}
+
+.social {
+    display: flex;
+    margin-bottom: 42px;
+}
+
+.social img {
+    max-width: 40px;
+    max-height: 40px;
+    margin-right: 10px;
+    transition: transform 0.2s linear;
+    text-decoration: none;
+
+    &:hover {
+        transform: translateY(-5px);
+    }
+}
+
+.next_button {
+    cursor: pointer;
+    margin: auto;
+}
+
+.next_button__icon {
+    height: 80px;
+    max-width: 80px;
+}

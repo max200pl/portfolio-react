@@ -1,0 +1,34 @@
+// ActionButtons
+:root {
+    --button_primary_bg: #068ade;
+    --button_primary_active: #068ade;
+    --advanced_bg_disable: transparent;
+    --advanced_border_disable: rgba(255, 255, 255, 0.2);
+    --advanced_text_disable: rgba(255, 255, 255, 0.2);
+    --secondary_border: #0272b9;
+    --secondary_color: rgba(255, 255, 255, 0.7);
+    --secondary_bg_hover: #068ade;
+}
+
+$blue: #068ade;
+$white: #fff;
+$white_40: rgba(255, 255, 255, 0.7);
+$white_20: rgba(255, 255, 255, 0.2);
+
+$link_text: #068ade;
+
+$advanced_bg_yellow: #e8a126;
+$advanced_border_yellow: #e8a126;
+$advanced_text_yellow: #e8a126;
+
+$advanced_bg_blue: #068ade;
+$advanced_border_blue: #068ade;
+$advanced_text_blue: #068ade;
+
+$advanced_bg_red: #d06679;
+$advanced_border_red: #d06679;
+$advanced_text_red: #d06679;
+
+$advanced_bg_green: green;
+$advanced_border_green: green;
+$advanced_text_green: green;

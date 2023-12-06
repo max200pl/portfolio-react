@@ -1,0 +1,29 @@
+@import "../../../assets/styles/helpers";
+
+.portfolio {
+    margin: 3.8rem 0;
+    min-height: 827.172px;
+
+    @include xs-mb {
+        margin: 1.8rem 0;
+    }
+
+    &__works {
+        display: flex;
+        flex-wrap: wrap;
+        margin: -15px;
+        margin-bottom: 25px;
+    }
+}
+
+.portfolio__col {
+    flex-basis: 33.33333%;
+
+    @include mb-lg {
+        flex-basis: 50%;
+    }
+
+    @include xs-mb {
+        flex-basis: 100%;
+    }
+}

@@ -1,0 +1,14 @@
+@import "../../assets/styles/helpers";
+
+.main {
+    display: flex;
+
+    &__content {
+        width: 100%;
+        overflow-x: auto;
+    }
+}
+
+.root_layout {
+    height: 100vh;
+}

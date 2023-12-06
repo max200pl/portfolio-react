@@ -1,0 +1,235 @@
+@import "./_variable.scss";
+
+.action_buttons {
+    display: flex;
+
+    &[buttons-position="bottom_center"] {
+        margin: auto auto 0;
+    }
+}
+
+.button {
+    position: relative;
+    min-width: 120px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 20px;
+    border-radius: 20px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: border-color linear 0.3s;
+
+    &[hidden-button="true"] {
+        display: none;
+    }
+
+    &[role="primary"] {
+        background: var(--button_primary_bg);
+        color: $white;
+
+        &:hover {
+            background: var(--button_primary_active);
+            background: #068ade;
+        }
+    }
+
+    &[role="secondary"] {
+        background: transparent;
+        border: 1px solid var(--secondary_border);
+        color: var(--secondary_color);
+
+        &[disabled] {
+            background: transparent;
+        }
+
+        &:hover {
+            border-color: var(--secondary_bg_hover);
+        }
+    }
+
+    &_text {
+        position: relative;
+        display: inline-block;
+        font-size: 14px;
+        font-weight: 500;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+    }
+
+    &[disabled] {
+        background: $white_20;
+        border-color: $white_20;
+        cursor: default;
+
+        &:before {
+            display: none;
+        }
+
+        .button_text {
+            color: $white_20;
+        }
+    }
+
+    &:before {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: inherit;
+        top: 50%;
+        left: 0;
+        background: $black_15;
+        transform: translate(0, -50%);
+        border-radius: inherit;
+        z-index: 1;
+        transition: width linear 0.3s;
+    }
+
+    &:not(:first-child) {
+        margin-left: 14px;
+    }
+
+    &:hover {
+        &:before {
+            width: 100%;
+        }
+    }
+
+    /*  =======  LINK BUTTON ======= */
+
+    &[style-type="link"] {
+        height: 32px;
+        padding: 0;
+        border: none;
+        background: transparent;
+
+        &:hover {
+            background: transparent;
+            text-decoration: underline;
+            color: $link_text;
+
+            &:before {
+                display: none;
+            }
+        }
+
+        .button_text {
+            color: $link_text;
+            font-size: 12px;
+            font-weight: medium;
+            text-transform: initial;
+        }
+    }
+
+    /*  =======  ADVANCED BUTTONS ======= */
+
+    &[style-type="advanced yellow"],
+    &[style-type="advanced blue"],
+    &[style-type="advanced red"],
+    &[style-type="advanced green"],
+    &[style-type="advanced grey"] {
+        height: 32px;
+        padding: 0 8px;
+        border-radius: 4px;
+        background: transparent;
+
+        &:hover {
+            &:before {
+                display: none;
+            }
+        }
+
+        &:disabled {
+            background: var(--advanced_bg_disable);
+            border-color: var(--advanced_border_disable);
+
+            .button_text {
+                color: var(--advanced_text_disable);
+            }
+
+            &:hover {
+                .button_text {
+                    color: var(--advanced_text_disable);
+                }
+
+                background: var(--advanced_bg_disable);
+                border-color: var(--advanced_border_disable);
+            }
+        }
+
+        .button_text {
+            font-size: 14px;
+            font-weight: medium;
+            text-transform: initial;
+        }
+    }
+
+    &[style-type="advanced blue"] {
+        border: 1px solid $advanced_border_blue;
+
+        &:hover {
+            background: $advanced_bg_blue;
+            border: 1px solid $advanced_border_blue;
+
+            .button_text {
+                color: $white;
+            }
+        }
+
+        .button_text {
+            color: $advanced_bg_blue;
+        }
+    }
+
+    &[style-type="advanced yellow"] {
+        border: 1px solid $advanced_border_yellow;
+
+        &:hover {
+            background: $advanced_bg_yellow;
+            border: 1px solid $advanced_border_yellow;
+
+            .button_text {
+                color: $white;
+            }
+        }
+
+        .button_text {
+            color: $advanced_bg_yellow;
+        }
+    }
+
+    &[style-type="advanced red"] {
+        border: 1px solid $advanced_border_red;
+
+        &:hover {
+            background: $advanced_bg_red;
+            border: 1px solid $advanced_border_red;
+
+            .button_text {
+                color: $white;
+            }
+        }
+
+        .button_text {
+            color: $advanced_bg_red;
+        }
+    }
+
+    &[style-type="advanced green"] {
+        border: 1px solid $advanced_border_green;
+
+        &:hover {
+            background: $advanced_bg_green;
+            border: 1px solid $advanced_border_green;
+
+            .button_text {
+                color: $white;
+            }
+        }
+
+        .button_text {
+            color: $advanced_bg_green;
+        }
+    }
+}

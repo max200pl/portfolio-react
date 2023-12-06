@@ -1,0 +1,32 @@
+$page_bg_dark: #292929;
+$page_bg_light: #F6F8FC;
+$white: #FFFFFF;
+$white_80: rgba($white, .8);
+$white_70: rgba(255, 255, 255, .7);
+$white_40: rgba(255, 255, 255, .40);
+$white_20: rgba(255, 255, 255, .2);
+$white_07: rgba(255, 255, 255, .07);
+$white_05: rgba(255, 255, 255, .05);
+
+$black_20: rgba(0, 0, 0, .2);
+$black_15: rgba(0, 0, 0, .15);
+$black_10: rgba(0, 0, 0, .1);
+
+$color_white_80: rgba(255, 255, 255, .8);
+
+$status_yellow: #e8a126;
+$status_blue: #068ade;
+$status_red: #d06679;
+$status_green: #4eb470;
+$status_grey: #8a8a8a;
+
+
+:root {
+    --page_bg: #292929;
+    --logout_color: rgba(255, 255, 255, .8);
+}
+
+[type-theme="light"] {
+    --page_bg: #F6F8FC;
+    --logout_color: rgba(0, 0, 0, .7);
+}

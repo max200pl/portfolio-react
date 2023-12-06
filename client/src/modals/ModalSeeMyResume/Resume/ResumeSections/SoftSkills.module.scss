@@ -1,0 +1,28 @@
+@import "../../../../assets/styles/helpers";
+
+.soft_skills {
+    &__container {
+        display: flex;
+        flex-direction: column;
+        max-width: 400px;
+        min-width: 300px;
+
+        padding-left: 20px;
+        padding-right: 40px;
+
+        @include xs-mb {
+            max-width: 100%;
+            padding-right: 52px;
+        }
+    }
+
+    &__title {
+        display: block;
+        margin: 0;
+        font-size: 20px;
+        font-weight: 400;
+        color: $color-blue;
+        padding-bottom: 5px;
+        padding-left: 20px;
+    }
+}

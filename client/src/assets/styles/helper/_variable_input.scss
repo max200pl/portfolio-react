@@ -1,0 +1,81 @@
+//* BACKGROUND *//
+$bg: rgba(255, 255, 255, 0.05);
+$bg_action: rgba(255, 255, 255, 0.06);
+$bg_error: #EC1C24;
+$bg_error_action: rgb(236, 28, 36, 0.06);
+$bg_disabled: rgba(255, 255, 255, 0.5);
+$bg_selected_text: #068ADE;
+
+//* BORDER *//
+$border: rgba(255, 255, 255, 0.40);
+$border_action: rgba(255, 255, 255, 0.70);
+$border_error: #D06679;
+$border_disabled: rgba(255, 255, 255, 0.3);
+
+//* TEXT *//
+$color_input: rgba(255, 255, 255, 0.70);
+$color_input_error: #D06679;
+$color_input_disabled: rgba(255, 255, 255, 0.2);
+
+//* LABEL AUTH FORM *//
+$color_label_auth: rgba(255, 255, 255, 0.90);
+$bg_label_auth: #068ADE;
+$bg_label_auth_error: #D06679;
+$bg_label_auth_disabled: #777777;
+
+
+//Error Messages
+$color_error: #D06679;
+$color_error_password: #068ADE;
+
+:root {
+    --color_input: rgba(255, 255, 255, .7);
+    --border: rgba(255, 255, 255, 0.40);
+    --select_popup_bg: #424242;
+    --select_border_color_action: rgba(255, 255, 255, 0.70);
+    --select_option_color_selected: #068ADE;
+    --option_selected: #068ADE;
+    --select_option_before_bg: rgba(255, 255, 255, 0.06);
+    --select_option_before_bg_action: rgba(255, 255, 255, 0.15);
+    --select_popup_shadow: rgba(0, 0, 0, .3);
+    --select_popup_border_color_action: transparent;
+    --textarea_bg: rgba(255, 255, 255, 0.05);
+    --bg_popup: rgba(255, 255, 255, 0.05);
+    --nub_input_icon_fill: rgba(255, 255, 255, .7);
+    --bg_action: rgba(255, 255, 255, 0.06);
+    --border_action: rgba(255, 255, 255, 0.70);
+    --bg_caption: rgba(255, 255, 255, .7);
+    --caption_name_color: rgba(255, 255, 255, .8);
+    --option_active_before: rgba(255, 255, 255, .7);
+    --option_after: rgba(255, 255, 255, 0.06);
+    --icon_fill: rgba(255, 255, 255, .7);
+    --auth_form_title_color: #ffffff;
+
+}
+
+[type-theme="light"] {
+    --border: rgba(0, 0, 0, 0.2);
+    --select_popup_bg: #ffffff;
+    --select_border_color_action: rgba(0, 0, 0, 0.5);
+    --color_input: rgba(0, 0, 0, .7);
+    --select_option_color_selected: #068ADE;
+    --option_selected: #0272B9;
+    --select_option_before_bg: rgba(6, 138, 222, .18);
+    --select_option_before_bg_action: rgba(0, 0, 0, .7);
+    --select_popup_shadow: rgba(210, 234, 253, .5);
+    --select_popup_border_color_action: rgba(0, 0, 0, .03);
+    --textarea_bg: transparent;
+    --bg_popup: #ffffff;
+    --nub_input_icon_fill: rgba(0, 0, 0, .7);
+    --bg_action: rgba(255, 255, 255, 0.06);
+    --border_action: rgba(0, 0, 0, .5);
+    --bg_caption: #ffffff;
+    --caption_name_color: rgba(0, 0, 0, .7);
+
+    --option_active_before: #068ADE;
+    --option_after: rgba(6, 138, 222, .18);
+    --icon_fill: rgba(0, 0, 0, .7);
+    --auth_form_title_color: #000000;
+
+
+}
