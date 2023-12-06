@@ -9,7 +9,7 @@
     max-width: 960px;
     height: 100%;
     margin: 0 auto;
-    padding-top: 200px;
+    padding-top: 100px;
 
     @include xs-lg {
         overflow-y: scroll;
@@ -55,7 +55,10 @@
         display: flex;
         flex-direction: row;
         justify-content: space-between;
+        background: rgba($color: #000000, $alpha: 0.9);
 
+        padding: 20px 40px 40px;
+        border-radius: 20px;
         border: 1px solid $color-white;
         min-height: 500px;
 
@@ -79,4 +82,13 @@
         font-weight: 700;
         text-transform: uppercase;
     }
+}
+
+.footer {
+    margin-top: auto;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: end;
 }

@@ -50,6 +50,7 @@
     }
 
     &_text {
+        z-index: 2;
         position: relative;
         display: inline-block;
         font-size: 14px;
@@ -79,7 +80,7 @@
         height: inherit;
         top: 50%;
         left: 0;
-        background: $black_15;
+        background: rgba($color: #ffffff, $alpha: 0.2);
         transform: translate(0, -50%);
         border-radius: inherit;
         z-index: 1;
