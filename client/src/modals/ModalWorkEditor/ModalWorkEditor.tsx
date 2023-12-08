@@ -23,6 +23,7 @@ const ModalWorkEditor: FC<IModalWorkEditor> = ({
             role: "secondary",
             name: "Close",
             type: "button",
+            onClick: () => onClose(),
             styling: {
                 type: "advanced",
             },

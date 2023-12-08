@@ -55,7 +55,8 @@
         display: flex;
         flex-direction: row;
         justify-content: space-between;
-        background: rgba($color: #000000, $alpha: 0.9);
+        background: linear-gradient(to left top, #000000, #000, #008793, #000000, #000) no-repeat center center fixed;
+        background-size: 100% 100%;
 
         padding: 20px 40px 40px;
         border-radius: 20px;
