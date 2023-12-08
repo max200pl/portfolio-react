@@ -6,7 +6,8 @@ import s from "./ModalWorkEditor.module.scss";
 import ActionButtons, { IActionButton } from "../../assets/components/ActionButtons/ActionButtons";
 import { FC } from "react";
 import { Work } from "../../assets/interfaces/interfaces";
-
+import { useForm } from 'react-hook-form';
+import TextInput from "../../assets/components/Inputs/TextInput/TextInput";
 
 interface IModalWorkEditor {
     onClose: () => {};
@@ -48,6 +49,11 @@ const ModalWorkEditor: FC<IModalWorkEditor> = ({
         },
     ]
 
+    const { register, handleSubmit, formState: { errors } } = useForm();
+    const onSubmit = (data: any) => console.log(data);
+    console.log(errors);
+
+
     return (
         <div className={s.modal}>
             <button className={s.modal__close} onClick={() => onClose()} type="button">
@@ -59,12 +65,25 @@ const ModalWorkEditor: FC<IModalWorkEditor> = ({
                 </Fade>
             </div>
             <div className={s.content} onClick={(e) => e.stopPropagation()}>
+                <form onSubmit={handleSubmit(onSubmit)} className={s.form}>
+                    <div className={s.form__content}>
+                        <TextInput name="name" type="text" autoComplete="false" label="Work name" />
 
 
-                <div className={s.footer}>
-                    <ActionButtons position="left" actionButtons={deleteButton} />
-                    <ActionButtons position="right" actionButtons={actionButtons} />
-                </div>
+                        <input type="text" placeholder="First name" {...register("First name", { required: true, maxLength: 80 })} />
+                        <input type="text" placeholder="Last name" {...register("Last name", { required: true, maxLength: 100 })} />
+
+
+                        <input {...register("Developer", { required: true })} type="radio" value="Yes" />
+                        <input {...register("Developer", { required: true })} type="radio" value="No" />
+                    </div>
+
+
+                    <div className={s.form__footer}>
+                        <ActionButtons position="left" actionButtons={deleteButton} />
+                        <ActionButtons position="right" actionButtons={actionButtons} />
+                    </div>
+                </form>
             </div>
         </div>
     );
