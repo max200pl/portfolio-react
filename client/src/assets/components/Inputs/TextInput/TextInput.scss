@@ -1,0 +1,64 @@
+@import "../variable_input";
+
+.form_control {
+    &__input {
+        z-index: 1;
+        display: block;
+        position: relative;
+        width: 100%;
+        height: 40px;
+        padding: 0 15px;
+        border-radius: 20px;
+        border: 1px solid transparent;
+        font-size: 14px;
+        line-height: 19px;
+        font-weight: 400;
+        color: var(--color_input);
+        border-color: var(--border_color);
+
+        &[type-cursor="select"] {
+            cursor: default;
+
+            &:focus {
+                border-color: var(--border_action);
+            }
+        }
+
+        & + .animation-bg {
+            position: absolute;
+            width: 0;
+            height: 40px;
+            bottom: 0;
+            left: 1px;
+            opacity: 0;
+            border-radius: 20px;
+            z-index: -1;
+            transition: opacity linear 0.2s;
+            width: 100%;
+
+            background: var(--bg_action);
+            border-color: var(--border_action);
+        }
+
+        &:focus {
+            border-color: var(--border_action);
+        }
+
+        &:focus + .animation-bg {
+            opacity: 1;
+        }
+
+        &:hover ~ .animation-bg {
+            opacity: 1;
+        }
+
+        &:not(:focus):hover {
+            border-color: var(--border_action);
+        }
+
+        &::placeholder {
+            font-weight: normal;
+            color: var(--color_input);
+        }
+    }
+}

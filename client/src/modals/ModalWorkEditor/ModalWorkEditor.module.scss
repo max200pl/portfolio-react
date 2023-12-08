@@ -85,11 +85,20 @@
     }
 }
 
-.footer {
-    margin-top: auto;
-    width: 100%;
+.form {
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
-    flex-wrap: wrap;
-    align-items: end;
+    width: 100%;
+    &__content {
+    }
+
+    &__footer {
+        margin-top: auto;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        align-items: end;
+    }
 }
