@@ -13,3 +13,9 @@ export type Work = {
         blurHash: ""
     }]
 }
+
+
+export interface interfaceTech {
+    backend: { [key: string]: undefined | string[] }[];
+    frontend: { [key: string]: undefined | string[] }[];
+}

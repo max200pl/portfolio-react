@@ -12,7 +12,7 @@ import ModalWork from "../../../modals/ModalWork/ModalWork";
 import Modal from "../../../assets/components/Modal/Modal";
 import { LazyLoadComponent } from "react-lazy-load-image-component";
 
-import ModalWorkEditor from "../../../modals/ModalWorkEditor/ModalWorkEditor";
+import ModalWorkManager from "../../../modals/ModalWorkManager/ModalWorkManager";
 import { Work } from "./helpers"
 import WorkAdd from "./Work/WorkAdd/WorkAdd";
 
@@ -100,7 +100,7 @@ const Works = () => {
             </Modal>
 
             <Modal handleClose={() => toggleEditWorkOpenModal(false)} isOpen={isOpenEditWorkModal}>
-                <ModalWorkEditor
+                <ModalWorkManager
                     onClose={toggleEditWorkOpenModal}
                     work={currentWork}
                 />

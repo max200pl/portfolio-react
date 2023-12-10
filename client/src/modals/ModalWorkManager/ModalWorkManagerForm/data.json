@@ -1,0 +1,151 @@
+{
+    "backend": [
+        {
+            "languages": [
+                "Node.js",
+                "JavaScript",
+                "TypeScript"
+            ]
+        },
+        {
+            "frameworks": [
+                "Express.js",
+                "Nest.js",
+                "Koa.js"
+            ]
+        },
+        {
+            "databases": [
+                "MongoDB",
+                "MySQL",
+                "PostgreSQL"
+            ]
+        },
+        {
+            "authentication": [
+                "JWT",
+                "OAuth"
+            ]
+        },
+        {
+            "orm": [
+                "Mongoose",
+                "Sequelize",
+                "TypeORM"
+            ]
+        },
+        {
+            "testing": [
+                "Jest",
+                "Mocha",
+                "Chai"
+            ]
+        },
+        {
+            "deployment": [
+                "Docker",
+                "Heroku",
+                "AWS"
+            ]
+        }
+    ],
+    "frontend": [
+        {
+            "languages": [
+                "HTML",
+                "CSS",
+                "JavaScript",
+                "TypeScript"
+            ]
+        },
+        {
+            "libraries": [
+                "React",
+                "Angular",
+                "Vue.js",
+                "jQuery"
+            ]
+        },
+        {
+            "frameworks": [
+                "Bootstrap",
+                "Material-UI",
+                "Semantic UI"
+            ]
+        },
+        {
+            "bundlers": [
+                "Webpack",
+                "Parcel",
+                "Rollup"
+            ]
+        },
+        {
+            "packageManagers": [
+                "npm",
+                "Yarn"
+            ]
+        },
+        {
+            "buildTools": [
+                "Babel",
+                "ESLint",
+                "Prettier"
+            ]
+        },
+        {
+            "testing": [
+                "Jest",
+                "Mocha",
+                "Cypress"
+            ]
+        },
+        {
+            "stateManagement": [
+                "Redux",
+                "MobX",
+                "Vuex"
+            ]
+        },
+        {
+            "routing": [
+                "React Router",
+                "Vue Router",
+                "Angular Router"
+            ]
+        },
+        {
+            "httpClients": [
+                "Axios",
+                "Fetch"
+            ]
+        },
+        {
+            "cssPreprocessors": [
+                "Sass",
+                "Less",
+                "Stylus"
+            ]
+        },
+        {
+            "versionControl": [
+                "Git",
+                "SVN"
+            ]
+        },
+        {
+            "codeEditors": [
+                "Visual Studio Code",
+                "Sublime Text",
+                "Atom"
+            ]
+        },
+        {
+            "designTools": [
+                "Figma",
+                "Sketch",
+                "Adobe XD"
+            ]
+        }
+    ]
+}
