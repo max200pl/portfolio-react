@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import { Checkbox, FormControlLabel, TextField } from "@mui/material";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -6,10 +6,16 @@ import * as yup from "yup";
 import SelectMUI from "../../../assets/components/SelectMUI/SelectMUI";
 import s from "./ModalWorkManagerForm.module.scss";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-import { actionButtonsForm, deleteButtonForm, getOptionsGroupAutocomplete } from "./helpers";
-import { Work, InterfaceTech } from "../../../assets/interfaces/interfaces";
+import {
+    actionButtonsForm,
+    deleteButtonForm,
+    getOptionsGroupAutocomplete,
+} from "./helpers";
+import { Work } from "../../../assets/interfaces/interfaces";
 import Data from "./data.json";
-import AutocompleteTagsCheckboxes from "../../../assets/components/AutocompleteTagsCheckboxesMUI/AutocompleteTagsCheckboxesMUI";
+import AutocompleteTagsCheckboxes, {
+    CheckboxesTagsOptions,
+} from "../../../assets/components/AutocompleteTagsCheckboxesMUI/AutocompleteTagsCheckboxesMUI";
 import ActionButtons from "../../../assets/components/ActionButtons/ActionButtons";
 
 export interface IFormInput {
@@ -17,9 +23,7 @@ export interface IFormInput {
     category: string;
     client: string;
     date: Date;
-    showFrontTech?: boolean;
-    showBackTech?: boolean;
-    // frontTech: string[] | [] | undefined;
+    frontTech?: CheckboxesTagsOptions | undefined;
 }
 
 interface Props {
@@ -27,28 +31,30 @@ interface Props {
     work: Work;
 }
 
-const schema = yup
-    .object({
-        name: yup.string().required(),
-        client: yup.string().required(),
-        category: yup.string().required(),
-        date: yup.date().required(),
-        showFrontTech: yup.boolean(),
-        showBackTech: yup.boolean(),
-        /*   frontTech: yup.lazy((val) =>
-              Array.isArray(val) ? yup.array().of(yup.string()) : yup.array()
-          ), */
-    })
-    .required();
+const schema = yup.object({
+    name: yup.string().required(),
+    client: yup.string().required(),
+    category: yup.string().required(),
+    date: yup.date().required(),
+    frontTech: yup.array().of(
+        yup.object({
+            group: yup.string().required(),
+            value: yup.string().required(),
+        })
+    ),
+});
 
 const ModalWorkManagerForm: FC<Props> = ({ onClose, work }) => {
-    const { control, handleSubmit, watch } = useForm<IFormInput>({
+    // const showFrontTech = watch("showFrontTech", false);
+    // const showBackTech = watch("showBackTech", false);
+    const [showFrontTech, setShowFrontTech] = useState(false);
+    const [showBackTech, setShowBackTech] = useState(false);
+
+    const { control, handleSubmit } = useForm<IFormInput>({
         mode: "onBlur",
         resolver: yupResolver(schema),
     });
 
-    const showFrontTech = watch("showFrontTech", false);
-    const showBackTech = watch("showBackTech", false);
     const onSubmit: SubmitHandler<IFormInput> = (data) => {
         console.log(data);
     };
@@ -124,23 +130,27 @@ const ModalWorkManagerForm: FC<Props> = ({ onClose, work }) => {
                     )}
                 />
 
-                <Controller
-                    name="showFrontTech"
-                    control={control}
-                    render={({ field }) => (
-                        <FormControlLabel
-                            control={<Checkbox {...field} />}
-                            label="You use frontend technologies?"
-                        />
-                    )}
+                <FormControlLabel
+                    control={
+                        <Checkbox onChange={() => setShowFrontTech(!showFrontTech)} />
+                    }
+                    label="You use frontend technologies?"
                 />
 
                 {showFrontTech && (
-                    <AutocompleteTagsCheckboxes
-                        name={"frontTech"}
-                        options={getOptionsGroupAutocomplete(Data.frontend)}
-                        label="Used Frontend Technologies"
-                        placeholder="Add Technology"
+                    <Controller
+                        name="frontTech"
+                        control={control}
+                        render={({ field }) => (
+                            <AutocompleteTagsCheckboxes
+                                name={"frontTech"}
+                                values={field.value}
+                                onChange={(values) => field.onChange(values)}
+                                options={getOptionsGroupAutocomplete(Data.frontend)}
+                                label="Used Frontend Technologies"
+                                placeholder="Add Technology"
+                            />
+                        )}
                     />
                 )}
             </div>

@@ -4,7 +4,7 @@ import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
-import { FC } from 'react';
+import { FC, useEffect, useMemo, useState } from 'react';
 import { styled, lighten, darken } from '@mui/system';
 
 const GroupHeader = styled('div')(({ theme }) => ({
@@ -34,10 +34,13 @@ interface Props {
     label: string;
     placeholder: string;
     options: CheckboxesTagsOptions;
+    values: CheckboxesTagsOptions | undefined,
+    onChange: (values: CheckboxesTagsOptions | undefined) => void;
 }
 
 
-const AutocompleteTagsCheckboxes: FC<Props> = ({ name, label, options, placeholder }) => {
+const AutocompleteTagsCheckboxes: FC<Props> = ({ values, name, label, options, placeholder, onChange }) => {
+
     return (
         <Autocomplete
             fullWidth={true}

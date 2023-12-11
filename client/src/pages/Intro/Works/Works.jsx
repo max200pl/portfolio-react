@@ -71,7 +71,7 @@ const Works = () => {
                         >
                             {works?.map((work, id) => {
                                 return (
-                                    <div className={s.portfolio__col}>
+                                    <div key={work.name} className={s.portfolio__col}>
                                         <LazyLoadComponent>
                                             <WorkComponent
                                                 {...work}
