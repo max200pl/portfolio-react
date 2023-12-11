@@ -1,5 +1,5 @@
 import { FC, useState } from "react";
-import { useForm, SubmitHandler, Controller } from "react-hook-form";
+import { useForm, SubmitHandler, Controller, Form } from "react-hook-form";
 import { Checkbox, FormControlLabel, TextField } from "@mui/material";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -16,14 +16,14 @@ import Data from "./data.json";
 import AutocompleteTagsCheckboxes, {
     CheckboxesTagsOptions,
 } from "../../../assets/components/AutocompleteTagsCheckboxesMUI/AutocompleteTagsCheckboxesMUI";
-import ActionButtons from "../../../assets/components/ActionButtons/ActionButtons";
+import ActionButtons, { IActionButton } from "../../../assets/components/ActionButtons/ActionButtons";
 
-export interface IFormInput {
+export type IFormInput = {
     name: string;
     category: string;
     client: string;
     date: Date;
-    frontTech?: CheckboxesTagsOptions | undefined;
+    frontTech: CheckboxesTagsOptions | [];
 }
 
 interface Props {
@@ -36,7 +36,7 @@ const schema = yup.object({
     client: yup.string().required(),
     category: yup.string().required(),
     date: yup.date().required(),
-    frontTech: yup.array().of(
+    frontTech: yup.array().required().of(
         yup.object({
             group: yup.string().required(),
             value: yup.string().required(),
@@ -50,17 +50,32 @@ const ModalWorkManagerForm: FC<Props> = ({ onClose, work }) => {
     const [showFrontTech, setShowFrontTech] = useState(false);
     const [showBackTech, setShowBackTech] = useState(false);
 
-    const { control, handleSubmit } = useForm<IFormInput>({
-        mode: "onBlur",
+    const { control, handleSubmit,
+        formState: { errors, isDirty, isSubmitting, touchedFields, submitCount },
+    } = useForm<IFormInput>({
+        // mode: "onBlur",
         resolver: yupResolver(schema),
+        defaultValues: {
+            frontTech: [],
+            name: "",
+            category: "",
+            client: "",
+            date: undefined,
+        }
     });
-
-    const onSubmit: SubmitHandler<IFormInput> = (data) => {
-        console.log(data);
-    };
 
     const onDelete = () => {
         throw new Error("Function not implemented.");
+    };
+
+    const onSubmit: SubmitHandler<IFormInput> = async (data) => {
+        // async request which may result error
+        alert(JSON.stringify(data))
+        try {
+            // await fetch()
+        } catch (e) {
+            // handle your error
+        }
     };
 
     return (
@@ -138,22 +153,16 @@ const ModalWorkManagerForm: FC<Props> = ({ onClose, work }) => {
                 />
 
                 {showFrontTech && (
-                    <Controller
-                        name="frontTech"
+                    <AutocompleteTagsCheckboxes
                         control={control}
-                        render={({ field }) => (
-                            <AutocompleteTagsCheckboxes
-                                name={"frontTech"}
-                                values={field.value}
-                                onChange={(values) => field.onChange(values)}
-                                options={getOptionsGroupAutocomplete(Data.frontend)}
-                                label="Used Frontend Technologies"
-                                placeholder="Add Technology"
-                            />
-                        )}
+                        name={"frontTech"}
+                        options={getOptionsGroupAutocomplete(Data.frontend)}
+                        label="Used Frontend Technologies"
+                        placeholder="Add Technology"
                     />
                 )}
             </div>
+
 
             <div className={s.form__footer}>
                 <ActionButtons

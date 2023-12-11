@@ -30,7 +30,6 @@ const SelectMUI = ({
         <FormControl fullWidth size={size} className={className}>
             <InputLabel id={name}>{label}</InputLabel>
             <Select
-
                 margin={margin}
                 labelId={name}
                 id={name}

@@ -6,6 +6,8 @@ import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import { FC, useEffect, useMemo, useState } from 'react';
 import { styled, lighten, darken } from '@mui/system';
+import { Control, Controller } from 'react-hook-form';
+import { IFormInput } from '../../../modals/ModalWorkManager/ModalWorkManagerForm/ModalWorkManagerForm';
 
 const GroupHeader = styled('div')(({ theme }) => ({
     position: 'sticky',
@@ -34,47 +36,61 @@ interface Props {
     label: string;
     placeholder: string;
     options: CheckboxesTagsOptions;
-    values: CheckboxesTagsOptions | undefined,
-    onChange: (values: CheckboxesTagsOptions | undefined) => void;
+    control: Control<IFormInput>
 }
 
 
-const AutocompleteTagsCheckboxes: FC<Props> = ({ values, name, label, options, placeholder, onChange }) => {
+const AutocompleteTagsCheckboxes: FC<Props> = ({ control, name, label, options, placeholder }) => {
+    const [selectedValues, setSelectedValues] = useState<CheckboxesTagsOptions>([]);
+    const [inputValue, setInputValue] = useState('');
 
     return (
-        <Autocomplete
-            fullWidth={true}
-            multiple
-            id={name}
-            options={options}
-            disableCloseOnSelect
-            onChange={(event, values) => console.log(values)}
-            groupBy={(option) => option.group}
-            getOptionLabel={(option) => option.value}
-            renderOption={(props, option, { selected }) => {
-                return <li {...props}>
-                    <Checkbox
-                        icon={icon}
-                        checkedIcon={checkedIcon}
-                        style={{ marginRight: 8 }}
-                        checked={selected}
-                    />
-                    {option.value}
-                </li>
-            }}
+        <Controller
+            name={"frontTech"}
+            control={control}
+            render={({ field }) => (
+                <Autocomplete
+                    isOptionEqualToValue={(option, value) => option.value === value.value}
+                    onChange={(_, values) => {
+                        field.onChange(values);
+                        setSelectedValues(values);
+                    }}
+                    fullWidth={true}
+                    multiple
+                    value={selectedValues}
+                    options={options}
+                    disableCloseOnSelect
+                    inputValue={inputValue}
+                    onInputChange={(event, newInputValue) => {
+                        setInputValue(newInputValue);
+                    }}
+                    groupBy={(option) => option.group}
+                    getOptionLabel={(option) => option.value}
+                    renderOption={(props, option, { selected }) => {
+                        return <li {...props}>
+                            <Checkbox
+                                icon={icon}
+                                checkedIcon={checkedIcon}
+                                style={{ marginRight: 8 }}
+                                checked={selected}
+                            />
+                            {option.value}
+                        </li>
+                    }}
 
-            renderInput={(params) => (
-                <TextField {...params} label={label} placeholder={placeholder} />
-            )}
+                    renderInput={(params) => (
+                        <TextField {...params} label={label} placeholder={placeholder} />
+                    )}
 
-            renderGroup={(params) => (
-                <li key={params.key}>
-                    <GroupHeader>{params.group}</GroupHeader>
-                    <GroupItems>{params.children}</GroupItems>
-                </li>
-            )}
-        />
-    );
+                    renderGroup={(params) => (
+                        <li key={params.key}>
+                            <GroupHeader>{params.group}</GroupHeader>
+                            <GroupItems>{params.children}</GroupItems>
+                        </li>
+                    )}
+                />
+            )} />
+    )
 }
 
 export default AutocompleteTagsCheckboxes
