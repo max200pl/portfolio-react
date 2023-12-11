@@ -15,7 +15,7 @@ export type Work = {
 }
 
 
-export interface interfaceTech {
+export interface InterfaceTech {
     backend: { [key: string]: undefined | string[] }[];
     frontend: { [key: string]: undefined | string[] }[];
 }

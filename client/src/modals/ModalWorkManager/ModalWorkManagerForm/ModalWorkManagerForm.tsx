@@ -1,7 +1,4 @@
 import { FC } from "react";
-import ActionButtons, {
-    IActionButton,
-} from "../../../assets/components/ActionButtons/ActionButtons";
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import { Checkbox, FormControlLabel, TextField } from "@mui/material";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -9,11 +6,11 @@ import * as yup from "yup";
 import SelectMUI from "../../../assets/components/SelectMUI/SelectMUI";
 import s from "./ModalWorkManagerForm.module.scss";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-import { DateField } from "@mui/x-date-pickers";
-import { actionButtonsForm, deleteButtonForm } from "./heleprs";
-import { Work, interfaceTech } from "../../../assets/interfaces/interfaces";
-import CheckboxesTags from "../../../assets/components/AutoCompliteMUI/AutoCompliteMUI";
+import { actionButtonsForm, deleteButtonForm, getOptionsGroupAutocomplete } from "./helpers";
+import { Work, InterfaceTech } from "../../../assets/interfaces/interfaces";
 import Data from "./data.json";
+import AutocompleteTagsCheckboxes from "../../../assets/components/AutocompleteTagsCheckboxesMUI/AutocompleteTagsCheckboxesMUI";
+import ActionButtons from "../../../assets/components/ActionButtons/ActionButtons";
 
 export interface IFormInput {
     name: string;
@@ -88,7 +85,7 @@ const ModalWorkManagerForm: FC<Props> = ({ onClose, work }) => {
                             className={s["form_control"]}
                             {...field}
                             variant="outlined"
-                            label="client"
+                            label="Client"
                             size="small"
                             margin="none"
                             fullWidth
@@ -139,10 +136,9 @@ const ModalWorkManagerForm: FC<Props> = ({ onClose, work }) => {
                 />
 
                 {showFrontTech && (
-                    <CheckboxesTags
-
+                    <AutocompleteTagsCheckboxes
                         name={"frontTech"}
-                        options={Data.frontend as interfaceTech["frontend"]}
+                        options={getOptionsGroupAutocomplete(Data.frontend)}
                         label="Used Frontend Technologies"
                         placeholder="Add Technology"
                     />
