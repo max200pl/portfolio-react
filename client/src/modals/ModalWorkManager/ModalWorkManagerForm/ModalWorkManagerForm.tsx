@@ -16,7 +16,7 @@ import Data from "./data.json";
 import AutocompleteTagsCheckboxes, {
     CheckboxesTagsOptions,
 } from "../../../assets/components/AutocompleteTagsCheckboxesMUI/AutocompleteTagsCheckboxesMUI";
-import ActionButtons, { IActionButton } from "../../../assets/components/ActionButtons/ActionButtons";
+import ActionButtons from "../../../assets/components/ActionButtons/ActionButtons";
 
 export type IFormInput = {
     name: string;
@@ -24,7 +24,10 @@ export type IFormInput = {
     client: string;
     date: Date;
     frontTech: CheckboxesTagsOptions | [];
-}
+    backendTech: CheckboxesTagsOptions | [];
+};
+
+export type KeysIFormInput = keyof IFormInput;
 
 interface Props {
     onClose: () => {};
@@ -32,16 +35,28 @@ interface Props {
 }
 
 const schema = yup.object({
-    name: yup.string().required(),
-    client: yup.string().required(),
-    category: yup.string().required(),
-    date: yup.date().required(),
-    frontTech: yup.array().required().of(
-        yup.object({
-            group: yup.string().required(),
-            value: yup.string().required(),
-        })
-    ),
+    name: yup.string().required("Please write Name Project"),
+    client: yup.string().required("Please write Client"),
+    category: yup.string().required("Please write Name Project"),
+    date: yup.date().required("Please pick a date"),
+    frontTech: yup
+        .array()
+        .required()
+        .of(
+            yup.object({
+                group: yup.string().required(),
+                value: yup.string().required(),
+            })
+        ),
+    backendTech: yup
+        .array()
+        .required()
+        .of(
+            yup.object({
+                group: yup.string().required(),
+                value: yup.string().required(),
+            })
+        ),
 });
 
 const ModalWorkManagerForm: FC<Props> = ({ onClose, work }) => {
@@ -50,18 +65,21 @@ const ModalWorkManagerForm: FC<Props> = ({ onClose, work }) => {
     const [showFrontTech, setShowFrontTech] = useState(false);
     const [showBackTech, setShowBackTech] = useState(false);
 
-    const { control, handleSubmit,
+    const {
+        control,
+        handleSubmit,
         formState: { errors, isDirty, isSubmitting, touchedFields, submitCount },
     } = useForm<IFormInput>({
         // mode: "onBlur",
         resolver: yupResolver(schema),
         defaultValues: {
             frontTech: [],
+            backendTech: [],
             name: "",
             category: "",
             client: "",
             date: undefined,
-        }
+        },
     });
 
     const onDelete = () => {
@@ -70,7 +88,7 @@ const ModalWorkManagerForm: FC<Props> = ({ onClose, work }) => {
 
     const onSubmit: SubmitHandler<IFormInput> = async (data) => {
         // async request which may result error
-        alert(JSON.stringify(data))
+        alert(JSON.stringify(data));
         try {
             // await fetch()
         } catch (e) {
@@ -93,6 +111,8 @@ const ModalWorkManagerForm: FC<Props> = ({ onClose, work }) => {
                             label="Name"
                             size="small"
                             margin="none"
+                            error={!!errors.name}
+                            helperText={errors?.name?.message}
                             fullWidth
                         />
                     )}
@@ -110,6 +130,8 @@ const ModalWorkManagerForm: FC<Props> = ({ onClose, work }) => {
                             size="small"
                             margin="none"
                             fullWidth
+                            error={!!errors.client}
+                            helperText={errors?.client?.message}
                         />
                     )}
                 />
@@ -127,6 +149,7 @@ const ModalWorkManagerForm: FC<Props> = ({ onClose, work }) => {
                             size="small"
                             options={["Landing", "Website"]}
                             onChange={(e) => field.onChange(e.target.value)}
+                            errors={errors.category}
                         />
                     )}
                 />
@@ -154,15 +177,31 @@ const ModalWorkManagerForm: FC<Props> = ({ onClose, work }) => {
 
                 {showFrontTech && (
                     <AutocompleteTagsCheckboxes
+                        className={s["form_control"]}
                         control={control}
                         name={"frontTech"}
                         options={getOptionsGroupAutocomplete(Data.frontend)}
-                        label="Used Frontend Technologies"
+                        label="Frontend Technologies"
+                        placeholder="Add Technology"
+                    />
+                )}
+
+                <FormControlLabel
+                    control={<Checkbox onChange={() => setShowBackTech(!showBackTech)} />}
+                    label="Are You used Backend technologies?"
+                />
+
+                {showBackTech && (
+                    <AutocompleteTagsCheckboxes
+                        className={s["form_control"]}
+                        control={control}
+                        name="backendTech"
+                        options={getOptionsGroupAutocomplete(Data.backend)}
+                        label="Backend Technologies"
                         placeholder="Add Technology"
                     />
                 )}
             </div>
-
 
             <div className={s.form__footer}>
                 <ActionButtons

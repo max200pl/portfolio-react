@@ -7,7 +7,7 @@ import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import { FC, useEffect, useMemo, useState } from 'react';
 import { styled, lighten, darken } from '@mui/system';
 import { Control, Controller } from 'react-hook-form';
-import { IFormInput } from '../../../modals/ModalWorkManager/ModalWorkManagerForm/ModalWorkManagerForm';
+import { IFormInput, KeysIFormInput } from '../../../modals/ModalWorkManager/ModalWorkManagerForm/ModalWorkManagerForm';
 
 const GroupHeader = styled('div')(({ theme }) => ({
     position: 'sticky',
@@ -32,7 +32,8 @@ const checkedIcon = <CheckBoxIcon fontSize="small" />;
 export type CheckboxesTagsOptions = { group: string; value: string }[]
 
 interface Props {
-    name: string,
+    className: string | undefined
+    name: KeysIFormInput,
     label: string;
     placeholder: string;
     options: CheckboxesTagsOptions;
@@ -40,16 +41,17 @@ interface Props {
 }
 
 
-const AutocompleteTagsCheckboxes: FC<Props> = ({ control, name, label, options, placeholder }) => {
+const AutocompleteTagsCheckboxes: FC<Props> = ({ className, control, name, label, options, placeholder }) => {
     const [selectedValues, setSelectedValues] = useState<CheckboxesTagsOptions>([]);
     const [inputValue, setInputValue] = useState('');
 
     return (
         <Controller
-            name={"frontTech"}
+            name={name}
             control={control}
             render={({ field }) => (
                 <Autocomplete
+                    className={className}
                     isOptionEqualToValue={(option, value) => option.value === value.value}
                     onChange={(_, values) => {
                         field.onChange(values);

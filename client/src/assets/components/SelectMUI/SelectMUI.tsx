@@ -3,6 +3,7 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
+import { FieldError } from 'react-hook-form';
 
 
 
@@ -15,7 +16,9 @@ const SelectMUI = ({
     value,
     onChange,
     size,
+    errors
 }: {
+    errors: FieldError | undefined,
     className: string | undefined
     size: "small" | "medium" | undefined
     margin: "dense" | "none" | undefined;
@@ -27,7 +30,7 @@ const SelectMUI = ({
 }) => {
 
     return (
-        <FormControl fullWidth size={size} className={className}>
+        <FormControl fullWidth size={size} className={className} error={!!errors}>
             <InputLabel id={name}>{label}</InputLabel>
             <Select
                 margin={margin}
