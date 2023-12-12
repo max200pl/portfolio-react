@@ -72,8 +72,8 @@ const FileUpload = () => {
 
             {
                 isDragActive ?
-                    <p className={s.helper_text}>Drop the files here ...</p>
-                    : !preview ? <p className={s.helper_text} >Drag Image here, or click</p> : null
+                    <p className={s.helper_text}>Drop the Image here ...</p>
+                    : !preview ? <p className={s.helper_text} >Drag the Image here, or click</p> : null
             }
 
         </div>
