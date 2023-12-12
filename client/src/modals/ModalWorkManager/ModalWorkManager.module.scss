@@ -11,18 +11,9 @@
     margin: 0 auto;
     padding-top: 40px;
 
-    @include xs-lg {
-        overflow-y: scroll;
-        padding-top: 60px;
-    }
-
     &__header {
         margin-bottom: 20px;
         text-align: center;
-
-        @include xs-lg {
-            margin-bottom: 50px;
-        }
     }
 
     &__close {
@@ -70,7 +61,7 @@
         }
 
         @include mb-lg {
-            padding: 40px;
+            padding: 20px;
         }
     }
 }
@@ -82,5 +73,12 @@
         color: $color-blue;
         font-weight: 700;
         text-transform: uppercase;
+
+        @include mb-lg {
+            font-size: 2rem;
+        }
+        @include xs-mb {
+            font-size: 1.5rem;
+        }
     }
 }
