@@ -17,6 +17,7 @@ import AutocompleteTagsCheckboxes, {
     CheckboxesTagsOptions,
 } from "../../../assets/components/AutocompleteTagsCheckboxesMUI/AutocompleteTagsCheckboxesMUI";
 import ActionButtons from "../../../assets/components/ActionButtons/ActionButtons";
+import FileUpload from "../../../assets/components/FileUpload/FileUpload";
 
 export type IFormInput = {
     name: string;
@@ -70,7 +71,7 @@ const ModalWorkManagerForm: FC<Props> = ({ onClose, work }) => {
         handleSubmit,
         formState: { errors, isDirty, isSubmitting, touchedFields, submitCount },
     } = useForm<IFormInput>({
-        // mode: "onBlur",
+        mode: "onBlur",
         resolver: yupResolver(schema),
         defaultValues: {
             frontTech: [],
@@ -98,6 +99,11 @@ const ModalWorkManagerForm: FC<Props> = ({ onClose, work }) => {
 
     return (
         <form onSubmit={handleSubmit(onSubmit)} className={s.form}>
+            <div className={s.form__header}>
+                <FileUpload />
+            </div>
+
+
             <div className={s.form__content}>
                 <Controller
                     name="name"

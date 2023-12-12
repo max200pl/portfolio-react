@@ -4,7 +4,7 @@ import s from "./ImageLazyLoad.module.scss";
 import { useState } from "react";
 import Loader from "../Loader/Loader";
 
-export default function ImageLazyLoad({ url, name, mixin, blurHash }) {
+export default function ImageLazyLoad({ url = '', name = '', mixin = '', blurHash = undefined }) {
     const [isLoaded, setLoaded] = useState(false);
 
     const handleLoad = () => {
@@ -26,7 +26,7 @@ export default function ImageLazyLoad({ url, name, mixin, blurHash }) {
                 <Loader />
             }
 
-            {!isLoaded && (
+            {(!isLoaded && blurHash) && (
                 <Blurhash
                     className={s.img__blurHash}
                     hash={blurHash}
