@@ -14,3 +14,7 @@
 ## Using SVG Component
 
 <https://www.copycat.dev/blog/react-svg/>
+
+## Form upload file
+
+<https://www.filestack.com/fileschool/react/react-file-upload/>

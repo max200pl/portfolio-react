@@ -30,10 +30,6 @@ export type IFormInput = {
 
 export type KeysIFormInput = keyof IFormInput;
 
-interface Props {
-    onClose: () => {};
-    work: Work;
-}
 
 const schema = yup.object({
     name: yup.string().required("Please write Name Project"),
@@ -60,11 +56,15 @@ const schema = yup.object({
         ),
 });
 
+interface Props {
+    onClose: () => {};
+    work: Work;
+}
+
 const ModalWorkManagerForm: FC<Props> = ({ onClose, work }) => {
-    // const showFrontTech = watch("showFrontTech", false);
-    // const showBackTech = watch("showBackTech", false);
     const [showFrontTech, setShowFrontTech] = useState(false);
     const [showBackTech, setShowBackTech] = useState(false);
+    const [image, setImage] = useState<File | undefined>()
 
     const {
         control,
@@ -89,7 +89,8 @@ const ModalWorkManagerForm: FC<Props> = ({ onClose, work }) => {
 
     const onSubmit: SubmitHandler<IFormInput> = async (data) => {
         // async request which may result error
-        alert(JSON.stringify(data));
+        console.log(image, "image")
+        alert(JSON.stringify({ data },));
         try {
             // await fetch()
         } catch (e) {
@@ -100,7 +101,7 @@ const ModalWorkManagerForm: FC<Props> = ({ onClose, work }) => {
     return (
         <form onSubmit={handleSubmit(onSubmit)} className={s.form}>
             <div className={s.form__header}>
-                <FileUpload />
+                <FileUpload imageHandle={setImage} />
             </div>
 
 

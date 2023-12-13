@@ -1,21 +1,16 @@
 import React, { useState } from "react";
 import { Work as WorkComponent } from "./Work/Work";
-
 import { Fade } from "react-awesome-reveal";
 import s from "./Works.module.scss";
-
-import { useCategoriesWorks, useWorks } from "./WorksAPI";
 import FilterWorks from "./FilterWorks/FilterWorks";
-
 import { getUniqCategoriesWork } from "../../../assets/helpers/helpers";
 import ModalWork from "../../../modals/ModalWork/ModalWork";
 import Modal from "../../../assets/components/Modal/Modal";
 import { LazyLoadComponent } from "react-lazy-load-image-component";
-
 import ModalWorkManager from "../../../modals/ModalWorkManager/ModalWorkManager";
-import { Work } from "./helpers"
+import { Work } from "./helpers";
 import WorkAdd from "./Work/WorkAdd/WorkAdd";
-
+import { useCategoriesWorks, useWorks } from "../../../assets/api/api";
 
 const Works = () => {
     const [filter, setFilter] = useState({ category: "" });
@@ -30,14 +25,12 @@ const Works = () => {
 
     return (
         <div className={s.portfolio} id="portfolio">
-
             {statusCategories === "success" && (
                 <FilterWorks
                     onFilterChange={setFilter}
                     categories={uniqCategoriesWork}
                 />
             )}
-
 
             {status === "success" && (
                 <div className={s.portfolio__container}>
@@ -51,14 +44,10 @@ const Works = () => {
                             <div className={s.portfolio__col}>
                                 <LazyLoadComponent>
                                     <WorkAdd
-                                        onCardClick={
-                                            () => {
-                                                setCurrentWork(
-                                                    Work.create()
-                                                )
-                                                toggleEditWorkOpenModal(true)
-                                            }
-                                        }
+                                        onCardClick={() => {
+                                            setCurrentWork(Work.create());
+                                            toggleEditWorkOpenModal(true);
+                                        }}
                                     />
                                 </LazyLoadComponent>
                             </div>
@@ -76,12 +65,10 @@ const Works = () => {
                                             <WorkComponent
                                                 {...work}
                                                 key={work.name}
-                                                onCardClick={
-                                                    () => {
-                                                        setCurrentWork(work)
-                                                        toggleOpenModal(true)
-                                                    }
-                                                }
+                                                onCardClick={() => {
+                                                    setCurrentWork(work);
+                                                    toggleOpenModal(true);
+                                                }}
                                             />
                                         </LazyLoadComponent>
                                     </div>
@@ -93,13 +80,13 @@ const Works = () => {
             )}
 
             <Modal handleClose={() => toggleOpenModal(false)} isOpen={isOpenModal}>
-                <ModalWork
-                    onClose={toggleOpenModal}
-                    work={currentWork}
-                />
+                <ModalWork onClose={toggleOpenModal} work={currentWork} />
             </Modal>
 
-            <Modal handleClose={() => toggleEditWorkOpenModal(false)} isOpen={isOpenEditWorkModal}>
+            <Modal
+                handleClose={() => toggleEditWorkOpenModal(false)}
+                isOpen={isOpenEditWorkModal}
+            >
                 <ModalWorkManager
                     onClose={toggleEditWorkOpenModal}
                     work={currentWork}
