@@ -18,6 +18,7 @@ import AutocompleteTagsCheckboxes, {
 } from "../../../assets/components/AutocompleteTagsCheckboxesMUI/AutocompleteTagsCheckboxesMUI";
 import ActionButtons from "../../../assets/components/ActionButtons/ActionButtons";
 import FileUpload from "../../../assets/components/FileUpload/FileUpload";
+import { useCreateWork } from "../../../assets/api/api";
 
 export type IFormInput = {
     name: string;
@@ -29,7 +30,6 @@ export type IFormInput = {
 };
 
 export type KeysIFormInput = keyof IFormInput;
-
 
 const schema = yup.object({
     name: yup.string().required("Please write Name Project"),
@@ -64,7 +64,8 @@ interface Props {
 const ModalWorkManagerForm: FC<Props> = ({ onClose, work }) => {
     const [showFrontTech, setShowFrontTech] = useState(false);
     const [showBackTech, setShowBackTech] = useState(false);
-    const [image, setImage] = useState<File | undefined>()
+    const [image, setImage] = useState<File | undefined>();
+    const { mutate } = useCreateWork();
 
     const {
         control,
@@ -88,13 +89,24 @@ const ModalWorkManagerForm: FC<Props> = ({ onClose, work }) => {
     };
 
     const onSubmit: SubmitHandler<IFormInput> = async (data) => {
-        // async request which may result error
-        console.log(image, "image")
-        alert(JSON.stringify({ data },));
+        let formData = new FormData();
+
+        for (const key in data) {
+            if (key === "file") {
+                formData.append(key, (data as any)[key][0]);
+            } else {
+                formData.append(key, (data as any)[key]);
+            }
+        }
+
+        formData.append("imageIntro", image as File);
+
+        alert(JSON.stringify(data));
         try {
-            // await fetch()
-        } catch (e) {
-            // handle your error
+            await mutate(formData as any);
+            console.log("Work created successfully");
+        } catch (error) {
+            console.error("Error creating work:", error);
         }
     };
 
@@ -103,7 +115,6 @@ const ModalWorkManagerForm: FC<Props> = ({ onClose, work }) => {
             <div className={s.form__header}>
                 <FileUpload imageHandle={setImage} />
             </div>
-
 
             <div className={s.form__content}>
                 <Controller
