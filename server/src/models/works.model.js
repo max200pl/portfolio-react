@@ -1,6 +1,7 @@
 const { readFile } = require("node:fs/promises");
 const { join } = require("node:path");
 const workSchema = require("../db/works.mongo");
+const technologiesSchema = require("../db/technologies.mongo");
 const fs = require("fs");
 const { getLocalImages, getImageName, getFolderName } = require("../utils/images");
 
@@ -36,7 +37,6 @@ async function getLocalWorks() {
 
 
 function getWorkImages(idWork, localImages) { // nameFolder
-
     const dataImages = {
         cardImage: {
             name: "",  // intro.png
@@ -90,7 +90,6 @@ async function updateLocalWorks() {
             console.log("File WORKS_JSON created successfully")
         }
     });
-
 }
 
 async function setLocalWorksInDB() {
@@ -133,6 +132,14 @@ async function getGetFilterWorks(category) {
 async function getAllCategories() {
     return await workSchema.find({}, { "category": 1, "_id": 0 })
 }
+async function getTechnologies() {
+    return await technologiesSchema.find(
+        {},
+        {
+            "_id": 0, "String": 0,
+        }
+    )
+}
 
 module.exports = {
     loadWorks,
@@ -140,4 +147,5 @@ module.exports = {
     updateLocalWorks,
     getAllCategories,
     getGetFilterWorks,
+    getTechnologies,
 }

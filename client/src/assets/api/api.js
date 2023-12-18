@@ -31,7 +31,7 @@ const createWork = async (work) => {
     };
 
     const { data } = await axios.post(
-        `http://localhost:8000/work/create`,
+        `http://localhost:8000/works`,
         work,
         config
     )
@@ -68,6 +68,23 @@ export function useCategoriesWorks() {
                 return data;
             } catch (error) {
                 console.log(`Error loading categories ${error.message}`);
+            }
+        }
+    })
+}
+
+export function useTechnologies() {
+    return useQuery({
+        queryKey: ["technologies"],
+        queryFn: async () => {
+            try {
+                const { data } = await axios.get(
+                    "http://localhost:8000/works/technologies"
+                )
+                console.log(`Success load technologies works`);
+                return data;
+            } catch (error) {
+                console.log(`Error loading technologies ${error.message}`);
             }
         }
     })

@@ -12,13 +12,12 @@ import {
     getOptionsGroupAutocomplete,
 } from "./helpers";
 import { Work } from "../../../assets/interfaces/interfaces";
-import Data from "./data.json";
 import AutocompleteTagsCheckboxes, {
     CheckboxesTagsOptions,
 } from "../../../assets/components/AutocompleteTagsCheckboxesMUI/AutocompleteTagsCheckboxesMUI";
 import ActionButtons from "../../../assets/components/ActionButtons/ActionButtons";
 import FileUpload from "../../../assets/components/FileUpload/FileUpload";
-import { useCreateWork } from "../../../assets/api/api";
+import { useCreateWork, useTechnologies } from "../../../assets/api/api";
 
 export type IFormInput = {
     name: string;
@@ -67,6 +66,8 @@ const ModalWorkManagerForm: FC<Props> = ({ onClose, work }) => {
     const [image, setImage] = useState<File | undefined>();
     const { mutate } = useCreateWork();
 
+    const { data, isLoading } = useTechnologies();
+
     const {
         control,
         handleSubmit,
@@ -99,7 +100,7 @@ const ModalWorkManagerForm: FC<Props> = ({ onClose, work }) => {
             }
         }
 
-        formData.append("imageIntro", image as File);
+        formData.append("image", image as File); //TODO: imageCard
 
         alert(JSON.stringify(data));
         try {
@@ -198,7 +199,7 @@ const ModalWorkManagerForm: FC<Props> = ({ onClose, work }) => {
                         className={s["form_control"]}
                         control={control}
                         name={"frontTech"}
-                        options={getOptionsGroupAutocomplete(Data.frontend)}
+                        options={getOptionsGroupAutocomplete(data.frontend)}
                         label="Frontend Technologies"
                         placeholder="Add Technology"
                     />
@@ -214,7 +215,7 @@ const ModalWorkManagerForm: FC<Props> = ({ onClose, work }) => {
                         className={s["form_control"]}
                         control={control}
                         name="backendTech"
-                        options={getOptionsGroupAutocomplete(Data.backend)}
+                        options={getOptionsGroupAutocomplete(data.backend)}
                         label="Backend Technologies"
                         placeholder="Add Technology"
                     />
