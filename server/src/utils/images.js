@@ -1,5 +1,5 @@
 // создать на основе папки images json
-const fs = require("fs");
+const fs = require('fs').promises;
 const path = require("path");
 const { encode } = require("blurhash");
 const sharp = require("sharp");
@@ -70,7 +70,6 @@ function readImages(directory, parentFolder = '') {
         const itemPath = path.join(directory, item);
         const currentPath = path.join(parentFolder, item).replace(/\\/g, '/');
 
-
         if (fs.statSync(itemPath).isDirectory()) {
             const subImages = readImages(itemPath, currentPath);
             result.push(...subImages);
@@ -90,7 +89,7 @@ function readImages(directory, parentFolder = '') {
     return result;
 }
 
-
+// записать в JSON file images.json в начало файла
 async function createImageJson() {
     const folderAndFileNames = readImages(IMAGES_DIR_PATH);
     const allImages = await encodeAllImages(folderAndFileNames);
@@ -104,9 +103,29 @@ async function createImageJson() {
     });
 }
 
+async function addNewImageIntoJson(image) {
+    try {
+        const data = await fs.readFile(IMAGES_JSON_DIR_PATH, 'utf-8');
+        const jsonData = JSON.parse(data);
+
+        const newEntry = image;
+        jsonData.images.unshift(newEntry);
+
+        const updatedJsonString = JSON.stringify(jsonData, null, 2);
+
+        await fs.writeFile(IMAGES_JSON_DIR_PATH, updatedJsonString);
+
+        console.log('File IMAGE_JSON created successfully');
+    } catch (error) {
+        console.error(`There was an error: ${error.message}`);
+    }
+}
+
 module.exports = {
+    // createImage,
     createImageJson,
+    addNewImageIntoJson,
     getImageName,
     getFolderName,
-    getLocalImages
+    getLocalImages,
 }
