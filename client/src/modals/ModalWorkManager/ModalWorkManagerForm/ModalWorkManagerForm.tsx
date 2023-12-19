@@ -1,5 +1,5 @@
 import { FC, useState } from "react";
-import { useForm, SubmitHandler, Controller, Form } from "react-hook-form";
+import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import { Checkbox, FormControlLabel, TextField } from "@mui/material";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -18,6 +18,7 @@ import AutocompleteTagsCheckboxes, {
 import ActionButtons from "../../../assets/components/ActionButtons/ActionButtons";
 import FileUpload from "../../../assets/components/FileUpload/FileUpload";
 import { useCreateWork, useTechnologies } from "../../../assets/api/api";
+import { prepareDataForRequest } from './helpers';
 
 export type IFormInput = {
     name: string;
@@ -25,7 +26,7 @@ export type IFormInput = {
     client: string;
     date: Date;
     frontTech: CheckboxesTagsOptions | [];
-    backendTech: CheckboxesTagsOptions | [];
+    backTech: CheckboxesTagsOptions | [];
 };
 
 export type KeysIFormInput = keyof IFormInput;
@@ -44,7 +45,7 @@ const schema = yup.object({
                 value: yup.string().required(),
             })
         ),
-    backendTech: yup
+    backTech: yup
         .array()
         .required()
         .of(
@@ -64,20 +65,26 @@ const ModalWorkManagerForm: FC<Props> = ({ onClose, work }) => {
     const [showFrontTech, setShowFrontTech] = useState(false);
     const [showBackTech, setShowBackTech] = useState(false);
     const [image, setImage] = useState<File | undefined>();
-    const { mutate } = useCreateWork();
+    // const { mutate } = useCreateWork();
 
-    const { data, isLoading } = useTechnologies();
+    const { data } = useTechnologies();
 
     const {
         control,
         handleSubmit,
-        formState: { errors, isDirty, isSubmitting, touchedFields, submitCount },
+        formState: {
+            errors,
+            // isDirty,
+            // isSubmitting,
+            // touchedFields,
+            // submitCount
+        },
     } = useForm<IFormInput>({
         mode: "onBlur",
         resolver: yupResolver(schema),
         defaultValues: {
             frontTech: [],
-            backendTech: [],
+            backTech: [],
             name: "",
             category: "",
             client: "",
@@ -90,25 +97,30 @@ const ModalWorkManagerForm: FC<Props> = ({ onClose, work }) => {
     };
 
     const onSubmit: SubmitHandler<IFormInput> = async (data) => {
+        const paperedData = prepareDataForRequest(data);
+
+        console.log(paperedData, "<<<<<paperedData");
+
         let formData = new FormData();
 
-        for (const key in data) {
+        for (const key in paperedData) {
             if (key === "file") {
-                formData.append(key, (data as any)[key][0]);
+                formData.append(key, (paperedData as any)[key][0]);
             } else {
-                formData.append(key, (data as any)[key]);
+                formData.append(key, (paperedData as any)[key]);
             }
         }
 
         formData.append("image", image as File); //TODO: imageCard
-
+        console.log(data, "data");
         alert(JSON.stringify(data));
-        try {
-            await mutate(formData as any);
-            console.log("Work created successfully");
-        } catch (error) {
-            console.error("Error creating work:", error);
-        }
+
+        /*  try {
+             await mutate(formData as any);
+             console.log("Work created successfully");
+         } catch (error) {
+             console.error("Error creating work:", error);
+         } */
     };
 
     return (
@@ -214,7 +226,7 @@ const ModalWorkManagerForm: FC<Props> = ({ onClose, work }) => {
                     <AutocompleteTagsCheckboxes
                         className={s["form_control"]}
                         control={control}
-                        name="backendTech"
+                        name="backTech"
                         options={getOptionsGroupAutocomplete(data.backend)}
                         label="Backend Technologies"
                         placeholder="Add Technology"

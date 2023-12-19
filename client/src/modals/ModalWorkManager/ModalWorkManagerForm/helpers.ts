@@ -1,6 +1,7 @@
 import { IActionButton } from "../../../assets/components/ActionButtons/ActionButtons";
 import { CheckboxesTagsOptions } from "../../../assets/components/AutocompleteTagsCheckboxesMUI/AutocompleteTagsCheckboxesMUI";
-import { InterfaceTech } from "../../../assets/interfaces/interfaces";
+import { InterfaceTech, InterfaceTechWithApply } from "../../../assets/interfaces/interfaces";
+import { IFormInput } from "./ModalWorkManagerForm";
 
 export const actionButtonsForm = (
     onClose: () => {},
@@ -55,3 +56,28 @@ export const getOptionsGroupAutocomplete = <T extends keyof InterfaceTech>(
 
     return optionsPrep
 }
+
+export const prepareDataForRequest = (data: IFormInput) => {
+    return {
+        ...data,
+        frontTech: prepareTech(data.frontTech),
+        backTech: prepareTech(data.backTech),
+    }
+}
+
+export const prepareTech = (tech: CheckboxesTagsOptions) => {
+    const apply = 100;
+
+    return tech.reduce((acc, currentTech) => {
+        const groupName = currentTech.group;
+        const existingGroup = acc.find((groupAcc: InterfaceTechWithApply) => Object.keys(groupAcc)[0] === groupName);
+
+        if (existingGroup) {
+            existingGroup[groupName].push({ apply, name: currentTech.value });
+        } else {
+            acc.push({ [groupName]: [{ apply, name: currentTech.value }] });
+        }
+
+        return acc;
+    }, [] as InterfaceTechWithApply[]);
+};
