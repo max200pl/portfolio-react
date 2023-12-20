@@ -13,6 +13,10 @@
     }
 
     &__content {
+        height: 300px;
+        margin-right: -20px;
+        padding-right: 10px;
+        overflow-y: auto;
         display: flex;
         flex-direction: column;
         margin-bottom: 30px;
@@ -20,11 +24,6 @@
 
     &__footer {
         margin-top: auto;
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-        flex-wrap: wrap;
-        align-items: end;
     }
 }
 

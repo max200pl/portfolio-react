@@ -1,0 +1,34 @@
+:root {
+    --scrollbar_thumb_bg: rgba(255, 255, 255, 0.7);
+    --label_color: rgba(255, 255, 255, 0.8);
+}
+
+body::-webkit-scrollbar,
+.custom_scroll::-webkit-scrollbar {
+    width: 6px;
+}
+
+body,
+.custom_scroll {
+    scrollbar-width: thin;
+    scrollbar-color: var(--scrollbar_thumb_bg) transparent;
+}
+
+body::-webkit-scrollbar-track,
+.custom_scroll::-webkit-scrollbar-track {
+    background: inherit;
+}
+
+body::-webkit-scrollbar-thumb,
+.custom_scroll::-webkit-scrollbar-thumb {
+    border-radius: 6px;
+    padding: 2px;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+    background-color: var(--scrollbar_thumb_bg);
+}
+
+body::-webkit-scrollbar,
+.custom_scroll::-webkit-scrollbar {
+    width: 10px;
+}
