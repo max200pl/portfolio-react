@@ -61,7 +61,7 @@ const ModalWorkManagerForm: FC<Props> = ({ onClose, work }) => {
     const [showFrontTech, setShowFrontTech] = useState(false);
     const [showBackTech, setShowBackTech] = useState(false);
     const [image, setImage] = useState<File | undefined>();
-    // const { mutate } = useCreateWork();
+    const { mutate } = useCreateWork();
 
     const { data } = useTechnologies();
 
@@ -100,24 +100,17 @@ const ModalWorkManagerForm: FC<Props> = ({ onClose, work }) => {
 
         let formData = new FormData();
 
+        formData.append("image", image as File);
         for (const key in paperedData) {
-            if (key === "file") {
-                formData.append(key, (paperedData as any)[key][0]);
-            } else {
-                formData.append(key, (paperedData as any)[key]);
-            }
+            formData.append(key, (paperedData as any)[key]);
         }
 
-        formData.append("image", image as File); //TODO: imageCard
-        console.log(data, "data");
-        alert(JSON.stringify(data));
-
-        /*  try {
-             await mutate(formData as any);
-             console.log("Work created successfully");
-         } catch (error) {
-             console.error("Error creating work:", error);
-         } */
+        try {
+            await mutate(formData as any);
+            console.log("Work created successfully");
+        } catch (error) {
+            console.error("Error creating work:", error);
+        }
     };
 
     return (

@@ -69,18 +69,15 @@
 
         @include lg {
             min-width: 580px;
-        }
-
-        @include xs-lg {
-            flex-direction: column;
-            align-items: center;
+            max-width: 580px;
         }
 
         @include mb-lg {
-            padding: 30px;
+            min-width: 480px;
+            padding: 30px 40px 30px 30px;
         }
         @include xs-mb {
-            padding: 16px;
+            padding: 20px 30px 20px 20px;
         }
     }
 }
