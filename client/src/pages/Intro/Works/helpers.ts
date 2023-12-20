@@ -1,8 +1,30 @@
-function toCamelCase(str) {
-    return str.trim().replace(/\s+/g, ' ').toLowerCase().replace(/[^a-zA-Z0-9]+(.)/g, (match, chr) => chr.toUpperCase());
-}
+import { Image, InterfaceTechWithApply, InterfaceTechWithApplyAll } from './../../../assets/interfaces/interfaces';
 
-class Work {
+export type IWork = {
+    id?: string;
+    name: string;
+    dateFinished?: Date;
+    category: string;
+    client?: string;
+    link?: string;
+    frontTech: InterfaceTechWithApply[];
+    backTech: InterfaceTechWithApply[];
+    cardImage: Image;
+    images?: Image[];
+};
+
+export class Work implements InterfaceTechWithApplyAll {
+    id;
+    name;
+    dateFinished;
+    category;
+    client;
+    link;
+    frontTech;
+    backTech;
+    cardImage;
+    images;
+
     constructor({
         id,
         name,
@@ -14,7 +36,7 @@ class Work {
         backTech,
         cardImage,
         images,
-    }) {
+    }: IWork) {
         this.id = id;
         this.name = name;
         this.dateFinished = dateFinished;
@@ -27,23 +49,18 @@ class Work {
         this.images = images;
     }
 
-    static create() {
+    static create(): Work {
         return new Work({
             id: undefined,
             name: '',
             dateFinished: undefined,
             category: '',
             client: '',
-            link: '',
+            link: undefined,
             frontTech: [],
             backTech: [],
             cardImage: { name: '' },
             images: [],
         });
     }
-}
-
-module.exports = {
-    toCamelCase,
-    Work
 }

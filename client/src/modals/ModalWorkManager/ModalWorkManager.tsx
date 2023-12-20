@@ -4,13 +4,13 @@ import { Fade } from "react-awesome-reveal";
 
 import s from "./ModalWorkManager.module.scss";
 import { FC } from "react";
-import { Work } from "../../assets/interfaces/interfaces";
 
 import ModalWorkManagerForm from "./ModalWorkManagerForm/ModalWorkManagerForm";
+import { IWork } from "../../pages/Intro/Works/helpers";
 
 interface IModalWorkManager {
     onClose: () => {};
-    work: Work
+    work: IWork
 }
 
 const ModalWorkManager: FC<IModalWorkManager> = ({

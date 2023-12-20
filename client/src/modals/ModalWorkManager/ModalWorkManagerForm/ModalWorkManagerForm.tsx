@@ -1,41 +1,37 @@
 import { FC, useState } from "react";
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
-import { Checkbox, FormControlLabel, TextField } from "@mui/material";
+import { Button, Checkbox, FormControlLabel, Stack, TextField } from "@mui/material";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import SelectMUI from "../../../assets/components/SelectMUI/SelectMUI";
 import s from "./ModalWorkManagerForm.module.scss";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import {
-    actionButtonsForm,
-    deleteButtonForm,
     getOptionsGroupAutocomplete,
 } from "./helpers";
-import { Work } from "../../../assets/interfaces/interfaces";
+import { IWork, } from "../../../pages/Intro/Works/helpers";
 import AutocompleteTagsCheckboxes, {
     CheckboxesTagsOptions,
 } from "../../../assets/components/AutocompleteTagsCheckboxesMUI/AutocompleteTagsCheckboxesMUI";
-import ActionButtons from "../../../assets/components/ActionButtons/ActionButtons";
+
 import FileUpload from "../../../assets/components/FileUpload/FileUpload";
 import { useCreateWork, useTechnologies } from "../../../assets/api/api";
 import { prepareDataForRequest } from './helpers';
+import DeleteIcon from '@mui/icons-material/Delete';
 
-export type IFormInput = {
-    name: string;
-    category: string;
-    client: string;
-    date: Date;
+export type IFormInput = Pick<IWork, 'name' | 'link' | 'category' | 'client' | 'dateFinished'> & {
     frontTech: CheckboxesTagsOptions | [];
     backTech: CheckboxesTagsOptions | [];
-};
+}
 
 export type KeysIFormInput = keyof IFormInput;
 
 const schema = yup.object({
     name: yup.string().required("Please write Name Project"),
-    client: yup.string().required("Please write Client"),
+    client: yup.string(),
     category: yup.string().required("Please write Name Project"),
-    date: yup.date().required("Please pick a date"),
+    dateFinished: yup.date(),
+    link: yup.string(),
     frontTech: yup
         .array()
         .required()
@@ -58,7 +54,7 @@ const schema = yup.object({
 
 interface Props {
     onClose: () => {};
-    work: Work;
+    work: IWork;
 }
 
 const ModalWorkManagerForm: FC<Props> = ({ onClose, work }) => {
@@ -83,12 +79,13 @@ const ModalWorkManagerForm: FC<Props> = ({ onClose, work }) => {
         mode: "onBlur",
         resolver: yupResolver(schema),
         defaultValues: {
-            frontTech: [],
-            backTech: [],
-            name: "",
-            category: "",
-            client: "",
-            date: undefined,
+            name: work.name,
+            link: work.link,
+            category: work.category,
+            client: work.client,
+            dateFinished: work.dateFinished,
+            frontTech: work.frontTech,
+            backTech: work.backTech,
         },
     });
 
@@ -129,7 +126,7 @@ const ModalWorkManagerForm: FC<Props> = ({ onClose, work }) => {
                 <FileUpload imageHandle={setImage} />
             </div>
 
-            <div className={s.form__content}>
+            <div className={s.form__content + " custom_scroll"}>
                 <Controller
                     name="name"
                     control={control}
@@ -186,7 +183,26 @@ const ModalWorkManagerForm: FC<Props> = ({ onClose, work }) => {
                 />
 
                 <Controller
-                    name="date"
+                    name="link"
+                    control={control}
+                    rules={{ required: true }}
+                    render={({ field }) => (
+                        <TextField
+                            className={s["form_control"]}
+                            {...field}
+                            variant="outlined"
+                            label="Link"
+                            size="small"
+                            margin="none"
+                            fullWidth
+                            error={!!errors.link}
+                            helperText={errors?.link?.message}
+                        />
+                    )}
+                />
+
+                <Controller
+                    name="dateFinished"
                     control={control}
                     render={({ field }) => (
                         <DatePicker
@@ -235,14 +251,20 @@ const ModalWorkManagerForm: FC<Props> = ({ onClose, work }) => {
             </div>
 
             <div className={s.form__footer}>
-                <ActionButtons
-                    position="left"
-                    actionButtons={deleteButtonForm(onDelete)}
-                />
-                <ActionButtons
-                    position="right"
-                    actionButtons={actionButtonsForm(onClose)}
-                />
+                <Stack direction="row" spacing={2} justifyContent="space-between">
+                    <Button variant="contained" startIcon={<DeleteIcon />} onClick={() => onDelete()}>
+                        Delete
+                    </Button>
+
+                    <Stack direction="row" spacing={2}>
+                        <Button variant="outlined" onClick={() => onClose()}>
+                            Close
+                        </Button>
+                        <Button variant="contained" type="submit">
+                            Save
+                        </Button>
+                    </Stack>
+                </Stack>
             </div>
         </form>
     );

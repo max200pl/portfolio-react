@@ -1,19 +1,7 @@
-export type Work = {
-    id: "";
-    category: "";
-    client: "";
-    date: Date;
-    name: "";
-    frontTech: [{ apply: number; name: "" }];
-    backTech: [{ apply: number; name: "" }];
-    cardImage: { name: ""; blurHash?: "" };
-    images: [
-        {
-            name: "";
-            blurHash: "";
-        }
-    ];
-};
+
+export type Image = { name: string, blurHash?: string }
+
+
 
 export interface InterfaceTech {
     backTech: { [key: string]: undefined | string[] }[];
@@ -21,7 +9,7 @@ export interface InterfaceTech {
 }
 
 export interface InterfaceTechWithApply {
-    [key: string]: { apply: number; name: string }[];
+    [key: string]: { apply: number, name: string }[];
 }
 
 export interface InterfaceTechWithApplyAll {
