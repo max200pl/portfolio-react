@@ -7,12 +7,20 @@ const Skills = ({ technology, mixin, position }) => {
         <div position={position} mixin={mixin} className={s.skills} >
             <div className={s.skills__header}>Technologies used:</div>
             {
-                technology.map(({ name, apply }, i) => {
-
-                    return <ProgressBar
-                        text={name}
-                        precentFill={apply}
-                    />
+                technology.map((group, i) => {
+                    return (
+                        <div key={i} className={s.skills__group}>
+                            <h3>{Object.keys(group)[0]}</h3>
+                            {
+                                Object.values(group)[0].map((skill, j) => {
+                                    return <ProgressBar
+                                        text={skill.name}
+                                        precentFill={skill.apply}
+                                    />
+                                })
+                            }
+                        </div>
+                    );
                 })
             }
         </div>

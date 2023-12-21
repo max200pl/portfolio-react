@@ -1,8 +1,6 @@
 
 export type Image = { name: string, blurHash?: string }
 
-
-
 export interface InterfaceTech {
     backTech: { [key: string]: undefined | string[] }[];
     frontTech: { [key: string]: undefined | string[] }[];

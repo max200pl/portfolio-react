@@ -22,7 +22,7 @@ export default function ModalWork({
                 <div className={s.modal__subtitle}>
                     {work.category}
                     <span className={s.modal__subtitle_divider}>|</span>
-                    {getYear(work.date)}
+                    {getYear(work.dateFinished)}
                 </div>
 
                 <Fade triggerOnce="true" direction="left" cascade className={s.modal__title}>
@@ -33,12 +33,14 @@ export default function ModalWork({
             </div>
 
             <div className={s.content} onClick={(e) => e.stopPropagation()}>
-                <div className={s.content__slider}>
-                    <ModalWorkSlider images={work.images} />
-                </div>
+                {/*   <div className={s.content__slider}>
+                    {work.images &&
+                        <ModalWorkSlider images={work.images} />
+                    }
+                </div> */}
 
                 <div className={s.content__panel}>
-                    <ModalWorkSkills position="right" mixin="works" technology={work.technology} />
+                    <ModalWorkSkills position="right" mixin="works" technology={work.frontTech} />
                 </div>
             </div>
         </div>

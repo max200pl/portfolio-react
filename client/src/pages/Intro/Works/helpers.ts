@@ -1,4 +1,8 @@
-import { Image, InterfaceTechWithApply, InterfaceTechWithApplyAll } from './../../../assets/interfaces/interfaces';
+import { Image, InterfaceTechWithApplyAll } from './../../../assets/interfaces/interfaces';
+
+export interface InterfaceTechWithApply {
+    [key: string]: { apply: number, name: string }[];
+}
 
 export type IWork = {
     id?: string;

@@ -96,14 +96,19 @@ const ModalWorkManagerForm: FC<Props> = ({ onClose, work }) => {
     const onSubmit: SubmitHandler<IFormInput> = async (data) => {
         const paperedData = prepareDataForRequest(data);
 
-        console.log(paperedData, "<<<<<paperedData");
-
         let formData = new FormData();
 
-        formData.append("image", image as File);
         for (const key in paperedData) {
-            formData.append(key, (paperedData as any)[key]);
+            const value = (paperedData as any)[key];
+
+            if (Array.isArray(value) || (typeof value === "object" && value !== null)) {
+                formData.append(key, JSON.stringify(value));
+            } else {
+                formData.append(key, value);
+            }
         }
+
+        formData.append("image", image as File);
 
         try {
             await mutate(formData as any);

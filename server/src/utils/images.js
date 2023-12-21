@@ -122,7 +122,6 @@ async function addNewImageIntoJson(image) {
 }
 
 module.exports = {
-    // createImage,
     createImageJson,
     addNewImageIntoJson,
     getImageName,
