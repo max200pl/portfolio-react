@@ -3,7 +3,6 @@ const { getAllWorks, getAllCategories, getGetFilterWorks, getTechnologies, saveW
 const { addNewImageIntoJson, encodeImageToBlurHash } = require("../../utils/images")
 const { join } = require("node:path");
 
-
 async function httpGetAllWorks(req, res) {
     let works = undefined;
     const { category } = req.query;
@@ -81,8 +80,6 @@ async function httpCreatedWork(req, res) {
         ...work,
         cardImage
     })
-
-    console.log(newWork, 'newWork');
 
     try {
         await addNewImageIntoJson(cardImage);
