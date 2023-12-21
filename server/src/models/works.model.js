@@ -144,6 +144,7 @@ async function getTechnologies() {
 module.exports = {
     loadWorks,
     getAllWorks,
+    saveWork,
     updateLocalWorks,
     getAllCategories,
     getGetFilterWorks,

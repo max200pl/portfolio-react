@@ -14,8 +14,8 @@ async function startServer() {
 
     //* wait load data before starting server;
     // await createImageJson();
-    await updateLocalWorks()
-    await loadWorks();
+    // await updateLocalWorks()
+    // await loadWorks();
 
     server.listen(PORT, () => {
         console.log(`Listening on ${PORT}...`);

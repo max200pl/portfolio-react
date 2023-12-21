@@ -1,8 +1,30 @@
+const lodash = require('lodash');
+
 function toCamelCase(str) {
     return str.trim().replace(/\s+/g, ' ').toLowerCase().replace(/[^a-zA-Z0-9]+(.)/g, (match, chr) => chr.toUpperCase());
 }
 
+function parseStringsToNumbers(obj) {
+    return lodash.cloneDeepWith(obj, (value) => {
+        if (lodash.isString(value)) {
+            const parsedValue = parseFloat(value);
+            return isNaN(parsedValue) ? value : parsedValue;
+        }
+    });
+}
+
 class Work {
+    id;
+    name;
+    dateFinished;
+    category;
+    client;
+    link;
+    frontTech;
+    backTech;
+    cardImage;
+    images;
+
     constructor({
         id,
         name,
@@ -27,23 +49,33 @@ class Work {
         this.images = images;
     }
 
-    static create() {
+    static create({
+        name,
+        dateFinished,
+        category,
+        client,
+        link,
+        frontTech,
+        backTech,
+        cardImage,
+        images,
+    }) {
         return new Work({
-            id: undefined,
-            name: '',
-            dateFinished: undefined,
-            category: '',
-            client: '',
-            link: '',
-            frontTech: [],
-            backTech: [],
-            cardImage: { name: '' },
-            images: [],
+            name: name ?? '',
+            dateFinished: JSON.parse(dateFinished) ?? undefined,
+            category: category ?? '',
+            client: client ?? '',
+            link: link ?? undefined,
+            frontTech: JSON.parse(frontTech),
+            backTech: JSON.parse(backTech),
+            cardImage: cardImage ?? undefined,
+            images: images,
         });
     }
 }
 
 module.exports = {
     toCamelCase,
+    parseStringsToNumbers,
     Work
 }

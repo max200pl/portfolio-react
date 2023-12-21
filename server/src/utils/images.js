@@ -128,4 +128,5 @@ module.exports = {
     getImageName,
     getFolderName,
     getLocalImages,
+    encodeImageToBlurHash
 }

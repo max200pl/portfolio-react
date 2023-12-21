@@ -1,6 +1,6 @@
-const { toCamelCase } = require("../../helpers/helpers");
-const { getAllWorks, getAllCategories, getGetFilterWorks, getTechnologies } = require("../../models/works.model");
-const { addNewImageIntoJson } = require("../../utils/images")
+const { toCamelCase, Work, parseStringsToNumbers } = require("../../helpers/helpers");
+const { getAllWorks, getAllCategories, getGetFilterWorks, getTechnologies, saveWork } = require("../../models/works.model");
+const { addNewImageIntoJson, encodeImageToBlurHash } = require("../../utils/images")
 const { join } = require("node:path");
 
 
@@ -65,33 +65,35 @@ async function httpGetTechnologies(req, res) {
 }
 
 async function httpCreatedWork(req, res) {
-    const work = req.body;
+    const work = parseStringsToNumbers(req.body);
     const image = req.file;
 
     if (!work || !image) return res.status(400).json({
         error: `Something went wrong`,
     });
 
-
-    const imageData = {
-        name: `${projectName}/${imageData.filename}`,
-        blurHash: await encodeImageToBlurHash(imageData.path),
+    const cardImage = {
+        name: `${toCamelCase(work.name)}/${image.filename}`,
+        blurHash: await encodeImageToBlurHash(image.path),
     };
 
+    const newWork = Work.create({
+        ...work,
+        cardImage
+    })
+
+    console.log(newWork, 'newWork');
+
     try {
-        await addNewImageIntoJson(toCamelCase(work.name), image);
-
-        await
-            // загрузить работу в db
-
-            //1) создать
-
-
-            console.log("Created work successfully!!!")
-        return res.status(201).json(work);
+        await addNewImageIntoJson(cardImage);
+        const result = await saveWork(newWork);
+        console.log("Save work success:", result);
     } catch (err) {
         console.error(err.message);
     }
+
+
+    return res.status(201).json(work);
 }
 
 module.exports = {

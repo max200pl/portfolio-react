@@ -1,45 +1,42 @@
 const mongoose = require("mongoose");
 
-const workSchema = new mongoose.Schema({
-    category: {
-        type: String,
-        required: true,
+const techWithApplySchema = new mongoose.Schema(
+    {
+        apply: { type: Number, required: true },
+        name: { type: String, required: true },
     },
-    client: {
-        type: String,
-        required: true,
+    { _id: false }
+);
+
+const interfaceTechWithApplySchema = new mongoose.Schema(
+    {
+        type: [techWithApplySchema],
+        default: [],
     },
-    date: {
-        type: Date,
-        required: true,
+    { _id: false }
+);
+
+const imageSchema = new mongoose.Schema(
+    {
+        name: { type: String, required: true },
+        blurHash: { type: String, required: true },
     },
-    img: {
-        type: String,
-        required: true,
+    { _id: false }
+);
+
+const workSchema = new mongoose.Schema(
+    {
+        name: { type: String, required: true },
+        dateFinished: { type: Date },
+        category: { type: String, required: true },
+        client: { type: String },
+        link: { type: String },
+        frontTech: [{}],
+        backTech: [{}],
+        cardImage: imageSchema,
+        images: [imageSchema],
     },
-    name: {
-        required: true,
-        type: String
-    },
-    technology: {
-        required: true,
-        type: [
-            {
-                apply: Number,
-                name: String,
-            }
-        ]
-    },
-    cardImage: {
-        name: String,
-        blurHash: String
-    },
-    images: [
-        {
-            name: String,
-            blurHash: String
-        }
-    ]
-})
+    { timestamps: true }
+);
 
 module.exports = mongoose.model("Works", workSchema);
