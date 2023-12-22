@@ -49,49 +49,53 @@ const AutocompleteTagsCheckboxes: FC<Props> = ({ className, control, name, label
         <Controller
             name={name}
             control={control}
-            render={({ field }) => (
-                <Autocomplete
-                    className={className}
-                    isOptionEqualToValue={(option, value) => option.value === value.value}
-                    onChange={(_, values) => {
-                        field.onChange(values);
-                        setSelectedValues(values);
-                    }}
-                    fullWidth={true}
-                    multiple
-                    value={selectedValues}
-                    options={options}
-                    disableCloseOnSelect
-                    inputValue={inputValue}
-                    onInputChange={(event, newInputValue) => {
-                        setInputValue(newInputValue);
-                    }}
-                    groupBy={(option) => option.group}
-                    getOptionLabel={(option) => option.value}
-                    renderOption={(props, option, { selected }) => {
-                        return <li {...props}>
-                            <Checkbox
-                                icon={icon}
-                                checkedIcon={checkedIcon}
-                                style={{ marginRight: 8 }}
-                                checked={selected}
-                            />
-                            {option.value}
-                        </li>
-                    }}
+            render={({ field }) => {
 
-                    renderInput={(params) => (
-                        <TextField {...params} label={label} placeholder={placeholder} />
-                    )}
+                return (
+                    <Autocomplete
+                        className={className}
+                        isOptionEqualToValue={(option, value) => option.value === value.value}
+                        onChange={(_, values) => {
+                            field.onChange(values);
+                            setSelectedValues(values);
+                        }}
+                        fullWidth={true}
+                        multiple
 
-                    renderGroup={(params) => (
-                        <li key={params.key}>
-                            <GroupHeader>{params.group}</GroupHeader>
-                            <GroupItems>{params.children}</GroupItems>
-                        </li>
-                    )}
-                />
-            )} />
+                        value={field.value as CheckboxesTagsOptions ?? selectedValues}
+                        options={options}
+                        disableCloseOnSelect
+                        inputValue={inputValue}
+                        onInputChange={(event, newInputValue) => {
+                            setInputValue(newInputValue);
+                        }}
+                        groupBy={(option) => option.group}
+                        getOptionLabel={(option) => option.value}
+                        renderOption={(props, option, { selected }) => {
+                            return <li {...props}>
+                                <Checkbox
+                                    icon={icon}
+                                    checkedIcon={checkedIcon}
+                                    style={{ marginRight: 8 }}
+                                    checked={selected}
+                                />
+                                {option.value}
+                            </li>
+                        }}
+
+                        renderInput={(params) => (
+                            <TextField {...params} label={label} placeholder={placeholder} />
+                        )}
+
+                        renderGroup={(params) => (
+                            <li key={params.key}>
+                                <GroupHeader>{params.group}</GroupHeader>
+                                <GroupItems>{params.children}</GroupItems>
+                            </li>
+                        )}
+                    />
+                )
+            }} />
     )
 }
 

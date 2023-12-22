@@ -18,8 +18,8 @@ import FileUpload from "../../../assets/components/FileUpload/FileUpload";
 import { useCreateWork, useTechnologies } from "../../../assets/api/api";
 import { prepareDataForRequest } from './helpers';
 import DeleteIcon from '@mui/icons-material/Delete';
-import moment from "moment-timezone";
 import dayjs from "dayjs";
+import { InterfaceTech } from "../../../assets/interfaces/interfaces";
 
 export type IFormInput = Pick<IWork, 'name' | 'link' | 'category' | 'client' | 'dateFinished'> & {
     frontTech: CheckboxesTagsOptions | [];
@@ -86,8 +86,8 @@ const ModalWorkManagerForm: FC<Props> = ({ onClose, work }) => {
             category: work?.category ?? "",
             client: work?.client ?? "",
             dateFinished: work?.dateFinished ? new Date(work.dateFinished) : undefined,
-            frontTech: work?.frontTech ?? [],
-            backTech: work?.backTech ?? [],
+            frontTech: work?.frontTech ? getOptionsGroupAutocomplete(work.frontTech) : [],
+            backTech: work?.backTech ? getOptionsGroupAutocomplete(work.backTech) : [],
         },
     });
 
@@ -227,7 +227,7 @@ const ModalWorkManagerForm: FC<Props> = ({ onClose, work }) => {
                         className={s["form_control"]}
                         control={control}
                         name={"frontTech"}
-                        options={getOptionsGroupAutocomplete(data.frontend)}
+                        options={getOptionsGroupAutocomplete(data.frontend as InterfaceTech[])}
                         label="Frontend Technologies"
                         placeholder="Add Technology"
                     />
@@ -243,7 +243,7 @@ const ModalWorkManagerForm: FC<Props> = ({ onClose, work }) => {
                         className={s["form_control"]}
                         control={control}
                         name="backTech"
-                        options={getOptionsGroupAutocomplete(data.backend)}
+                        options={getOptionsGroupAutocomplete(data.backend as InterfaceTech[])}
                         label="Backend Technologies"
                         placeholder="Add Technology"
                     />

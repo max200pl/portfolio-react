@@ -75,8 +75,11 @@
         @include mb-lg {
             min-width: 480px;
             padding: 30px 40px 30px 30px;
+            max-width: 480px;
         }
+
         @include xs-mb {
+            max-width: 380px;
             padding: 20px 30px 20px 20px;
         }
     }
