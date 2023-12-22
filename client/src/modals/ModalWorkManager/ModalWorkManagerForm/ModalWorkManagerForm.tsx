@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import { Button, Checkbox, FormControlLabel, Stack, TextField } from "@mui/material";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -65,7 +65,15 @@ const ModalWorkManagerForm: FC<Props> = ({ onClose, work }) => {
     const [image, setImage] = useState<File | undefined>();
     const { mutate } = useCreateWork();
 
-    const { data } = useTechnologies();
+    const { data: technologies, status: statusTechnologies } = useTechnologies();
+
+    useEffect(() => {
+        if (statusTechnologies === "success") {
+            setShowFrontTech(work?.frontTech.length > 0)
+            setShowBackTech(work?.backTech.length > 0)
+        }
+    }, [statusTechnologies])
+
 
     const {
         control,
@@ -215,35 +223,38 @@ const ModalWorkManagerForm: FC<Props> = ({ onClose, work }) => {
                     )}
                 />
 
-                <FormControlLabel
-                    label="You use frontend technologies?"
-                    control={
-                        <Checkbox onChange={() => setShowFrontTech(!showFrontTech)} />
-                    }
-                />
+                {(work === undefined) &&
+                    <FormControlLabel
+                        label="Did you use frontend technologies?"
+                        control={
+                            <Checkbox onChange={() => setShowFrontTech(!showFrontTech)} />
+                        }
+                    />
+                }
 
                 {showFrontTech && (
                     <AutocompleteTagsCheckboxes
                         className={s["form_control"]}
                         control={control}
                         name={"frontTech"}
-                        options={getOptionsGroupAutocomplete(data.frontend as InterfaceTech[])}
+                        options={getOptionsGroupAutocomplete(technologies?.frontend as InterfaceTech[])}
                         label="Frontend Technologies"
                         placeholder="Add Technology"
                     />
                 )}
-
-                <FormControlLabel
-                    control={<Checkbox onChange={() => setShowBackTech(!showBackTech)} />}
-                    label="Are You used Backend technologies?"
-                />
+                {(work === undefined) &&
+                    <FormControlLabel
+                        control={<Checkbox onChange={() => setShowBackTech(!showBackTech)} />}
+                        label="Did you use backend technologies?"
+                    />
+                }
 
                 {showBackTech && (
                     <AutocompleteTagsCheckboxes
                         className={s["form_control"]}
                         control={control}
                         name="backTech"
-                        options={getOptionsGroupAutocomplete(data.backend as InterfaceTech[])}
+                        options={getOptionsGroupAutocomplete(technologies?.backend as InterfaceTech[])}
                         label="Backend Technologies"
                         placeholder="Add Technology"
                     />
@@ -252,15 +263,15 @@ const ModalWorkManagerForm: FC<Props> = ({ onClose, work }) => {
 
             <div className={s.form__footer}>
                 <Stack direction="row" spacing={2} justifyContent="space-between">
-                    <Button variant="contained" startIcon={<DeleteIcon />} onClick={() => onDelete()}>
+                    <Button className="action_button_primary" variant="contained" startIcon={<DeleteIcon />} onClick={() => onDelete()}>
                         Delete
                     </Button>
 
                     <Stack direction="row" spacing={2}>
-                        <Button variant="outlined" onClick={() => onClose()}>
+                        <Button variant="outlined" onClick={() => onClose()} >
                             Close
                         </Button>
-                        <Button variant="contained" type="submit">
+                        <Button className="action_button_primary" variant="contained" type="submit">
                             Save
                         </Button>
                     </Stack>
