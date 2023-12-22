@@ -7,7 +7,8 @@ export const Work = ({
     date,
     name,
     cardImage,
-    onCardClick
+    onCardClick,
+    onClickEditWork
 }) => {
     const imageName = getImageName(cardImage.name)
     const folderName = getFolderName(cardImage.name)
@@ -18,7 +19,10 @@ export const Work = ({
             onClick={() => onCardClick()}
         >
 
-            <button className={s.work__edit_button} onClick={(e) => e.stopPropagation()}>
+            <button className={s.work__edit_button} onClick={(e) => {
+                e.stopPropagation()
+                onClickEditWork()
+            }}>
                 Edit work
             </button>
 

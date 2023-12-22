@@ -18,6 +18,8 @@ import FileUpload from "../../../assets/components/FileUpload/FileUpload";
 import { useCreateWork, useTechnologies } from "../../../assets/api/api";
 import { prepareDataForRequest } from './helpers';
 import DeleteIcon from '@mui/icons-material/Delete';
+import moment from "moment-timezone";
+import dayjs from "dayjs";
 
 export type IFormInput = Pick<IWork, 'name' | 'link' | 'category' | 'client' | 'dateFinished'> & {
     frontTech: CheckboxesTagsOptions | [];
@@ -79,13 +81,13 @@ const ModalWorkManagerForm: FC<Props> = ({ onClose, work }) => {
         mode: "onBlur",
         resolver: yupResolver(schema),
         defaultValues: {
-            name: work.name,
-            link: work.link,
-            category: work.category,
-            client: work.client,
-            dateFinished: work.dateFinished,
-            frontTech: work.frontTech,
-            backTech: work.backTech,
+            name: work?.name ?? "",
+            link: work?.link ?? "",
+            category: work?.category ?? "",
+            client: work?.client ?? "",
+            dateFinished: work?.dateFinished ? new Date(work.dateFinished) : undefined,
+            frontTech: work?.frontTech ?? [],
+            backTech: work?.backTech ?? [],
         },
     });
 
@@ -204,7 +206,7 @@ const ModalWorkManagerForm: FC<Props> = ({ onClose, work }) => {
                     control={control}
                     render={({ field }) => (
                         <DatePicker
-                            value={field.value}
+                            value={dayjs(field.value)}
                             slotProps={{ textField: { size: "small" } }}
                             className={s["form_control"]}
                             label="Finished date"
@@ -214,10 +216,10 @@ const ModalWorkManagerForm: FC<Props> = ({ onClose, work }) => {
                 />
 
                 <FormControlLabel
+                    label="You use frontend technologies?"
                     control={
                         <Checkbox onChange={() => setShowFrontTech(!showFrontTech)} />
                     }
-                    label="You use frontend technologies?"
                 />
 
                 {showFrontTech && (

@@ -14,63 +14,35 @@ function parseStringsToNumbers(obj) {
 }
 
 class Work {
-    id;
-    name;
-    dateFinished;
-    category;
-    client;
-    link;
-    frontTech;
-    backTech;
-    cardImage;
-    images;
-
     constructor({
-        id,
-        name,
-        dateFinished,
-        category,
-        client,
-        link,
-        frontTech,
-        backTech,
-        cardImage,
-        images,
+        _id = null,
+        name = '',
+        dateFinished = undefined,
+        category = '',
+        client = '',
+        link = undefined,
+        frontTech = [],
+        backTech = [],
+        cardImage = undefined,
+        images = [],
     }) {
-        this.id = id;
+        this._id = _id;
         this.name = name;
-        this.dateFinished = dateFinished;
+        this.dateFinished = JSON.parse(dateFinished);
         this.category = category;
         this.client = client;
         this.link = link;
-        this.frontTech = frontTech;
-        this.backTech = backTech;
+        this.frontTech = JSON.parse(frontTech);
+        this.backTech = JSON.parse(backTech);
         this.cardImage = cardImage;
-        this.images = images;
     }
 
-    static create({
-        name,
-        dateFinished,
-        category,
-        client,
-        link,
-        frontTech,
-        backTech,
-        cardImage,
-        images,
-    }) {
-        return new Work({
-            name: name ?? '',
-            dateFinished: JSON.parse(dateFinished) ?? undefined,
-            category: category ?? '',
-            client: client ?? '',
-            link: link ?? undefined,
-            frontTech: JSON.parse(frontTech),
-            backTech: JSON.parse(backTech),
-            cardImage: cardImage ?? undefined,
-            images: images,
-        });
+    static create(data) {
+        return new Work(data);
+    }
+
+    static updated(data) {
+        return new Work(data);
     }
 }
 

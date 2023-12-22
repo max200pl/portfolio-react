@@ -1,11 +1,7 @@
-import { Image, InterfaceTechWithApplyAll } from './../../../assets/interfaces/interfaces';
-
-export interface InterfaceTechWithApply {
-    [key: string]: { apply: number, name: string }[];
-}
+import { Image, InterfaceTechWithApply, InterfaceTechWithApplyAll } from './../../../assets/interfaces/interfaces';
 
 export type IWork = {
-    id?: string;
+    _id?: string;
     name: string;
     dateFinished?: Date;
     category: string;
@@ -18,19 +14,19 @@ export type IWork = {
 };
 
 export class Work implements InterfaceTechWithApplyAll {
-    id;
-    name;
-    dateFinished;
-    category;
-    client;
-    link;
-    frontTech;
-    backTech;
-    cardImage;
-    images;
+    _id?: string;
+    name: string;
+    dateFinished?: Date;
+    category: string;
+    client?: string;
+    link?: string;
+    frontTech: InterfaceTechWithApply[];
+    backTech: InterfaceTechWithApply[];
+    cardImage: Image;
+    images?: Image[];
 
     constructor({
-        id,
+        _id,
         name,
         dateFinished,
         category,
@@ -41,7 +37,7 @@ export class Work implements InterfaceTechWithApplyAll {
         cardImage,
         images,
     }: IWork) {
-        this.id = id;
+        this._id = _id;
         this.name = name;
         this.dateFinished = dateFinished;
         this.category = category;
@@ -53,18 +49,7 @@ export class Work implements InterfaceTechWithApplyAll {
         this.images = images;
     }
 
-    static create(): Work {
-        return new Work({
-            id: undefined,
-            name: '',
-            dateFinished: undefined,
-            category: '',
-            client: '',
-            link: undefined,
-            frontTech: [],
-            backTech: [],
-            cardImage: { name: '' },
-            images: [],
-        });
+    static create(data: IWork): Work {
+        return new Work(data);
     }
 }

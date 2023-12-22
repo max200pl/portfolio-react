@@ -8,6 +8,7 @@ import { FC } from "react";
 import ModalWorkManagerForm from "./ModalWorkManagerForm/ModalWorkManagerForm";
 import { IWork } from "../../pages/Intro/Works/helpers";
 
+
 interface IModalWorkManager {
     onClose: () => {};
     work: IWork
@@ -17,7 +18,7 @@ const ModalWorkManager: FC<IModalWorkManager> = ({
     onClose,
     work
 }) => {
-
+    console.log("Manage work:", work);
     return (
         <div className={s.modal}>
             <div className={s.content} onClick={(e) => e.stopPropagation()}>
@@ -26,7 +27,7 @@ const ModalWorkManager: FC<IModalWorkManager> = ({
                 </button>
                 <div className={s.modal__header}>
                     <Fade duration={100} triggerOnce={true} direction="left" cascade className={s.modal__title}>
-                        Create Work
+                        {work ? "Update Work" : "Create Work"}
                     </Fade>
                 </div>
                 <ModalWorkManagerForm onClose={onClose} work={work} />

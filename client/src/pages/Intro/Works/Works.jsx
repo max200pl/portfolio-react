@@ -45,7 +45,7 @@ const Works = () => {
                                 <LazyLoadComponent>
                                     <WorkAdd
                                         onCardClick={() => {
-                                            setCurrentWork(Work.create());
+                                            setCurrentWork(undefined);
                                             toggleEditWorkOpenModal(true);
                                         }}
                                     />
@@ -65,6 +65,10 @@ const Works = () => {
                                             <WorkComponent
                                                 {...work}
                                                 key={work.name}
+                                                onClickEditWork={() => {
+                                                    setCurrentWork(work)
+                                                    toggleEditWorkOpenModal(true);
+                                                }}
                                                 onCardClick={() => {
                                                     setCurrentWork(work);
                                                     toggleOpenModal(true);

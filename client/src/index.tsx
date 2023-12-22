@@ -10,7 +10,7 @@ import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 import { CssBaseline, ThemeProvider, createTheme } from '@mui/material';
-import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment'
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 
 
@@ -30,7 +30,7 @@ const queryClient = new QueryClient()
 root.render(
     <React.StrictMode>
         <ThemeProvider theme={darkTheme}>
-            <LocalizationProvider dateAdapter={AdapterMoment}>
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
                 <QueryClientProvider client={queryClient}>
                     <App />
                     <ReactQueryDevtools initialIsOpen={false} />
