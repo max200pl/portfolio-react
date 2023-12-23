@@ -1,12 +1,10 @@
 
-import exitImg from "../../assets/images/modal/exit.svg";
-import { Fade } from "react-awesome-reveal";
-
-import s from "./ModalWorkManager.module.scss";
 import { FC } from "react";
-
+import { Fade } from "react-awesome-reveal";
+import exitImg from "../../assets/images/modal/exit.svg";
+import { IWork } from "../../assets/interfaces/interfaces";
+import s from "./ModalWorkManager.module.scss";
 import ModalWorkManagerForm from "./ModalWorkManagerForm/ModalWorkManagerForm";
-import { IWork } from "../../pages/Intro/Works/helpers";
 
 
 interface IModalWorkManager {
