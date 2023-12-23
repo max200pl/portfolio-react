@@ -35,10 +35,13 @@ class Work {
         this.frontTech = JSON.parse(frontTech);
         this.backTech = JSON.parse(backTech);
         this.cardImage = cardImage;
+        this.images = images;
     }
 
     static create(data) {
-        return new Work(data);
+        const newWork = new Work(data);
+        delete newWork._id
+        return newWork;
     }
 
     static updated(data) {
