@@ -1,10 +1,10 @@
 // https://spacejelly.dev/posts/uploading-files-in-react-from-a-form-with-drag-and-drop/
 
-import { Dispatch, FC, useCallback, useState } from "react";
-import s from "./FileUpload.module.scss";
+import { Dispatch, FC, useCallback, useEffect, useState } from "react";
+import s from "./ImageFileUpload.module.scss";
 import ImageLazyLoad from "../ImageLazyLoad/ImageLazyLoad";
 import { useDropzone } from "react-dropzone";
-import ImageFileUpload from "../../images/upload_image.svg";
+import ImgFileUpload from "../../images/upload_image.svg";
 import ImageChangeFileUpload from "../../images/change_upload.svg";
 
 import { ReactComponent as ImageDeleted } from "../../images/delete.svg";
@@ -12,27 +12,41 @@ import { SetStateAction } from "../../interfaces/interfaces.helpers";
 
 
 type Props = {
+    urlImage: string | undefined;
     imageHandle: Dispatch<SetStateAction<File | undefined>>
 }
 
-const FileUpload: FC<Props> = ({
-    imageHandle
+const ImageFileUpload: FC<Props> = ({
+    imageHandle,
+    urlImage,
 }) => {
     const [preview, setPreview] = useState<string | ArrayBuffer | null>(null);
 
+    useEffect(() => {
+        if (urlImage !== undefined) {
+            setPreview(urlImage);
+        }
+    }, [urlImage])
+
     const onDrop = useCallback((acceptedFiles: Array<File>) => {
         const file = new FileReader();
-        file.onload = function () {
+        file.onload = () => {
             setPreview(file.result);
         };
         file.readAsDataURL(acceptedFiles[0]);
         imageHandle(acceptedFiles[0])
-    }, []);
+    }, [imageHandle]);
 
     const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
     function handleOnChange(e: React.FormEvent<HTMLInputElement>) {
         const target = e.target as HTMLInputElement & { files: FileList; }
+        const file = new FileReader();
+
+        file.onload = () => {
+            setPreview(file.result);
+        };
+
         imageHandle(target.files[0]);
     }
 
@@ -40,6 +54,7 @@ const FileUpload: FC<Props> = ({
         <div className={s.container} {...getRootProps()}>
             <input
                 {...getInputProps()}
+                onInput={handleOnChange}
                 onChange={handleOnChange}
                 className="file-input"
                 type="file"
@@ -66,7 +81,7 @@ const FileUpload: FC<Props> = ({
             )}
 
             {!preview && (
-                <img className={s.image_upload} src={ImageFileUpload} alt="upload" />
+                <img className={s.image_upload} src={ImgFileUpload} alt="upload" />
             )}
 
             {isDragActive ? (
@@ -78,4 +93,4 @@ const FileUpload: FC<Props> = ({
     );
 };
 
-export default FileUpload;
+export default ImageFileUpload;
