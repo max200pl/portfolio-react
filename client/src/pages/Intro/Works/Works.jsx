@@ -8,15 +8,14 @@ import ModalWork from "../../../modals/ModalWork/ModalWork";
 import Modal from "../../../assets/components/Modal/Modal";
 import { LazyLoadComponent } from "react-lazy-load-image-component";
 import ModalWorkManager from "../../../modals/ModalWorkManager/ModalWorkManager";
-import { Work } from "./helpers";
 import WorkAdd from "./Work/WorkAdd/WorkAdd";
-import { useCategoriesWorks, useWorks } from "../../../assets/api/api";
+import { useGetCategoriesQuery, useGetWorksQuery } from "../../../assets/api/api";
 
 const Works = () => {
     const [filter, setFilter] = useState({ category: "" });
-    const { status, data: works } = useWorks(filter);
+    const { status, data: works } = useGetWorksQuery(filter);
 
-    const { status: statusCategories, data: categories } = useCategoriesWorks();
+    const { status: statusCategories, data: categories } = useGetCategoriesQuery();
     const uniqCategoriesWork = getUniqCategoriesWork(categories);
 
     const [isOpenModal, toggleOpenModal] = useState(false);
