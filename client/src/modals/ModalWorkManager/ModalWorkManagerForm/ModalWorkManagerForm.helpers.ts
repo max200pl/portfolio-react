@@ -1,6 +1,6 @@
 import { CheckboxesTagsOptions } from "../../../assets/components/AutocompleteTagsCheckboxesMUI/AutocompleteTagsCheckboxesMUI";
 import {
-    InterfaceTech,
+    ITechnology,
     InterfaceTechWithApply,
     Technology,
     TechnologyName,
@@ -21,7 +21,7 @@ function processValues(group: string, values: undefined | TechnologyName[] | Tec
     }));
 }
 
-export const getOptionsGroupAutocomplete = <T extends (InterfaceTech[] | InterfaceTechWithApply[])>(
+export const getOptionsGroupAutocomplete = <T extends (ITechnology[] | InterfaceTechWithApply[])>(
     technologies: T
 ): CheckboxesTagsOptions => {
     const optionsPrep: CheckboxesTagsOptions = [];
@@ -36,9 +36,10 @@ export const getOptionsGroupAutocomplete = <T extends (InterfaceTech[] | Interfa
 };
 
 
-export const prepareDataForRequest = (data: IFormInput) => {
+export const prepareDataForRequest = (data: IFormInput, image: File | undefined) => {
     return {
         ...data,
+        image: image,
         frontTech: prepareTech(data.frontTech),
         backTech: prepareTech(data.backTech),
     };
