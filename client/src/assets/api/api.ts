@@ -12,7 +12,6 @@ import { fillFormData } from "../helpers/helpers";
 import {
     InterfaceTechnologies,
 } from "../interfaces/interfaces";
-import { Work } from "../../pages/Intro/Works/helpers";
 import { IWork } from "../interfaces/interfaces";
 
 const API_BASE_URL = "http://localhost:8000/works";
@@ -101,7 +100,7 @@ const createWork = async (work: CreateWork): Promise<IWork> => {
 export const useCreateWorkMutation = () => {
     const queryClient = useQueryClient();
 
-    return useMutation<Work, Error, CreateWork, unknown>({
+    return useMutation<IWork, Error, CreateWork, unknown>({
         mutationFn: createWork,
         onSuccess: () => {
             queryClient.invalidateQueries([Tag.WORKS] as InvalidateQueryFilters);
@@ -116,7 +115,7 @@ export function useGetCategoriesQuery() {
     const baseQueryFn = baseQuery;
     const url = `${API_BASE_URL}/categories`;
 
-    return useQuery<Work[], Error>({
+    return useQuery<IWork[], Error>({
         queryKey: [Tag.CATEGORIES],
         queryFn: () =>
             baseQueryFn({
