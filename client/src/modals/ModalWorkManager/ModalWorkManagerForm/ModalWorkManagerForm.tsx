@@ -1,30 +1,40 @@
-import { FC, useEffect, useState } from "react";
-import { useForm, SubmitHandler, Controller } from "react-hook-form";
-import { Button, Checkbox, FormControlLabel, Stack, TextField } from "@mui/material";
 import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
-import SelectMUI from "../../../assets/components/SelectMUI/SelectMUI";
-import s from "./ModalWorkManagerForm.module.scss";
-import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import {
-    getOptionsGroupAutocomplete,
-} from "./helpers";
-import { IWork, } from "../../../pages/Intro/Works/helpers";
+    Button,
+    Checkbox,
+    FormControlLabel,
+    Stack,
+    TextField,
+} from "@mui/material";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import { FC, useEffect, useState } from "react";
+import { Controller, SubmitHandler, useForm } from "react-hook-form";
+import * as yup from "yup";
 import AutocompleteTagsCheckboxes, {
     CheckboxesTagsOptions,
 } from "../../../assets/components/AutocompleteTagsCheckboxesMUI/AutocompleteTagsCheckboxesMUI";
-
-import FileUpload from "../../../assets/components/FileUpload/FileUpload";
-import { useCreateWork, useTechnologies } from "../../../assets/api/api";
-import { prepareDataForRequest } from './helpers';
-import DeleteIcon from '@mui/icons-material/Delete';
+import SelectMUI from "../../../assets/components/SelectMUI/SelectMUI";
+import { IWork } from "../../../assets/interfaces/interfaces";
+import { getOptionsGroupAutocomplete } from "./ModalWorkManagerForm.helpers";
+import DeleteIcon from "@mui/icons-material/Delete";
 import dayjs from "dayjs";
-import { InterfaceTech } from "../../../assets/interfaces/interfaces";
+import {
+    useCreateWorkMutation,
+    useGetTechnologiesQuery,
+} from "../../../assets/api/api";
+import ImageFileUpload from "../../../assets/components/ImageFileUpload/ImageFileUpload";
+import { getFolderName, getImageName } from "../../../assets/helpers/helpers";
+import { prepareDataForRequest } from "./ModalWorkManagerForm.helpers";
 
-export type IFormInput = Pick<IWork, 'name' | 'link' | 'category' | 'client' | 'dateFinished'> & {
+import s from "./ModalWorkManagerForm.module.scss";
+
+export type IFormInput = Pick<
+    IWork,
+    "name" | "link" | "category" | "client" | "dateFinished"
+> & {
     frontTech: CheckboxesTagsOptions | [];
     backTech: CheckboxesTagsOptions | [];
-}
+};
 
 export type KeysIFormInput = keyof IFormInput;
 
@@ -63,17 +73,31 @@ const ModalWorkManagerForm: FC<Props> = ({ onClose, work }) => {
     const [showFrontTech, setShowFrontTech] = useState(false);
     const [showBackTech, setShowBackTech] = useState(false);
     const [image, setImage] = useState<File | undefined>();
-    const { mutate } = useCreateWork();
+    const { mutate: createWork } = useCreateWorkMutation();
 
-    const { data: technologies, status: statusTechnologies } = useTechnologies();
+    const [urlImage, setUrlImage] = useState<string | undefined>();
+    const { data: technologies, status: statusTechnologies } =
+        useGetTechnologiesQuery();
+
+    useEffect(() => {
+        if (work !== undefined) {
+            const nameCardImage = work.cardImage.name;
+            const name = getImageName(nameCardImage);
+            const project = getFolderName(nameCardImage);
+            console.log("object");
+
+            setUrlImage(
+                `http://localhost:8000/works/image?project=${project}&name=${name}`
+            );
+        }
+    }, [work]);
 
     useEffect(() => {
         if (statusTechnologies === "success") {
-            setShowFrontTech(work?.frontTech.length > 0)
-            setShowBackTech(work?.backTech.length > 0)
+            setShowFrontTech(work?.frontTech.length > 0);
+            setShowBackTech(work?.backTech.length > 0);
         }
-    }, [statusTechnologies])
-
+    }, [statusTechnologies, work?.backTech.length, work?.frontTech.length]);
 
     const {
         control,
@@ -93,9 +117,13 @@ const ModalWorkManagerForm: FC<Props> = ({ onClose, work }) => {
             link: work?.link ?? "",
             category: work?.category ?? "",
             client: work?.client ?? "",
-            dateFinished: work?.dateFinished ? new Date(work.dateFinished) : undefined,
-            frontTech: work?.frontTech ? getOptionsGroupAutocomplete(work.frontTech) : [],
-            backTech: work?.backTech ? getOptionsGroupAutocomplete(work.backTech) : [],
+            dateFinished: work?.dateFinished ? work.dateFinished : undefined,
+            frontTech: work?.frontTech
+                ? getOptionsGroupAutocomplete(work.frontTech)
+                : [],
+            backTech: work?.backTech
+                ? getOptionsGroupAutocomplete(work.backTech)
+                : [],
         },
     });
 
@@ -104,25 +132,11 @@ const ModalWorkManagerForm: FC<Props> = ({ onClose, work }) => {
     };
 
     const onSubmit: SubmitHandler<IFormInput> = async (data) => {
-        const paperedData = prepareDataForRequest(data);
-
-        let formData = new FormData();
-
-        for (const key in paperedData) {
-            const value = (paperedData as any)[key];
-
-            if (Array.isArray(value) || (typeof value === "object" && value !== null)) {
-                formData.append(key, JSON.stringify(value));
-            } else {
-                formData.append(key, value);
-            }
-        }
-
-        formData.append("image", image as File);
+        const paperedData = prepareDataForRequest(data, image);
 
         try {
-            await mutate(formData as any);
-            console.log("Work created successfully");
+            const result = await createWork(paperedData);
+            console.log("Work created successfully", result);
         } catch (error) {
             console.error("Error creating work:", error);
         }
@@ -131,7 +145,7 @@ const ModalWorkManagerForm: FC<Props> = ({ onClose, work }) => {
     return (
         <form onSubmit={handleSubmit(onSubmit)} className={s.form}>
             <div className={s.form__header}>
-                <FileUpload imageHandle={setImage} />
+                <ImageFileUpload imageHandle={setImage} urlImage={urlImage} />
             </div>
 
             <div className={s.form__content + " custom_scroll"}>
@@ -214,7 +228,7 @@ const ModalWorkManagerForm: FC<Props> = ({ onClose, work }) => {
                     control={control}
                     render={({ field }) => (
                         <DatePicker
-                            value={dayjs(field.value)}
+                            value={field.value ? dayjs(field.value) : undefined}
                             slotProps={{ textField: { size: "small" } }}
                             className={s["form_control"]}
                             label="Finished date"
@@ -223,38 +237,40 @@ const ModalWorkManagerForm: FC<Props> = ({ onClose, work }) => {
                     )}
                 />
 
-                {(work === undefined) &&
+                {work === undefined && (
                     <FormControlLabel
                         label="Did you use frontend technologies?"
                         control={
                             <Checkbox onChange={() => setShowFrontTech(!showFrontTech)} />
                         }
                     />
-                }
+                )}
 
-                {showFrontTech && (
+                {showFrontTech && statusTechnologies === "success" && (
                     <AutocompleteTagsCheckboxes
                         className={s["form_control"]}
                         control={control}
                         name={"frontTech"}
-                        options={getOptionsGroupAutocomplete(technologies?.frontend as InterfaceTech[])}
+                        options={getOptionsGroupAutocomplete(technologies?.frontend)}
                         label="Frontend Technologies"
                         placeholder="Add Technology"
                     />
                 )}
-                {(work === undefined) &&
+                {work === undefined && (
                     <FormControlLabel
-                        control={<Checkbox onChange={() => setShowBackTech(!showBackTech)} />}
+                        control={
+                            <Checkbox onChange={() => setShowBackTech(!showBackTech)} />
+                        }
                         label="Did you use backend technologies?"
                     />
-                }
+                )}
 
-                {showBackTech && (
+                {showBackTech && statusTechnologies === "success" && (
                     <AutocompleteTagsCheckboxes
                         className={s["form_control"]}
                         control={control}
                         name="backTech"
-                        options={getOptionsGroupAutocomplete(technologies?.backend as InterfaceTech[])}
+                        options={getOptionsGroupAutocomplete(technologies?.backend)}
                         label="Backend Technologies"
                         placeholder="Add Technology"
                     />
@@ -263,15 +279,24 @@ const ModalWorkManagerForm: FC<Props> = ({ onClose, work }) => {
 
             <div className={s.form__footer}>
                 <Stack direction="row" spacing={2} justifyContent="space-between">
-                    <Button className="action_button_primary" variant="contained" startIcon={<DeleteIcon />} onClick={() => onDelete()}>
+                    <Button
+                        className="action_button_primary"
+                        variant="contained"
+                        startIcon={<DeleteIcon />}
+                        onClick={() => onDelete()}
+                    >
                         Delete
                     </Button>
 
                     <Stack direction="row" spacing={2}>
-                        <Button variant="outlined" onClick={() => onClose()} >
+                        <Button variant="outlined" onClick={() => onClose()}>
                             Close
                         </Button>
-                        <Button className="action_button_primary" variant="contained" type="submit">
+                        <Button
+                            className="action_button_primary"
+                            variant="contained"
+                            type="submit"
+                        >
                             Save
                         </Button>
                     </Stack>
