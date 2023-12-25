@@ -16,6 +16,8 @@ import { IWork } from "../interfaces/interfaces";
 
 const API_BASE_URL = "http://localhost:8000/works";
 
+export type ActionType = "update" | "create" | "delete";
+
 enum Tag {
     WORKS = "works",
     CATEGORIES = "categories",
@@ -64,29 +66,31 @@ export const useGetWorksQuery = (filter: { category: string }) => {
 };
 
 
-interface CreateWork extends Omit<IWork, "cardImage"> {
+export interface SaveWork extends Omit<IWork, "cardImage"> {
     image: File | undefined;
 }
 
-const createWork = async (work: CreateWork): Promise<IWork> => {
+const saveWork = async ({ work, actionType, method }: { work: SaveWork | Partial<SaveWork>, actionType: ActionType, method: BaseQueryOptions["method"] }): Promise<IWork> => {
     try {
-        const url = `${API_BASE_URL}`;
+        const url = `${API_BASE_URL}/${actionType}`;
         const contentType = "multipart/form-data";
 
         const formData = new FormData();
 
         fillFormData(formData, work);
 
-        if (work.image && work.image instanceof File) {
-            formData.append("image", work.image);
-        } else {
-            throw new Error("Invalid image data");
+        if (work.image !== undefined) {
+            if (work.image && work.image instanceof File) {
+                formData.append("image", work.image);
+            } else {
+                throw new Error("Invalid image data");
+            }
         }
 
         const result = await baseQuery({
             url,
             contentType,
-            method: "POST",
+            method,
             body: formData,
         });
 
@@ -100,8 +104,22 @@ const createWork = async (work: CreateWork): Promise<IWork> => {
 export const useCreateWorkMutation = () => {
     const queryClient = useQueryClient();
 
-    return useMutation<IWork, Error, CreateWork, unknown>({
-        mutationFn: createWork,
+    return useMutation<IWork, Error, SaveWork, unknown>({
+        mutationFn: (work) => saveWork({ work, actionType: "create", method: "POST" }),
+        onSuccess: () => {
+            queryClient.invalidateQueries([Tag.WORKS] as InvalidateQueryFilters);
+        },
+        onError: (error) => {
+            console.error(error.message);
+        },
+    });
+};
+
+export const useUpdateWorkMutation = () => {
+    const queryClient = useQueryClient();
+
+    return useMutation<IWork, Error, Partial<SaveWork>, unknown>({
+        mutationFn: (work: Partial<SaveWork>) => saveWork({ work, actionType: "update", method: "PUT" }),
         onSuccess: () => {
             queryClient.invalidateQueries([Tag.WORKS] as InvalidateQueryFilters);
         },

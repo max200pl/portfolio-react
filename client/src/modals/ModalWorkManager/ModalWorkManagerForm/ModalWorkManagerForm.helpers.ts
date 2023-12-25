@@ -36,11 +36,11 @@ export const getOptionsGroupAutocomplete = <T extends (ITechnology[] | Interface
 };
 
 
-export const prepareDataForRequest = (data: IFormInput, image: File | undefined) => {
+export const prepareDataForRequest = (data: any, image: File | undefined) => {
     return {
         ...data,
         image: image,
-        frontTech: prepareTech(data.frontTech),
+        frontTech: data.frontTech ? prepareTech(data.frontTech) : undefined,
         backTech: prepareTech(data.backTech),
     };
 };

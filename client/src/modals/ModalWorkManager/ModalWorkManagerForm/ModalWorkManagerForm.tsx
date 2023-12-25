@@ -14,26 +14,33 @@ import AutocompleteTagsCheckboxes, {
     CheckboxesTagsOptions,
 } from "../../../assets/components/AutocompleteTagsCheckboxesMUI/AutocompleteTagsCheckboxesMUI";
 import SelectMUI from "../../../assets/components/SelectMUI/SelectMUI";
-import { IWork } from "../../../assets/interfaces/interfaces";
-import { getOptionsGroupAutocomplete } from "./ModalWorkManagerForm.helpers";
+import { IWork, InterfaceTechWithApply } from "../../../assets/interfaces/interfaces";
+import { getOptionsGroupAutocomplete, prepareTech } from "./ModalWorkManagerForm.helpers";
 import DeleteIcon from "@mui/icons-material/Delete";
 import dayjs from "dayjs";
 import {
+    ActionType,
+    SaveWork,
     useCreateWorkMutation,
     useGetTechnologiesQuery,
+    useUpdateWorkMutation,
 } from "../../../assets/api/api";
 import ImageFileUpload from "../../../assets/components/ImageFileUpload/ImageFileUpload";
 import { getFolderName, getImageName } from "../../../assets/helpers/helpers";
 import { prepareDataForRequest } from "./ModalWorkManagerForm.helpers";
 
 import s from "./ModalWorkManagerForm.module.scss";
+import { getDirtyFields } from "../../../assets/helpers/reactHookForm.helpers";
 
-export type IFormInput = Pick<
-    IWork,
-    "name" | "link" | "category" | "client" | "dateFinished"
-> & {
+export type IFormInput = {
     frontTech: CheckboxesTagsOptions | [];
     backTech: CheckboxesTagsOptions | [];
+    _id?: string;
+    name: string;
+    dateFinished?: Date;
+    category: string;
+    client?: string;
+    link?: string;
 };
 
 export type KeysIFormInput = keyof IFormInput;
@@ -70,10 +77,12 @@ interface Props {
 }
 
 const ModalWorkManagerForm: FC<Props> = ({ onClose, work }) => {
+    const [actionType, setActionType] = useState<ActionType>(work === undefined ? "create" : "update");
     const [showFrontTech, setShowFrontTech] = useState(false);
     const [showBackTech, setShowBackTech] = useState(false);
     const [image, setImage] = useState<File | undefined>();
     const { mutate: createWork } = useCreateWorkMutation();
+    const { mutate: updateWork } = useUpdateWorkMutation();
 
     const [urlImage, setUrlImage] = useState<string | undefined>();
     const { data: technologies, status: statusTechnologies } =
@@ -84,7 +93,6 @@ const ModalWorkManagerForm: FC<Props> = ({ onClose, work }) => {
             const nameCardImage = work.cardImage.name;
             const name = getImageName(nameCardImage);
             const project = getFolderName(nameCardImage);
-            console.log("object");
 
             setUrlImage(
                 `http://localhost:8000/works/image?project=${project}&name=${name}`
@@ -104,6 +112,7 @@ const ModalWorkManagerForm: FC<Props> = ({ onClose, work }) => {
         handleSubmit,
         formState: {
             errors,
+            dirtyFields
             // isDirty,
             // isSubmitting,
             // touchedFields,
@@ -113,10 +122,10 @@ const ModalWorkManagerForm: FC<Props> = ({ onClose, work }) => {
         mode: "onBlur",
         resolver: yupResolver(schema),
         defaultValues: {
-            name: work?.name ?? "",
-            link: work?.link ?? "",
-            category: work?.category ?? "",
-            client: work?.client ?? "",
+            name: work?.name ?? undefined,
+            link: work?.link ?? undefined,
+            category: work?.category ?? undefined,
+            client: work?.client ?? undefined,
             dateFinished: work?.dateFinished ? work.dateFinished : undefined,
             frontTech: work?.frontTech
                 ? getOptionsGroupAutocomplete(work.frontTech)
@@ -131,11 +140,43 @@ const ModalWorkManagerForm: FC<Props> = ({ onClose, work }) => {
         throw new Error("Function not implemented.");
     };
 
-    const onSubmit: SubmitHandler<IFormInput> = async (data) => {
-        const paperedData = prepareDataForRequest(data, image);
 
+    type DirtyFields<T> = Partial<Readonly<{
+        [K in keyof T]?: boolean | [] | { group?: boolean; value?: boolean }[];
+    }>>;
+
+    const onSubmit: SubmitHandler<IFormInput> = async (data) => {
         try {
-            const result = await createWork(paperedData);
+            let result;
+
+            if (actionType === "create") {
+                result = await createWork({
+                    ...data,
+                    image: image,
+                    frontTech: prepareTech(data.frontTech),
+                    backTech: prepareTech(data.backTech),
+                } as SaveWork);
+            }
+
+            if (actionType === "update") {
+                const dataForm: IFormInput = data;
+                const dirtyFieldsForm: DirtyFields<IFormInput> = dirtyFields;
+
+                const updatedFields: Partial<IFormInput> = getDirtyFields<Partial<IFormInput>>(dataForm, dirtyFieldsForm);
+
+                const prepareBackTech = updatedFields.backTech !== undefined ? { backTech: prepareTech((updatedFields.backTech as CheckboxesTagsOptions)) } : {};
+                const prepareFrontTech = updatedFields.frontTech !== undefined ? { frontTech: prepareTech((updatedFields.frontTech as CheckboxesTagsOptions)) } : {};
+
+
+                result = updateWork({
+                    ...updatedFields,
+                    ...(image && { image }),
+                    ...prepareBackTech as { backTech: InterfaceTechWithApply[] },
+                    ...prepareFrontTech as { frontTech: InterfaceTechWithApply[] }
+                } as Partial<SaveWork>)
+            }
+
+
             console.log("Work created successfully", result);
         } catch (error) {
             console.error("Error creating work:", error);
@@ -237,7 +278,7 @@ const ModalWorkManagerForm: FC<Props> = ({ onClose, work }) => {
                     )}
                 />
 
-                {work === undefined && (
+                {actionType === "create" && (
                     <FormControlLabel
                         label="Did you use frontend technologies?"
                         control={
@@ -256,7 +297,8 @@ const ModalWorkManagerForm: FC<Props> = ({ onClose, work }) => {
                         placeholder="Add Technology"
                     />
                 )}
-                {work === undefined && (
+
+                {actionType === "create" && (
                     <FormControlLabel
                         control={
                             <Checkbox onChange={() => setShowBackTech(!showBackTech)} />
