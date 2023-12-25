@@ -19,6 +19,10 @@
 
     cursor: pointer;
 
+    &[error-state="true"] {
+        border-color: $color-red;
+    }
+
     &:hover {
         border-color: $color-blue;
         .image_change_upload {

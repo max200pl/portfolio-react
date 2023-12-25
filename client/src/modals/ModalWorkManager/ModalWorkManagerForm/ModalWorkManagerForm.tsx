@@ -14,8 +14,11 @@ import AutocompleteTagsCheckboxes, {
     CheckboxesTagsOptions,
 } from "../../../assets/components/AutocompleteTagsCheckboxesMUI/AutocompleteTagsCheckboxesMUI";
 import SelectMUI from "../../../assets/components/SelectMUI/SelectMUI";
-import { IWork, InterfaceTechWithApply } from "../../../assets/interfaces/interfaces";
-import { getOptionsGroupAutocomplete, prepareTech } from "./ModalWorkManagerForm.helpers";
+import { IWork } from "../../../assets/interfaces/interfaces";
+import {
+    getOptionsGroupAutocomplete,
+    prepareTech,
+} from "./ModalWorkManagerForm.helpers";
 import DeleteIcon from "@mui/icons-material/Delete";
 import dayjs from "dayjs";
 import {
@@ -27,7 +30,6 @@ import {
 } from "../../../assets/api/api";
 import ImageFileUpload from "../../../assets/components/ImageFileUpload/ImageFileUpload";
 import { getFolderName, getImageName } from "../../../assets/helpers/helpers";
-import { prepareDataForRequest } from "./ModalWorkManagerForm.helpers";
 
 import s from "./ModalWorkManagerForm.module.scss";
 import { getDirtyFields } from "../../../assets/helpers/reactHookForm.helpers";
@@ -41,6 +43,7 @@ export type IFormInput = {
     category: string;
     client?: string;
     link?: string;
+    image: any;
 };
 
 export type KeysIFormInput = keyof IFormInput;
@@ -51,6 +54,14 @@ const schema = yup.object({
     category: yup.string().required("Please write Name Project"),
     dateFinished: yup.date(),
     link: yup.string(),
+    image: yup
+        .mixed()
+        .required("Please upload an image")
+        .test("fileType", "Please upload an image", (value) => {
+            if (!value) return false;
+            const file = value as File;
+            return file.type.startsWith("image/");
+        }),
     frontTech: yup
         .array()
         .required()
@@ -77,7 +88,9 @@ interface Props {
 }
 
 const ModalWorkManagerForm: FC<Props> = ({ onClose, work }) => {
-    const [actionType, setActionType] = useState<ActionType>(work === undefined ? "create" : "update");
+    const [actionType] = useState<ActionType>(
+        work === undefined ? "create" : "update"
+    );
     const [showFrontTech, setShowFrontTech] = useState(false);
     const [showBackTech, setShowBackTech] = useState(false);
     const [image, setImage] = useState<File | undefined>();
@@ -110,9 +123,11 @@ const ModalWorkManagerForm: FC<Props> = ({ onClose, work }) => {
     const {
         control,
         handleSubmit,
+        setValue,
+        clearErrors,
         formState: {
             errors,
-            dirtyFields
+            dirtyFields,
             // isDirty,
             // isSubmitting,
             // touchedFields,
@@ -122,6 +137,7 @@ const ModalWorkManagerForm: FC<Props> = ({ onClose, work }) => {
         mode: "onBlur",
         resolver: yupResolver(schema),
         defaultValues: {
+            image: undefined,
             name: work?.name ?? undefined,
             link: work?.link ?? undefined,
             category: work?.category ?? undefined,
@@ -140,10 +156,11 @@ const ModalWorkManagerForm: FC<Props> = ({ onClose, work }) => {
         throw new Error("Function not implemented.");
     };
 
-
-    type DirtyFields<T> = Partial<Readonly<{
-        [K in keyof T]?: boolean | [] | { group?: boolean; value?: boolean }[];
-    }>>;
+    type DirtyFields<T> = Partial<
+        Readonly<{
+            [K in keyof T]?: boolean | [] | { group?: boolean; value?: boolean }[];
+        }>
+    >;
 
     const onSubmit: SubmitHandler<IFormInput> = async (data) => {
         try {
@@ -152,7 +169,6 @@ const ModalWorkManagerForm: FC<Props> = ({ onClose, work }) => {
             if (actionType === "create") {
                 result = await createWork({
                     ...data,
-                    image: image,
                     frontTech: prepareTech(data.frontTech),
                     backTech: prepareTech(data.backTech),
                 } as SaveWork);
@@ -162,21 +178,36 @@ const ModalWorkManagerForm: FC<Props> = ({ onClose, work }) => {
                 const dataForm: IFormInput = data;
                 const dirtyFieldsForm: DirtyFields<IFormInput> = dirtyFields;
 
-                const updatedFields: Partial<IFormInput> = getDirtyFields<Partial<IFormInput>>(dataForm, dirtyFieldsForm);
+                const updatedFields: Partial<IFormInput> = getDirtyFields<
+                    Partial<IFormInput>
+                >(dataForm, dirtyFieldsForm);
+                console.log(updatedFields, "<<<<<<<<<updatedFields");
+                const prepareBackTech =
+                    updatedFields.backTech !== undefined
+                        ? {
+                            backTech: prepareTech(
+                                updatedFields.backTech as CheckboxesTagsOptions
+                            ),
+                        }
+                        : {};
+                const prepareFrontTech =
+                    updatedFields.frontTech !== undefined
+                        ? {
+                            frontTech: prepareTech(
+                                updatedFields.frontTech as CheckboxesTagsOptions
+                            ),
+                        }
+                        : {};
 
-                const prepareBackTech = updatedFields.backTech !== undefined ? { backTech: prepareTech((updatedFields.backTech as CheckboxesTagsOptions)) } : {};
-                const prepareFrontTech = updatedFields.frontTech !== undefined ? { frontTech: prepareTech((updatedFields.frontTech as CheckboxesTagsOptions)) } : {};
-
-
-                result = updateWork({
-                    ...updatedFields,
-                    ...(image && { image }),
-                    ...prepareBackTech as { backTech: InterfaceTechWithApply[] },
-                    ...prepareFrontTech as { frontTech: InterfaceTechWithApply[] }
-                } as Partial<SaveWork>)
+                // result = updateWork({
+                //     ...updatedFields,
+                //     ...(image && { image }),
+                //     ...prepareBackTech as { backTech: InterfaceTechWithApply[] },
+                //     ...prepareFrontTech as { frontTech: InterfaceTechWithApply[] }
+                // } as Partial<SaveWork>)
             }
 
-
+            console.log(data, "data");
             console.log("Work created successfully", result);
         } catch (error) {
             console.error("Error creating work:", error);
@@ -186,7 +217,13 @@ const ModalWorkManagerForm: FC<Props> = ({ onClose, work }) => {
     return (
         <form onSubmit={handleSubmit(onSubmit)} className={s.form}>
             <div className={s.form__header}>
-                <ImageFileUpload imageHandle={setImage} urlImage={urlImage} />
+                <ImageFileUpload
+                    clearErrors={clearErrors}
+                    errors={errors}
+                    setValue={setValue}
+                    imageHandle={setImage}
+                    urlImage={urlImage}
+                />
             </div>
 
             <div className={s.form__content + " custom_scroll"}>

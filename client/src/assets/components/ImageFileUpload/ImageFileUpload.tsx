@@ -9,16 +9,23 @@ import ImageChangeFileUpload from "../../images/change_upload.svg";
 
 import { ReactComponent as ImageDeleted } from "../../images/delete.svg";
 import { SetStateAction } from "../../interfaces/interfaces.helpers";
-
+import { FieldErrors, UseFormClearErrors, UseFormSetValue } from "react-hook-form";
+import { IFormInput } from "../../../modals/ModalWorkManager/ModalWorkManagerForm/ModalWorkManagerForm";
 
 type Props = {
     urlImage: string | undefined;
     imageHandle: Dispatch<SetStateAction<File | undefined>>
+    setValue: UseFormSetValue<IFormInput>;
+    errors: FieldErrors<IFormInput> | undefined;
+    clearErrors: UseFormClearErrors<IFormInput>
 }
 
 const ImageFileUpload: FC<Props> = ({
+    clearErrors,
     imageHandle,
     urlImage,
+    setValue,
+    errors,
 }) => {
     const [preview, setPreview] = useState<string | ArrayBuffer | null>(null);
 
@@ -34,7 +41,9 @@ const ImageFileUpload: FC<Props> = ({
             setPreview(file.result);
         };
         file.readAsDataURL(acceptedFiles[0]);
-        imageHandle(acceptedFiles[0])
+
+        setValue('image', acceptedFiles[0]);
+        clearErrors(['image']);
     }, [imageHandle]);
 
     const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
@@ -47,11 +56,14 @@ const ImageFileUpload: FC<Props> = ({
             setPreview(file.result);
         };
 
-        imageHandle(target.files[0]);
+        setValue('image', target.files[0]);
+        clearErrors(['image']);
     }
 
+    const helperText = errors?.image?.message as string | undefined;
+
     return (
-        <div className={s.container} {...getRootProps()}>
+        <div error-state={String(!!errors?.image)} className={s.container} {...getRootProps()}>
             <input
                 {...getInputProps()}
                 onInput={handleOnChange}
@@ -75,6 +87,7 @@ const ImageFileUpload: FC<Props> = ({
                         onClick={(e) => {
                             e.stopPropagation();
                             setPreview(null);
+                            setValue('image', undefined)
                         }}
                     />
                 </>
@@ -84,9 +97,11 @@ const ImageFileUpload: FC<Props> = ({
                 <img className={s.image_upload} src={ImgFileUpload} alt="upload" />
             )}
 
-            {isDragActive ? (
+            {helperText && <p className={s.helper_text}>{helperText}</p>}
+
+            {isDragActive && !helperText ? (
                 <p className={s.helper_text}>Drop the Image here ...</p>
-            ) : !preview ? (
+            ) : !preview && !helperText ? (
                 <p className={s.helper_text}>Drag the Image here, or click</p>
             ) : null}
         </div>
