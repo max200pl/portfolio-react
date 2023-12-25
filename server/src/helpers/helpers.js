@@ -1,16 +1,6 @@
-const lodash = require('lodash');
 
 function toCamelCase(str) {
     return str.trim().replace(/\s+/g, ' ').toLowerCase().replace(/[^a-zA-Z0-9]+(.)/g, (match, chr) => chr.toUpperCase());
-}
-
-function parseStringsToNumbers(obj) {
-    return lodash.cloneDeepWith(obj, (value) => {
-        if (lodash.isString(value)) {
-            const parsedValue = parseFloat(value);
-            return isNaN(parsedValue) ? value : parsedValue;
-        }
-    });
 }
 
 class Work {
@@ -51,6 +41,5 @@ class Work {
 
 module.exports = {
     toCamelCase,
-    parseStringsToNumbers,
     Work
 }
