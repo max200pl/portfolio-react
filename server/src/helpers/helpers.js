@@ -1,7 +1,13 @@
 
 function toCamelCase(str) {
-    return str.trim().replace(/\s+/g, ' ').toLowerCase().replace(/[^a-zA-Z0-9]+(.)/g, (match, chr) => chr.toUpperCase());
+    try {
+        return str.trim().replace(/\s+/g, ' ').toLowerCase().replace(/[^a-zA-Z0-9]+(.)/g, (match, chr) => chr.toUpperCase());
+    } catch (error) {
+        console.error('Error converting to camelCase:', error.message);
+        return str; // Вернуть исходную строку в случае ошибки
+    }
 }
+
 
 class Work {
     constructor({
@@ -18,7 +24,7 @@ class Work {
     }) {
         this._id = _id;
         this.name = name;
-        this.dateFinished = JSON.parse(dateFinished);
+        this.dateFinished = dateFinished !== undefined ? JSON.parse(dateFinished) : undefined;
         this.category = category;
         this.client = client;
         this.link = link;

@@ -14,7 +14,7 @@ import { IFormInput } from "../../../modals/ModalWorkManager/ModalWorkManagerFor
 
 type Props = {
     urlImage: string | undefined;
-    imageHandle: Dispatch<SetStateAction<File | undefined>>
+
     setValue: UseFormSetValue<IFormInput>;
     errors: FieldErrors<IFormInput> | undefined;
     clearErrors: UseFormClearErrors<IFormInput>
@@ -22,7 +22,6 @@ type Props = {
 
 const ImageFileUpload: FC<Props> = ({
     clearErrors,
-    imageHandle,
     urlImage,
     setValue,
     errors,
@@ -42,9 +41,9 @@ const ImageFileUpload: FC<Props> = ({
         };
         file.readAsDataURL(acceptedFiles[0]);
 
-        setValue('image', acceptedFiles[0]);
+        setValue('image', acceptedFiles[0], { shouldDirty: true });
         clearErrors(['image']);
-    }, [imageHandle]);
+    }, [clearErrors, setValue]);
 
     const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
@@ -56,7 +55,7 @@ const ImageFileUpload: FC<Props> = ({
             setPreview(file.result);
         };
 
-        setValue('image', target.files[0]);
+        setValue('image', target.files[0], { shouldDirty: true });
         clearErrors(['image']);
     }
 

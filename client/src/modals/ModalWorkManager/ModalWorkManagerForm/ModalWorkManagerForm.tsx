@@ -14,7 +14,7 @@ import AutocompleteTagsCheckboxes, {
     CheckboxesTagsOptions,
 } from "../../../assets/components/AutocompleteTagsCheckboxesMUI/AutocompleteTagsCheckboxesMUI";
 import SelectMUI from "../../../assets/components/SelectMUI/SelectMUI";
-import { IWork } from "../../../assets/interfaces/interfaces";
+import { IWork, InterfaceTechWithApply } from "../../../assets/interfaces/interfaces";
 import {
     getOptionsGroupAutocomplete,
     prepareTech,
@@ -49,7 +49,7 @@ export type IFormInput = {
 export type KeysIFormInput = keyof IFormInput;
 
 const schema = yup.object({
-    name: yup.string().required("Please write Name Project"),
+    name: yup.string().matches(/[^\d]/, 'Field cannot consist only of digits').required("Please write Name Project"),
     client: yup.string(),
     category: yup.string().required("Please write Name Project"),
     dateFinished: yup.date(),
@@ -93,7 +93,7 @@ const ModalWorkManagerForm: FC<Props> = ({ onClose, work }) => {
     );
     const [showFrontTech, setShowFrontTech] = useState(false);
     const [showBackTech, setShowBackTech] = useState(false);
-    const [image, setImage] = useState<File | undefined>();
+
     const { mutate: createWork } = useCreateWorkMutation();
     const { mutate: updateWork } = useUpdateWorkMutation();
 
@@ -128,10 +128,6 @@ const ModalWorkManagerForm: FC<Props> = ({ onClose, work }) => {
         formState: {
             errors,
             dirtyFields,
-            // isDirty,
-            // isSubmitting,
-            // touchedFields,
-            // submitCount
         },
     } = useForm<IFormInput>({
         mode: "onBlur",
@@ -181,33 +177,29 @@ const ModalWorkManagerForm: FC<Props> = ({ onClose, work }) => {
                 const updatedFields: Partial<IFormInput> = getDirtyFields<
                     Partial<IFormInput>
                 >(dataForm, dirtyFieldsForm);
-                console.log(updatedFields, "<<<<<<<<<updatedFields");
-                const prepareBackTech =
-                    updatedFields.backTech !== undefined
-                        ? {
-                            backTech: prepareTech(
-                                updatedFields.backTech as CheckboxesTagsOptions
-                            ),
-                        }
-                        : {};
-                const prepareFrontTech =
-                    updatedFields.frontTech !== undefined
-                        ? {
-                            frontTech: prepareTech(
-                                updatedFields.frontTech as CheckboxesTagsOptions
-                            ),
-                        }
-                        : {};
 
-                // result = updateWork({
-                //     ...updatedFields,
-                //     ...(image && { image }),
-                //     ...prepareBackTech as { backTech: InterfaceTechWithApply[] },
-                //     ...prepareFrontTech as { frontTech: InterfaceTechWithApply[] }
-                // } as Partial<SaveWork>)
+                const prepareBackTech = updatedFields.backTech !== undefined
+                    ? {
+                        backTech: prepareTech(
+                            updatedFields.backTech as CheckboxesTagsOptions
+                        ),
+                    }
+                    : {};
+                const prepareFrontTech = updatedFields.frontTech !== undefined
+                    ? {
+                        frontTech: prepareTech(
+                            updatedFields.frontTech as CheckboxesTagsOptions
+                        ),
+                    }
+                    : {};
+
+                result = await updateWork({
+                    ...updatedFields,
+                    ...prepareBackTech as { backTech: InterfaceTechWithApply[] },
+                    ...prepareFrontTech as { frontTech: InterfaceTechWithApply[] }
+                } as Partial<SaveWork>)
             }
 
-            console.log(data, "data");
             console.log("Work created successfully", result);
         } catch (error) {
             console.error("Error creating work:", error);
@@ -221,7 +213,6 @@ const ModalWorkManagerForm: FC<Props> = ({ onClose, work }) => {
                     clearErrors={clearErrors}
                     errors={errors}
                     setValue={setValue}
-                    imageHandle={setImage}
                     urlImage={urlImage}
                 />
             </div>

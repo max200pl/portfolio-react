@@ -16,7 +16,6 @@ const ModalWorkManager: FC<IModalWorkManager> = ({
     onClose,
     work
 }) => {
-    console.log("Manage work:", work);
     return (
         <div className={s.modal}>
             <div className={s.content} onClick={(e) => e.stopPropagation()}>

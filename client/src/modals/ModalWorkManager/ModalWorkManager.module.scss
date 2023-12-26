@@ -67,7 +67,11 @@
         border: 1px solid $color-white;
         min-height: 500px;
 
+        margin: auto;
+
         @include lg {
+            position: relative;
+            top: -100px;
             min-width: 580px;
             max-width: 580px;
         }
