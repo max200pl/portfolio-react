@@ -11,10 +11,7 @@ export function addBodyClass(className) {
 export const fillFormData = (formData, data) => {
     for (const key in data) {
         const value = data[key];
-        console.log(key, value);
-        if (key === 'image' && value instanceof File) {
-            formData.append(key, value);
-        } else if (Array.isArray(value)) {
+        if (Array.isArray(value) || (typeof value === "object" && value !== null)) {
             formData.append(key, JSON.stringify(value));
         } else {
             formData.append(key, value);

@@ -29,12 +29,12 @@ interface BaseQueryOptions {
     params?: Record<string, any>;
     contentType?: string;
     body?: FormData;
-    method?: "GET" | "POST" | "PUT" | "DELETE";
+    method?: "get" | "post" | "put" | "delete";
 }
 
 
 const baseQuery = (options: BaseQueryOptions) => {
-    const { url, params, contentType, body, method = "GET" } = options;
+    const { url, params, contentType, body, method } = options;
 
     const headers: Record<string, string> = {
         ...(contentType && { "Content-Type": contentType }),
@@ -79,6 +79,14 @@ const saveWork = async ({ work, actionType, method }: { work: SaveWork | Partial
 
         fillFormData(formData, work);
 
+        if (work.image !== undefined) {
+            if (work.image && work.image instanceof File) {
+                formData.append("image", work.image);
+            } else {
+                throw new Error("Invalid image data");
+            }
+        }
+
         const result = await baseQuery({
             url,
             contentType,
@@ -97,7 +105,7 @@ export const useCreateWorkMutation = () => {
     const queryClient = useQueryClient();
 
     return useMutation<IWork, Error, SaveWork, unknown>({
-        mutationFn: (work) => saveWork({ work, actionType: "create", method: "POST" }),
+        mutationFn: (work) => saveWork({ work, actionType: "create", method: "post" }),
         onSuccess: () => {
             queryClient.invalidateQueries([Tag.WORKS] as InvalidateQueryFilters);
         },
@@ -111,7 +119,7 @@ export const useUpdateWorkMutation = () => {
     const queryClient = useQueryClient();
 
     return useMutation<IWork, Error, Partial<SaveWork>, unknown>({
-        mutationFn: (work: Partial<SaveWork>) => saveWork({ work, actionType: "update", method: "PUT" }),
+        mutationFn: (work: Partial<SaveWork>) => saveWork({ work, actionType: "update", method: "put" }),
         onSuccess: () => {
             queryClient.invalidateQueries([Tag.WORKS] as InvalidateQueryFilters);
         },
