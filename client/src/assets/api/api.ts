@@ -79,14 +79,6 @@ const saveWork = async ({ work, actionType, method }: { work: SaveWork | Partial
 
         fillFormData(formData, work);
 
-        if (work.image !== undefined) {
-            if (work.image && work.image instanceof File) {
-                formData.append("image", work.image);
-            } else {
-                throw new Error("Invalid image data");
-            }
-        }
-
         const result = await baseQuery({
             url,
             contentType,
