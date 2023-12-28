@@ -2,17 +2,20 @@ const {
     toCamelCase,
     Work,
     parseStringsToNumbers,
+    workParseJSON,
+    parseDeep,
 } = require("../../helpers/helpers");
 const {
     getAllWorks,
     getAllCategories,
     getGetFilterWorks,
     getTechnologies,
-    saveWork,
+    createWork,
+    updateWork,
 } = require("../../models/works.model");
 const {
     addNewImageIntoJson,
-    encodeImageToBlurHash,
+    getCardImage,
 } = require("../../utils/images");
 const { join } = require("node:path");
 
@@ -80,7 +83,6 @@ async function httpGetTechnologies(req, res) {
 
 async function httpCreatedWork(req, res) {
     const work = req.body;
-    const id = req.params.id;
     const image = req.file;
 
     if (!work || !image)
@@ -88,21 +90,36 @@ async function httpCreatedWork(req, res) {
             error: `Something went wrong`,
         });
 
-    const cardImage = {
-        name: `${toCamelCase(work.name)}/${image.filename}`,
-        blurHash: await encodeImageToBlurHash(image.path),
-    };
-
-    const newWork = id
-        ? Work.updated({ ...work, cardImage })
-        : Work.create({ ...work, cardImage });
-
     try {
-        await addNewImageIntoJson(cardImage);
-        const result = await saveWork(newWork);
-        console.log("Save work success:", result);
+        work.cardImage = await getCardImage(work.name, image);
+
+        const result = await createWork(Work.create({ ...work }));
+
+        console.log("Create work success:", result);
     } catch (err) {
         console.error(err.message);
+    }
+
+    return res.status(201).json(work);
+}
+
+async function httpUpdatedWork(req, res) {
+    const work = parseDeep(req.body)
+    const image = req.file;
+
+    console.log(image, "image");
+    try {
+        if (image) {
+            work.cardImage = await getCardImage(work.name, image);
+        }
+        console.log(work, "updatedWork");
+        const result = await updateWork(work);
+        console.log("Create work success:", result);
+    } catch (err) {
+        console.error(err.message);
+        return res.status(400).json({
+            error: `Something went wrong`,
+        });
     }
 
     return res.status(201).json(work);
@@ -113,5 +130,6 @@ module.exports = {
     httpGetImagesWork,
     httpGetCategoriesWorks,
     httpCreatedWork,
+    httpUpdatedWork,
     httpGetTechnologies,
 };

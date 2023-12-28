@@ -4,6 +4,7 @@ const path = require("path");
 const { encode } = require("blurhash");
 const sharp = require("sharp");
 const { readFile } = require("node:fs/promises");
+const { toCamelCase } = require('../helpers/helpers');
 
 const IMAGES_DIR_PATH = path.join(__dirname, "..", "images")
 const IMAGES_JSON_DIR_PATH = path.join(__dirname, "..", "data", "images.json");
@@ -61,6 +62,16 @@ async function encodeAllImages(arrImagesName) {
 
     return data
 }
+
+async function getCardImage(name, image) {
+    const cardImage = {
+        name: `${toCamelCase(name)}/${image.filename}`,
+        blurHash: await encodeImageToBlurHash(image.path),
+    };
+
+    return cardImage
+}
+
 
 function readImages(directory, parentFolder = '') {
     const items = fs.readdirSync(directory);
@@ -122,6 +133,7 @@ async function addNewImageIntoJson(image) {
 }
 
 module.exports = {
+    getCardImage,
     createImageJson,
     addNewImageIntoJson,
     getImageName,

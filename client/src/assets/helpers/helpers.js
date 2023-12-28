@@ -11,9 +11,9 @@ export function addBodyClass(className) {
 export const fillFormData = (formData, data) => {
     for (const key in data) {
         const value = data[key];
-        if (Array.isArray(value) || (typeof value === "object" && value !== null)) {
+        if (Array.isArray(value) || (typeof value === "object" && value !== null && !(value instanceof File || value instanceof Blob))) {
             formData.append(key, JSON.stringify(value));
-        } else {
+        } else if (!(value instanceof File || value instanceof Blob)) {
             formData.append(key, value);
         }
     }

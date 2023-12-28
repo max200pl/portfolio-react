@@ -1,11 +1,11 @@
 const express = require('express');
-const { httpGetAllWorks, httpGetImagesWork, httpGetCategoriesWorks, httpCreatedWork: httpSavedWork, httpGetTechnologies } = require("./works.controller");
+const { httpGetAllWorks, httpGetImagesWork, httpGetCategoriesWorks, httpCreatedWork: httpCreateWork, httpGetTechnologies, httpUpdatedWork } = require("./works.controller");
 const worksRouter = express.Router();
 const upload = require('../../config/multerConfig');
 
 worksRouter.get('/', httpGetAllWorks);
-worksRouter.post('/create', upload.single('image'), httpSavedWork);
-worksRouter.put('/update/:id', upload.single('image'), httpSavedWork);
+worksRouter.post('/create', upload.single('image'), httpCreateWork);
+worksRouter.put('/update', upload.single('image'), httpUpdatedWork);
 worksRouter.get('/image', httpGetImagesWork);
 worksRouter.get('/categories', httpGetCategoriesWorks);
 worksRouter.get('/technologies', httpGetTechnologies);

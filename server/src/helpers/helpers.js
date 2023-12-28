@@ -4,14 +4,38 @@ function toCamelCase(str) {
         return str.trim().replace(/\s+/g, ' ').toLowerCase().replace(/[^a-zA-Z0-9]+(.)/g, (match, chr) => chr.toUpperCase());
     } catch (error) {
         console.error('Error converting to camelCase:', error.message);
-        return str; // Вернуть исходную строку в случае ошибки
+        return str;
     }
+}
+
+
+function parseDeep(data) {
+    if (typeof data !== 'object' || data === null) {
+        return data;
+    }
+
+    if (Array.isArray(data)) {
+        return data.map(parseDeep);
+    }
+
+    const parsedObject = {};
+    for (const key in data) {
+        if (Object.prototype.hasOwnProperty.call(data, key)) {
+            const value = data[key];
+            try {
+                parsedObject[key] = key.toLowerCase().includes('date') ? new Date(value) : JSON.parse(value);
+            } catch (e) {
+                parsedObject[key] = value;
+            }
+        }
+    }
+
+    return parsedObject;
 }
 
 
 class Work {
     constructor({
-        _id = null,
         name = '',
         dateFinished = undefined,
         category = '',
@@ -22,30 +46,25 @@ class Work {
         cardImage = undefined,
         images = [],
     }) {
-        this._id = _id;
         this.name = name;
-        this.dateFinished = dateFinished !== undefined ? JSON.parse(dateFinished) : undefined;
+        this.dateFinished = dateFinished;
         this.category = category;
         this.client = client;
         this.link = link;
-        this.frontTech = JSON.parse(frontTech);
-        this.backTech = JSON.parse(backTech);
+        this.frontTech = frontTech;
+        this.backTech = backTech;
         this.cardImage = cardImage;
         this.images = images;
     }
 
     static create(data) {
         const newWork = new Work(data);
-        delete newWork._id
-        return newWork;
-    }
-
-    static updated(data) {
-        return new Work(data);
+        return newWork.parseDeep(data);
     }
 }
 
 module.exports = {
+    parseDeep,
     toCamelCase,
-    Work
+    Work,
 }

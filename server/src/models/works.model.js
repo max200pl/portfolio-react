@@ -1,20 +1,26 @@
 const workSchema = require("../db/works.mongo");
 const technologiesSchema = require("../db/technologies.mongo");
 
-async function saveWork(work) {
+async function createWork(work) {
     try {
-        // create or update work in DB
-        const result = await workSchema.updateOne(
-            { name: work.name }, // create
-            work, // update if it does in already exist
-            {
-                upsert: true,
-            }
-        );
-        console.log("Work saved in database");
+        const result = await workSchema.create(work);
+        console.log("Work created in database");
         return result;
     } catch (err) {
         console.log(`Could not save work ${err}`);
+    }
+}
+
+async function updateWork(work) {
+    try {
+        const result = await workSchema.updateOne(
+            { _id: work._id },
+            { $set: work },
+        );
+        console.log("Work updated in database");
+        return result;
+    } catch (err) {
+        console.log(`Could not updated work ${err}`);
     }
 }
 
@@ -53,7 +59,8 @@ async function getTechnologies() {
 
 module.exports = {
     getAllWorks,
-    saveWork,
+    createWork,
+    updateWork,
     getAllCategories,
     getGetFilterWorks,
     getTechnologies,

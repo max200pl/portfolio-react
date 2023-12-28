@@ -22,7 +22,7 @@ import {
 import DeleteIcon from "@mui/icons-material/Delete";
 import dayjs from "dayjs";
 import {
-    ActionType,
+    TypeActionForm,
     SaveWork,
     useCreateWorkMutation,
     useGetTechnologiesQuery,
@@ -57,10 +57,14 @@ const schema = yup.object({
     image: yup
         .mixed()
         .required("Please upload an image")
-        .test("fileType", "Please upload an image", (value) => {
+        .test("fileType", "Please upload a valid image", (value) => {
             if (!value) return false;
-            const file = value as File;
-            return file.type.startsWith("image/");
+            if (value instanceof File) {
+                return value.type.startsWith("image/");
+            } else if (typeof value === 'string' && value.startsWith('http')) {
+                return true;
+            }
+            return false;
         }),
     frontTech: yup
         .array()
@@ -88,7 +92,7 @@ interface Props {
 }
 
 const ModalWorkManagerForm: FC<Props> = ({ onClose, work }) => {
-    const [actionType] = useState<ActionType>(
+    const [typeActionForm] = useState<TypeActionForm>(
         work === undefined ? "create" : "update"
     );
     const [showFrontTech, setShowFrontTech] = useState(false);
@@ -102,7 +106,7 @@ const ModalWorkManagerForm: FC<Props> = ({ onClose, work }) => {
         useGetTechnologiesQuery();
 
     useEffect(() => {
-        if (work !== undefined) {
+        if (typeActionForm === "update" && work?.cardImage !== undefined) {
             const nameCardImage = work.cardImage.name;
             const name = getImageName(nameCardImage);
             const project = getFolderName(nameCardImage);
@@ -111,7 +115,7 @@ const ModalWorkManagerForm: FC<Props> = ({ onClose, work }) => {
                 `http://localhost:8000/works/image?project=${project}&name=${name}`
             );
         }
-    }, [work]);
+    }, [typeActionForm, work]);
 
     useEffect(() => {
         if (statusTechnologies === "success") {
@@ -162,7 +166,7 @@ const ModalWorkManagerForm: FC<Props> = ({ onClose, work }) => {
         try {
             let result;
 
-            if (actionType === "create") {
+            if (typeActionForm === "create") {
                 result = await createWork({
                     ...data,
                     frontTech: prepareTech(data.frontTech),
@@ -170,7 +174,7 @@ const ModalWorkManagerForm: FC<Props> = ({ onClose, work }) => {
                 } as SaveWork);
             }
 
-            if (actionType === "update") {
+            if (typeActionForm === "update") {
                 const dataForm: IFormInput = data;
                 const dirtyFieldsForm: DirtyFields<IFormInput> = dirtyFields;
 
@@ -194,6 +198,7 @@ const ModalWorkManagerForm: FC<Props> = ({ onClose, work }) => {
                     : {};
 
                 result = await updateWork({
+                    _id: work._id,
                     ...updatedFields,
                     ...prepareBackTech as { backTech: InterfaceTechWithApply[] },
                     ...prepareFrontTech as { frontTech: InterfaceTechWithApply[] }
@@ -306,7 +311,7 @@ const ModalWorkManagerForm: FC<Props> = ({ onClose, work }) => {
                     )}
                 />
 
-                {actionType === "create" && (
+                {typeActionForm === "create" && (
                     <FormControlLabel
                         label="Did you use frontend technologies?"
                         control={
@@ -326,7 +331,7 @@ const ModalWorkManagerForm: FC<Props> = ({ onClose, work }) => {
                     />
                 )}
 
-                {actionType === "create" && (
+                {typeActionForm === "create" && (
                     <FormControlLabel
                         control={
                             <Checkbox onChange={() => setShowBackTech(!showBackTech)} />

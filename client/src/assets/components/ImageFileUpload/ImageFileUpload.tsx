@@ -31,8 +31,9 @@ const ImageFileUpload: FC<Props> = ({
     useEffect(() => {
         if (urlImage !== undefined) {
             setPreview(urlImage);
+            setValue('image', urlImage, { shouldDirty: false })
         }
-    }, [urlImage])
+    }, [setValue, urlImage])
 
     const onDrop = useCallback((acceptedFiles: Array<File>) => {
         const file = new FileReader();
