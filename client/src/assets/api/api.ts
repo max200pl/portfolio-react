@@ -16,7 +16,7 @@ import { IWork } from "../interfaces/interfaces";
 
 const API_BASE_URL = "http://localhost:8000/works";
 
-export type ActionType = "update" | "create" | "delete";
+export type TypeActionForm = "update" | "create" | "delete";
 
 enum Tag {
     WORKS = "works",
@@ -70,9 +70,9 @@ export interface SaveWork extends Omit<IWork, "cardImage"> {
     image: File | undefined;
 }
 
-const saveWork = async ({ work, actionType, method }: { work: SaveWork | Partial<SaveWork>, actionType: ActionType, method: BaseQueryOptions["method"] }): Promise<IWork> => {
+const saveWork = async ({ work, typeActionForm, method }: { work: SaveWork | Partial<SaveWork>, typeActionForm: TypeActionForm, method: BaseQueryOptions["method"] }): Promise<IWork> => {
     try {
-        const url = `${API_BASE_URL}/${actionType}`;
+        const url = `${API_BASE_URL}/${typeActionForm}`;
         const contentType = "multipart/form-data";
 
         const formData = new FormData();
@@ -105,7 +105,7 @@ export const useCreateWorkMutation = () => {
     const queryClient = useQueryClient();
 
     return useMutation<IWork, Error, SaveWork, unknown>({
-        mutationFn: (work) => saveWork({ work, actionType: "create", method: "post" }),
+        mutationFn: (work) => saveWork({ work, typeActionForm: "create", method: "post" }),
         onSuccess: () => {
             queryClient.invalidateQueries([Tag.WORKS] as InvalidateQueryFilters);
         },
@@ -119,7 +119,7 @@ export const useUpdateWorkMutation = () => {
     const queryClient = useQueryClient();
 
     return useMutation<IWork, Error, Partial<SaveWork>, unknown>({
-        mutationFn: (work: Partial<SaveWork>) => saveWork({ work, actionType: "update", method: "put" }),
+        mutationFn: (work: Partial<SaveWork>) => saveWork({ work, typeActionForm: "update", method: "put" }),
         onSuccess: () => {
             queryClient.invalidateQueries([Tag.WORKS] as InvalidateQueryFilters);
         },
