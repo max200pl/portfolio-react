@@ -199,6 +199,7 @@ const ModalWorkManagerForm: FC<Props> = ({ onClose, work }) => {
 
                 result = await updateWork({
                     _id: work._id,
+                    name: updatedFields.name ?? work.name,
                     ...updatedFields,
                     ...prepareBackTech as { backTech: InterfaceTechWithApply[] },
                     ...prepareFrontTech as { frontTech: InterfaceTechWithApply[] }
@@ -311,12 +312,12 @@ const ModalWorkManagerForm: FC<Props> = ({ onClose, work }) => {
                     )}
                 />
 
-                {typeActionForm === "create" && (
+                {(typeActionForm === "create" || work?.frontTech.length === 0) && (
                     <FormControlLabel
-                        label="Did you use frontend technologies?"
                         control={
                             <Checkbox onChange={() => setShowFrontTech(!showFrontTech)} />
                         }
+                        label={work?.frontTech.length === 0 ? "Do you want add frontend technologies?" : "Did you use frontend technologies?"}
                     />
                 )}
 
@@ -331,12 +332,12 @@ const ModalWorkManagerForm: FC<Props> = ({ onClose, work }) => {
                     />
                 )}
 
-                {typeActionForm === "create" && (
+                {(typeActionForm === "create" || work?.backTech.length === 0) && (
                     <FormControlLabel
                         control={
                             <Checkbox onChange={() => setShowBackTech(!showBackTech)} />
                         }
-                        label="Did you use backend technologies?"
+                        label={work?.frontTech.length === 0 ? "Do you want add backend technologies?" : "Did you use backend technologies?"}
                     />
                 )}
 
@@ -354,16 +355,23 @@ const ModalWorkManagerForm: FC<Props> = ({ onClose, work }) => {
 
             <div className={s.form__footer}>
                 <Stack direction="row" spacing={2} justifyContent="space-between">
-                    <Button
-                        className="action_button_primary"
-                        variant="contained"
-                        startIcon={<DeleteIcon />}
-                        onClick={() => onDelete()}
-                    >
-                        Delete
-                    </Button>
+                    <div>
+                        {
+                            typeActionForm === "update" && (
+                                <Button
+                                    className="action_button_primary"
+                                    variant="contained"
+                                    startIcon={<DeleteIcon />}
+                                    onClick={() => onDelete()}
+                                >
+                                    Delete
+                                </Button>
+                            )
+                        }
+                    </div>
 
-                    <Stack direction="row" spacing={2}>
+
+                    <Stack direction="row" spacing={2} >
                         <Button variant="outlined" onClick={() => onClose()}>
                             Close
                         </Button>
