@@ -27,6 +27,7 @@ import {
     useCreateWorkMutation,
     useGetTechnologiesQuery,
     useUpdateWorkMutation,
+    useDeleteWorkMutation,
 } from "../../../assets/api/api";
 import ImageFileUpload from "../../../assets/components/ImageFileUpload/ImageFileUpload";
 import { getFolderName, getImageName } from "../../../assets/helpers/helpers";
@@ -86,6 +87,12 @@ const schema = yup.object({
         ),
 });
 
+type DirtyFields<T> = Partial<
+    Readonly<{
+        [K in keyof T]?: boolean | [] | { group?: boolean; value?: boolean }[];
+    }>
+>;
+
 interface Props {
     onClose: () => {};
     work: IWork;
@@ -100,6 +107,7 @@ const ModalWorkManagerForm: FC<Props> = ({ onClose, work }) => {
 
     const { mutate: createWork } = useCreateWorkMutation();
     const { mutate: updateWork } = useUpdateWorkMutation();
+    const { mutate: deleteWork } = useDeleteWorkMutation();
 
     const [urlImage, setUrlImage] = useState<string | undefined>();
     const { data: technologies, status: statusTechnologies } =
@@ -153,14 +161,16 @@ const ModalWorkManagerForm: FC<Props> = ({ onClose, work }) => {
     });
 
     const onDelete = () => {
-        throw new Error("Function not implemented.");
+        console.log(work, " onDelete work._id");
+        try {
+            const result = deleteWork(work._id);
+            console.log("Work was deleted successfully", result);
+            onClose();
+        } catch (error) {
+            console.error("Error deleting work:", error);
+        }
     };
 
-    type DirtyFields<T> = Partial<
-        Readonly<{
-            [K in keyof T]?: boolean | [] | { group?: boolean; value?: boolean }[];
-        }>
-    >;
 
     const onSubmit: SubmitHandler<IFormInput> = async (data) => {
         try {

@@ -12,6 +12,7 @@ const {
     getTechnologies,
     createWork,
     updateWork,
+    deleteWork,
 } = require("../../models/works.model");
 const {
     addNewImageIntoJson,
@@ -107,14 +108,13 @@ async function httpUpdatedWork(req, res) {
     const work = parseDeep(req.body)
     const image = req.file;
 
-    console.log(image, "image");
     try {
         if (image) {
             work.cardImage = await getCardImage(work.name, image);
         }
-        console.log(work, "updatedWork");
+        console.log("Current work for update:", work);
         const result = await updateWork(work);
-        console.log("Create work success:", result);
+        console.log("The work was successfully updated:", result);
     } catch (err) {
         console.error(err.message);
         return res.status(400).json({
@@ -125,6 +125,23 @@ async function httpUpdatedWork(req, res) {
     return res.status(201).json(work);
 }
 
+async function httpDeleteWork(req, res) {
+    const { id } = req.query;
+
+    try {
+        console.log("Current ID for delete:", id);
+        const result = await deleteWork(id);
+        console.log("The work was successfully updated:", result);
+    } catch (err) {
+        console.error(err.message);
+        return res.status(400).json({
+            error: `Something went wrong`,
+        });
+    }
+
+    return res.status(201).json(id);
+}
+
 module.exports = {
     httpGetAllWorks,
     httpGetImagesWork,
@@ -132,4 +149,5 @@ module.exports = {
     httpCreatedWork,
     httpUpdatedWork,
     httpGetTechnologies,
+    httpDeleteWork,
 };

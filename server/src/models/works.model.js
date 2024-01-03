@@ -24,6 +24,18 @@ async function updateWork(work) {
     }
 }
 
+async function deleteWork(id) {
+    try {
+        const result = await workSchema.deleteOne(
+            { _id: id },
+        );
+        console.log("Work deleted from database successfully.");
+        return result;
+    } catch (err) {
+        console.log(`Could not deleted work ${err}`);
+    }
+}
+
 async function getAllWorks() {
     return await workSchema.find(
         {},
@@ -37,7 +49,6 @@ async function getGetFilterWorks(category) {
     return await workSchema.find(
         { category: category }, // which fields are included in the response
         {
-            _id: 0,
             __v: 0,
         }
     );
@@ -59,6 +70,7 @@ async function getTechnologies() {
 
 module.exports = {
     getAllWorks,
+    deleteWork,
     createWork,
     updateWork,
     getAllCategories,

@@ -7,7 +7,7 @@ const app = express();
 app.use(cors({
     origin: 'http://localhost:3000',
 }))
-
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json()); // parse all incoming json from the body incoming request
 app.use('/', api);
 

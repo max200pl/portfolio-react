@@ -9,6 +9,10 @@ function toCamelCase(str) {
 }
 
 
+function isDateValid(dateStr) {
+    return !isNaN(new Date(dateStr));
+}
+
 function parseDeep(data) {
     if (typeof data !== 'object' || data === null) {
         return data;
@@ -23,7 +27,7 @@ function parseDeep(data) {
         if (Object.prototype.hasOwnProperty.call(data, key)) {
             const value = data[key];
             try {
-                parsedObject[key] = key.toLowerCase().includes('date') ? new Date(value) : JSON.parse(value);
+                parsedObject[key] = isDateValid(value) ? new Date(value) : JSON.parse(value);
             } catch (e) {
                 parsedObject[key] = value;
             }
@@ -59,7 +63,9 @@ class Work {
 
     static create(data) {
         const newWork = new Work(data);
-        return newWork.parseDeep(data);
+        console.log(newWork, "newWork");
+        console.log(parseDeep(newWork), "parseDeep(newWork)");
+        return parseDeep(newWork);
     }
 }
 

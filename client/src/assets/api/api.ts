@@ -70,6 +70,39 @@ export interface SaveWork extends Omit<IWork, "cardImage"> {
     image: File | undefined;
 }
 
+const deleteWork = async ({ workId, typeActionForm, method }: { workId: IWork["_id"], typeActionForm: TypeActionForm, method: BaseQueryOptions["method"] }): Promise<IWork["_id"]> => {
+    try {
+        const url = `${API_BASE_URL}/${typeActionForm}`;
+
+        console.log("workId", workId);
+
+        const result = await baseQuery({
+            url,
+            method,
+            params: { id: workId },
+        });
+
+        return result as IWork["_id"];
+    } catch (error) {
+        console.error("Error deleting work:", error);
+        throw error;
+    }
+};
+
+export const useDeleteWorkMutation = () => {
+    const queryClient = useQueryClient();
+
+    return useMutation<IWork["_id"], Error, IWork["_id"]>({
+        mutationFn: (workId) => deleteWork({ workId, typeActionForm: "delete", method: "delete" }),
+        onSuccess: () => {
+            queryClient.invalidateQueries([Tag.WORKS] as InvalidateQueryFilters);
+        },
+        onError: (error) => {
+            console.error(error.message);
+        },
+    });
+};
+
 const saveWork = async ({ work, typeActionForm, method }: { work: SaveWork | Partial<SaveWork>, typeActionForm: TypeActionForm, method: BaseQueryOptions["method"] }): Promise<IWork> => {
     try {
         const url = `${API_BASE_URL}/${typeActionForm}`;
