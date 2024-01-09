@@ -28,8 +28,8 @@ let dataNavLink = [
     },
     {
         name: "LogIN",
-        to: "/form",
-        alt: "Form",
+        to: "/auth/login",
+        alt: "authorization",
         iconUrl: AboutImg,
     }
 ]

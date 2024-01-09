@@ -1,0 +1,90 @@
+@import "../../assets/styles/helpers";
+
+.modal {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+    margin: 30px;
+
+    @include xs-mb {
+        margin: 0;
+    }
+
+    &__title {
+        font-size: 1.5rem;
+        color: rgba($color: white, $alpha: 0.9);
+        font-weight: 700;
+        text-transform: uppercase;
+
+        @include mb-lg {
+            font-size: 2rem;
+        }
+        @include xs-mb {
+            font-size: 1.5rem;
+        }
+    }
+
+    &__header {
+        text-align: left;
+    }
+
+    &__close {
+        position: absolute;
+        z-index: 1;
+        top: 20px;
+        right: 20px;
+
+        width: 24px;
+        height: 29px;
+
+        border: 0;
+        cursor: pointer;
+        background: none;
+
+        transition: transform 0.2s linear;
+
+        &:hover {
+            transform: translateY(-3px);
+        }
+
+        @include xs-lg {
+            top: 20px;
+            right: 20px;
+        }
+    }
+
+    .content {
+        background: linear-gradient(to left top, #000000, #000, #006770, #000000, #000) no-repeat center center fixed;
+        background-size: 100% 100%;
+        position: relative;
+
+        padding: 20px 40px 40px;
+        border-radius: 20px;
+        border: 1px solid $color-white;
+        min-height: 500px;
+
+        margin: auto;
+
+        @include lg {
+            margin-top: 100px;
+            min-width: 580px;
+            max-width: 580px;
+        }
+
+        @include mb-lg {
+            margin-top: 100px;
+            min-width: 480px;
+            padding: 30px 40px 30px 30px;
+            max-width: 480px;
+        }
+
+        @include xs-mb {
+            width: 100%;
+            margin-top: 50px;
+            max-width: 380px;
+            padding: 20px 30px 20px 20px;
+        }
+    }
+}

@@ -1,0 +1,20 @@
+.form_control {
+    margin-bottom: 14px !important;
+    &__login {
+        margin: 0 !important;
+        margin-bottom: 14px !important;
+        background: #000;
+        width: auto !important;
+    }
+}
+.form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 30px;
+
+    &__footer {
+        margin-top: auto;
+    }
+}

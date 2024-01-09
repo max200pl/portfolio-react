@@ -3,6 +3,7 @@ import Root from "./layout/Root/Root";
 import { FC } from "react";
 import Intro from "./pages/Intro/Intro";
 import About from "./pages/About/About";
+import Auth from "./pages/Auth/Auth";
 
 
 const router = createBrowserRouter([
@@ -15,19 +16,24 @@ const router = createBrowserRouter([
                 element: <Intro />,
             },
             {
+                path: '/about',
+                element: <About />,
+            },
+            {
                 path: '/gallery',
                 element: <About />,
             },
             {
-                path: '/about',
-                element: <About />,
+                path: '/auth',
+                children: [
+                    {
+                        path: 'login',
+                        element: <Auth />
+                    }
+                ]
             },
         ]
     },
-    // {
-    //     path: 'auth',
-    //     element: <Auth />,
-    // },
 ]);
 
 const App: FC = () =>
