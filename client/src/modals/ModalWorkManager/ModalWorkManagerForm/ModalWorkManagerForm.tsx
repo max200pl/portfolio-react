@@ -28,7 +28,7 @@ import {
     useGetTechnologiesQuery,
     useUpdateWorkMutation,
     useDeleteWorkMutation,
-} from "../../../assets/api/api";
+} from "../../../assets/api/works.api";
 import ImageFileUpload from "../../../assets/components/ImageFileUpload/ImageFileUpload";
 import { getFolderName, getImageName } from "../../../assets/helpers/helpers";
 
@@ -110,8 +110,7 @@ const ModalWorkManagerForm: FC<Props> = ({ onClose, work }) => {
     const { mutate: deleteWork } = useDeleteWorkMutation();
 
     const [urlImage, setUrlImage] = useState<string | undefined>();
-    const { data: technologies, status: statusTechnologies } =
-        useGetTechnologiesQuery();
+    const { data: technologies, status: statusTechnologies } = useGetTechnologiesQuery();
 
     useEffect(() => {
         if (typeActionForm === "update" && work?.cardImage !== undefined) {

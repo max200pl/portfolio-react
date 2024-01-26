@@ -9,7 +9,7 @@ import Modal from "../../../assets/components/Modal/Modal";
 import { LazyLoadComponent } from "react-lazy-load-image-component";
 import ModalWorkManager from "../../../modals/ModalWorkManager/ModalWorkManager";
 import WorkAdd from "./Work/WorkAdd/WorkAdd";
-import { useGetCategoriesQuery, useGetWorksQuery } from "../../../assets/api/api";
+import { useGetCategoriesQuery, useGetWorksQuery } from "../../../assets/api/works.api";
 
 const Works = () => {
     const [filter, setFilter] = useState({ category: "" });

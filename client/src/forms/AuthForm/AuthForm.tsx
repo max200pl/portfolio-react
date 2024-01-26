@@ -22,6 +22,9 @@ import { GithubLoginButton, GoogleLoginButton } from "react-social-login-buttons
 import * as yup from "yup";
 import s from "./AuthForm.module.scss";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
+import { useGoogleLogin } from "@react-oauth/google";
+import { getAuthGoole } from "../../assets/api/auth.api";
+
 
 type FormValues = {
     emailOrPhone: string;
@@ -75,6 +78,13 @@ const AuthForm: React.FC = () => {
     const onSubmit: SubmitHandler<FormValues> = async (data) => {
         console.log(data);
     };
+
+    const googleLoginHandler = useGoogleLogin({
+        onSuccess: codeResponse => {
+            const googleResponse = getAuthGoole(codeResponse);
+        },
+        onError: (error) => console.log('Login Failed:', error),
+    });
 
     return (
         <form onSubmit={handleSubmit(onSubmit)} className={s.form}>
@@ -155,7 +165,9 @@ const AuthForm: React.FC = () => {
                 <Chip label="OR" size="small" />
             </Divider>
 
-            <GoogleLoginButton className={`${s["form_control"]} ${s["form_control__login"]}`} onClick={() => alert("Hello")} align="center" />
+
+
+            <GoogleLoginButton className={`${s["form_control"]} ${s["form_control__login"]}`} onClick={() => googleLoginHandler()} align="center" />
             <GithubLoginButton className={`${s["form_control"]} ${s["form_control__login"]}`} onClick={() => alert("Hello")} align="center" />
         </form>
     );

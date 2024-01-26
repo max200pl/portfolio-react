@@ -12,6 +12,7 @@ import '@fontsource/roboto/700.css';
 import { CssBaseline, ThemeProvider, createTheme } from '@mui/material';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers';
+import { GoogleOAuthProvider } from '@react-oauth/google';
 
 
 const root = ReactDOM.createRoot(
@@ -29,15 +30,17 @@ const queryClient = new QueryClient()
 
 root.render(
     <React.StrictMode>
-        <ThemeProvider theme={darkTheme}>
-            <LocalizationProvider dateAdapter={AdapterDayjs}>
-                <QueryClientProvider client={queryClient}>
-                    <App />
-                    <ReactQueryDevtools initialIsOpen={false} />
-                </QueryClientProvider>
-            </LocalizationProvider>
-            <CssBaseline />
-        </ThemeProvider>
+        <GoogleOAuthProvider clientId='41245498308-44oaelsqg4sgj011hevmr3953nqsmjrn.apps.googleusercontent.com'>
+            <ThemeProvider theme={darkTheme}>
+                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                    <QueryClientProvider client={queryClient}>
+                        <App />
+                        <ReactQueryDevtools initialIsOpen={false} />
+                    </QueryClientProvider>
+                </LocalizationProvider>
+                <CssBaseline />
+            </ThemeProvider>
+        </GoogleOAuthProvider>
     </React.StrictMode>
 );
 

@@ -7,14 +7,14 @@ import {
     useQuery,
     useQueryClient,
 } from "@tanstack/react-query";
-import axios from "axios";
 import { fillFormData } from "../helpers/helpers";
 import {
     InterfaceTechnologies,
 } from "../interfaces/interfaces";
 import { IWork } from "../interfaces/interfaces";
+import { baseQuery, BaseQueryOptions } from "./api.helper";
 
-const API_BASE_URL = "http://localhost:8000/works";
+const WORKS_API_BASE_URL = "http://localhost:8000/works";
 
 export type TypeActionForm = "update" | "create" | "delete";
 
@@ -24,35 +24,10 @@ enum Tag {
     TECHNOLOGIES = "technologies",
 }
 
-interface BaseQueryOptions {
-    url: string;
-    params?: Record<string, any>;
-    contentType?: string;
-    body?: FormData;
-    method?: "get" | "post" | "put" | "delete";
-}
-
-
-const baseQuery = (options: BaseQueryOptions) => {
-    const { url, params, contentType, body, method } = options;
-
-    const headers: Record<string, string> = {
-        ...(contentType && { "Content-Type": contentType }),
-    };
-
-    return axios({
-        url,
-        method,
-        data: body,
-        params,
-        headers,
-    }).then((response) => response.data);
-};
-
 export const useGetWorksQuery = (filter: { category: string }) => {
     const baseQueryFn = baseQuery;
 
-    const url = `${API_BASE_URL}`;
+    const url = `${WORKS_API_BASE_URL}`;
     const params = { ...filter };
 
     return useQuery<IWork[], Error>({
@@ -72,7 +47,7 @@ export interface SaveWork extends Omit<IWork, "cardImage"> {
 
 const deleteWork = async ({ workId, typeActionForm, method }: { workId: IWork["_id"], typeActionForm: TypeActionForm, method: BaseQueryOptions["method"] }): Promise<IWork["_id"]> => {
     try {
-        const url = `${API_BASE_URL}/${typeActionForm}`;
+        const url = `${WORKS_API_BASE_URL}/${typeActionForm}`;
 
         console.log("workId", workId);
 
@@ -105,7 +80,7 @@ export const useDeleteWorkMutation = () => {
 
 const saveWork = async ({ work, typeActionForm, method }: { work: SaveWork | Partial<SaveWork>, typeActionForm: TypeActionForm, method: BaseQueryOptions["method"] }): Promise<IWork> => {
     try {
-        const url = `${API_BASE_URL}/${typeActionForm}`;
+        const url = `${WORKS_API_BASE_URL}/${typeActionForm}`;
         const contentType = "multipart/form-data";
 
         const formData = new FormData();
@@ -164,7 +139,7 @@ export const useUpdateWorkMutation = () => {
 
 export function useGetCategoriesQuery() {
     const baseQueryFn = baseQuery;
-    const url = `${API_BASE_URL}/categories`;
+    const url = `${WORKS_API_BASE_URL}/categories`;
 
     return useQuery<IWork[], Error>({
         queryKey: [Tag.CATEGORIES],
@@ -177,7 +152,7 @@ export function useGetCategoriesQuery() {
 
 export function useGetTechnologiesQuery() {
     const baseQueryFn = baseQuery;
-    const url = `${API_BASE_URL}/technologies`;
+    const url = `${WORKS_API_BASE_URL}/technologies`;
 
     return useQuery<InterfaceTechnologies, Error>({
         queryKey: [Tag.TECHNOLOGIES],
