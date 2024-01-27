@@ -88,6 +88,13 @@ const AuthForm: React.FC = () => {
 
     return (
         <form onSubmit={handleSubmit(onSubmit)} className={s.form}>
+            <GoogleLoginButton className={`${s["form_control"]} ${s["form_control__login"]}`} onClick={() => googleLoginHandler()} align="center" />
+            <GithubLoginButton className={`${s["form_control"]} ${s["form_control__login"]}`} onClick={() => alert("Hello")} align="center" />
+
+            <Divider className={s["form_control"]}>
+                <Chip label="OR" size="small" />
+            </Divider>
+
             <Controller
                 name="emailOrPhone"
                 control={control}
@@ -160,15 +167,6 @@ const AuthForm: React.FC = () => {
             >
                 Sign in
             </Button>
-
-            <Divider className={s["form_control"]}>
-                <Chip label="OR" size="small" />
-            </Divider>
-
-
-
-            <GoogleLoginButton className={`${s["form_control"]} ${s["form_control__login"]}`} onClick={() => googleLoginHandler()} align="center" />
-            <GithubLoginButton className={`${s["form_control"]} ${s["form_control__login"]}`} onClick={() => alert("Hello")} align="center" />
         </form>
     );
 };

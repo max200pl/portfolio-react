@@ -27,6 +27,8 @@
     }
 
     &__header {
+        display: flex;
+        justify-content: space-between;
         text-align: left;
     }
 
@@ -53,6 +55,10 @@
             top: 20px;
             right: 20px;
         }
+    }
+
+    .signUp_link {
+        margin-top: 10px;
     }
 
     .content {
