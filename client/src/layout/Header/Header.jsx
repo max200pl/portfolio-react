@@ -5,7 +5,9 @@ import PortfolioImg from "../../assets/images/header/portfolio.svg";
 import AboutImg from "../../assets/images/header/about.svg";
 /* import GithubImg from "../../assets/images/header/github.svg"; */
 import ContactImg from "../../assets/images/header/contact.svg";
-
+import Cookies from "js-cookie";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import { useEffect, useState } from "react";
 
 let dataNavLink = [
     {
@@ -35,10 +37,27 @@ let dataNavLink = [
 ]
 
 const Header = (props) => {
+    const userInfo = Cookies.get("userInfo") ? JSON.parse(Cookies.get("userInfo")) : null;
+    const [user, setUser] = useState(null);
+
+    useEffect(() => {
+        setUser(userInfo)
+    }, [userInfo])
+
     return (
         <div className="container">
+            {user &&
+                <div className={s.auth_info}>
+                    <img src={user.avatarUrl} alt="avatar" className={s.auth_info__avatar} />
+                    <div className={s.auth_info__data}>
+                        <span>{user.firstName} </span>
+                        <span>{user.lastName}</span>
+                    </div>
+                </div>
+            }
+
             <header className={s.header}>
-                <div id="header__container" className={s.container}>
+                <div className={s.container}>
                     <nav className={s.nav} id="nav">
                         {dataNavLink.map((data, id) => {
                             return (
