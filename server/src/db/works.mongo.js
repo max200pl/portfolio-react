@@ -1,21 +1,5 @@
 const mongoose = require("mongoose");
 
-const techWithApplySchema = new mongoose.Schema(
-    {
-        apply: { type: Number, required: true },
-        name: { type: String, required: true },
-    },
-    { _id: false }
-);
-
-const interfaceTechWithApplySchema = new mongoose.Schema(
-    {
-        type: [techWithApplySchema],
-        default: [],
-    },
-    { _id: false }
-);
-
 const imageSchema = new mongoose.Schema(
     {
         name: { type: String, required: true },
