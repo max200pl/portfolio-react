@@ -43,7 +43,6 @@ authRouter.use(cookieSession({
     name: 'session', // name of the cookie
     maxAge: 24 * 60 * 60 * 1000, // time live in milliseconds
     keys: [process.env.COOKIE_KEY_1, process.env.COOKIE_KEY_2], // key to encrypt
-    httpOnly: false,
 }), (req, res, next) => {
     try {
         req.session.user = req.userFromDB;

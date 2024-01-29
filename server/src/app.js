@@ -5,6 +5,7 @@ const app = express();
 
 app.use(cors({
     origin: 'http://localhost:3000',
+    credentials: true,
 }))
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json()); // parse all incoming json from the body incoming request

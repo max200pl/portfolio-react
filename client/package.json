@@ -17,12 +17,14 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "@types/jest": "^27.5.2",
+    "@types/js-cookie": "^3.0.6",
     "@types/node": "^16.18.67",
     "@types/react": "^18.2.42",
     "@types/react-dom": "^18.2.17",
     "axios": "^1.6.2",
     "dayjs": "^1.11.10",
     "formik": "^2.4.5",
+    "js-cookie": "^3.0.5",
     "js-html2pdf": "^1.1.4",
     "moment": "^2.29.4",
     "react": "^18.2.0",
@@ -68,6 +70,7 @@
     ]
   },
   "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@tanstack/eslint-plugin-query": "^5.12.1",
     "@types/react-datepicker": "^4.19.3",
     "react-transition-group": "^4.4.5",

@@ -7,10 +7,11 @@ export interface BaseQueryOptions {
     body?: FormData | object;
     method?: "get" | "post" | "put" | "delete";
     headers_param?: object;
+    credentials?: "include" | "omit" | "same-origin";
 }
 
 export const baseQuery = (options: BaseQueryOptions) => {
-    const { url, params, contentType, headers_param, body, method } = options;
+    const { url, params, contentType, headers_param, body, method, credentials } = options;
 
     const headers: Record<string, string> = {
         ...(contentType && { "Content-Type": contentType }),
@@ -23,5 +24,6 @@ export const baseQuery = (options: BaseQueryOptions) => {
         data: body,
         params,
         headers,
+        withCredentials: credentials === "include" ? true : false,
     }).then((response) => response.data);
 };

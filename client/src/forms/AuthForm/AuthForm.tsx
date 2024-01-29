@@ -24,6 +24,8 @@ import s from "./AuthForm.module.scss";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { useGoogleLogin } from "@react-oauth/google";
 import { getAuthGoole } from "../../assets/api/auth.api";
+import Cookies from "js-cookie";
+import { redirect, useNavigate } from "react-router-dom";
 
 
 type FormValues = {
@@ -55,6 +57,7 @@ const schema = yup.object().shape({
 });
 
 const AuthForm: React.FC = () => {
+    const navigate = useNavigate();
     const [typeActionForm] = useState<TypeActionForm>("login");
     const [showPassword, setShowPassword] = React.useState(false);
 
@@ -80,8 +83,14 @@ const AuthForm: React.FC = () => {
     };
 
     const googleLoginHandler = useGoogleLogin({
-        onSuccess: codeResponse => {
-            const googleResponse = getAuthGoole(codeResponse);
+        onSuccess: async codeResponse => {
+            try {
+                const authGooleResponse = await getAuthGoole(codeResponse);
+                Cookies.set("userInfo", JSON.stringify(authGooleResponse.user));
+                navigate("/");
+            } catch (error) {
+                console.log(error);
+            }
         },
         onError: (error) => console.log('Login Failed:', error),
     });
