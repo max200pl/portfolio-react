@@ -3,13 +3,14 @@ import s from "./Header.module.scss";
 import HelloImg from "../../assets/images/header/hello.svg";
 import PortfolioImg from "../../assets/images/header/portfolio.svg";
 import AboutImg from "../../assets/images/header/about.svg";
-/* import GithubImg from "../../assets/images/header/github.svg"; */
+import GithubImg from "../../assets/images/header/github.svg";
 import ContactImg from "../../assets/images/header/contact.svg";
 import Cookies from "js-cookie";
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { UserContext } from "../../context/user-context";
 
-let dataNavLink = [
+const dataNavLink = (isAuth, logOutUserHandler) => [
     {
         name: "Hello",
         to: "/",
@@ -29,20 +30,27 @@ let dataNavLink = [
         iconUrl: PortfolioImg,
     },
     {
-        name: "LogIN",
-        to: "/auth/login",
+        name: isAuth ? "LogOut" : "LogIn",
+        to: isAuth ? "/" : "/auth/login",
         alt: "authorization",
         iconUrl: AboutImg,
     }
 ]
 
 const Header = (props) => {
-    const userInfo = Cookies.get("userInfo") ? JSON.parse(Cookies.get("userInfo")) : null;
-    const [user, setUser] = useState(null);
+    const userCtx = useContext(UserContext);
+    console.log(userCtx.isAuth, "userCtx.isAuth", userCtx.user, "userCtx.user")
+    const [user, setUser] = useState();
+    const [isAuth, setIsAuth] = useState();
 
     useEffect(() => {
-        setUser(userInfo)
-    }, [userInfo])
+        setUser(userCtx.user);
+        setIsAuth(userCtx.isAuth);
+    }, [
+        userCtx.isAuth,
+        userCtx.user,
+    ])
+
 
     return (
         <div className="container">
@@ -50,6 +58,7 @@ const Header = (props) => {
                 <div className={s.auth_info}>
                     <img src={user.avatarUrl} alt="avatar" className={s.auth_info__avatar} />
                     <div className={s.auth_info__data}>
+                        <span>You: </span>
                         <span>{user.firstName} </span>
                         <span>{user.lastName}</span>
                     </div>
@@ -59,13 +68,17 @@ const Header = (props) => {
             <header className={s.header}>
                 <div className={s.container}>
                     <nav className={s.nav} id="nav">
-                        {dataNavLink.map((data, id) => {
+                        {dataNavLink(isAuth, userCtx.logOutUser).map((data, id) => {
                             return (
                                 <NavLink key={id}
                                     className={({ isActive }) => isActive ? s.nav__link_active : s.nav__link}
                                     to={data.to}
                                     target={data.target}
                                     rel={data.rel}
+                                    onClick={() => {
+                                        data.name === "LogOut" &&
+                                            userCtx.logOutUser()
+                                    }}
                                 >
                                     <img className={s.nav__img} src={data.iconUrl} alt={data.alt}></img>
                                     <span>{data.name}</span>
@@ -74,10 +87,10 @@ const Header = (props) => {
                         })
                         }
 
-                        {/* <a className={s.nav__link} href="https://github.com/max200pl" target="_blank" rel="noreferrer">
-                        <img className={s.nav__img} src={GithubImg} alt="link github" />
-                        <span>My github</span>
-                    </a> */}
+                        {/*  <a className={s.nav__link} href="https://github.com/max200pl" target="_blank" rel="noreferrer">
+                            <img className={s.nav__img} src={GithubImg} alt="link github" />
+                            <span>My github</span>
+                        </a> */}
                         <button className={s.nav__link + " " + s.nav__link_btn} >
                             <img className={s.nav__img} src={ContactImg} alt="contact me"></img>
                             <span>Contact me</span>

@@ -13,6 +13,7 @@ import { CssBaseline, ThemeProvider, createTheme } from '@mui/material';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { GoogleOAuthProvider } from '@react-oauth/google';
+import UserContextProvider from './context/user-context';
 
 
 const root = ReactDOM.createRoot(
@@ -30,17 +31,19 @@ const queryClient = new QueryClient()
 
 root.render(
     <React.StrictMode>
-        <GoogleOAuthProvider clientId='41245498308-44oaelsqg4sgj011hevmr3953nqsmjrn.apps.googleusercontent.com'>
-            <ThemeProvider theme={darkTheme}>
-                <LocalizationProvider dateAdapter={AdapterDayjs}>
-                    <QueryClientProvider client={queryClient}>
-                        <App />
-                        <ReactQueryDevtools initialIsOpen={false} />
-                    </QueryClientProvider>
-                </LocalizationProvider>
-                <CssBaseline />
-            </ThemeProvider>
-        </GoogleOAuthProvider>
+        <UserContextProvider>
+            <GoogleOAuthProvider clientId='41245498308-44oaelsqg4sgj011hevmr3953nqsmjrn.apps.googleusercontent.com'>
+                <ThemeProvider theme={darkTheme}>
+                    <LocalizationProvider dateAdapter={AdapterDayjs}>
+                        <QueryClientProvider client={queryClient}>
+                            <App />
+                            <ReactQueryDevtools initialIsOpen={false} />
+                        </QueryClientProvider>
+                    </LocalizationProvider>
+                    <CssBaseline />
+                </ThemeProvider>
+            </GoogleOAuthProvider>
+        </UserContextProvider>
     </React.StrictMode>
 );
 

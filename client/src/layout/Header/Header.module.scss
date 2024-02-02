@@ -18,6 +18,12 @@
     left: 20px;
     top: 20px;
     width: max-content;
+    z-index: 2;
+
+    @include xs-mb {
+        right: 0;
+        margin-left: auto;
+    }
 
     &:hover .auth_info__data {
         opacity: 1;

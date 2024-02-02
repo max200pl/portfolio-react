@@ -16,7 +16,7 @@ import {
     Switch,
     TextField,
 } from "@mui/material";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { GithubLoginButton, GoogleLoginButton } from "react-social-login-buttons";
 import * as yup from "yup";
@@ -24,8 +24,8 @@ import s from "./AuthForm.module.scss";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { useGoogleLogin } from "@react-oauth/google";
 import { getAuthGoole } from "../../assets/api/auth.api";
-import Cookies from "js-cookie";
-import { redirect, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { UserContext } from "../../context/user-context";
 
 
 type FormValues = {
@@ -58,6 +58,7 @@ const schema = yup.object().shape({
 
 const AuthForm: React.FC = () => {
     const navigate = useNavigate();
+    const userCtx = useContext(UserContext);
     const [typeActionForm] = useState<TypeActionForm>("login");
     const [showPassword, setShowPassword] = React.useState(false);
 
@@ -86,7 +87,7 @@ const AuthForm: React.FC = () => {
         onSuccess: async codeResponse => {
             try {
                 const authGooleResponse = await getAuthGoole(codeResponse);
-                Cookies.set("userInfo", JSON.stringify(authGooleResponse.user));
+                userCtx.logInUser(authGooleResponse.user);
                 navigate("/");
             } catch (error) {
                 console.log(error);
