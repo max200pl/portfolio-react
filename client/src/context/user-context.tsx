@@ -1,6 +1,7 @@
 
 import Cookies from "js-cookie";
 import { FC, createContext, useEffect, useState } from "react";
+import { logOutUser } from "../assets/api/auth.api";
 
 interface User {
     firstName: string;
@@ -39,11 +40,17 @@ const UserContextProvider: FC<Props> = ({ children }) => {
         setUser(user);
     }
 
-    const logOutUserHandler = () => {
-        setUser(undefined);
-        Cookies.remove("user");
-        Cookies.remove("session");
-        console.log("logOutUserHandler")
+    const logOutUserHandler = async () => {
+        try {
+            await logOutUser();
+            setUser(undefined);
+            Cookies.remove("user");
+            Cookies.remove("session");
+            Cookies.remove("session.sig");
+            console.info("User logged out")
+        } catch (error) {
+            console.error(error, "Error logging out user");
+        }
     }
 
     if (userCookies !== undefined && user === undefined) {

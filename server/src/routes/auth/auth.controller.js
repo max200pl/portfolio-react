@@ -19,6 +19,7 @@ async function httpGoogleAuth(req, res, next) {
     return res.status(200).json({ message: "Success Google Auth", user: req.session.user });
 }
 
+
 module.exports = {
     httpGoogleAuth,
     httpGoogleAuthorization,

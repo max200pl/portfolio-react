@@ -39,7 +39,7 @@ const dataNavLink = (isAuth, logOutUserHandler) => [
 
 const Header = (props) => {
     const userCtx = useContext(UserContext);
-    console.log(userCtx.isAuth, "userCtx.isAuth", userCtx.user, "userCtx.user")
+    // console.log(userCtx.isAuth, "userCtx.isAuth", userCtx.user, "userCtx.user")
     const [user, setUser] = useState();
     const [isAuth, setIsAuth] = useState();
 

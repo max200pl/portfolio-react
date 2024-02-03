@@ -21,7 +21,7 @@ async function updateUser(user) {
             }
         });
     } catch (err) {
-        console.log(`Could not create a new User: ${err}`);
+        console.log(`Could not create or update a new User: ${err}`);
     }
 }
 

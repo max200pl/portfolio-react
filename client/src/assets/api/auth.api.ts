@@ -7,8 +7,18 @@ export const getAuthGoole = (codeResponse: TokenResponse) => {
     const baseQueryFn = baseQuery;
 
     return baseQueryFn({
-        url: AUTH_API_BASE_URL + '/google',
+        url: AUTH_API_BASE_URL + '/login/google',
         body: codeResponse,
+        method: 'post',
+        credentials: 'include'
+    })
+};
+
+export const logOutUser = () => {
+    const baseQueryFn = baseQuery;
+
+    return baseQueryFn({
+        url: AUTH_API_BASE_URL + '/logout',
         method: 'post',
         credentials: 'include'
     })
