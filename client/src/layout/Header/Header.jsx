@@ -59,8 +59,13 @@ const Header = (props) => {
                     <img src={user.avatarUrl} alt="avatar" className={s.auth_info__avatar} />
                     <div className={s.auth_info__data}>
                         <span>You: </span>
-                        <span>{user.firstName} </span>
-                        <span>{user.lastName}</span>
+                        {user.name ?
+                            <span>{user.name}</span>
+                            : <>
+                                <span>{user.firstName} </span>
+                                <span>{user.lastName}</span>
+                            </>
+                        }
                     </div>
                 </div>
             }

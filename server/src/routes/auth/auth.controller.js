@@ -13,7 +13,7 @@ async function httpGoogleAuthorization(codeResponse) {
         }
     });
 
-    return response;
+    return response.data;
 }
 
 async function httpAuthGitHubAuthentication(codeResponse) {

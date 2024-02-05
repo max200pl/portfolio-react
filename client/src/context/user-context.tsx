@@ -4,6 +4,7 @@ import { FC, createContext, useEffect, useState } from "react";
 import { logOutUser } from "../assets/api/auth.api";
 
 interface User {
+    name?: string;
     firstName: string;
     lastName: string;
     email: string;

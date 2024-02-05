@@ -21,29 +21,43 @@ const authRoutes = {
 
 authLogin.use(async (req, res, next) => {
     try {
-        let authResponse = null;
+        let userInfo = null;
         const codeResponse = req.body;
         const route = req.path;
 
         if (route === authRoutes.google) {
             const authGooleResponse = await httpGoogleAuthorization(codeResponse);
 
-            authResponse = authGooleResponse.data;
+            userInfo = {
+                googleId: authGooleResponse.id,
+                firstName: authGooleResponse.given_name,
+                lastName: authGooleResponse.family_name,
+                email: authGooleResponse.email,
+                avatarUrl: authGooleResponse.picture,
+            }
         }
 
         if (route === authRoutes.github) {
             console.log(codeResponse, "codeResponse")
             const authenticationResponse = await httpAuthGitHubAuthentication(codeResponse);
+            userInfo = await httpAuthGitHubAuthorization(authenticationResponse);
+            console.log(userInfo, "userInfo")
 
-            authResponse = await httpAuthGitHubAuthorization(authenticationResponse);
+            userInfo = {
+                githubId: userInfo.id,
+                name: userInfo.name,
+                avatarUrl: userInfo.avatar_url,
+            }
         }
 
-        if (authResponse?.error?.code === 401 || authResponse?.error?.code === 404) {
+        if (userInfo?.error?.code === 401 || userInfo?.error?.code === 404) {
             res.status(401).json({ message: "Authentication failed" });
             return;
         }
 
-        req.authorizationData = authResponse;
+        console.log("Auth user info:", userInfo);
+
+        req.authorizationData = userInfo;
 
         next();
     } catch (error) {

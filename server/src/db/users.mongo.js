@@ -1,6 +1,9 @@
 const mongoose = require('mongoose');
 
 const commonUserSchema = new mongoose.Schema({
+    name: {
+        type: String,
+    },
     firstName: {
         type: String,
     },
@@ -11,9 +14,6 @@ const commonUserSchema = new mongoose.Schema({
         type: String,
         required: true,
         unique: true
-    },
-    language: {
-        type: String,
     },
     avatarUrl: {
         type: String

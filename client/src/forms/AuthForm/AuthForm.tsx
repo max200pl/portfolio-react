@@ -113,8 +113,8 @@ const AuthForm: React.FC = () => {
             getAuthGitHub({ code })
                 .then((authGitHubResponse) => {
                     console.log(authGitHubResponse, "authGitHubResponse")
-                    // userCtx.logInUser(authGitHubResponse.user);
-                    // navigate("/");
+                    userCtx.logInUser(authGitHubResponse.user);
+                    navigate("/");
                 })
                 .catch((error) => {
                     return console.log(error, "error");
