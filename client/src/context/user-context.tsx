@@ -54,7 +54,8 @@ const UserContextProvider: FC<Props> = ({ children }) => {
     }
 
     if (userCookies !== undefined && user === undefined) {
-        const user = JSON.parse(userCookies || "{}");
+
+        const user = JSON.parse(userCookies ?? "{}");
         setUser(user);
     }
 

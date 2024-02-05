@@ -2,6 +2,9 @@ const express = require("express");
 const {
     httpGoogleAuth: httpAuthGoogle,
     httpGoogleAuthorization,
+    httpAuthGitHub,
+    httpAuthGitHubAuthentication,
+    httpAuthGitHubAuthorization,
 } = require("./auth.controller");
 const authLogin = express.Router();
 const cookieSession = require("cookie-session");
@@ -23,15 +26,24 @@ authLogin.use(async (req, res, next) => {
         const route = req.path;
 
         if (route === authRoutes.google) {
-            authResponse = await httpGoogleAuthorization(codeResponse);
+            const authGooleResponse = await httpGoogleAuthorization(codeResponse);
+
+            authResponse = authGooleResponse.data;
         }
 
-        if (authResponse?.error?.code === 401) {
+        if (route === authRoutes.github) {
+            console.log(codeResponse, "codeResponse")
+            const authenticationResponse = await httpAuthGitHubAuthentication(codeResponse);
+
+            authResponse = await httpAuthGitHubAuthorization(authenticationResponse);
+        }
+
+        if (authResponse?.error?.code === 401 || authResponse?.error?.code === 404) {
             res.status(401).json({ message: "Authentication failed" });
             return;
         }
 
-        req.authorizationData = authResponse.data;
+        req.authorizationData = authResponse;
 
         next();
     } catch (error) {
@@ -70,7 +82,7 @@ authLogin.use(
 );
 
 authLogin.post("/google", httpAuthGoogle);
+authLogin.post("/github", httpAuthGitHub);
 // authLogin.post("/form", httpAuthGoogle);
-// authLogin.post("/github", httpAuthGoogle);
 
 module.exports = authLogin;

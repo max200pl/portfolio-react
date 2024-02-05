@@ -16,14 +16,14 @@ import {
     Switch,
     TextField,
 } from "@mui/material";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { GithubLoginButton, GoogleLoginButton } from "react-social-login-buttons";
 import * as yup from "yup";
 import s from "./AuthForm.module.scss";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { useGoogleLogin } from "@react-oauth/google";
-import { getAuthGoole } from "../../assets/api/auth.api";
+import { getAuthGitHub, getAuthGoole } from "../../assets/api/auth.api";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../context/user-context";
 
@@ -33,7 +33,7 @@ type FormValues = {
     password: string;
 };
 
-type TypeActionForm = "login" | "register";
+type TypeActionForm = "login-gitHub" | "login-google";
 
 const schema = yup.object().shape({
     emailOrPhone: yup
@@ -59,8 +59,8 @@ const schema = yup.object().shape({
 const AuthForm: React.FC = () => {
     const navigate = useNavigate();
     const userCtx = useContext(UserContext);
-    const [typeActionForm] = useState<TypeActionForm>("login");
     const [showPassword, setShowPassword] = React.useState(false);
+
 
     const handleClickShowPassword = () => setShowPassword((show) => !show);
 
@@ -93,13 +93,39 @@ const AuthForm: React.FC = () => {
                 console.log(error);
             }
         },
-        onError: (error) => console.log('Login Failed:', error),
+        onError: (error) => console.log('Login with Goole Failed:', error),
     });
+
+    const getAuthCode = () => {
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        return urlParams.get("code");
+    }
+
+    const githubLoginHandler = async () => {
+        const GITHUB_CLIENT_ID = "d54cbcb0435f980b2bf1";
+        window.location.assign("https://github.com/login/oauth/authorize?client_id=" + GITHUB_CLIENT_ID);
+    };
+
+    useEffect(() => {
+        const code = getAuthCode();
+        if (code) {
+            getAuthGitHub({ code })
+                .then((authGitHubResponse) => {
+                    console.log(authGitHubResponse, "authGitHubResponse")
+                    // userCtx.logInUser(authGitHubResponse.user);
+                    // navigate("/");
+                })
+                .catch((error) => {
+                    return console.log(error, "error");
+                })
+        }
+    }, []);
 
     return (
         <form onSubmit={handleSubmit(onSubmit)} className={s.form}>
             <GoogleLoginButton className={`${s["form_control"]} ${s["form_control__login"]}`} onClick={() => googleLoginHandler()} align="center" />
-            <GithubLoginButton className={`${s["form_control"]} ${s["form_control__login"]}`} onClick={() => alert("Hello")} align="center" />
+            <GithubLoginButton className={`${s["form_control"]} ${s["form_control__login"]}`} onClick={githubLoginHandler} align="center" />
 
             <Divider className={s["form_control"]}>
                 <Chip label="OR" size="small" />

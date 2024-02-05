@@ -30,21 +30,19 @@ const darkTheme = createTheme({
 const queryClient = new QueryClient()
 
 root.render(
-    <React.StrictMode>
-        <UserContextProvider>
-            <GoogleOAuthProvider clientId='41245498308-44oaelsqg4sgj011hevmr3953nqsmjrn.apps.googleusercontent.com'>
-                <ThemeProvider theme={darkTheme}>
-                    <LocalizationProvider dateAdapter={AdapterDayjs}>
-                        <QueryClientProvider client={queryClient}>
-                            <App />
-                            <ReactQueryDevtools initialIsOpen={false} />
-                        </QueryClientProvider>
-                    </LocalizationProvider>
-                    <CssBaseline />
-                </ThemeProvider>
-            </GoogleOAuthProvider>
-        </UserContextProvider>
-    </React.StrictMode>
+    <UserContextProvider>
+        <GoogleOAuthProvider clientId='41245498308-44oaelsqg4sgj011hevmr3953nqsmjrn.apps.googleusercontent.com'>
+            <ThemeProvider theme={darkTheme}>
+                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                    <QueryClientProvider client={queryClient}>
+                        <App />
+                        <ReactQueryDevtools initialIsOpen={false} />
+                    </QueryClientProvider>
+                </LocalizationProvider>
+                <CssBaseline />
+            </ThemeProvider>
+        </GoogleOAuthProvider>
+    </UserContextProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function

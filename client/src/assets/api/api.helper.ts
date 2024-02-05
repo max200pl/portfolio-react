@@ -4,7 +4,7 @@ export interface BaseQueryOptions {
     url: string;
     params?: Record<string, any>;
     contentType?: string;
-    body?: FormData | object;
+    body?: FormData | object | string;
     method?: "get" | "post" | "put" | "delete";
     headers_param?: object;
     credentials?: "include" | "omit" | "same-origin";

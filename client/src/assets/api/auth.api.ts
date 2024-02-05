@@ -14,6 +14,17 @@ export const getAuthGoole = (codeResponse: TokenResponse) => {
     })
 };
 
+export const getAuthGitHub = (codeResponse: { code: string }) => {
+    const baseQueryFn = baseQuery;
+
+    return baseQueryFn({
+        url: AUTH_API_BASE_URL + '/login/github',
+        body: codeResponse,
+        method: 'post',
+        credentials: 'include'
+    })
+};
+
 export const logOutUser = () => {
     const baseQueryFn = baseQuery;
 
