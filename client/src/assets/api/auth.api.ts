@@ -1,5 +1,6 @@
 import { TokenResponse } from '@react-oauth/google';
 import { baseQuery } from './api.helper';
+import { SubmitFormValues } from '../../forms/AuthForm/AuthForm';
 
 const AUTH_API_BASE_URL = "http://localhost:8000/auth";
 
@@ -22,6 +23,16 @@ export const getAuthGitHub = (codeResponse: { code: string }) => {
         body: codeResponse,
         method: 'post',
         credentials: 'include'
+    })
+};
+
+export const getAuthForm = (submitFormValues: SubmitFormValues) => {
+    const baseQueryFn = baseQuery;
+
+    return baseQueryFn({
+        url: AUTH_API_BASE_URL + '/login/form',
+        body: submitFormValues,
+        method: 'post',
     })
 };
 

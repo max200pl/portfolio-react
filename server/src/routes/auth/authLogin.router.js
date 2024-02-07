@@ -5,6 +5,8 @@ const {
     httpAuthGitHub,
     httpAuthGitHubAuthentication,
     httpAuthGitHubAuthorization,
+    httpAuthForm,
+    httpAuthFormAuthorization,
 } = require("./auth.controller");
 const authLogin = express.Router();
 const cookieSession = require("cookie-session");
@@ -15,49 +17,69 @@ const authRoutes = {
     google: "/google",
     github: "/github",
     form: "/form",
-    logout: "/logout",
 };
+
+function authFailed(error) {
+    if (error?.code === 401 || error?.code === 404) {
+        res.status(401).json({ message: "Authentication failed" });
+        return;
+    }
+}
 
 
 authLogin.use(async (req, res, next) => {
     try {
-        let userInfo = null;
-        const codeResponse = req.body;
+        let user = null;
+        const bodyAuth = req.body;
         const route = req.path;
 
-        if (route === authRoutes.google) {
-            const authGooleResponse = await httpGoogleAuthorization(codeResponse);
+        if (route === authRoutes.form) {
+            console.log(bodyAuth, "bodyAuth")
 
-            userInfo = {
-                googleId: authGooleResponse.id,
-                firstName: authGooleResponse.given_name,
-                lastName: authGooleResponse.family_name,
-                email: authGooleResponse.email,
-                avatarUrl: authGooleResponse.picture,
+            const response = await httpAuthFormAuthorization(bodyAuth);
+
+            if (response?.error) {
+                authFailed(response.error);
+                return;
+            }
+
+            user = {
+                firstName: response.firstName,
+                lastName: response.lastName,
+                email: response.email,
+                avatarUrl: response.avatarUrl,
+            };
+        }
+
+        if (route === authRoutes.google) {
+            const userGoole = await httpGoogleAuthorization(bodyAuth);
+
+            user = {
+                googleId: userGoole.id,
+                firstName: userGoole.given_name,
+                lastName: userGoole.family_name,
+                email: userGoole.email,
+                avatarUrl: userGoole.picture,
             }
         }
 
         if (route === authRoutes.github) {
-            console.log(codeResponse, "codeResponse")
-            const authenticationResponse = await httpAuthGitHubAuthentication(codeResponse);
-            userInfo = await httpAuthGitHubAuthorization(authenticationResponse);
-            console.log(userInfo, "userInfo")
+            console.log(bodyAuth, "bodyAuth")
+            const authenticationResponse = await httpAuthGitHubAuthentication(bodyAuth);
+            const userGitHub = await httpAuthGitHubAuthorization(authenticationResponse);
 
-            userInfo = {
-                githubId: userInfo.id,
-                name: userInfo.name,
-                avatarUrl: userInfo.avatar_url,
+            user = {
+                githubId: userGitHub.id,
+                name: userGitHub.name,
+                avatarUrl: userGitHub.avatar_url,
             }
         }
 
-        if (userInfo?.error?.code === 401 || userInfo?.error?.code === 404) {
-            res.status(401).json({ message: "Authentication failed" });
-            return;
-        }
 
-        console.log("Auth user info:", userInfo);
 
-        req.authorizationData = userInfo;
+        console.log("Auth user info:", user);
+
+        req.authorizationData = user;
 
         next();
     } catch (error) {
@@ -97,6 +119,6 @@ authLogin.use(
 
 authLogin.post("/google", httpAuthGoogle);
 authLogin.post("/github", httpAuthGitHub);
-// authLogin.post("/form", httpAuthGoogle);
+authLogin.post("/form", httpAuthForm);
 
 module.exports = authLogin;

@@ -15,6 +15,9 @@ const commonUserSchema = new mongoose.Schema({
         required: true,
         unique: true
     },
+    password: {
+        type: String,
+    },
     avatarUrl: {
         type: String
     },
@@ -22,9 +25,6 @@ const commonUserSchema = new mongoose.Schema({
 
 const userSchema = new mongoose.Schema({
     ...commonUserSchema.obj,
-    password: {
-        type: String,
-    },
     googleId: {
         type: String,
         unique: true,

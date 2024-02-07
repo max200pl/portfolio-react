@@ -6,7 +6,7 @@ import {
     Chip,
     Divider,
     FormControl,
-    FormControlLabel,
+    FormHelperText,
     IconButton,
     InputAdornment,
     InputLabel,
@@ -16,44 +16,44 @@ import {
     Switch,
     TextField,
 } from "@mui/material";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { GithubLoginButton, GoogleLoginButton } from "react-social-login-buttons";
 import * as yup from "yup";
 import s from "./AuthForm.module.scss";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { useGoogleLogin } from "@react-oauth/google";
-import { getAuthGitHub, getAuthGoole } from "../../assets/api/auth.api";
+import { getAuthForm, getAuthGitHub, getAuthGoole } from "../../assets/api/auth.api";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../context/user-context";
 
 
-type FormValues = {
-    emailOrPhone: string;
+export type SubmitFormValues = {
+    email: string;
     password: string;
+    remember: boolean;
 };
 
-type TypeActionForm = "login-gitHub" | "login-google";
-
 const schema = yup.object().shape({
-    emailOrPhone: yup
+    email: yup
         .string()
         .test(
             "emailOrPhone",
-            "Invalid format. Please enter a valid email or phone number.",
+            "Invalid format. Please enter a valid email.",
             (value) => {
+                // const phonePattern = /^(\+\d{1,3})?\d{10}$/;
                 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                const phonePattern = /^\d{10}$/;
 
-                return emailPattern.test(value ?? "") || phonePattern.test(value ?? "");
+                return emailPattern.test(value ?? ""); // || phonePattern.test(value ?? "");
             }
         )
-        .required("Email or phone number is required"),
+        .required("Email is required"),
     password: yup
         .string()
         .trim()
         .required("Enter password")
         .min(6, "Password must be at least 6 characters long."),
+    remember: yup.boolean().default(true),
 });
 
 const AuthForm: React.FC = () => {
@@ -74,13 +74,23 @@ const AuthForm: React.FC = () => {
         control,
         handleSubmit,
         formState: { errors },
-    } = useForm<FormValues>({
-        mode: "onChange",
+    } = useForm<SubmitFormValues>({
+        mode: "onSubmit",
         resolver: yupResolver(schema),
+        defaultValues: {
+            remember: true,
+        }
     });
 
-    const onSubmit: SubmitHandler<FormValues> = async (data) => {
-        console.log(data);
+    const onSubmit: SubmitHandler<SubmitFormValues> = async (data) => {
+        console.log(data, "data")
+        try {
+            const response = await getAuthForm(data);
+            userCtx.logInUser(response.user);
+            navigate("/");
+        } catch (error) {
+            console.log(error);
+        }
     };
 
     const googleLoginHandler = useGoogleLogin({
@@ -132,19 +142,19 @@ const AuthForm: React.FC = () => {
             </Divider>
 
             <Controller
-                name="emailOrPhone"
+                name="email"
                 control={control}
                 rules={{ required: true }}
                 render={({ field }) => (
                     <TextField
                         {...field}
                         variant="outlined"
-                        label="Email or phone"
+                        label="Email"
                         className={s["form_control"]}
                         size="small"
                         margin="none"
-                        error={!!errors.emailOrPhone}
-                        helperText={errors?.emailOrPhone?.message}
+                        error={!!errors.email}
+                        helperText={errors?.email?.message}
                         fullWidth
                     />
                 )}
@@ -166,6 +176,8 @@ const AuthForm: React.FC = () => {
                             label="Password"
                             {...field}
                             type={showPassword ? "text" : "password"}
+                            error={!!errors.password}
+
                             endAdornment={
                                 <InputAdornment position="end">
                                     <IconButton
@@ -179,6 +191,12 @@ const AuthForm: React.FC = () => {
                                 </InputAdornment>
                             }
                         />
+
+                        {errors?.password?.message && (
+                            <FormHelperText error id="accountId-error">
+                                {errors?.password?.message}
+                            </FormHelperText>
+                        )}
                     </FormControl>
                 )}
             />
@@ -190,7 +208,18 @@ const AuthForm: React.FC = () => {
                 alignItems="center"
                 justifyContent="space-between"
             >
-                <FormControlLabel control={<Switch />} label="Remember" />
+                <Controller
+                    name="remember"
+                    control={control}
+                    render={({ field }) => {
+                        return <Switch
+                            {...field}
+                            checked={field.value}
+                            color="primary"
+                        />
+                    }}
+                />
+
                 <Link href="#" underline="hover" color="inherit">
                     Forgot password?
                 </Link>

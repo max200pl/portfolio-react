@@ -1,5 +1,6 @@
 
 const axios = require('axios');
+const { findUser } = require('../../models/users.model');
 require("dotenv").config();
 
 async function httpGoogleAuthorization(codeResponse) {
@@ -57,6 +58,32 @@ async function httpAuthGitHubAuthorization(codeResponse) {
     return response.data;
 }
 
+
+async function httpAuthFormAuthorization(bodyAuth) {
+    const { email, password, remember } = bodyAuth;
+
+    try {
+        console.log("Step ONE httpAuthFormAuthorization", email, password, remember);
+
+        const user = await findUser(email);
+
+        if (!user) {
+            return { error: { code: 404, message: "User not found" } };
+        }
+
+        const isPasswordValid = user.password === password;
+
+        if (!isPasswordValid) {
+            return { error: { code: 401, message: "Invalid password" } };
+        }
+
+        return user;
+    } catch (error) {
+        console.error("Error during form authentication:", error);
+        return error;
+    }
+}
+
 async function httpGoogleAuth(req, res, next) {
     return res.status(200).json({ message: "Success Google Auth", user: req.session.user });
 }
@@ -65,10 +92,16 @@ async function httpAuthGitHub(req, res, next) {
     return res.status(200).json({ message: "Success GitHub Auth", user: req.session.user });
 }
 
+async function httpAuthForm(req, res, next) {
+    return res.status(200).json({ message: "Success Form Auth", user: req.session.user });
+}
+
 module.exports = {
     httpGoogleAuth,
     httpAuthGitHub,
+    httpAuthForm,
     httpGoogleAuthorization,
+    httpAuthFormAuthorization,
     httpAuthGitHubAuthorization,
     httpAuthGitHubAuthentication
 };
