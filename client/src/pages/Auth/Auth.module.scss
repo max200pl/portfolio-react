@@ -17,6 +17,7 @@
         color: rgba($color: white, $alpha: 0.9);
         font-weight: 700;
         text-transform: uppercase;
+        margin-bottom: 20px;
 
         @include mb-lg {
             font-size: 2rem;
@@ -57,8 +58,11 @@
         }
     }
 
-    .signUp_link {
-        margin-top: 10px;
+    .auth_form {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 100%;
     }
 
     .content {
@@ -69,7 +73,6 @@
         padding: 20px 40px 40px;
         border-radius: 20px;
         border: 1px solid $color-white;
-        min-height: 500px;
 
         margin: auto;
 

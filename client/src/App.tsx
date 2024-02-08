@@ -3,7 +3,8 @@ import Root from "./layout/Root/Root";
 import { FC } from "react";
 import Intro from "./pages/Intro/Intro";
 import About from "./pages/About/About";
-import Auth from "./pages/Auth/Auth";
+import AuthSignIn from "./pages/Auth/AuthSignIn/AuthSignIn";
+import AuthSignUp from "./pages/Auth/AuthSignUp/AuthSignUp";
 
 
 const router = createBrowserRouter([
@@ -28,7 +29,11 @@ const router = createBrowserRouter([
                 children: [
                     {
                         path: 'login',
-                        element: <Auth />
+                        element: <AuthSignIn />
+                    },
+                    {
+                        path: 'sign-up',
+                        element: <AuthSignUp />
                     }
                 ]
             },

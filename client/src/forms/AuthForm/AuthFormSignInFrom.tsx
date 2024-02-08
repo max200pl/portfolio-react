@@ -1,10 +1,9 @@
 // https://www.figma.com/file/zDlwMyy0LFHCO4CiXLcK7k/Login-Page-Perfect-UI-(Freebie)-(Community)?type=design&node-id=401%3A4165&mode=dev
 
 import { yupResolver } from "@hookform/resolvers/yup";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
 import {
     Button,
-    Chip,
-    Divider,
     FormControl,
     FormHelperText,
     IconButton,
@@ -16,16 +15,13 @@ import {
     Switch,
     TextField,
 } from "@mui/material";
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
-import { GithubLoginButton, GoogleLoginButton } from "react-social-login-buttons";
-import * as yup from "yup";
-import s from "./AuthForm.module.scss";
-import { Visibility, VisibilityOff } from "@mui/icons-material";
-import { useGoogleLogin } from "@react-oauth/google";
-import { getAuthForm, getAuthGitHub, getAuthGoole } from "../../assets/api/auth.api";
 import { useNavigate } from "react-router-dom";
+import * as yup from "yup";
+import { getAuthSignInForm } from "../../assets/api/auth.api";
 import { UserContext } from "../../context/user-context";
+import s from "./AuthFormSignInFrom.module.scss";
 
 
 export type SubmitFormValues = {
@@ -43,7 +39,6 @@ const schema = yup.object().shape({
             (value) => {
                 // const phonePattern = /^(\+\d{1,3})?\d{10}$/;
                 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
                 return emailPattern.test(value ?? ""); // || phonePattern.test(value ?? "");
             }
         )
@@ -56,19 +51,11 @@ const schema = yup.object().shape({
     remember: yup.boolean().default(true),
 });
 
-const AuthForm: React.FC = () => {
+const AuthFormSignInFrom: React.FC = () => {
     const navigate = useNavigate();
     const userCtx = useContext(UserContext);
     const [showPassword, setShowPassword] = React.useState(false);
 
-
-    const handleClickShowPassword = () => setShowPassword((show) => !show);
-
-    const handleMouseDownPassword = (
-        event: React.MouseEvent<HTMLButtonElement>
-    ) => {
-        event.preventDefault();
-    };
 
     const {
         control,
@@ -83,9 +70,9 @@ const AuthForm: React.FC = () => {
     });
 
     const onSubmit: SubmitHandler<SubmitFormValues> = async (data) => {
-        console.log(data, "data")
+        // console.log("SubmitFormValues", data)
         try {
-            const response = await getAuthForm(data);
+            const response = await getAuthSignInForm(data);
             userCtx.logInUser(response.user);
             navigate("/");
         } catch (error) {
@@ -93,54 +80,8 @@ const AuthForm: React.FC = () => {
         }
     };
 
-    const googleLoginHandler = useGoogleLogin({
-        onSuccess: async codeResponse => {
-            try {
-                const authGooleResponse = await getAuthGoole(codeResponse);
-                userCtx.logInUser(authGooleResponse.user);
-                navigate("/");
-            } catch (error) {
-                console.log(error);
-            }
-        },
-        onError: (error) => console.log('Login with Goole Failed:', error),
-    });
-
-    const getAuthCode = () => {
-        const queryString = window.location.search;
-        const urlParams = new URLSearchParams(queryString);
-        return urlParams.get("code");
-    }
-
-    const githubLoginHandler = async () => {
-        const GITHUB_CLIENT_ID = "d54cbcb0435f980b2bf1";
-        window.location.assign("https://github.com/login/oauth/authorize?client_id=" + GITHUB_CLIENT_ID);
-    };
-
-    useEffect(() => {
-        const code = getAuthCode();
-        if (code) {
-            getAuthGitHub({ code })
-                .then((authGitHubResponse) => {
-                    console.log(authGitHubResponse, "authGitHubResponse")
-                    userCtx.logInUser(authGitHubResponse.user);
-                    navigate("/");
-                })
-                .catch((error) => {
-                    return console.log(error, "error");
-                })
-        }
-    }, []);
-
     return (
         <form onSubmit={handleSubmit(onSubmit)} className={s.form}>
-            <GoogleLoginButton className={`${s["form_control"]} ${s["form_control__login"]}`} onClick={() => googleLoginHandler()} align="center" />
-            <GithubLoginButton className={`${s["form_control"]} ${s["form_control__login"]}`} onClick={githubLoginHandler} align="center" />
-
-            <Divider className={s["form_control"]}>
-                <Chip label="OR" size="small" />
-            </Divider>
-
             <Controller
                 name="email"
                 control={control}
@@ -182,8 +123,7 @@ const AuthForm: React.FC = () => {
                                 <InputAdornment position="end">
                                     <IconButton
                                         aria-label="toggle password visibility"
-                                        onClick={handleClickShowPassword}
-                                        onMouseDown={handleMouseDownPassword}
+                                        onClick={() => setShowPassword((show) => !show)}
                                         edge="end"
                                     >
                                         {showPassword ? <VisibilityOff /> : <Visibility />}
@@ -236,4 +176,4 @@ const AuthForm: React.FC = () => {
     );
 };
 
-export default AuthForm;
+export default AuthFormSignInFrom;
