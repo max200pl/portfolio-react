@@ -38,7 +38,7 @@ const ButtonAuthGitHub = () => {
 
 
     return (
-        <GithubLoginButton className={`${s["form_control"]} ${s["form_control__login"]}`} onClick={githubLoginHandler} align="center" />
+        <GithubLoginButton text="GitHub" className={`${s["form_control"]} ${s["form_control__login"]}`} onClick={githubLoginHandler} align="center" />
     );
 };
 

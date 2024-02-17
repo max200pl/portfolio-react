@@ -12,13 +12,16 @@ import AuthFormSignInFrom from "../../../forms/AuthForm/AuthFormSignInFrom";
 import AuthModal from "../AuthModal";
 import s from "./AuthSignIn.module.scss";
 import { useNavigate } from "react-router-dom";
+import { TypeActionAuth } from '../../../assets/api/auth.api';
 
 
 const AuthSignIn: React.FC = () => {
     const navigate = useNavigate();
     const { signUp_link } = s;
+    const typeAction = "login" as TypeActionAuth;
+
     return (
-        <AuthModal authTypeAction="login">
+        <AuthModal typeAction={typeAction}>
             <div className={signUp_link}>
                 <span>Don't have an account? </span>
                 <Link href="" onClick={() => navigate("/auth/sign-up")} underline="hover">
@@ -33,7 +36,7 @@ const AuthSignIn: React.FC = () => {
                 <Chip label="OR" size="small" />
             </Divider>
 
-            <AuthFormSignInFrom />
+            <AuthFormSignInFrom type={typeAction} />
         </AuthModal>
     );
 };

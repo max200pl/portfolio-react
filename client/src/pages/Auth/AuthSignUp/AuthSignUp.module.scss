@@ -1,3 +1,19 @@
 .form_control {
     margin-bottom: 14px !important;
+    &__login {
+        margin: 0 !important;
+        margin-bottom: 14px !important;
+        background: #000;
+        width: auto !important;
+        position: relative;
+
+        & > div > div:last-child {
+            position: relative;
+            left: -10px;
+        }
+    }
+}
+
+.signUp_link {
+    margin-bottom: 20px;
 }

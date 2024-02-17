@@ -4,14 +4,26 @@ import { SubmitFormValues } from '../../forms/AuthForm/AuthFormSignInFrom';
 
 const AUTH_API_BASE_URL = "http://localhost:8000/auth";
 
-export const getAuthGoole = (codeResponse: TokenResponse) => {
+export type TypeActionAuth = "sign-up" | "login";
+
+export const getAuthGoole = (type: TypeActionAuth, codeResponse: TokenResponse) => {
     const baseQueryFn = baseQuery;
 
     return baseQueryFn({
-        url: AUTH_API_BASE_URL + '/login/google',
+        url: `${AUTH_API_BASE_URL}${type}/google`,
         body: codeResponse,
         method: 'post',
         credentials: 'include'
+    })
+};
+
+export const getAuthForm = (type: TypeActionAuth, submitFormValues: SubmitFormValues) => {
+    const baseQueryFn = baseQuery;
+
+    return baseQueryFn({
+        url: `${AUTH_API_BASE_URL}${type}/form`,
+        body: submitFormValues,
+        method: 'post',
     })
 };
 
@@ -26,15 +38,6 @@ export const getAuthGitHub = (codeResponse: { code: string }) => {
     })
 };
 
-export const getAuthSignInForm = (submitFormValues: SubmitFormValues) => {
-    const baseQueryFn = baseQuery;
-
-    return baseQueryFn({
-        url: AUTH_API_BASE_URL + '/login/form',
-        body: submitFormValues,
-        method: 'post',
-    })
-};
 
 export const logOutUser = () => {
     const baseQueryFn = baseQuery;

@@ -6,7 +6,7 @@ import { UserContext } from "../../../context/user-context";
 import { getAuthGoole } from "../../api/auth.api";
 import s from "./ButtonAuthGoole.module.scss";
 
-const ButtonAuthGoole = () => {
+const ButtonAuthGoole = ({ text }: { text?: string }) => {
     const navigate = useNavigate();
     const userCtx = useContext(UserContext);
 
@@ -14,7 +14,7 @@ const ButtonAuthGoole = () => {
     const googleLoginHandler = useGoogleLogin({
         onSuccess: async (codeResponse) => {
             try {
-                const authGooleResponse = await getAuthGoole(codeResponse);
+                const authGooleResponse = await getAuthGoole("login", codeResponse);
                 userCtx.logInUser(authGooleResponse.user);
                 navigate("/");
             } catch (error) {
@@ -28,6 +28,7 @@ const ButtonAuthGoole = () => {
         <GoogleLoginButton
             className={`${s["form_control"]} ${s["form_control__login"]}`}
             onClick={() => googleLoginHandler()}
+            text={"Google"}
             align="center"
         />
     );

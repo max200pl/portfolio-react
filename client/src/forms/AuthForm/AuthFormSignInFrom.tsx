@@ -19,7 +19,7 @@ import React, { useContext } from "react";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
-import { getAuthSignInForm } from "../../assets/api/auth.api";
+import { TypeActionAuth, getAuthForm } from "../../assets/api/auth.api";
 import { UserContext } from "../../context/user-context";
 import s from "./AuthFormSignInFrom.module.scss";
 
@@ -51,7 +51,7 @@ const schema = yup.object().shape({
     remember: yup.boolean().default(true),
 });
 
-const AuthFormSignInFrom: React.FC = () => {
+const AuthFormSignInFrom = ({ type }: { type: TypeActionAuth }) => {
     const navigate = useNavigate();
     const userCtx = useContext(UserContext);
     const [showPassword, setShowPassword] = React.useState(false);
@@ -72,7 +72,7 @@ const AuthFormSignInFrom: React.FC = () => {
     const onSubmit: SubmitHandler<SubmitFormValues> = async (data) => {
         // console.log("SubmitFormValues", data)
         try {
-            const response = await getAuthSignInForm(data);
+            const response = await getAuthForm(type, data);
             userCtx.logInUser(response.user);
             navigate("/");
         } catch (error) {
@@ -170,7 +170,7 @@ const AuthFormSignInFrom: React.FC = () => {
                 variant="contained"
                 type="submit"
             >
-                Sign in
+                {type === "sign-up" ? "Sign Up" : "Sign in"}
             </Button>
         </form>
     );

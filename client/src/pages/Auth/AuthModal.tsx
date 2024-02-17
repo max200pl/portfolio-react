@@ -5,13 +5,13 @@ import s from "./Auth.module.scss";
 
 interface AuthModalProps {
     children: ReactNode;
-    authTypeAction: AuthTypeAction;
+    typeAction: AuthTypeAction;
 }
 
 type AuthTypeAction = "login" | "sign-up";
 
 
-const AuthModal: FC<AuthModalProps> = ({ authTypeAction, children }) => {
+const AuthModal: FC<AuthModalProps> = ({ typeAction, children }) => {
     const { modal, content, modal__header, modal__title, auth_form } = s;
 
     return (
@@ -25,7 +25,7 @@ const AuthModal: FC<AuthModalProps> = ({ authTypeAction, children }) => {
                         cascade
                         className={modal__title}
                     >
-                        {authTypeAction === "login" ? "Login" : "Sign Up"}
+                        {typeAction === "login" ? "Login" : "Sign Up"}
                     </Fade>
                 </div>
 

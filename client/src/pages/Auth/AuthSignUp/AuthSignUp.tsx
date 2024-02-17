@@ -2,25 +2,38 @@
 
 import {
     Chip,
-    Divider
+    Divider,
+    Link
 } from "@mui/material";
 import React from "react";
 import ButtonAuthGoole from "../../../assets/components/ButtonAuthGoole/ButtonAuthGoole";
 import AuthFormSignInFrom from "../../../forms/AuthForm/AuthFormSignInFrom";
 import AuthModal from "../AuthModal";
 import s from "./AuthSignUp.module.scss";
+import { useNavigate } from "react-router-dom";
+import { TypeActionAuth } from "../../../assets/api/auth.api";
 
 
 const AuthSignUp: React.FC = () => {
+    const navigate = useNavigate();
+    const { signUp_link } = s;
+    const typeAction = "sign-up" as TypeActionAuth;
+
     return (
-        <AuthModal authTypeAction="sign-up">
-            <ButtonAuthGoole />
+        <AuthModal typeAction={typeAction}>
+            <div className={signUp_link}>
+                <span>Have an account? </span>
+                <Link href="" onClick={() => navigate("/auth/login")} underline="hover">
+                    Log in now
+                </Link>
+            </div>
+            <ButtonAuthGoole text="Google" />
 
             <Divider className={s["form_control"]}>
                 <Chip label="OR" size="small" />
             </Divider>
 
-            <AuthFormSignInFrom />
+            <AuthFormSignInFrom type={typeAction} />
         </AuthModal>
     );
 };
