@@ -10,7 +10,7 @@ export const getAuthGoole = (type: TypeActionAuth, codeResponse: TokenResponse) 
     const baseQueryFn = baseQuery;
 
     return baseQueryFn({
-        url: `${AUTH_API_BASE_URL}${type}/google`,
+        url: `${AUTH_API_BASE_URL}/${type}/google`,
         body: codeResponse,
         method: 'post',
         credentials: 'include'
@@ -21,7 +21,7 @@ export const getAuthForm = (type: TypeActionAuth, submitFormValues: SubmitFormVa
     const baseQueryFn = baseQuery;
 
     return baseQueryFn({
-        url: `${AUTH_API_BASE_URL}${type}/form`,
+        url: `${AUTH_API_BASE_URL}/${type}/form`,
         body: submitFormValues,
         method: 'post',
     })
