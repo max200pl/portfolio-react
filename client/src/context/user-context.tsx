@@ -16,7 +16,7 @@ interface User {
 type UserContextType = {
     isAuth: boolean;
     user?: User;
-    logInUser: (user: User) => void;
+    authUser: (user: User) => void;
     logOutUser: () => void;
 };
 
@@ -24,7 +24,7 @@ type UserContextType = {
 export const UserContext = createContext<UserContextType>({
     isAuth: false,
     user: undefined,
-    logInUser: (user) => { },
+    authUser: (user) => { },
     logOutUser: () => { }
 });
 
@@ -36,7 +36,7 @@ const UserContextProvider: FC<Props> = ({ children }) => {
     const [user, setUser] = useState<User>();
     const userCookies = Cookies.get("user");
 
-    const logInUserHandler = (user: User) => {
+    const authUserHandler = (user: User) => {
         Cookies.set("user", JSON.stringify(user));
         setUser(user);
     }
@@ -63,7 +63,7 @@ const UserContextProvider: FC<Props> = ({ children }) => {
     const contextValue: UserContextType = {
         isAuth: !!user,
         user: user,
-        logInUser: logInUserHandler,
+        authUser: authUserHandler,
         logOutUser: logOutUserHandler,
     };
 

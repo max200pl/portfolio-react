@@ -27,7 +27,7 @@ const AuthSignUp: React.FC = () => {
                     Log in now
                 </Link>
             </div>
-            <ButtonAuthGoole text="Google" />
+            <ButtonAuthGoole text="Google" typeAction="sign-up" />
 
             <Divider className={s["form_control"]}>
                 <Chip label="OR" size="small" />

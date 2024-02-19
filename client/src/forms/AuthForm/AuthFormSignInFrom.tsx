@@ -73,7 +73,7 @@ const AuthFormSignInFrom = ({ type }: { type: TypeActionAuth }) => {
         // console.log("SubmitFormValues", data)
         try {
             const response = await getAuthForm(type, data);
-            userCtx.logInUser(response.user);
+            userCtx.authUser(response.user);
             navigate("/");
         } catch (error) {
             console.log(error);

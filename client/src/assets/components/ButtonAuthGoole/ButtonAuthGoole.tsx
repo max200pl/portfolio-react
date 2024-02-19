@@ -3,10 +3,10 @@ import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { GoogleLoginButton } from "react-social-login-buttons";
 import { UserContext } from "../../../context/user-context";
-import { getAuthGoole } from "../../api/auth.api";
+import { getAuthGoole, TypeActionAuth } from '../../api/auth.api';
 import s from "./ButtonAuthGoole.module.scss";
 
-const ButtonAuthGoole = ({ text }: { text?: string }) => {
+const ButtonAuthGoole = ({ text, typeAction }: { text?: string, typeAction: TypeActionAuth }) => {
     const navigate = useNavigate();
     const userCtx = useContext(UserContext);
 
@@ -14,8 +14,8 @@ const ButtonAuthGoole = ({ text }: { text?: string }) => {
     const googleLoginHandler = useGoogleLogin({
         onSuccess: async (codeResponse) => {
             try {
-                const authGooleResponse = await getAuthGoole("login", codeResponse);
-                userCtx.logInUser(authGooleResponse.user);
+                const authGooleResponse = await getAuthGoole(typeAction, codeResponse);
+                userCtx.authUser(authGooleResponse.user);
                 navigate("/");
             } catch (error) {
                 console.log(error);

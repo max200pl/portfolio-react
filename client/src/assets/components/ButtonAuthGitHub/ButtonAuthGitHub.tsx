@@ -27,7 +27,7 @@ const ButtonAuthGitHub = () => {
             getAuthGitHub({ code })
                 .then((authGitHubResponse) => {
                     console.log(authGitHubResponse, "authGitHubResponse")
-                    userCtx.logInUser(authGitHubResponse.user);
+                    userCtx.authUser(authGitHubResponse.user);
                     navigate("/");
                 })
                 .catch((error) => {
