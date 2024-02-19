@@ -11,13 +11,11 @@ const {
 const authLogin = express.Router();
 const cookieSession = require("cookie-session");
 const { updateUser } = require("../../models/users.model");
+const { authRoutes } = require("./auth.router");
 require("dotenv").config();
 
-const authRoutes = {
-    google: "/google",
-    github: "/github",
-    form: "/form",
-};
+
+//** ---------------- Authorization ----------------------- **//
 
 function authFailed(error) {
     if (error?.code === 401 || error?.code === 404) {
@@ -25,7 +23,6 @@ function authFailed(error) {
         return;
     }
 }
-
 
 authLogin.use(async (req, res, next) => {
     try {

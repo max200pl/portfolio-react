@@ -8,7 +8,7 @@ import {
 import React from "react";
 import ButtonAuthGitHub from "../../../assets/components/ButtonAuthGitHub/ButtonAuthGitHub";
 import ButtonAuthGoole from "../../../assets/components/ButtonAuthGoole/ButtonAuthGoole";
-import AuthFormSignInFrom from "../../../forms/AuthForm/AuthFormSignInFrom";
+import AuthForm from "../../../forms/AuthForm/AuthForm";
 import AuthModal from "../AuthModal";
 import s from "./AuthSignIn.module.scss";
 import { useNavigate } from "react-router-dom";
@@ -36,7 +36,7 @@ const AuthSignIn: React.FC = () => {
                 <Chip label="OR" size="small" />
             </Divider>
 
-            <AuthFormSignInFrom type={typeAction} />
+            <AuthForm type={typeAction} />
         </AuthModal>
     );
 };

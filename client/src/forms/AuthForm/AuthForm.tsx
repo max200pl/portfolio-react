@@ -21,7 +21,7 @@ import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
 import { TypeActionAuth, getAuthForm } from "../../assets/api/auth.api";
 import { UserContext } from "../../context/user-context";
-import s from "./AuthFormSignInFrom.module.scss";
+import s from "./AuthForm.module.scss";
 
 
 export type SubmitFormValues = {
@@ -51,11 +51,11 @@ const schema = yup.object().shape({
     remember: yup.boolean().default(true),
 });
 
-const AuthFormSignInFrom = ({ type }: { type: TypeActionAuth }) => {
+const AuthForm = ({ type }: { type: TypeActionAuth }) => {
     const navigate = useNavigate();
     const userCtx = useContext(UserContext);
     const [showPassword, setShowPassword] = React.useState(false);
-
+    console.log("AuthForm", type);
 
     const {
         control,
@@ -176,4 +176,4 @@ const AuthFormSignInFrom = ({ type }: { type: TypeActionAuth }) => {
     );
 };
 
-export default AuthFormSignInFrom;
+export default AuthForm;

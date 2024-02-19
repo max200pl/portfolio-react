@@ -1,6 +1,6 @@
 import { TokenResponse } from '@react-oauth/google';
 import { baseQuery } from './api.helper';
-import { SubmitFormValues } from '../../forms/AuthForm/AuthFormSignInFrom';
+import { SubmitFormValues } from '../../forms/AuthForm/AuthForm';
 
 const AUTH_API_BASE_URL = "http://localhost:8000/auth";
 
@@ -19,7 +19,7 @@ export const getAuthGoole = (type: TypeActionAuth, codeResponse: TokenResponse) 
 
 export const getAuthForm = (type: TypeActionAuth, submitFormValues: SubmitFormValues) => {
     const baseQueryFn = baseQuery;
-
+    console.log(`${AUTH_API_BASE_URL}/${type}/form`)
     return baseQueryFn({
         url: `${AUTH_API_BASE_URL}/${type}/form`,
         body: submitFormValues,

@@ -3,6 +3,14 @@ const axios = require('axios');
 const { findUser } = require('../../models/users.model');
 require("dotenv").config();
 
+async function httpFindUser(email) {
+    try {
+        return await findUser(email);
+    } catch (error) {
+        return error;
+    }
+}
+
 async function httpGoogleAuthorization(codeResponse) {
     const response = await axios({
         url: "https://www.googleapis.com/oauth2/v1/userinfo",
@@ -59,31 +67,6 @@ async function httpAuthGitHubAuthorization(codeResponse) {
 }
 
 
-async function httpAuthFormAuthorization(bodyAuth) {
-    const { email, password, remember } = bodyAuth;
-
-    try {
-        console.log("Step ONE httpAuthFormAuthorization", email, password, remember);
-
-        const user = await findUser(email);
-
-        if (!user) {
-            return { error: { code: 404, message: "User not found" } };
-        }
-
-        const isPasswordValid = user.password === password;
-
-        if (!isPasswordValid) {
-            return { error: { code: 401, message: "Invalid password" } };
-        }
-
-        return user;
-    } catch (error) {
-        console.error("Error during form authentication:", error);
-        return error;
-    }
-}
-
 async function httpGoogleAuth(req, res, next) {
     return res.status(200).json({ message: "Success Google Auth", user: req.session.user });
 }
@@ -100,8 +83,8 @@ module.exports = {
     httpGoogleAuth,
     httpAuthGitHub,
     httpAuthForm,
+    httpFindUser,
     httpGoogleAuthorization,
-    httpAuthFormAuthorization,
     httpAuthGitHubAuthorization,
     httpAuthGitHubAuthentication
 };

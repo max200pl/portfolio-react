@@ -15,6 +15,9 @@ const ButtonAuthGoole = ({ text, typeAction }: { text?: string, typeAction: Type
         onSuccess: async (codeResponse) => {
             try {
                 const authGooleResponse = await getAuthGoole(typeAction, codeResponse);
+                if (authGooleResponse.user === undefined) {
+                    throw new Error("User not found");
+                }
                 userCtx.authUser(authGooleResponse.user);
                 navigate("/");
             } catch (error) {
