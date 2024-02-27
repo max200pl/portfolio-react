@@ -13,6 +13,35 @@ import AuthModal from "../AuthModal";
 import s from "./AuthSignIn.module.scss";
 import { useNavigate } from "react-router-dom";
 import { TypeActionAuth } from '../../../assets/api/auth.api';
+import * as yup from "yup";
+import { emailRegExp } from "../../../assets/helpers/regular-expressions";
+
+
+
+export type SubmitSignInFormValues = {
+    email: string;
+    password: string;
+    remember: boolean;
+};
+
+const schema = yup.object().shape({
+    email: yup
+        .string()
+        .test(
+            "emailOrPhone",
+            "Invalid format. Please enter a valid email.",
+            (value) => {
+                return emailRegExp.test(value ?? ""); // || phonePattern.test(value ?? "");
+            }
+        )
+        .required("Email is required").defined(),
+    password: yup
+        .string()
+        .trim()
+        .required("Enter password")
+        .min(6, "Password must be at least 6 characters long.").defined(),
+    remember: yup.boolean().defined(),
+});
 
 
 const AuthSignIn: React.FC = () => {
@@ -36,7 +65,7 @@ const AuthSignIn: React.FC = () => {
                 <Chip label="OR" size="small" />
             </Divider>
 
-            <AuthForm type={typeAction} />
+            <AuthForm type={typeAction} schema={schema} />
         </AuthModal>
     );
 };

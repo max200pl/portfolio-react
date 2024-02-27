@@ -1,0 +1,9 @@
+export const phoneRegExp = /^(?:\+\d{1,3}|\d{1,3})\d{9}$/;
+export const phoneOrEmailRegExp = /^(?:\+\d{1,3}|\d{1,3})\d{9}$|^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+export const latinLettersRegExp = /^([a-za-z\u00c0-\u00d6\u00d8-\u00f6\u00f8-\u00ff\s]*)$/gi;
+export const incUpperCaseSymRegExp = /^(?=.*[A-Z]).+$/;
+export const incLowerCaseSymRegExp = /^(?=.*[a-z]).+$/;
+export const incNumberRegExp = /^(?=.*\d).+$/;
+export const incSpecialSymRegExp = /^(?=.*\W).+$/;
+export const omitBlackSpaceRegExp = /^(\S+$)/;
+export const emailRegExp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;

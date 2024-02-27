@@ -18,40 +18,20 @@ import {
 import React, { useContext } from "react";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import * as yup from "yup";
 import { TypeActionAuth, getAuthForm } from "../../assets/api/auth.api";
 import { UserContext } from "../../context/user-context";
 import s from "./AuthForm.module.scss";
+import { SubmitSignInFormValues } from "../../pages/Auth/AuthSignIn/AuthSignIn";
+import { AnyObject, Maybe, ObjectSchema } from "yup";
+import { SubmitSignUpFormValues } from "../../pages/Auth/AuthSignUp/AuthSignUp";
 
+interface AuthFormProps<T extends Maybe<AnyObject>> {
+    type: TypeActionAuth;
+    schema: ObjectSchema<T>;
+    defaultValues?: any;
+}
 
-export type SubmitFormValues = {
-    email: string;
-    password: string;
-    remember: boolean;
-};
-
-const schema = yup.object().shape({
-    email: yup
-        .string()
-        .test(
-            "emailOrPhone",
-            "Invalid format. Please enter a valid email.",
-            (value) => {
-                // const phonePattern = /^(\+\d{1,3})?\d{10}$/;
-                const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                return emailPattern.test(value ?? ""); // || phonePattern.test(value ?? "");
-            }
-        )
-        .required("Email is required"),
-    password: yup
-        .string()
-        .trim()
-        .required("Enter password")
-        .min(6, "Password must be at least 6 characters long."),
-    remember: yup.boolean().default(true),
-});
-
-const AuthForm = ({ type }: { type: TypeActionAuth }) => {
+const AuthForm = <T extends SubmitSignUpFormValues | SubmitSignInFormValues>({ type, schema, defaultValues }: AuthFormProps<T>) => {
     const navigate = useNavigate();
     const userCtx = useContext(UserContext);
     const [showPassword, setShowPassword] = React.useState(false);
@@ -61,15 +41,13 @@ const AuthForm = ({ type }: { type: TypeActionAuth }) => {
         control,
         handleSubmit,
         formState: { errors },
-    } = useForm<SubmitFormValues>({
+    } = useForm({
         mode: "onSubmit",
         resolver: yupResolver(schema),
-        defaultValues: {
-            remember: true,
-        }
+        defaultValues
     });
 
-    const onSubmit: SubmitHandler<SubmitFormValues> = async (data) => {
+    const onSubmit: SubmitHandler<SubmitSignUpFormValues | SubmitSignInFormValues> = async (data) => {
         // console.log("SubmitFormValues", data)
         try {
             const response = await getAuthForm(type, data);
@@ -82,6 +60,53 @@ const AuthForm = ({ type }: { type: TypeActionAuth }) => {
 
     return (
         <form onSubmit={handleSubmit(onSubmit)} className={s.form}>
+            {type === "sign-up" && (
+                <Stack
+                    direction="row"
+                    spacing={2}
+                    alignItems="center"
+                    justifyContent="space-between"
+                    className={s["form_control"]}
+                >
+                    <Controller
+                        name="firstName"
+                        control={control}
+                        rules={{ required: true }}
+                        render={({ field }) => (
+                            <TextField
+                                {...field}
+                                variant="outlined"
+                                label="First Name"
+                                className={s["form_control"]}
+                                size="small"
+                                margin="none"
+                                error={!!errors.firstName}
+                                helperText={<>{errors?.firstName?.message}</>}
+                                fullWidth
+                            />
+                        )}
+                    />
+                    <Controller
+                        name="lastName"
+                        control={control}
+                        rules={{ required: true }}
+                        render={({ field }) => (
+                            <TextField
+                                {...field}
+                                variant="outlined"
+                                label="Last Name"
+                                className={s["form_control"]}
+                                size="small"
+                                margin="none"
+                                error={!!errors.lastName}
+                                helperText={<>{errors?.lastName?.message}</>}
+                                fullWidth
+                            />
+                        )}
+                    />
+                </Stack>
+            )}
+
             <Controller
                 name="email"
                 control={control}
@@ -95,7 +120,7 @@ const AuthForm = ({ type }: { type: TypeActionAuth }) => {
                         size="small"
                         margin="none"
                         error={!!errors.email}
-                        helperText={errors?.email?.message}
+                        helperText={<>{errors?.email?.message}</>}
                         fullWidth
                     />
                 )}
@@ -134,7 +159,9 @@ const AuthForm = ({ type }: { type: TypeActionAuth }) => {
 
                         {errors?.password?.message && (
                             <FormHelperText error id="accountId-error">
-                                {errors?.password?.message}
+                                <>
+                                    {errors?.password?.message}
+                                </>
                             </FormHelperText>
                         )}
                     </FormControl>

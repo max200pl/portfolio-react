@@ -12,7 +12,35 @@ import AuthModal from "../AuthModal";
 import s from "./AuthSignUp.module.scss";
 import { useNavigate } from "react-router-dom";
 import { TypeActionAuth } from "../../../assets/api/auth.api";
+import * as yup from "yup";
+import { emailRegExp } from "../../../assets/helpers/regular-expressions";
 
+export type SubmitSignUpFormValues = {
+    firstName: string;
+    lastName: string;
+    email: string;
+    password: string;
+};
+
+const schema = yup.object().shape({
+    firstName: yup.string().required("First name is required").min(3, "The First name should contain more than 3 characters").defined(),
+    lastName: yup.string().required("Last name is required").min(3, "The Last name should contain more than 3 characters").defined(),
+    email: yup
+        .string()
+        .test(
+            "email",
+            "Invalid format. Please enter a valid email.",
+            (value) => {
+                return emailRegExp.test(value ?? ""); // || phonePattern.test(value ?? "");
+            }
+        )
+        .required("Email is required").defined(),
+    password: yup
+        .string()
+        .trim()
+        .required("Enter password")
+        .min(6, "Password must be at least 6 characters long.").defined(),
+});
 
 const AuthSignUp: React.FC = () => {
     const navigate = useNavigate();
@@ -33,7 +61,7 @@ const AuthSignUp: React.FC = () => {
                 <Chip label="OR" size="small" />
             </Divider>
 
-            <AuthForm type={typeAction} />
+            <AuthForm type={typeAction} schema={schema} />
         </AuthModal>
     );
 };
