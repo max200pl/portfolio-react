@@ -48,7 +48,7 @@ const AuthForm = <T extends SubmitSignUpFormValues | SubmitSignInFormValues>({ t
     });
 
     const onSubmit: SubmitHandler<SubmitSignUpFormValues | SubmitSignInFormValues> = async (data) => {
-        // console.log("SubmitFormValues", data)
+        console.log("SubmitFormValues", data)
         try {
             const response = await getAuthForm(type, data);
             userCtx.authUser(response.user);
@@ -77,7 +77,6 @@ const AuthForm = <T extends SubmitSignUpFormValues | SubmitSignInFormValues>({ t
                                 {...field}
                                 variant="outlined"
                                 label="First Name"
-                                className={s["form_control"]}
                                 size="small"
                                 margin="none"
                                 error={!!errors.firstName}
@@ -95,7 +94,6 @@ const AuthForm = <T extends SubmitSignUpFormValues | SubmitSignInFormValues>({ t
                                 {...field}
                                 variant="outlined"
                                 label="Last Name"
-                                className={s["form_control"]}
                                 size="small"
                                 margin="none"
                                 error={!!errors.lastName}
@@ -167,33 +165,35 @@ const AuthForm = <T extends SubmitSignUpFormValues | SubmitSignInFormValues>({ t
                     </FormControl>
                 )}
             />
+            {type === "login" && (
+                <Stack
+                    className={s["form_control"]}
+                    direction="row"
+                    spacing={2}
+                    alignItems="center"
+                    justifyContent="space-between"
+                >
+                    <Controller
+                        name="remember"
+                        control={control}
+                        render={({ field }) => {
+                            return <Switch
+                                {...field}
+                                checked={field.value}
+                                color="primary"
+                            />
+                        }}
+                    />
 
-            <Stack
-                className={s["form_control"]}
-                direction="row"
-                spacing={2}
-                alignItems="center"
-                justifyContent="space-between"
-            >
-                <Controller
-                    name="remember"
-                    control={control}
-                    render={({ field }) => {
-                        return <Switch
-                            {...field}
-                            checked={field.value}
-                            color="primary"
-                        />
-                    }}
-                />
+                    <Link href="#" underline="hover" color="inherit">
+                        Forgot password?
+                    </Link>
+                </Stack>
+            )}
 
-                <Link href="#" underline="hover" color="inherit">
-                    Forgot password?
-                </Link>
-            </Stack>
 
             <Button
-                className={`${s["form_control"]} action_button_primary`}
+                className={`${s["form_control"]} ${s["form_control__submit"]}`}
                 variant="contained"
                 type="submit"
             >
