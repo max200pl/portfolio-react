@@ -24,6 +24,8 @@ import s from "./AuthForm.module.scss";
 import { SubmitSignInFormValues } from "../../pages/Auth/AuthSignIn/AuthSignIn";
 import { AnyObject, Maybe, ObjectSchema } from "yup";
 import { SubmitSignUpFormValues } from "../../pages/Auth/AuthSignUp/AuthSignUp";
+import { SetStateAction } from "../../assets/interfaces/interfaces.helpers";
+import { ErrorMessage } from "./ErrorMessage";
 
 interface AuthFormProps<T extends Maybe<AnyObject>> {
     type: TypeActionAuth;
@@ -31,11 +33,15 @@ interface AuthFormProps<T extends Maybe<AnyObject>> {
     defaultValues?: any;
 }
 
-const AuthForm = <T extends SubmitSignUpFormValues | SubmitSignInFormValues>({ type, schema, defaultValues }: AuthFormProps<T>) => {
+const AuthForm = <T extends SubmitSignUpFormValues | SubmitSignInFormValues>({
+    type,
+    schema,
+    defaultValues,
+}: AuthFormProps<T>) => {
     const navigate = useNavigate();
     const userCtx = useContext(UserContext);
     const [showPassword, setShowPassword] = React.useState(false);
-    console.log("AuthForm", type);
+    const [showError, setError] = React.useState<{ message: "string" }>();
 
     const {
         control,
@@ -44,22 +50,33 @@ const AuthForm = <T extends SubmitSignUpFormValues | SubmitSignInFormValues>({ t
     } = useForm({
         mode: "onSubmit",
         resolver: yupResolver(schema),
-        defaultValues
+        defaultValues,
     });
 
-    const onSubmit: SubmitHandler<SubmitSignUpFormValues | SubmitSignInFormValues> = async (data) => {
-        console.log("SubmitFormValues", data)
+    const onSubmit: SubmitHandler<
+        SubmitSignUpFormValues | SubmitSignInFormValues
+    > = async (data) => {
+        console.log("SubmitFormValues", data);
         try {
             const response = await getAuthForm(type, data);
+
+            console.log("response", response);
+            setError(undefined);
             userCtx.authUser(response.user);
             navigate("/");
         } catch (error) {
+            const { response } = error as { response: { data: { message: string } } };
+            setError(response.data as SetStateAction<{ message: "string"; } | undefined>);
             console.log(error);
         }
     };
 
+
     return (
         <form onSubmit={handleSubmit(onSubmit)} className={s.form}>
+            {
+                showError && <ErrorMessage message={showError.message} />
+            }
             {type === "sign-up" && (
                 <Stack
                     direction="row"
@@ -141,7 +158,6 @@ const AuthForm = <T extends SubmitSignUpFormValues | SubmitSignInFormValues>({ t
                             {...field}
                             type={showPassword ? "text" : "password"}
                             error={!!errors.password}
-
                             endAdornment={
                                 <InputAdornment position="end">
                                     <IconButton
@@ -157,9 +173,7 @@ const AuthForm = <T extends SubmitSignUpFormValues | SubmitSignInFormValues>({ t
 
                         {errors?.password?.message && (
                             <FormHelperText error id="accountId-error">
-                                <>
-                                    {errors?.password?.message}
-                                </>
+                                <>{errors?.password?.message}</>
                             </FormHelperText>
                         )}
                     </FormControl>
@@ -177,11 +191,9 @@ const AuthForm = <T extends SubmitSignUpFormValues | SubmitSignInFormValues>({ t
                         name="remember"
                         control={control}
                         render={({ field }) => {
-                            return <Switch
-                                {...field}
-                                checked={field.value}
-                                color="primary"
-                            />
+                            return (
+                                <Switch {...field} checked={field.value} color="primary" />
+                            );
                         }}
                     />
 
@@ -190,7 +202,6 @@ const AuthForm = <T extends SubmitSignUpFormValues | SubmitSignInFormValues>({ t
                     </Link>
                 </Stack>
             )}
-
 
             <Button
                 className={`${s["form_control"]} ${s["form_control__submit"]}`}

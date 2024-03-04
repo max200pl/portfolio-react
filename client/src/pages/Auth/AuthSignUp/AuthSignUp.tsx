@@ -14,6 +14,7 @@ import { useNavigate } from "react-router-dom";
 import { TypeActionAuth } from "../../../assets/api/auth.api";
 import * as yup from "yup";
 import { emailRegExp } from "../../../assets/helpers/regular-expressions";
+import ButtonAuthGitHub from "../../../assets/components/ButtonAuthGitHub/ButtonAuthGitHub";
 
 export type SubmitSignUpFormValues = {
     firstName: string;
@@ -55,7 +56,8 @@ const AuthSignUp: React.FC = () => {
                     Log in now
                 </Link>
             </div>
-            <ButtonAuthGoole text="Google" typeAction={typeAction} />
+            <ButtonAuthGoole typeAction="sign-up" />
+            <ButtonAuthGitHub typeAction="sign-up" />
 
             <Divider className={s["form_control"]}>
                 <Chip label="OR" size="small" />

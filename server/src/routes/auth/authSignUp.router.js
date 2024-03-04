@@ -2,22 +2,21 @@ const express = require("express");
 const {
     httpGoogleAuth: httpAuthGoogle,
     httpGoogleAuthorization,
-    httpAuthGitHub,
+    httpAuthForm,
+    httpAuthFormAuthorization: httpAuthenticationUser,
+    httpFindUser,
     httpAuthGitHubAuthentication,
     httpAuthGitHubAuthorization,
-    httpAuthForm,
-    httpAuthFormAuthorization,
+    httpAuthGitHub,
 } = require("./auth.controller");
 const cookieSession = require("cookie-session");
-const { updateUser } = require("../../models/users.model");
+const { httpCreateUser } = require("./authSignUp.controller");
+const e = require("express");
+
 require("dotenv").config();
 const authSignUp = express.Router();
 
-const authRoutes = {
-    google: "/google",
-    github: "/github",
-    form: "/form",
-};
+//** ----------------  AUTHENTICATION ----------------------- **//
 
 function authFailed(error) {
     if (error?.code === 401 || error?.code === 404) {
@@ -26,6 +25,12 @@ function authFailed(error) {
     }
 }
 
+const authRoutes = {
+    google: "/google",
+    form: "/form",
+    github: "/github",
+};
+
 
 authSignUp.use(async (req, res, next) => {
     try {
@@ -33,74 +38,98 @@ authSignUp.use(async (req, res, next) => {
         const bodyAuth = req.body;
         const route = req.path;
 
+        console.log("Auth route:", route);
+        console.log("Auth body:", bodyAuth);
+        console.log("authRoutes?.form", authRoutes?.form);
+
         if (route === authRoutes.form) {
-            console.log(bodyAuth, "bodyAuth")
+            let userFromBD = await httpFindUser(bodyAuth);
 
-            const response = await httpAuthFormAuthorization(bodyAuth);
+            if (userFromBD === null) {
+                userFromBD = await httpCreateUser(bodyAuth);
+                console.log("User DB create:", userFromBD);
 
-            if (response?.error) {
-                authFailed(response.error);
-                return;
+                if (userFromBD?.error) {
+                    authFailed(userFromBD.error);
+                    return;
+                }
+
+                req.user = userFromBD;
+                next()
+            } else {
+                return res.status(409).json({ message: "This email address is already in use." });
             }
-
-            user = {
-                firstName: response.firstName,
-                lastName: response.lastName,
-                email: response.email,
-                avatarUrl: response.avatarUrl,
-            };
         }
 
         if (route === authRoutes.google) {
-            const userGoole = await httpGoogleAuthorization(bodyAuth);
+            let userGoole = await httpGoogleAuthorization(bodyAuth);
 
-            user = {
+            console.log("Authorization User Goole:", userGoole);
+
+            userGoole = {
                 googleId: userGoole.id,
                 firstName: userGoole.given_name,
                 lastName: userGoole.family_name,
                 email: userGoole.email,
                 avatarUrl: userGoole.picture,
             }
+
+            const userFromDb = await httpFindUser(userGoole);
+
+            if (userFromDb === null) {
+                user = await httpCreateUser(userGoole);
+                console.log("User DB create:", user);
+
+                if (user?.error) {
+                    authFailed(user.error);
+                    return;
+                }
+
+                req.user = user;
+                next();
+            } else {
+                req.user = userFromDb;
+                next();
+            }
         }
 
         if (route === authRoutes.github) {
-            console.log(bodyAuth, "bodyAuth")
+            console.log("Auth route:", route);
             const authenticationResponse = await httpAuthGitHubAuthentication(bodyAuth);
-            const userGitHub = await httpAuthGitHubAuthorization(authenticationResponse);
+            let userGitHub = await httpAuthGitHubAuthorization(authenticationResponse);
 
-            user = {
+            userGitHub = {
                 githubId: userGitHub.id,
                 name: userGitHub.name,
                 avatarUrl: userGitHub.avatar_url,
             }
+
+            const userFromDb = await httpFindUser(userGitHub);
+
+            if (userFromDb === null) {
+                user = await httpCreateUser(userGitHub);
+                console.log("User DB create:", user);
+
+                if (user?.error) {
+                    authFailed(user.error);
+                    return;
+                }
+
+                req.user = user;
+                next();
+            } else {
+                req.user = userFromDb;
+                next();
+            }
         }
-
-
-
-        console.log("Auth user info:", user);
-
-        req.authorizationData = user;
-
-        next();
     } catch (error) {
         console.error("Error during authentication:", error);
         res.status(500).json({ message: "Internal server error" });
     }
 });
 
-authSignUp.use(async (req, res, next) => {
-    try {
-        req.userFromDB = await updateUser(req.authorizationData);
-        console.log("Create or update user success:", req.userFromDB);
-    } catch (error) {
-        console.error("Error during create or update user from DB:", error);
-        res.status(500).json({ message: "Internal server error" });
-    }
 
-    next();
-});
-
-authSignUp.use(
+authSignUp.use( //TODO: move to middleware
     cookieSession({
         name: "session", // name of the cookie
         maxAge: 24 * 60 * 60 * 1000, // time live in milliseconds
@@ -108,7 +137,7 @@ authSignUp.use(
     }),
     (req, res, next) => {
         try {
-            req.session.user = req.userFromDB;
+            req.session.user = req.user;
             console.log("Session user:", req.session.user);
             next();
         } catch (error) {
@@ -117,7 +146,8 @@ authSignUp.use(
     }
 );
 
-authSignUp.post("/google", httpAuthGoogle);
-authSignUp.post("/form", httpAuthForm);
+authSignUp.get(authRoutes.github, httpAuthGitHub);
+authSignUp.post(authRoutes.google, httpAuthGoogle);
+authSignUp.post(authRoutes.form, httpAuthForm);
 
 module.exports = authSignUp;

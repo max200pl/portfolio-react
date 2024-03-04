@@ -3,9 +3,12 @@ const axios = require('axios');
 const { findUser } = require('../../models/users.model');
 require("dotenv").config();
 
-async function httpFindUser(email) {
+/**
+ * @param {{email: string, googleId: string, githubId: string}} user
+ */
+async function httpFindUser(user) {
     try {
-        return await findUser(email);
+        return await findUser(user);
     } catch (error) {
         return error;
     }
@@ -41,7 +44,7 @@ async function httpAuthGitHubAuthentication(codeResponse) {
             }
         });
 
-        console.info("Step ONE response httpAuthGitHub", response);
+        console.info("Step ONE response httpAuthGitHub", response.statusText);
 
         return response.data;
     } catch (error) {
@@ -61,7 +64,7 @@ async function httpAuthGitHubAuthorization(codeResponse) {
         }
     });
 
-    console.log("Step TWO response USER INFO  httpAuthGitHub", response);
+    console.log("Step TWO response USER INFO  httpAuthGitHub", response.data);
 
     return response.data;
 }

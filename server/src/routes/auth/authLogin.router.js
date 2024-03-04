@@ -7,11 +7,12 @@ const {
     httpAuthGitHubAuthorization,
     httpAuthForm,
     httpAuthFormAuthorization,
+    httpFindUser,
 } = require("./auth.controller");
 const authLogin = express.Router();
 const cookieSession = require("cookie-session");
+const { httpCreateUser } = require("./authSignUp.controller");
 const { updateUser } = require("../../models/users.model");
-const { authRoutes } = require("./auth.router");
 require("dotenv").config();
 
 
@@ -24,6 +25,12 @@ function authFailed(error) {
     }
 }
 
+const authRoutes = {
+    google: "/google",
+    github: "/github",
+    form: "/form",
+};
+
 authLogin.use(async (req, res, next) => {
     try {
         let user = null;
@@ -32,70 +39,90 @@ authLogin.use(async (req, res, next) => {
 
         if (route === authRoutes.form) {
             console.log(bodyAuth, "bodyAuth")
+            const user = await httpFindUser(bodyAuth);
 
-            const response = await httpAuthFormAuthorization(bodyAuth);
-
-            if (response?.error) {
-                authFailed(response.error);
+            if (user?.error) {
+                authFailed(user.error);
                 return;
             }
 
-            user = {
-                firstName: response.firstName,
-                lastName: response.lastName,
-                email: response.email,
-                avatarUrl: response.avatarUrl,
-            };
+            if (user === null) {
+                return res.status(400).json({ message: "Invalid email address. Please enter a valid email address and try again." });
+            }
+
+            req.user = user;
+
+            next();
         }
 
         if (route === authRoutes.google) {
             const userGoole = await httpGoogleAuthorization(bodyAuth);
 
-            user = {
-                googleId: userGoole.id,
-                firstName: userGoole.given_name,
-                lastName: userGoole.family_name,
-                email: userGoole.email,
-                avatarUrl: userGoole.picture,
+            if (userGoole?.error) {
+                authFailed(response.error);
+                return;
+            }
+
+            userEmail = { email: userGoole.email }
+
+            const userFromDb = await httpFindUser(userEmail);
+
+            if (userFromDb === null) {
+                user = await httpCreateUser(userGitHub);
+                console.log("User DB create:", user);
+
+                if (user?.error) {
+                    authFailed(user.error);
+                    return;
+                }
+
+                req.user = user;
+                next();
+            } else {
+                req.user = userFromDb;
+                next();
             }
         }
 
         if (route === authRoutes.github) {
-            console.log(bodyAuth, "bodyAuth")
             const authenticationResponse = await httpAuthGitHubAuthentication(bodyAuth);
-            const userGitHub = await httpAuthGitHubAuthorization(authenticationResponse);
+            let userGitHub = await httpAuthGitHubAuthorization(authenticationResponse);
 
-            user = {
+            userGitHub = {
                 githubId: userGitHub.id,
                 name: userGitHub.name,
                 avatarUrl: userGitHub.avatar_url,
             }
+
+            // if (user?.error) {
+            //     authFailed(user.error);
+            //     return;
+            // }
+
+            const userFromDb = await httpFindUser(userGitHub);
+
+            if (userFromDb === null) {
+                user = await updateUser(userGitHub);
+                console.log("User DB create:", userGitHub);
+
+                // if (user?.error) {
+                //     authFailed(user.error);
+                //     return;
+                // }
+                req.user = user;
+                next();
+            } else {
+                req.user = userGitHub;
+                next();
+            }
         }
 
-
-
-        console.log("Auth user info:", user);
-
-        req.authorizationData = user;
-
-        next();
     } catch (error) {
         console.error("Error during authentication:", error);
         res.status(500).json({ message: "Internal server error" });
     }
 });
 
-authLogin.use(async (req, res, next) => {
-    try {
-        req.userFromDB = await updateUser(req.authorizationData);
-        console.log("Create or update user success:", req.userFromDB);
-    } catch (error) {
-        console.error("Error during create or update user from DB:", error);
-        res.status(500).json({ message: "Internal server error" });
-    }
-
-    next();
-});
 
 authLogin.use(
     cookieSession({
@@ -105,11 +132,11 @@ authLogin.use(
     }),
     (req, res, next) => {
         try {
-            req.session.user = req.userFromDB;
+            req.session.user = req.user;
             console.log("Session user:", req.session.user);
             next();
         } catch (error) {
-            res.status(500).json({ message: "Internal server error" });
+            res.status(500).json({ message: "Internal server error !!!!!!" });
         }
     }
 );

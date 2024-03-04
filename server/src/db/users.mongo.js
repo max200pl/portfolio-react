@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const commonUserSchema = new mongoose.Schema({
+const UserSchema = new mongoose.Schema({
     name: {
         type: String,
     },
@@ -13,6 +13,7 @@ const commonUserSchema = new mongoose.Schema({
     email: {
         type: String,
         required: true,
+        sparse: true,
         unique: true
     },
     password: {
@@ -21,22 +22,14 @@ const commonUserSchema = new mongoose.Schema({
     avatarUrl: {
         type: String
     },
-});
-
-const userSchema = new mongoose.Schema({
-    ...commonUserSchema.obj,
     googleId: {
         type: String,
-        unique: true,
-        sparse: true
     },
     githubId: {
         type: String,
-        unique: true,
-        sparse: true
     },
 });
 
-const User = mongoose.model('Users', userSchema);
+const User = mongoose.model('Users', UserSchema);
 
 module.exports = User

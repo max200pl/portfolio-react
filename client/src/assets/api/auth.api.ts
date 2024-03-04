@@ -20,7 +20,7 @@ export const getAuthGoole = (type: TypeActionAuth, codeResponse: TokenResponse) 
 
 export const getAuthForm = (type: TypeActionAuth, submitFormValues: SubmitSignUpFormValues | SubmitSignInFormValues) => {
     const baseQueryFn = baseQuery;
-    console.log(`${AUTH_API_BASE_URL}/${type}/form`)
+
     return baseQueryFn({
         url: `${AUTH_API_BASE_URL}/${type}/form`,
         body: submitFormValues,
@@ -28,11 +28,11 @@ export const getAuthForm = (type: TypeActionAuth, submitFormValues: SubmitSignUp
     })
 };
 
-export const getAuthGitHub = (codeResponse: { code: string }) => {
+export const getAuthGitHub = (type: TypeActionAuth, codeResponse: { code: string }) => {
     const baseQueryFn = baseQuery;
 
     return baseQueryFn({
-        url: AUTH_API_BASE_URL + '/login/github',
+        url: `${AUTH_API_BASE_URL}/${type}/github`,
         body: codeResponse,
         method: 'post',
         credentials: 'include'

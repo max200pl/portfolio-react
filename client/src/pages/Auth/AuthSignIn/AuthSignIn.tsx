@@ -59,7 +59,7 @@ const AuthSignIn: React.FC = () => {
             </div>
 
             <ButtonAuthGoole typeAction="login" />
-            <ButtonAuthGitHub />
+            <ButtonAuthGitHub typeAction="login" />
 
             <Divider className={s["form_control"]}>
                 <Chip label="OR" size="small" />
