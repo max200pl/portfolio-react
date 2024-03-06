@@ -7,8 +7,6 @@ import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import "swiper/css/zoom";
 import 'swiper/css/effect-fade';
-import ImageLazyLoad from '../../../assets/components/ImageLazyLoad/ImageLazyLoad';
-import { getUrlWorkImage } from '../../../assets/helpers/helpers';
 
 const ModalWorkSlider = ({ images }) => {
     return (

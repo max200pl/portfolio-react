@@ -1,6 +1,6 @@
 // https://spacejelly.dev/posts/uploading-files-in-react-from-a-form-with-drag-and-drop/
 
-import { Dispatch, FC, useCallback, useEffect, useState } from "react";
+import { FC, useCallback, useEffect, useState } from "react";
 import s from "./ImageFileUpload.module.scss";
 import ImageLazyLoad from "../ImageLazyLoad/ImageLazyLoad";
 import { useDropzone } from "react-dropzone";
@@ -8,7 +8,6 @@ import ImgFileUpload from "../../images/upload_image.svg";
 import ImageChangeFileUpload from "../../images/change_upload.svg";
 
 import { ReactComponent as ImageDeleted } from "../../images/delete.svg";
-import { SetStateAction } from "../../interfaces/interfaces.helpers";
 import { FieldErrors, UseFormClearErrors, UseFormSetValue } from "react-hook-form";
 import { IFormInput } from "../../../modals/ModalWorkManager/ModalWorkManagerForm/ModalWorkManagerForm";
 

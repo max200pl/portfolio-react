@@ -39,7 +39,7 @@ const ButtonAuthGitHub = ({ typeAction }: { typeAction: TypeActionAuth }) => {
                     console.log(error);
                 })
         }
-    }, []);
+    }, [navigate, userCtx]);
 
     return (<>
         {
