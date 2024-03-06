@@ -15,10 +15,9 @@ export default function ModalWork({
                 <img className={s.modal__close_image} src={exitImg} alt="Close" />
             </button>
             <div className={s.modal__header}>
-                <Fade duration={100} triggerOnce="true" direction="left" cascade className={s.modal__title}>
+                <Fade className={s.modal__title} duration={100} triggerOnce="true" direction="left" cascade >
                     {work.name}
                 </Fade>
-
                 <div className={s.modal__subtitle}>
                     {work.category}
                     <span className={s.modal__subtitle_divider}>|</span>
@@ -33,11 +32,11 @@ export default function ModalWork({
             </div>
 
             <div className={s.content} onClick={(e) => e.stopPropagation()}>
-                {/*   <div className={s.content__slider}>
+                <div className={s.content__slider}>
                     {work.images &&
                         <ModalWorkSlider images={work.images} />
                     }
-                </div> */}
+                </div>
 
                 <div className={s.content__panel}>
                     <ModalWorkSkills position="right" mixin="works" technology={work.frontTech} />

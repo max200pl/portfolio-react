@@ -5,14 +5,22 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    background: rgba($color: #008000, $alpha: 0.6);
+    padding: 30px;
 
-    max-width: 960px;
-    height: 100%;
-    margin: 0 auto;
-    padding-top: 200px;
+    @include xs-mb {
+        margin: 0;
+    }
+
+    // max-width: 960px;
+    // height: 100%;
+    // margin: 0 auto;
+    // padding-top: 200px;
+
+    height: 100vh;
 
     @include xs-lg {
-        overflow-y: scroll;
+        overflow: auto;
         padding-top: 60px;
     }
 
@@ -20,19 +28,21 @@
         margin-bottom: 100px;
         text-align: center;
 
-        @include xs-lg {
+        @include mb-lg {
             margin-bottom: 50px;
         }
     }
 
     &__close {
-        position: absolute;
+        position: sticky;
         z-index: 1;
-        top: 12%;
-        right: 10px;
-
+        top: 20px;
+        right: 20px;
+        left: auto;
         width: 24px;
         height: 29px;
+
+        margin-left: auto;
 
         border: 0;
         cursor: pointer;
@@ -44,10 +54,10 @@
             transform: translateY(-3px);
         }
 
-        @include xs-lg {
-            top: 20px;
-            right: 20px;
-        }
+        // @include xs-lg {
+        //     top: 20px;
+        //     right: 20px;
+        // }
     }
 
     .content {

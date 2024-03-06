@@ -5,7 +5,6 @@ import {
     Technology,
     TechnologyName,
 } from "../../../assets/interfaces/interfaces";
-import { IFormInput } from "./ModalWorkManagerForm";
 
 
 function processValues(group: string, values: undefined | TechnologyName[] | Technology[]): CheckboxesTagsOptions {

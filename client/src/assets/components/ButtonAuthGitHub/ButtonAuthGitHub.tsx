@@ -5,6 +5,7 @@ import { UserContext } from "../../../context/user-context";
 import { TypeActionAuth, getAuthGitHub } from "../../api/auth.api";
 import s from "./ButtonAuthGitHub.module.scss";
 import { ErrorMessage } from "../../../forms/AuthForm/ErrorMessage";
+import { SetStateAction } from "../../interfaces/interfaces.helpers";
 
 const GITHUB_CLIENT_ID = "d54cbcb0435f980b2bf1";
 
@@ -33,7 +34,9 @@ const ButtonAuthGitHub = ({ typeAction }: { typeAction: TypeActionAuth }) => {
                     navigate("/");
                 })
                 .catch((error) => {
-                    return console.log("error", error);
+                    const { response } = error as { response: { data: { message: string } } };
+                    setError(response.data as SetStateAction<{ message: "string"; } | undefined>);
+                    console.log(error);
                 })
         }
     }, []);

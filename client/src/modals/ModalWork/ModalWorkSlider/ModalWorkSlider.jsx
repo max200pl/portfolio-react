@@ -28,7 +28,13 @@ const ModalWorkSlider = ({ images }) => {
                 "--swiper-pagination-color": "#10AEDF",
             }}
         >
-            {images &&
+            <SwiperSlide className={s.work_slide}>
+                <div className="swiper-zoom-container">
+
+                    {/* <ImageLazyLoad blurHash={image.blurHash} name={image.name} url={URL_IMG} /> */}
+                </div>
+            </SwiperSlide>
+            {/* {images &&
                 images.map((image, id) => {
                     const URL_IMG = getUrlWorkImage(image.name)
 
@@ -38,7 +44,7 @@ const ModalWorkSlider = ({ images }) => {
                         </div>
                     </SwiperSlide>
                 })
-            }
+            } */}
         </Swiper>
     );
 

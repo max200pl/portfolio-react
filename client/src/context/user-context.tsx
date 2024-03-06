@@ -1,6 +1,6 @@
 
 import Cookies from "js-cookie";
-import { FC, createContext, useEffect, useState } from "react";
+import { FC, createContext, useState } from "react";
 import { logOutUser } from "../assets/api/auth.api";
 
 interface User {

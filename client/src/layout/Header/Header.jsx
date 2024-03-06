@@ -3,10 +3,7 @@ import s from "./Header.module.scss";
 import HelloImg from "../../assets/images/header/hello.svg";
 import PortfolioImg from "../../assets/images/header/portfolio.svg";
 import AboutImg from "../../assets/images/header/about.svg";
-import GithubImg from "../../assets/images/header/github.svg";
 import ContactImg from "../../assets/images/header/contact.svg";
-import Cookies from "js-cookie";
-import { LazyLoadImage } from "react-lazy-load-image-component";
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../context/user-context";
 
