@@ -16,6 +16,10 @@ body {
     box-sizing: border-box;
 }
 
+.modal-open {
+    overflow: hidden;
+}
+
 .container {
     position: relative;
     max-width: 1220px;

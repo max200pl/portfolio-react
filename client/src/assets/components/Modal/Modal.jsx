@@ -9,6 +9,15 @@ const Modal = ({ children, isOpen, handleClose, position = undefined }) => {
     const nodeRef = useRef(null);
 
     useEffect(() => {
+        if (isOpen) {
+            document.body.className = "modal-open";
+        }
+        return () => {
+            document.body.className = "";
+        };
+    }, [isOpen, handleClose]);
+
+    useEffect(() => {
         const closeOnEscapeKey = (e) => (e.key === "Escape" ? handleClose() : null);
         document.body.addEventListener("keydown", closeOnEscapeKey);
         return () => {
