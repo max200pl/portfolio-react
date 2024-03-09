@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "npm test --prefix server && npm test --prefix client"
+    "test": "cd server && npm test"
   },
   "keywords": [],
   "author": "",
