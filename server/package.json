@@ -4,8 +4,8 @@
     "description": "Portfolio API",
     "main": "src/server.js",
     "scripts": {
-        "test": "npx jest --detectOpenHandles",
-        "test-watch": "npx jest --watch",
+        "test": "jest --detectOpenHandles",
+        "test-watch": "jest --watch",
         "watch": "nodemon src/server.js",
         "start": "node src/server.js"
     },
