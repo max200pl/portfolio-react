@@ -11,8 +11,7 @@ mongoose.connection.on("error", (err) => {
 })
 
 async function mongoConnect() {
-    console.log(MONGO_URL, "MongoDB connection");
-    mongoose.connect(MONGO_URL)
+    mongoose.connect(MONGO_URL);
 }
 
 async function mongoDisconnect() {
@@ -21,6 +20,5 @@ async function mongoDisconnect() {
 
 module.exports = {
     mongoConnect,
-    mongoDisconnect
+    mongoDisconnect,
 }
-

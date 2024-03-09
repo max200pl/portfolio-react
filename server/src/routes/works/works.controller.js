@@ -26,19 +26,13 @@ async function httpGetAllWorks(req, res) {
     console.log(category, "category");
 
     try {
-        if (category) {
-            works = await getGetFilterWorks(category);
-        } else {
-            works = await getAllWorks();
-        }
-        return res.status(200).json(works);
+        works = await getAllWorks();
+        res.status(200).json(works);
     } catch (error) {
         res.status(400).json({
             error: `Something went wrong ${error}`,
         });
     }
-
-    return res.status(200).json(works);
 }
 
 async function httpGetImagesWork(req, res) {
