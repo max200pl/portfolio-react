@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "install-server": "npm install --prefix server",
+    "install-client": "npm install --prefix client",
     "test": "cd server && npm run test"
   },
   "keywords": [],
