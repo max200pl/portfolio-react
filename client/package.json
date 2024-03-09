@@ -73,6 +73,7 @@
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@tanstack/eslint-plugin-query": "^5.12.1",
     "@types/react-datepicker": "^4.19.3",
+    "jest": "^27.5.1",
     "react-transition-group": "^4.4.5",
     "sass": "^1.69.5"
   }
