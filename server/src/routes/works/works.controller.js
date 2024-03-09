@@ -13,7 +13,7 @@ const {
 const {
     getCardImage,
 } = require("../../utils/images");
-const { join } = require("node:path");
+const path = require('path');
 
 async function httpGetAllWorks(req, res) {
     let works = undefined;
@@ -34,7 +34,7 @@ async function httpGetImagesWork(req, res) {
     const { project, name } = req.query;
 
     const options = {
-        root: join(__dirname, "../../images/" + project),
+        root: path.join(__dirname, "../../images/" + project),
         dotfiles: "deny",
         headers: {
             "x-timestamp": Date.now(),

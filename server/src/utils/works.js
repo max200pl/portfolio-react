@@ -1,8 +1,8 @@
 
 const fs = require("fs");
 const { getLocalImages, getImageName, getFolderName } = require("../utils/images");
-const WORKS_JSON_DIR_PATH = join(__dirname, "..", "data", "works.json");
-const { join } = require("node:path");
+const path = require('path');
+const WORKS_JSON_DIR_PATH = path.join(__dirname, "..", "data", "works.json");
 
 async function getLocalWorks() {
     try {
