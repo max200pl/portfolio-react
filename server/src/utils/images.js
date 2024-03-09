@@ -3,7 +3,6 @@ const fs = require('fs').promises;
 const path = require("path");
 const { encode } = require("blurhash");
 const sharp = require("sharp");
-const { readFile } = require("node:fs/promises");
 const { toCamelCase } = require('../helpers/helpers');
 
 const IMAGES_DIR_PATH = path.join(__dirname, "..", "images")
@@ -22,7 +21,7 @@ const getFolderName = (str) => {
 
 async function getLocalImages() {
     try {
-        const localImagesJSON = await readFile(IMAGES_JSON_DIR_PATH);
+        const localImagesJSON = await fs.readFile(IMAGES_JSON_DIR_PATH);
         const { images } = JSON.parse(localImagesJSON);
 
         console.log("Images Local Successfully PARSE");

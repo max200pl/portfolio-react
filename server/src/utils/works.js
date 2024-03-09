@@ -2,12 +2,11 @@
 const fs = require("fs");
 const { getLocalImages, getImageName, getFolderName } = require("../utils/images");
 const WORKS_JSON_DIR_PATH = join(__dirname, "..", "data", "works.json");
-const { readFile } = require("node:fs/promises");
 const { join } = require("node:path");
 
 async function getLocalWorks() {
     try {
-        const localWorksJSON = await readFile(WORKS_JSON_DIR_PATH);
+        const localWorksJSON = await fs.readFile(WORKS_JSON_DIR_PATH);
         const { works } = JSON.parse(localWorksJSON);
 
         console.log("local Works Successfully PARSE");
