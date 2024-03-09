@@ -26,4 +26,4 @@ jobs:
           mongodb-version: ${{matrix.mongodb-version}}
       - run: cd client && npm install
       - run: cd client && npm run build
-      - run: cd server && npm test
+      - run: npm test
