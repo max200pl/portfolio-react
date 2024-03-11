@@ -3,7 +3,7 @@ import { baseQuery } from './api.helper';
 import { SubmitSignUpFormValues } from '../../pages/Auth/AuthSignUp/AuthSignUp';
 import { SubmitSignInFormValues } from '../../pages/Auth/AuthSignIn/AuthSignIn';
 
-const AUTH_API_BASE_URL = "auth";
+const AUTH_API_BASE_URL = "http://localhost:8000/auth";
 
 export type TypeActionAuth = "sign-up" | "login";
 

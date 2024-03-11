@@ -3,7 +3,7 @@ const http = require('http');
 const app = require("./app.js");
 const { mongoConnect } = require('./db/mongo.js');
 
-const PORT = process.env.PORT || 8000;
+const PORT = process.env.SERVER_PORT || 8000;
 const server = http.createServer(app);
 
 async function startServer() {
